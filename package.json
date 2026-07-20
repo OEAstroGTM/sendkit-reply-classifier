@@ -1,0 +1,9 @@
+{
+  "name": "sendkit-reply-classifier",
+  "version": "1.0.0",
+  "description": "Classifies SendKit email replies with Claude and tags conversations automatically",
+  "type": "module",
+  "scripts": {
+    "test": "node test/run-tests.js"
+  }
+}
