@@ -3,7 +3,7 @@
 // aiTag) matches one of the 6 categories AND whose latest message is from the
 // lead (no one has replied yet). Auto-replies (OOO etc.) don't count.
 
-import { CATEGORY_SET, extractTags, listConversationsWithAnyTag, latestInbound, messageText, isInbound, isOptOut } from "../lib/inbox.js";
+import { CATEGORY_SET, extractTags, listConversationsWithAnyTag, latestInbound, messageText, isInbound, isOptOut, reviewFlags } from "../lib/inbox.js";
 import { getConversation } from "../lib/sendkit.js";
 
 export const config = { maxDuration: 60 };
@@ -31,6 +31,7 @@ export default async function handler(req, res) {
         queue.push({
           id,
           optOut: isOptOut(inbound.subject, messageText(inbound)),
+          flags: reviewFlags(messageText(inbound)),
           lead: [lead.firstName, lead.lastName].filter(Boolean).join(" ") || lead.email || "",
           email: lead.email || "",
           company: lead.companyName || "",

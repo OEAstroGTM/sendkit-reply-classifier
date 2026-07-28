@@ -130,6 +130,21 @@ test("sender persona comes from the mailbox the lead replied to", () => {
   assert.equal(senderPersona([]), "");
 });
 
+// --- Review flags ---
+import { reviewFlags } from "../lib/inbox.js";
+
+test("review flags catch call refusal, AI suspicion, questions, channels", () => {
+  assert.ok(reviewFlags("Can you send me a link? I do not want to do a call.").includes("Doesn't want a call"));
+  assert.ok(reviewFlags("This looks like an AI reply.").includes("Suspects AI"));
+  assert.ok(reviewFlags("What does $50 include, is that the price-per-lead?").includes("Asked a direct question"));
+  assert.ok(reviewFlags("Please send the details by WhatsApp to +971").includes("Wants another channel"));
+  assert.ok(reviewFlags("What does $50 include?").includes("Mentions pricing"));
+});
+
+test("review flags stay quiet on plain positive replies", () => {
+  assert.deepEqual(reviewFlags("Sounds great, looking forward to it"), []);
+});
+
 // --- Booking link signatures ---
 process.env.SETUP_SECRET = process.env.SETUP_SECRET || "test-secret";
 const { signSlot, verifySlot, bookUrl } = await import("../lib/booking.js");

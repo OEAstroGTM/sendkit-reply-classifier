@@ -137,6 +137,8 @@ const TAG_COLORS = {
   "Pricing Question": "var(--amber)", "Timing Issue": "var(--gray)", "None": "#444a5a",
 };
 const pill = (t) => `<span class="pill" style="background:${TAG_COLORS[t] || "#444a5a"};color:#fff">${esc(t)}</span>`;
+const flagPill = (f) => `<span class="pill" style="background:rgba(245,158,11,.18);color:var(--amber);border:1px solid var(--amber);margin-right:4px">&#9873; ${esc(f)}</span>`;
+const flagRow = (flags) => (flags && flags.length) ? `<div style="margin-top:6px">${flags.map(flagPill).join("")}</div>` : "";
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
 function key() {
@@ -245,6 +247,7 @@ function queueHeader(c) {
       <div>${(c.tags || []).map(pill).join(" ")} <span class="hint">${Q.i + 1} of ${Q.items.length}</span></div>
     </div>
     ${c.optOut ? `<div style="margin-top:8px;padding:10px;border-radius:8px;background:rgba(239,68,68,.12);color:var(--red);font-size:13px"><b>Opt-out detected.</b> This lead asked to stop receiving email. Replying is blocked.</div>` : ""}
+    ${flagRow(c.flags)}
     <div style="margin-top:10px;padding:12px;border-radius:8px;background:var(--input-bg);font-size:13px">
       <span class="hint">They said:</span><br>${esc(c.lastMessagePreview)}</div>`;
 }
@@ -355,23 +358,28 @@ async function loadFollowups() {
   if (d.error) { out.innerHTML = `<pre class="err">${esc(d.error)}</pre>`; return; }
   if (!d.conversations?.length) { out.innerHTML = `<div class="hint" style="margin-top:12px">Nothing waiting. Every tagged conversation has the lead speaking last, so check the Review queue.</div>`; return; }
 
-  out.innerHTML = `<table><tr><th>Lead</th><th>We replied</th><th>Follow-ups</th><th></th></tr>` +
+  const statusPill = (s) => s === "scheduled"
+    ? `<span class="pill" style="background:var(--green);color:#fff">Scheduled</span>`
+    : `<span class="pill" style="background:var(--gray);color:#fff">Awaiting</span>`;
+
+  out.innerHTML = `<table><tr><th>Lead</th><th>Status</th><th>Follow-ups</th><th></th></tr>` +
     d.conversations.map((c, i) => {
-      const waited = c.daysWaiting === null ? "" : `<span class="hint">${c.daysWaiting}d ago</span>`;
+      const waited = c.daysWaiting === null ? "" : `<span class="hint">replied ${c.daysWaiting}d ago</span>`;
       const bumps = c.scheduled.length
         ? c.scheduled.map((s, j) =>
-            `<div style="margin-bottom:4px">&#128337; ${esc(fmtWhen(s.scheduledFor))}
-             <button class="secondary" style="margin:0 0 0 6px;padding:3px 8px;font-size:11px" data-cancel="${i}:${j}">cancel</button></div>`
+            `<div style="margin-bottom:8px">&#128337; <b>${esc(fmtWhen(s.scheduledFor))}</b>
+             <button class="secondary" style="margin:0 0 0 6px;padding:3px 8px;font-size:11px" data-cancel="${i}:${j}">cancel</button>
+             <div class="hint" style="margin-top:2px">${esc(s.preview)}</div></div>`
           ).join("")
         : `<span class="hint">none scheduled</span>`;
       return `<tr>
-        <td><b>${esc(c.lead || c.email)}</b><br><span class="hint">${esc(c.email)}</span><br>${(c.tags || []).map(pill).join(" ")}</td>
-        <td>${esc(fmtWhen(c.lastSentAt))}<br>${waited}<br><span class="hint">${esc(c.ourLastMessage.slice(0, 90))}…</span></td>
+        <td><b>${esc(c.lead || c.email)}</b><br><span class="hint">${esc(c.email)}</span><br>${(c.tags || []).map(pill).join(" ")}${flagRow(c.flags)}</td>
+        <td>${statusPill(c.status)}<br>${waited}</td>
         <td>${bumps}</td>
         <td>${c.scheduled.length ? "" : `<button class="secondary" style="margin:0;padding:6px 10px;font-size:12px" data-sched="${i}">Schedule</button>`}</td>
       </tr>`;
     }).join("") +
-    `</table><div class="hint">${d.awaitingReply} awaiting reply · ${d.pendingBumps} bump(s) scheduled</div>`;
+    `</table><div class="hint">${d.awaitingReply} awaiting reply · ${d.pendingBumps} bump(s) scheduled${d.conversations.some((c) => c.flags?.length) ? " · &#9873; flagged conversations need a human look" : ""}</div>`;
 
   out.querySelectorAll("[data-cancel]").forEach((btn) => {
     btn.onclick = async () => {
@@ -388,6 +396,7 @@ async function loadFollowups() {
       btn.disabled = true; btn.textContent = "Scheduling…";
       const r = await fetch(`/api/followups?key=${key()}&schedule=1&id=${c.conversationId}`).then((x) => x.json()).catch((e) => ({ error: e.message }));
       if (r.error) { btn.textContent = "Failed"; btn.disabled = false; return; }
+      if (!r.scheduled?.length) { btn.textContent = r.reason || "Nothing scheduled"; return; }
       loadFollowups();
     };
   });

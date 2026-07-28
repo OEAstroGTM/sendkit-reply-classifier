@@ -3,7 +3,7 @@
 // GET /api/followups?key=...&cancel=1&id=..&replyId=..   -> cancel one bump
 // GET /api/followups?key=...&schedule=1&id=..            -> schedule bumps for one conversation
 
-import { listConversationsWithAnyTag, extractTags, CATEGORY_SET, isInbound, senderPersona } from "../lib/inbox.js";
+import { listConversationsWithAnyTag, extractTags, CATEGORY_SET, isInbound, senderPersona, latestInbound, messageText, reviewFlags } from "../lib/inbox.js";
 import { getConversation, listScheduledReplies, cancelScheduledReply } from "../lib/sendkit.js";
 import { scheduleFollowups } from "../lib/followup.js";
 
@@ -31,7 +31,16 @@ export default async function handler(req, res) {
         leadName: lead.firstName || "",
         persona: senderPersona(detail.messages),
       });
-      return res.status(200).json(r);
+      // Return the newly scheduled bumps so the UI can show them immediately
+      let scheduled = [];
+      try {
+        scheduled = ((await listScheduledReplies(id)).data || []).map((s) => ({
+          replyId: s._id || s.id,
+          scheduledFor: s.scheduledFor || s.scheduled_for || "",
+          preview: clean(s.body).slice(0, 200),
+        }));
+      } catch { /* ignore */ }
+      return res.status(200).json({ ...r, status: r.scheduled ? "scheduled" : "not scheduled", scheduled });
     }
 
     const tagged = await listConversationsWithAnyTag(100);
@@ -67,6 +76,7 @@ export default async function handler(req, res) {
             preview: clean(r.body).slice(0, 140),
           }));
         } catch { /* ignore */ }
+        const theirLast = messageText(latestInbound(msgs));
         return {
           conversationId: id,
           lead: [lead.firstName, lead.lastName].filter(Boolean).join(" ") || lead.email || "",
@@ -75,6 +85,9 @@ export default async function handler(req, res) {
           lastSentAt: sentAt,
           daysWaiting: sentAt ? Math.floor((Date.now() - new Date(sentAt).getTime()) / 86400000) : null,
           ourLastMessage: clean(last.content || last.body || last.htmlContent).slice(0, 160),
+          theirLastMessage: theirLast.slice(0, 200),
+          flags: reviewFlags(theirLast),
+          status: scheduled.length ? "scheduled" : "awaiting",
           scheduled,
         };
       })
