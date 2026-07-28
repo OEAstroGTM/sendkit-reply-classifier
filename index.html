@@ -271,33 +271,65 @@ async function showQueueItem() {
     return;
   }
   if (d.category === "Unsubscribe") { c.optOut = true; showQueueItem(); return; }
+  c.preview = { body: d.replyBody, slots: d.slots || [] };
+  renderPreview(c, d.replyHtml);
+}
 
+function renderPreview(c, html) {
+  const out = $("queue-out");
   out.innerHTML = queueHeader(c) +
-    `<div class="preview">${d.replyHtml || esc(d.replyBody)}</div>
+    `<div class="preview">${html || esc(c.preview.body)}</div>
     <div class="hint">Times are clickable booking links pulled live from your calendar. Signed as the campaign persona.</div>
     <div class="row">
       <button id="q-send">Send</button>
       <button id="q-draft" class="secondary">Save draft</button>
+      <button id="q-edit" class="secondary">Edit</button>
       <button id="q-regen" class="secondary">Regenerate</button>
       <button id="q-skip" class="secondary">Skip</button>
     </div>`;
   $("q-regen").onclick = showQueueItem;
   $("q-skip").onclick = next;
+  $("q-edit").onclick = () => renderEditor(c);
   $("q-send").onclick = () => act(c, "send");
   $("q-draft").onclick = () => act(c, "draft");
+}
+
+function renderEditor(c) {
+  const out = $("queue-out");
+  out.innerHTML = queueHeader(c) +
+    `<label style="margin-top:14px">Edit the reply (plain text — the proposed times become clickable links automatically if you keep their wording)</label>
+    <textarea id="q-editor" style="min-height:220px">${esc(c.preview.body)}</textarea>
+    <div class="row">
+      <button id="q-esend">Send edited</button>
+      <button id="q-edraft" class="secondary">Save edited as draft</button>
+      <button id="q-ecancel" class="secondary">Cancel</button>
+    </div>`;
+  $("q-ecancel").onclick = () => { renderPreviewFromBody(c); };
+  $("q-esend").onclick = () => { c.preview.body = $("q-editor").value; act(c, "send"); };
+  $("q-edraft").onclick = () => { c.preview.body = $("q-editor").value; act(c, "draft"); };
+}
+
+function renderPreviewFromBody(c) {
+  // Re-render locally without booking-link decoration (links re-applied at send)
+  const safe = esc(c.preview.body).replace(/\n/g, "<br>");
+  renderPreview(c, safe);
 }
 
 async function act(c, mode) {
   const out = $("queue-out");
   out.innerHTML = queueHeader(c) + `<pre>${mode === "send" ? "Sending" : "Saving draft"}…</pre>`;
-  const d = await fetch(`/api/respond?key=${key()}&id=${c.id}&mode=${mode}&_=${Date.now()}`).then((r) => r.json()).catch((e) => ({ error: e.message }));
+  const d = await fetch(`/api/respond?key=${key()}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ id: c.id, mode, body: c.preview.body, slots: c.preview.slots }),
+  }).then((r) => r.json()).catch((e) => ({ error: e.message }));
   if (d.error) {
     out.innerHTML = queueHeader(c) + `<pre class="err">${esc(d.error)}</pre>
       <div class="row"><button id="q-retry" class="secondary">Back</button></div>`;
-    $("q-retry").onclick = showQueueItem;
+    $("q-retry").onclick = () => renderPreviewFromBody(c);
     return;
   }
-  out.innerHTML = queueHeader(c) + `<div style="margin-top:12px;color:var(--green)"><b>${mode === "send" ? "Sent" : "Draft saved"}.</b></div>`;
+  out.innerHTML = queueHeader(c) + `<div style="margin-top:12px;color:var(--green)"><b>${mode === "send" ? "Sent" : "Draft saved"}.</b> Exactly what was on screen.</div>`;
   setTimeout(next, 900);
 }
 

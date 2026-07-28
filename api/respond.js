@@ -5,7 +5,7 @@
 //   mode=draft            — saves it as a draft on the conversation
 //   mode=send             — sends it immediately
 
-import { generateReply } from "../lib/reply.js";
+import { generateReply, renderReplyHtml } from "../lib/reply.js";
 import { getConversation, sendReply, saveDraft, addToDnc } from "../lib/sendkit.js";
 import { CATEGORY_SET, extractTags, latestInbound, messageText, isOptOut, senderPersona } from "../lib/inbox.js";
 
@@ -15,11 +15,38 @@ export default async function handler(req, res) {
   if (!process.env.SETUP_SECRET || req.query.key !== process.env.SETUP_SECRET) {
     return res.status(401).json({ error: "Unauthorized" });
   }
-  const id = req.query.id;
-  const mode = req.query.mode || "preview";
+  const isPost = req.method === "POST";
+  const p = isPost ? { ...req.query, ...(req.body || {}) } : req.query;
+  const id = p.id;
+  const mode = p.mode || "preview";
   if (!id) return res.status(400).json({ error: "Add &id=CONVERSATION_ID" });
   if (!["preview", "draft", "send"].includes(mode)) {
     return res.status(400).json({ error: "mode must be preview, draft, or send" });
+  }
+
+  // POST with a `body` = send/draft this exact text (possibly human-edited),
+  // skipping regeneration. Slot labels in the text become booking links again.
+  if (isPost && p.body && mode !== "preview") {
+    try {
+      const detail = (await getConversation(id)).data || {};
+      const lead = detail.lead || {};
+      const html = renderReplyHtml(p.body, {
+        slots: Array.isArray(p.slots) ? p.slots : [],
+        leadEmail: lead.email || "",
+        leadName: lead.firstName || "",
+        baseUrl: `https://${req.headers.host}`,
+      });
+      if (mode === "draft") await saveDraft(id, html);
+      else await sendReply(id, html);
+      return res.status(200).json({
+        conversationId: id,
+        lead: lead.email || "",
+        action: mode === "draft" ? "draft saved on conversation" : "reply sent",
+        edited: true,
+      });
+    } catch (e) {
+      return res.status(500).json({ error: e.message });
+    }
   }
 
   try {
@@ -45,7 +72,7 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: `Conversation has no matching tag. Tags found: ${extractTags(detail).join(", ") || "none"}` });
     }
 
-    const { body, html, slotLines } = await generateReply({
+    const { body, html, slotLines, slots } = await generateReply({
       category,
       replyText,
       leadName: lead.firstName || "",
@@ -84,6 +111,7 @@ export default async function handler(req, res) {
       proposedTimes: slotLines,
       replyBody: body,
       replyHtml: html,
+      slots,
     });
   } catch (e) {
     return res.status(500).json({ error: e.message });
