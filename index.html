@@ -94,9 +94,9 @@
   </div>
 
   <div class="card">
-    <h2>&#9200; Scheduled follow-ups</h2>
-    <div class="hint">Pending bumps for leads who haven't answered. Auto-cancelled when they reply or book.</div>
-    <button id="btn-followups" class="secondary">Load follow-ups</button>
+    <h2>&#9200; Awaiting reply</h2>
+    <div class="hint">Leads we answered who haven't come back. Shows any scheduled bumps, or schedule them on demand. Bumps auto-cancel when the lead replies or books.</div>
+    <button id="btn-followups" class="secondary">Load</button>
     <div id="followups-out" class="hide"></div>
   </div>
 
@@ -346,24 +346,47 @@ function next() { Q.i += 1; showQueueItem(); }
 // ---------- Scheduled follow-ups ----------
 $("btn-followups").onclick = loadFollowups;
 
+const fmtWhen = (s) => s ? new Date(s).toLocaleString([], { weekday: "short", month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }) : "-";
+
 async function loadFollowups() {
   const out = $("followups-out"); out.classList.remove("hide");
-  out.innerHTML = "<pre>Checking scheduled follow-ups…</pre>";
+  out.innerHTML = "<pre>Finding conversations waiting on the lead…</pre>";
   const d = await call($("btn-followups"), `/api/followups?key=${key()}&_=${Date.now()}`);
   if (d.error) { out.innerHTML = `<pre class="err">${esc(d.error)}</pre>`; return; }
-  if (!d.followups?.length) { out.innerHTML = `<div class="hint" style="margin-top:12px">No follow-ups pending.</div>`; return; }
-  out.innerHTML = `<table><tr><th>Lead</th><th>Goes out</th><th>Message</th><th></th></tr>` +
-    d.followups.map((f, i) =>
-      `<tr><td><b>${esc(f.lead)}</b><br><span class="hint">${esc(f.email)}</span></td>
-      <td>${f.scheduledFor ? esc(new Date(f.scheduledFor).toLocaleString([], { weekday: "short", month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })) : "-"}</td>
-      <td class="hint">${esc(f.preview)}</td>
-      <td><button class="secondary" style="margin:0;padding:6px 10px;font-size:12px" data-fu="${i}">Cancel</button></td></tr>`
-    ).join("") + `</table><div class="hint">${d.pending} pending</div>`;
-  out.querySelectorAll("[data-fu]").forEach((btn) => {
+  if (!d.conversations?.length) { out.innerHTML = `<div class="hint" style="margin-top:12px">Nothing waiting. Every tagged conversation has the lead speaking last, so check the Review queue.</div>`; return; }
+
+  out.innerHTML = `<table><tr><th>Lead</th><th>We replied</th><th>Follow-ups</th><th></th></tr>` +
+    d.conversations.map((c, i) => {
+      const waited = c.daysWaiting === null ? "" : `<span class="hint">${c.daysWaiting}d ago</span>`;
+      const bumps = c.scheduled.length
+        ? c.scheduled.map((s, j) =>
+            `<div style="margin-bottom:4px">&#128337; ${esc(fmtWhen(s.scheduledFor))}
+             <button class="secondary" style="margin:0 0 0 6px;padding:3px 8px;font-size:11px" data-cancel="${i}:${j}">cancel</button></div>`
+          ).join("")
+        : `<span class="hint">none scheduled</span>`;
+      return `<tr>
+        <td><b>${esc(c.lead || c.email)}</b><br><span class="hint">${esc(c.email)}</span><br>${(c.tags || []).map(pill).join(" ")}</td>
+        <td>${esc(fmtWhen(c.lastSentAt))}<br>${waited}<br><span class="hint">${esc(c.ourLastMessage.slice(0, 90))}…</span></td>
+        <td>${bumps}</td>
+        <td>${c.scheduled.length ? "" : `<button class="secondary" style="margin:0;padding:6px 10px;font-size:12px" data-sched="${i}">Schedule</button>`}</td>
+      </tr>`;
+    }).join("") +
+    `</table><div class="hint">${d.awaitingReply} awaiting reply · ${d.pendingBumps} bump(s) scheduled</div>`;
+
+  out.querySelectorAll("[data-cancel]").forEach((btn) => {
     btn.onclick = async () => {
-      const f = d.followups[Number(btn.dataset.fu)];
-      btn.disabled = true; btn.textContent = "Cancelling…";
-      const r = await fetch(`/api/followups?key=${key()}&cancel=1&id=${f.conversationId}&replyId=${f.replyId}`).then((x) => x.json()).catch((e) => ({ error: e.message }));
+      const [i, j] = btn.dataset.cancel.split(":").map(Number);
+      const c = d.conversations[i], s = c.scheduled[j];
+      btn.disabled = true; btn.textContent = "…";
+      await fetch(`/api/followups?key=${key()}&cancel=1&id=${c.conversationId}&replyId=${s.replyId}`).catch(() => {});
+      loadFollowups();
+    };
+  });
+  out.querySelectorAll("[data-sched]").forEach((btn) => {
+    btn.onclick = async () => {
+      const c = d.conversations[Number(btn.dataset.sched)];
+      btn.disabled = true; btn.textContent = "Scheduling…";
+      const r = await fetch(`/api/followups?key=${key()}&schedule=1&id=${c.conversationId}`).then((x) => x.json()).catch((e) => ({ error: e.message }));
       if (r.error) { btn.textContent = "Failed"; btn.disabled = false; return; }
       loadFollowups();
     };
