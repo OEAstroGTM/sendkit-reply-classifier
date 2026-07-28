@@ -9,7 +9,7 @@ import { generateReply, renderReplyHtml } from "../lib/reply.js";
 import { getConversation, sendReply, saveDraft, addToDnc } from "../lib/sendkit.js";
 import { CATEGORY_SET, extractTags, latestInbound, messageText, isOptOut, senderPersona } from "../lib/inbox.js";
 import { scheduleFollowups } from "../lib/followup.js";
-import { drafts as sendkitDrafts } from "../drafts/sendkit-batch.js";
+import { drafts as sendkitDrafts } from "../lib/approved-drafts.js";
 
 export const config = { maxDuration: 60 };
 
