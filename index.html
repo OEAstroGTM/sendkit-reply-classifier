@@ -396,7 +396,14 @@ async function loadFollowups() {
       btn.disabled = true; btn.textContent = "Scheduling…";
       const r = await fetch(`/api/followups?key=${key()}&schedule=1&id=${c.conversationId}`).then((x) => x.json()).catch((e) => ({ error: e.message }));
       if (r.error) { btn.textContent = "Failed"; btn.disabled = false; return; }
-      if (!r.scheduled?.length) { btn.textContent = r.reason || "Nothing scheduled"; return; }
+      if (!r.scheduled?.length) {
+        const why = (r.errors && r.errors[0]) || r.reason || "Nothing scheduled";
+        const friendly = /no workspace mailbox/i.test(why)
+          ? "Sending mailbox disconnected in SendKit — reconnect it to reply or schedule"
+          : why.replace(/^SendKit [^:]+: /, "").slice(0, 160);
+        btn.outerHTML = `<span class="hint err" style="font-size:11px">${esc(friendly)}</span>`;
+        return;
+      }
       loadFollowups();
     };
   });
