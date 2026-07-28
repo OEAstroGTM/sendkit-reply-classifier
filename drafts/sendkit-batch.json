@@ -1,0 +1,11 @@
+{
+  "note": "Approved SendKit replies. Send with /api/respond?key=...&draft=<id>&mode=send",
+  "drafts": [
+    {
+      "id": "haojun",
+      "conversationId": "6a1dfe9b22aefcaab94ae5ed",
+      "lead": "Haojun S., SG Assist (Singapore, 48 days cold, previously said no call needed)",
+      "body": "Hi Haojun,\n\nApologies for the long gap on my side.\n\nYou mentioned you'd take a look back in June, so I wanted to close the loop rather than leave it hanging. If it's still of interest I'm happy to answer anything by email, no call needed.\n\nIf a quick call is easier, these work on my side and land in your evening:\n\n• Thursday, July 30 at 8:00 PM SGT\n• Friday, July 31 at 8:00 PM SGT\n\nZoe"
+    }
+  ]
+}

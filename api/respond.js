@@ -9,6 +9,7 @@ import { generateReply, renderReplyHtml } from "../lib/reply.js";
 import { getConversation, sendReply, saveDraft, addToDnc } from "../lib/sendkit.js";
 import { CATEGORY_SET, extractTags, latestInbound, messageText, isOptOut, senderPersona } from "../lib/inbox.js";
 import { scheduleFollowups } from "../lib/followup.js";
+import sendkitBatch from "../drafts/sendkit-batch.json" with { type: "json" };
 
 export const config = { maxDuration: 60 };
 
@@ -17,7 +18,15 @@ export default async function handler(req, res) {
     return res.status(401).json({ error: "Unauthorized" });
   }
   const isPost = req.method === "POST";
-  const p = isPost ? { ...req.query, ...(req.body || {}) } : req.query;
+  let p = isPost ? { ...req.query, ...(req.body || {}) } : { ...req.query };
+
+  // ?draft=<id> pulls an approved reply from drafts/sendkit-batch.json,
+  // so exact wording can be sent without stuffing it into a URL.
+  if (p.draft) {
+    const d = sendkitBatch.drafts.find((x) => x.id === p.draft);
+    if (!d) return res.status(404).json({ error: `No draft "${p.draft}"` });
+    p = { ...p, id: d.conversationId, body: d.body, slots: [] };
+  }
   const id = p.id;
   const mode = p.mode || "preview";
   if (!id) return res.status(400).json({ error: "Add &id=CONVERSATION_ID" });
@@ -27,7 +36,7 @@ export default async function handler(req, res) {
 
   // POST with a `body` = send/draft this exact text (possibly human-edited),
   // skipping regeneration. Slot labels in the text become booking links again.
-  if (isPost && p.body && mode !== "preview") {
+  if (p.body && mode !== "preview") {
     try {
       const detail = (await getConversation(id)).data || {};
       const lead = detail.lead || {};
