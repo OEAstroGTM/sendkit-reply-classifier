@@ -35,22 +35,21 @@ export default async function handler(req, res) {
     }
 
     const tagged = await listConversationsWithAnyTag(100);
-    const rows = [];
 
-    for (const convo of tagged.slice(0, 30)) {
-      const id = convo._id || convo.id;
-      try {
-        const detail = (await getConversation(id)).data || {};
-        const messages = detail.messages || [];
-        const last = messages[messages.length - 1];
-        if (!last || isInbound(last)) continue; // lead spoke last -> that's the review queue, not here
+    // The list payload carries lastMessage.isFromLead, so we can filter to
+    // "we spoke last" without fetching every conversation in full.
+    const awaiting = tagged.filter((c) => {
+      const lm = c.lastMessage;
+      if (!lm) return false;
+      return lm.isFromLead === false;
+    });
 
-        const lead = detail.lead || {};
-        const sentAt = last.sentAt || last.receivedAt || "";
-        const daysWaiting = sentAt
-          ? Math.floor((Date.now() - new Date(sentAt).getTime()) / 86400000)
-          : null;
-
+    const rows = await Promise.all(
+      awaiting.slice(0, 25).map(async (convo) => {
+        const id = convo._id || convo.id;
+        const lead = convo.lead || {};
+        const lm = convo.lastMessage || {};
+        const sentAt = lm.sentAt || lm.receivedAt || convo.updatedAt || "";
         let scheduled = [];
         try {
           scheduled = ((await listScheduledReplies(id)).data || []).map((r) => ({
@@ -59,19 +58,18 @@ export default async function handler(req, res) {
             preview: clean(r.body).slice(0, 140),
           }));
         } catch { /* ignore */ }
-
-        rows.push({
+        return {
           conversationId: id,
           lead: [lead.firstName, lead.lastName].filter(Boolean).join(" ") || lead.email || "",
           email: lead.email || "",
-          tags: extractTags(detail).filter((t) => CATEGORY_SET.has(t)),
+          tags: extractTags(convo).filter((t) => CATEGORY_SET.has(t)),
           lastSentAt: sentAt,
-          daysWaiting,
-          ourLastMessage: clean(last.content || last.body || last.htmlContent).slice(0, 160),
+          daysWaiting: sentAt ? Math.floor((Date.now() - new Date(sentAt).getTime()) / 86400000) : null,
+          ourLastMessage: clean(lm.content || lm.body).slice(0, 160),
           scheduled,
-        });
-      } catch { /* skip unreadable conversation */ }
-    }
+        };
+      })
+    );
 
     rows.sort((a, b) => (b.daysWaiting ?? -1) - (a.daysWaiting ?? -1));
     return res.status(200).json({
