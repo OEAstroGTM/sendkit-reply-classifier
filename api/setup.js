@@ -3,7 +3,7 @@
 // email.replied webhook pointing at this deployment's /api/webhook.
 // Safe to run more than once (existing tags/webhook are skipped).
 
-import { TAGS, createTag, listWebhooks, createWebhook, getAccount } from "../lib/sendkit.js";
+import { TAGS, createTag, listTags, listWebhooks, createWebhook } from "../lib/sendkit.js";
 import { getGrant } from "../lib/nylas.js";
 
 export default async function handler(req, res) {
@@ -13,10 +13,11 @@ export default async function handler(req, res) {
 
   const report = { account: null, tags: [], webhook: null, nylas: null };
 
-  // 1. Verify the API key works
+  // 1. Verify the API key works (workspace-scoped endpoint; /v1/account
+  // requires a platform key, which workspace keys can't call)
   try {
-    const acct = await getAccount();
-    report.account = acct.data?.email || acct.email || "ok";
+    await listTags();
+    report.account = "workspace key ok";
   } catch (e) {
     return res.status(500).json({ error: `SendKit API key check failed: ${e.message}` });
   }
