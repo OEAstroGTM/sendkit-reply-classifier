@@ -8,6 +8,7 @@
 import { generateReply, renderReplyHtml } from "../lib/reply.js";
 import { getConversation, sendReply, saveDraft, addToDnc } from "../lib/sendkit.js";
 import { CATEGORY_SET, extractTags, latestInbound, messageText, isOptOut, senderPersona } from "../lib/inbox.js";
+import { scheduleFollowups } from "../lib/followup.js";
 
 export const config = { maxDuration: 60 };
 
@@ -36,13 +37,19 @@ export default async function handler(req, res) {
         leadName: lead.firstName || "",
         baseUrl: `https://${req.headers.host}`,
       });
+      let followups = 0;
       if (mode === "draft") await saveDraft(id, html);
-      else await sendReply(id, html);
+      else {
+        await sendReply(id, html);
+        const f = await scheduleFollowups(id, { leadName: lead.firstName || "", persona: senderPersona(detail.messages) });
+        followups = f.scheduled;
+      }
       return res.status(200).json({
         conversationId: id,
         lead: lead.email || "",
         action: mode === "draft" ? "draft saved on conversation" : "reply sent",
         edited: true,
+        followupsScheduled: followups,
       });
     } catch (e) {
       return res.status(500).json({ error: e.message });
@@ -80,11 +87,18 @@ export default async function handler(req, res) {
       leadEmail: lead.email || "",
       baseUrl: `https://${req.headers.host}`,
       senderName: senderPersona(detail.messages),
+      conversationId: id,
     });
 
     let action = "preview only, nothing saved or sent";
+    let followups = 0;
     if (mode === "draft") { await saveDraft(id, html); action = "draft saved on conversation"; }
-    if (mode === "send") { await sendReply(id, html); action = "reply sent"; }
+    if (mode === "send") {
+      await sendReply(id, html);
+      action = "reply sent";
+      const f = await scheduleFollowups(id, { leadName: lead.firstName || "", persona: senderPersona(detail.messages) });
+      followups = f.scheduled;
+    }
 
     // ?format=html renders the email exactly as the lead will see it
     if (req.query.format === "html") {
@@ -112,6 +126,7 @@ export default async function handler(req, res) {
       replyBody: body,
       replyHtml: html,
       slots,
+      followupsScheduled: followups,
     });
   } catch (e) {
     return res.status(500).json({ error: e.message });

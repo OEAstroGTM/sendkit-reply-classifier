@@ -5,16 +5,17 @@
 
 import { createEvent, formatSlot } from "../lib/nylas.js";
 import { verifySlot } from "../lib/booking.js";
+import { cancelFollowups } from "../lib/followup.js";
 
 export const config = { maxDuration: 60 };
 
 export default async function handler(req, res) {
-  const { e: email, t, d, n: name, sig } = req.query;
+  const { e: email, t, d, n: name, c: conversationId, sig } = req.query;
   const startTime = Number(t);
   const durationMin = Number(d || 30);
   res.setHeader("Content-Type", "text/html; charset=utf-8");
 
-  if (!email || !startTime || !sig || !verifySlot(email, startTime, durationMin, sig)) {
+  if (!email || !startTime || !sig || !verifySlot(email, startTime, durationMin, sig, conversationId || "")) {
     return res.status(400).send(page("This booking link is not valid.", "Please reply to the email and we'll sort out a time."));
   }
   if (startTime * 1000 < Date.now()) {
@@ -34,6 +35,8 @@ export default async function handler(req, res) {
       leadName: name || "",
       description: "Booked from email.",
     });
+    // They booked: stop any pending follow-up bumps
+    if (conversationId) cancelFollowups(conversationId).catch(() => {});
     return res.status(200).send(page(
       "You're booked.",
       `${label} (${durationMin} min). A calendar invite is on its way to ${escapeHtml(email)}.`

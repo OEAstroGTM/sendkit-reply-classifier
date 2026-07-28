@@ -7,6 +7,7 @@ import { classifyReply } from "../lib/classify.js";
 import { generateReply, replyConfig } from "../lib/reply.js";
 import { getConversation, tagConversations, sendReply, saveDraft, addToDnc } from "../lib/sendkit.js";
 import { CATEGORY_SET, extractTags, latestInbound, messageText, isOptOut, senderPersona } from "../lib/inbox.js";
+import { scheduleFollowups, cancelFollowups } from "../lib/followup.js";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "POST only" });
@@ -73,6 +74,11 @@ export default async function handler(req, res) {
       return res.status(200).json({ skipped: true, reason: "No lead reply text found (auto-replies are skipped)" });
     }
 
+    // Lead spoke: cancel any pending follow-up bumps for this conversation
+    if (conversationId) {
+      cancelFollowups(conversationId).catch(() => {});
+    }
+
     // --- OPT-OUT GUARD: overrides everything, including existing tags ---
     if (isOptOut(subject, stripHtml(replyText))) {
       let dnc = false;
@@ -134,9 +140,11 @@ export default async function handler(req, res) {
           leadEmail,
           baseUrl: `https://${req.headers.host}`,
           senderName: persona,
+          conversationId,
         });
         if (autosendCategories.includes(result.category)) {
           await sendReply(conversationId, html);
+          await scheduleFollowups(conversationId, { leadName, persona });
           replyAction = "sent";
         } else {
           await saveDraft(conversationId, html);

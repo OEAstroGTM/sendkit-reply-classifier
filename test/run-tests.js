@@ -135,10 +135,29 @@ process.env.SETUP_SECRET = process.env.SETUP_SECRET || "test-secret";
 const { signSlot, verifySlot, bookUrl } = await import("../lib/booking.js");
 
 test("booking link signature round-trip", () => {
-  const sig = signSlot("greg@x.com", 1782743400, 30);
-  assert.ok(verifySlot("greg@x.com", 1782743400, 30, sig));
-  assert.ok(!verifySlot("greg@x.com", 1782743400, 45, sig));   // tampered duration
-  assert.ok(!verifySlot("evil@x.com", 1782743400, 30, sig));   // tampered email
+  const sig = signSlot("greg@x.com", 1782743400, 30, "conv1");
+  assert.ok(verifySlot("greg@x.com", 1782743400, 30, sig, "conv1"));
+  assert.ok(!verifySlot("greg@x.com", 1782743400, 45, sig, "conv1")); // tampered duration
+  assert.ok(!verifySlot("evil@x.com", 1782743400, 30, sig, "conv1")); // tampered email
+  assert.ok(!verifySlot("greg@x.com", 1782743400, 30, sig, "conv2")); // tampered conversation
+});
+
+// --- Follow-up scheduling ---
+const { followupDate, followupBodies } = await import("../lib/followup.js");
+
+test("follow-up dates skip weekends", () => {
+  const thu = new Date("2026-07-30T14:00:00Z"); // Thursday
+  assert.equal(followupDate(2, thu).getUTCDay(), 1);  // Sat -> Mon
+  assert.equal(followupDate(3, thu).getUTCDay(), 1);  // Sun -> Mon
+  assert.equal(followupDate(4, thu).getUTCDay(), 1);  // Mon stays
+});
+
+test("follow-up bodies are short, personalized, signed", () => {
+  const [b1, b2] = followupBodies("Greg", "Stephanie");
+  assert.ok(b1.startsWith("Hey Greg,"));
+  assert.ok(b1.endsWith("Stephanie"));
+  assert.ok(b2.includes("Last nudge"));
+  assert.ok(!b1.includes("—") && !b2.includes("—"));
 });
 
 test("bookUrl contains signed params", () => {

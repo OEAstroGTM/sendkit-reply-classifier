@@ -329,8 +329,9 @@ async function act(c, mode) {
     $("q-retry").onclick = () => renderPreviewFromBody(c);
     return;
   }
-  out.innerHTML = queueHeader(c) + `<div style="margin-top:12px;color:var(--green)"><b>${mode === "send" ? "Sent" : "Draft saved"}.</b> Exactly what was on screen.</div>`;
-  setTimeout(next, 900);
+  const fu = d.followupsScheduled ? ` ${d.followupsScheduled} follow-up bump${d.followupsScheduled > 1 ? "s" : ""} scheduled (auto-cancelled if they reply or book).` : "";
+  out.innerHTML = queueHeader(c) + `<div style="margin-top:12px;color:var(--green)"><b>${mode === "send" ? "Sent" : "Draft saved"}.</b> Exactly what was on screen.${fu}</div>`;
+  setTimeout(next, 1200);
 }
 
 function next() { Q.i += 1; showQueueItem(); }
