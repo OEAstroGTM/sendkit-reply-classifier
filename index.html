@@ -9,6 +9,13 @@
     --bg: #0f1117; --card: #181b23; --border: #2a2e3a; --text: #e6e8ee;
     --muted: #8b90a0; --accent: #4f8cff; --green: #22c55e; --red: #ef4444;
     --amber: #f59e0b; --purple: #a855f7; --blue: #3b82f6; --gray: #6b7280;
+    --input-bg: #10131a; --btn2-bg: #262a36; --btn2-text: #e6e8ee;
+  }
+  [data-theme="light"] {
+    --bg: #f5f6f8; --card: #ffffff; --border: #e2e5ea; --text: #1a1d26;
+    --muted: #6b7180; --accent: #2563eb; --green: #16a34a; --red: #dc2626;
+    --amber: #d97706; --purple: #9333ea; --blue: #2563eb; --gray: #6b7280;
+    --input-bg: #f2f4f7; --btn2-bg: #e8eaef; --btn2-text: #1a1d26;
   }
   * { box-sizing: border-box; margin: 0; }
   body { background: var(--bg); color: var(--text); font: 15px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; padding: 32px 16px; }
@@ -18,13 +25,13 @@
   .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 16px; }
   .card h2 { font-size: 15px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
   label { display: block; font-size: 12px; color: var(--muted); margin: 10px 0 4px; }
-  input, textarea { width: 100%; background: #10131a; color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; font: inherit; }
+  input, textarea { width: 100%; background: var(--input-bg); color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; font: inherit; }
   textarea { min-height: 84px; resize: vertical; }
   button { background: var(--accent); color: #fff; border: 0; border-radius: 8px; padding: 10px 16px; font: inherit; font-weight: 600; cursor: pointer; margin-top: 12px; }
   button:hover { filter: brightness(1.1); }
-  button.secondary { background: #262a36; }
+  button.secondary { background: var(--btn2-bg); color: var(--btn2-text); }
   button:disabled { opacity: .5; cursor: wait; }
-  pre { background: #10131a; border: 1px solid var(--border); border-radius: 8px; padding: 12px; overflow-x: auto; font-size: 13px; white-space: pre-wrap; word-break: break-word; margin-top: 12px; }
+  pre { background: var(--input-bg); border: 1px solid var(--border); border-radius: 8px; padding: 12px; overflow-x: auto; font-size: 13px; white-space: pre-wrap; word-break: break-word; margin-top: 12px; }
   .pill { display: inline-block; padding: 2px 10px; border-radius: 99px; font-size: 12px; font-weight: 600; }
   .row { display: flex; gap: 12px; flex-wrap: wrap; }
   .row > * { flex: 1; min-width: 180px; }
@@ -43,7 +50,10 @@
 </head>
 <body>
 <div class="wrap">
-  <h1>SendKit Reply Agent</h1>
+  <div style="display:flex;justify-content:space-between;align-items:flex-start">
+    <h1>SendKit Reply Agent</h1>
+    <button id="btn-theme" class="secondary" style="margin-top:0;padding:6px 12px;font-size:13px">&#9788; Light</button>
+  </div>
   <div class="sub">Classifies replies, tags conversations, and answers with real calendar times.</div>
 
   <div class="card">
@@ -90,6 +100,19 @@
 
 <script>
 const $ = (id) => document.getElementById(id);
+
+// Theme: saved choice > system preference > dark
+const themeBtn = $("btn-theme");
+function applyTheme(t) {
+  document.documentElement.dataset.theme = t;
+  themeBtn.innerHTML = t === "light" ? "&#9789; Dark" : "&#9788; Light";
+  localStorage.setItem("sk_theme", t);
+}
+applyTheme(localStorage.getItem("sk_theme") ||
+  (window.matchMedia?.("(prefers-color-scheme: light)").matches ? "light" : "dark"));
+themeBtn.onclick = () =>
+  applyTheme(document.documentElement.dataset.theme === "light" ? "dark" : "light");
+
 const secretEl = $("secret");
 secretEl.value = localStorage.getItem("sk_secret") || "";
 secretEl.addEventListener("change", () => localStorage.setItem("sk_secret", secretEl.value.trim()));
