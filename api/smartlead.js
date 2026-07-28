@@ -6,8 +6,9 @@
 
 import {
   listCampaigns, campaignStats, leadByEmail, messageHistory,
-  isMachineReply, ownWords,
+  replyToLead, unsubscribeLead, isMachineReply, ownWords,
 } from "../lib/smartlead.js";
+import { toHtml } from "../lib/reply.js";
 
 export const config = { maxDuration: 60 };
 
@@ -104,6 +105,54 @@ export default async function handler(req, res) {
         awaitingOurReply: human.filter((h) => !h.weAnsweredAfter).length,
         human,
         errors: detailed.filter((d) => d.error),
+      });
+    }
+
+    // POST /api/smartlead?key=...  { action:"send", campaign_id, email, body, [scheduled_time] }
+    // Sends the exact text given. Refuses if the lead is unsubscribed.
+    if (action === "send") {
+      const p = { ...req.query, ...(req.body || {}) };
+      const { campaign_id, email, body } = p;
+      if (!campaign_id || !email || !body) {
+        return res.status(400).json({ error: "Need campaign_id, email and body" });
+      }
+      const lead = await leadByEmail(email);
+      if (lead.is_unsubscribed) {
+        return res.status(409).json({ error: "Lead is unsubscribed, refusing to send" });
+      }
+      const hist = await messageHistory(campaign_id, lead.id);
+      const msgs = hist.history || [];
+      const lastReply = [...msgs].reverse().find((m) => m.type === "REPLY");
+      if (!lastReply) return res.status(400).json({ error: "No lead reply found on this thread" });
+
+      const result = await replyToLead(campaign_id, {
+        email_stats_id: lastReply.stats_id,
+        email_body: toHtml(body),
+        reply_message_id: lastReply.message_id,
+        reply_email_time: lastReply.time,
+        to_email: lead.email,
+        to_first_name: lead.first_name || "",
+        to_last_name: lead.last_name || "",
+        add_signature: false,
+        ...(p.scheduled_time ? { scheduled_time: p.scheduled_time } : {}),
+      });
+      return res.status(200).json({
+        sent: true, lead: lead.email, campaign_id,
+        statsId: lastReply.stats_id, result,
+      });
+    }
+
+    // GET/POST ?action=unsubscribe&email=...  — global suppression
+    if (action === "unsubscribe") {
+      const email = req.query.email || req.body?.email;
+      if (!email) return res.status(400).json({ error: "Need email" });
+      const lead = await leadByEmail(email);
+      const result = await unsubscribeLead(lead.id);
+      const after = await leadByEmail(email);
+      return res.status(200).json({
+        email, leadId: lead.id,
+        isUnsubscribed: after.is_unsubscribed,
+        result,
       });
     }
 
