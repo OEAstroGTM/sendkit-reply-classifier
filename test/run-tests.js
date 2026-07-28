@@ -97,6 +97,22 @@ test("reply config defaults match agreed behavior", () => {
   assert.ok(!replyCategories.includes("Timing Issue"));
 });
 
+// --- Opt-out guard ---
+import { isOptOut } from "../lib/inbox.js";
+
+test("opt-out guard catches unsubscribe requests", () => {
+  assert.ok(isOptOut("UNSUBSCRIBE", "signature only"));
+  assert.ok(isOptOut("", "please remove me from your list"));
+  assert.ok(isOptOut("", "stop emailing me"));
+  assert.ok(isOptOut("RE: hello", "I want to opt out of these"));
+});
+
+test("opt-out guard ignores normal replies and quoted pitch text", () => {
+  assert.ok(!isOptOut("RE: quick question", "sounds interesting, tell me more"));
+  // "unsubscribe" only appears in the quoted original below "From:"
+  assert.ok(!isOptOut("RE: hello", "yes let's talk From: Wendy Price unsubscribe link here"));
+});
+
 // --- HMAC signature (mirrors webhook.js logic) ---
 test("HMAC signature verification", () => {
   const secret = "test-secret";

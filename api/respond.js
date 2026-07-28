@@ -6,8 +6,8 @@
 //   mode=send             — sends it immediately
 
 import { generateReply } from "../lib/reply.js";
-import { getConversation, sendReply, saveDraft } from "../lib/sendkit.js";
-import { CATEGORY_SET, extractTags, latestInbound, messageText } from "../lib/inbox.js";
+import { getConversation, sendReply, saveDraft, addToDnc } from "../lib/sendkit.js";
+import { CATEGORY_SET, extractTags, latestInbound, messageText, isOptOut } from "../lib/inbox.js";
 
 export const config = { maxDuration: 60 };
 
@@ -29,6 +29,16 @@ export default async function handler(req, res) {
 
     const replyText = messageText(inbound);
     const lead = detail.lead || {};
+
+    // Opt-out guard: never reply, offer DNC instead (?dnc=1 to apply)
+    if (isOptOut(inbound.subject, replyText)) {
+      let action = "blocked: opt-out language detected, no reply generated";
+      if (req.query.dnc === "1") {
+        await addToDnc([id]);
+        action = "blocked: opt-out detected, lead added to DNC";
+      }
+      return res.status(200).json({ conversationId: id, lead: lead.email || "", category: "Unsubscribe", action });
+    }
     const tags = extractTags(detail).filter((t) => CATEGORY_SET.has(t));
     const category = req.query.category || tags[0];
     if (!category) {

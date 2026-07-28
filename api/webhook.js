@@ -5,8 +5,8 @@
 import crypto from "node:crypto";
 import { classifyReply } from "../lib/classify.js";
 import { generateReply, replyConfig } from "../lib/reply.js";
-import { getConversation, tagConversations, sendReply, saveDraft } from "../lib/sendkit.js";
-import { CATEGORY_SET, extractTags, latestInbound, messageText } from "../lib/inbox.js";
+import { getConversation, tagConversations, sendReply, saveDraft, addToDnc } from "../lib/sendkit.js";
+import { CATEGORY_SET, extractTags, latestInbound, messageText, isOptOut } from "../lib/inbox.js";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "POST only" });
@@ -69,6 +69,26 @@ export default async function handler(req, res) {
 
     if (!replyText) {
       return res.status(200).json({ skipped: true, reason: "No lead reply text found (auto-replies are skipped)" });
+    }
+
+    // --- OPT-OUT GUARD: overrides everything, including existing tags ---
+    if (isOptOut(subject, stripHtml(replyText))) {
+      let dnc = false;
+      if (conversationId) {
+        try { await addToDnc([conversationId]); dnc = true; }
+        catch (e) { console.error(`DNC add failed: ${e.message}`); }
+      }
+      if (process.env.SHEETS_WEBHOOK_URL) {
+        logToSheet({
+          timestamp: new Date().toISOString(),
+          leadEmail, leadName, campaignName, subject,
+          category: "Unsubscribe", confidence: 1,
+          reason: "Opt-out language detected", replyAction: dnc ? "added to DNC, no reply" : "no reply",
+          conversationId: conversationId || "",
+          replyPreview: stripHtml(replyText).slice(0, 500),
+        }).catch(() => {});
+      }
+      return res.status(200).json({ ok: true, category: "Unsubscribe", tagged: false, replyAction: dnc ? "dnc" : "skipped" });
     }
 
     // --- Category: trust SendKit's existing tag first, classify as fallback ---
