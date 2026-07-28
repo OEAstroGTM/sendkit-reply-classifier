@@ -113,6 +113,9 @@ test("opt-out guard ignores normal replies and quoted pitch text", () => {
   assert.ok(!isOptOut("RE: hello", "yes let's talk From: Wendy Price unsubscribe link here"));
   // Gmail-style quote
   assert.ok(!isOptOut("Re: pricing", "what's the per-inbox cost? On Mon, Jun 29, 2026 at 7:27 PM Amelia wrote: reply STOP to opt out"));
+  // Long Gmail header with full email address (real-world case that broke the 80-char cap)
+  assert.ok(!isOptOut("Re: hypertider mailboxes",
+    "interested On Mon, Jun 29, 2026 at 8:17 PM Isabella Davis < isabella.davis@koldifyone.co > wrote: Syed - unsubscribe here if you want out, remove me link"));
   // "> " quoted lines
   assert.ok(!isOptOut("Re: hi", "sounds good\n> unsubscribe anytime with this link"));
 });
