@@ -87,6 +87,13 @@
   </div>
 
   <div class="card">
+    <h2>&#9993;&#65039; Review queue</h2>
+    <div class="hint">Tagged replies waiting on a response. Review each AI reply, then send, draft, or skip.</div>
+    <button id="btn-queue">Load queue</button>
+    <div id="queue-out" class="hide"></div>
+  </div>
+
+  <div class="card">
     <h2>&#128229; Classified replies</h2>
     <div class="row">
       <button id="btn-recent" class="secondary">Load tagged</button>
@@ -210,6 +217,91 @@ $("btn-backfill").onclick = async () => {
     `<div class="hint">Scanned ${d.scanned}. Remaining untagged: ${d.remainingUntagged}. ${d.remainingUntagged > 0 ? "Click Backfill again for the next batch." : "All caught up."}</div>`;
 };
 const CATEGORY_COLORS_HAS = (c) => Object.prototype.hasOwnProperty.call(TAG_COLORS, c);
+
+// ---------- Review queue workflow ----------
+let Q = { items: [], i: 0 };
+
+$("btn-queue").onclick = async () => {
+  const out = $("queue-out"); out.classList.remove("hide");
+  out.innerHTML = "<pre>Finding tagged replies that are waiting on a response…</pre>";
+  const d = await call($("btn-queue"), `/api/queue?key=${key()}`);
+  if (d.error) { out.innerHTML = `<pre class="err">${esc(d.error)}</pre>`; return; }
+  Q = { items: d.queue || [], i: 0 };
+  if (!Q.items.length) { out.innerHTML = `<div class="hint" style="margin-top:12px">Queue is empty. Every tagged reply has been answered. &#127881;</div>`; return; }
+  showQueueItem();
+};
+
+function queueHeader(c) {
+  return `<div style="margin-top:16px;display:flex;justify-content:space-between;align-items:center">
+      <div><b>${esc(c.lead || c.email)}</b> <span class="hint">${esc(c.company || "")}</span><br>
+      <span class="hint">${esc(c.email)}</span></div>
+      <div>${(c.tags || []).map(pill).join(" ")} <span class="hint">${Q.i + 1} of ${Q.items.length}</span></div>
+    </div>
+    ${c.optOut ? `<div style="margin-top:8px;padding:10px;border-radius:8px;background:rgba(239,68,68,.12);color:var(--red);font-size:13px"><b>Opt-out detected.</b> This lead asked to stop receiving email. Replying is blocked.</div>` : ""}
+    <div style="margin-top:10px;padding:12px;border-radius:8px;background:var(--input-bg);font-size:13px">
+      <span class="hint">They said:</span><br>${esc(c.lastMessagePreview)}</div>`;
+}
+
+async function showQueueItem() {
+  const out = $("queue-out");
+  if (Q.i >= Q.items.length) {
+    out.innerHTML = `<div class="hint" style="margin-top:12px">Done. Reviewed all ${Q.items.length} conversations. &#127881;</div>`;
+    return;
+  }
+  const c = Q.items[Q.i];
+
+  if (c.optOut) {
+    out.innerHTML = queueHeader(c) + `<div class="row">
+      <button id="q-dnc">Add to DNC (no reply)</button>
+      <button id="q-skip" class="secondary">Skip</button></div>`;
+    $("q-skip").onclick = next;
+    $("q-dnc").onclick = async () => {
+      await call($("q-dnc"), `/api/respond?key=${key()}&id=${c.id}&dnc=1`);
+      next();
+    };
+    return;
+  }
+
+  out.innerHTML = queueHeader(c) + `<pre>Pulling calendar availability and writing the reply…</pre>`;
+  const d = await fetch(`/api/respond?key=${key()}&id=${c.id}&mode=preview&_=${Date.now()}`).then((r) => r.json()).catch((e) => ({ error: e.message }));
+  if (d.error) {
+    out.innerHTML = queueHeader(c) + `<pre class="err">${esc(d.error)}</pre>
+      <div class="row"><button id="q-retry" class="secondary">Retry</button><button id="q-skip" class="secondary">Skip</button></div>`;
+    $("q-retry").onclick = showQueueItem; $("q-skip").onclick = next;
+    return;
+  }
+  if (d.category === "Unsubscribe") { c.optOut = true; showQueueItem(); return; }
+
+  out.innerHTML = queueHeader(c) +
+    `<div class="preview">${d.replyHtml || esc(d.replyBody)}</div>
+    <div class="hint">Times are clickable booking links pulled live from your calendar. Signed as the campaign persona.</div>
+    <div class="row">
+      <button id="q-send">Send</button>
+      <button id="q-draft" class="secondary">Save draft</button>
+      <button id="q-regen" class="secondary">Regenerate</button>
+      <button id="q-skip" class="secondary">Skip</button>
+    </div>`;
+  $("q-regen").onclick = showQueueItem;
+  $("q-skip").onclick = next;
+  $("q-send").onclick = () => act(c, "send");
+  $("q-draft").onclick = () => act(c, "draft");
+}
+
+async function act(c, mode) {
+  const out = $("queue-out");
+  out.innerHTML = queueHeader(c) + `<pre>${mode === "send" ? "Sending" : "Saving draft"}…</pre>`;
+  const d = await fetch(`/api/respond?key=${key()}&id=${c.id}&mode=${mode}&_=${Date.now()}`).then((r) => r.json()).catch((e) => ({ error: e.message }));
+  if (d.error) {
+    out.innerHTML = queueHeader(c) + `<pre class="err">${esc(d.error)}</pre>
+      <div class="row"><button id="q-retry" class="secondary">Back</button></div>`;
+    $("q-retry").onclick = showQueueItem;
+    return;
+  }
+  out.innerHTML = queueHeader(c) + `<div style="margin-top:12px;color:var(--green)"><b>${mode === "send" ? "Sent" : "Draft saved"}.</b></div>`;
+  setTimeout(next, 900);
+}
+
+function next() { Q.i += 1; showQueueItem(); }
 </script>
 </body>
 </html>

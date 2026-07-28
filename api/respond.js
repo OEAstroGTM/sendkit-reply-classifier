@@ -83,6 +83,7 @@ export default async function handler(req, res) {
       leadSaid: replyText.slice(0, 300),
       proposedTimes: slotLines,
       replyBody: body,
+      replyHtml: html,
     });
   } catch (e) {
     return res.status(500).json({ error: e.message });
