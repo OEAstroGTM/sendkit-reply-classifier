@@ -24,11 +24,17 @@ export default async function handler(req, res) {
       });
     }
 
-    const { body, slotLines } = await generateReply({
+    const { body, html, slotLines } = await generateReply({
       category: classification.category,
       replyText: text,
       leadName: req.query.name || "",
     });
+
+    // ?format=html renders the email exactly as the lead would see it
+    if (req.query.format === "html") {
+      res.setHeader("Content-Type", "text/html; charset=utf-8");
+      return res.status(200).send(`<div style="font-family:Arial,sans-serif;max-width:600px">${html}</div>`);
+    }
 
     return res.status(200).json({
       classification,
@@ -36,6 +42,7 @@ export default async function handler(req, res) {
       action: autosendCategories.includes(classification.category) ? "would AUTO-SEND" : "would save as DRAFT",
       proposedTimes: slotLines,
       replyBody: body,
+      replyHtml: html,
     });
   } catch (e) {
     return res.status(500).json({ error: e.message });

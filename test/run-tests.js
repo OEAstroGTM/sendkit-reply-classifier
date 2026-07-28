@@ -42,10 +42,11 @@ test("all 6 categories present", () => {
 // --- Slot picking & formatting ---
 import { pickAndFormatSlots, formatSlot } from "../lib/nylas.js";
 
-test("formatSlot renders like the outreach email style", () => {
+test("formatSlot renders like the outreach email style (no em dash)", () => {
   // 2026-06-29 14:30 UTC = 10:30 AM EDT Monday
   const s = formatSlot(1782743400, "America/New_York");
-  assert.match(s, /Monday, June 29 — 10:30 AM (EDT|EST)/);
+  assert.match(s, /Monday, June 29 at 10:30 AM (EDT|EST)/);
+  assert.ok(!s.includes("—"));
 });
 
 test("pickAndFormatSlots takes max 2 per day, 3 total", () => {
@@ -64,8 +65,28 @@ test("pickAndFormatSlots takes max 2 per day, 3 total", () => {
   assert.match(lines[2], /Tuesday/);
 });
 
-// --- Reply config defaults ---
-import { replyConfig } from "../lib/reply.js";
+// --- HTML conversion & dash scrubbing ---
+import { replyConfig, toHtml, scrubDashes } from "../lib/reply.js";
+
+test("toHtml embeds markdown links and controls spacing", () => {
+  const html = toHtml("Hey Greg,\n\nHere's a [quick overview](http://example.com) to skim.\n\n• Monday at 10:30 AM EST\n• Tuesday at 10:45 AM EST\n\nWendy");
+  assert.ok(html.includes('<a href="http://example.com">quick overview</a>'));
+  assert.ok(html.includes("• Monday at 10:30 AM EST<br>• Tuesday at 10:45 AM EST"));
+  assert.ok(html.includes("skim.<br><br>• Monday"));
+  assert.ok(!html.includes("\n"));
+});
+
+test("toHtml escapes raw HTML in reply text", () => {
+  const html = toHtml("a <script>bad</script> & more");
+  assert.ok(!html.includes("<script>"));
+  assert.ok(html.includes("&amp; more"));
+});
+
+test("scrubDashes removes em and en dashes", () => {
+  assert.equal(scrubDashes("great — thanks"), "great, thanks");
+  assert.equal(scrubDashes("2pm – 3pm works"), "2pm, 3pm works");
+  assert.ok(!scrubDashes("a—b–c").match(/[—–]/));
+});
 
 test("reply config defaults match agreed behavior", () => {
   const { replyCategories, autosendCategories } = replyConfig();

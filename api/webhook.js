@@ -95,17 +95,17 @@ export default async function handler(req, res) {
       replyCategories.includes(result.category)
     ) {
       try {
-        const { body } = await generateReply({
+        const { html } = await generateReply({
           category: result.category,
           replyText: stripHtml(replyText),
           leadName,
           subject,
         });
         if (autosendCategories.includes(result.category)) {
-          await sendReply(conversationId, body);
+          await sendReply(conversationId, html);
           replyAction = "sent";
         } else {
-          await saveDraft(conversationId, body);
+          await saveDraft(conversationId, html);
           replyAction = "drafted";
         }
       } catch (e) {
