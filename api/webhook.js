@@ -129,6 +129,8 @@ export default async function handler(req, res) {
           replyText: stripHtml(replyText),
           leadName,
           subject,
+          leadEmail,
+          baseUrl: `https://${req.headers.host}`,
         });
         if (autosendCategories.includes(result.category)) {
           await sendReply(conversationId, html);

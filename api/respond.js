@@ -50,6 +50,8 @@ export default async function handler(req, res) {
       replyText,
       leadName: lead.firstName || "",
       subject: inbound.subject || "",
+      leadEmail: lead.email || "",
+      baseUrl: `https://${req.headers.host}`,
     });
 
     let action = "preview only, nothing saved or sent";

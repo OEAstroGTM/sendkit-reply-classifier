@@ -117,6 +117,23 @@ test("opt-out guard ignores normal replies and quoted pitch text", () => {
   assert.ok(!isOptOut("Re: hi", "sounds good\n> unsubscribe anytime with this link"));
 });
 
+// --- Booking link signatures ---
+process.env.SETUP_SECRET = process.env.SETUP_SECRET || "test-secret";
+const { signSlot, verifySlot, bookUrl } = await import("../lib/booking.js");
+
+test("booking link signature round-trip", () => {
+  const sig = signSlot("greg@x.com", 1782743400, 30);
+  assert.ok(verifySlot("greg@x.com", 1782743400, 30, sig));
+  assert.ok(!verifySlot("greg@x.com", 1782743400, 45, sig));   // tampered duration
+  assert.ok(!verifySlot("evil@x.com", 1782743400, 30, sig));   // tampered email
+});
+
+test("bookUrl contains signed params", () => {
+  const url = bookUrl("https://app.example.com", { email: "greg@x.com", name: "Greg", startTime: 1782743400, durationMin: 30 });
+  assert.ok(url.startsWith("https://app.example.com/api/book?"));
+  assert.ok(url.includes("t=1782743400") && url.includes("sig="));
+});
+
 // --- HMAC signature (mirrors webhook.js logic) ---
 test("HMAC signature verification", () => {
   const secret = "test-secret";
