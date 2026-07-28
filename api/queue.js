@@ -3,7 +3,7 @@
 // aiTag) matches one of the 6 categories AND whose latest message is from the
 // lead (no one has replied yet). Auto-replies (OOO etc.) don't count.
 
-import { CATEGORY_SET, extractTags, listConversations, latestInbound, messageText, isInbound, isOptOut } from "../lib/inbox.js";
+import { CATEGORY_SET, extractTags, listConversationsWithAnyTag, latestInbound, messageText, isInbound, isOptOut } from "../lib/inbox.js";
 import { getConversation } from "../lib/sendkit.js";
 
 export const config = { maxDuration: 60 };
@@ -13,13 +13,11 @@ export default async function handler(req, res) {
     return res.status(401).json({ error: "Unauthorized" });
   }
   try {
-    const list = await listConversations(50);
-    const tagged = list.filter((c) =>
-      extractTags(c).some((t) => CATEGORY_SET.has(t))
-    );
+    // OR across all 6 tags via SendKit's tag filter (whole workspace)
+    const tagged = await listConversationsWithAnyTag(100);
 
     const queue = [];
-    for (const convo of tagged.slice(0, 20)) {
+    for (const convo of tagged.slice(0, 25)) {
       const id = convo._id || convo.id;
       try {
         const detail = (await getConversation(id)).data || {};
