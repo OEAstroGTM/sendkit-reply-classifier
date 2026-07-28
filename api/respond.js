@@ -56,6 +56,21 @@ export default async function handler(req, res) {
     if (mode === "draft") { await saveDraft(id, html); action = "draft saved on conversation"; }
     if (mode === "send") { await sendReply(id, html); action = "reply sent"; }
 
+    // ?format=html renders the email exactly as the lead will see it
+    if (req.query.format === "html") {
+      res.setHeader("Content-Type", "text/html; charset=utf-8");
+      return res.status(200).send(
+        `<body style="margin:0;background:#f0f2f5;padding:24px">
+          <div style="max-width:620px;margin:0 auto;font-family:Arial,sans-serif">
+            <div style="background:#fff;border-radius:8px;padding:8px 16px;margin-bottom:12px;color:#444;font-size:13px">
+              To: <b>${lead.email || ""}</b> · ${category} · ${action}
+            </div>
+            <div style="background:#fff;border-radius:8px;padding:28px;font-size:15px;line-height:1.6;color:#111">${html}</div>
+          </div>
+        </body>`
+      );
+    }
+
     return res.status(200).json({
       conversationId: id,
       lead: [lead.firstName, lead.lastName].filter(Boolean).join(" ") || lead.email || "",
