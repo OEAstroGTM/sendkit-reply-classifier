@@ -4,13 +4,14 @@
 // Safe to run more than once (existing tags/webhook are skipped).
 
 import { TAGS, createTag, listWebhooks, createWebhook, getAccount } from "../lib/sendkit.js";
+import { getGrant } from "../lib/nylas.js";
 
 export default async function handler(req, res) {
   if (!process.env.SETUP_SECRET || req.query.key !== process.env.SETUP_SECRET) {
     return res.status(401).json({ error: "Add ?key=YOUR_SETUP_SECRET (matching the SETUP_SECRET env var)" });
   }
 
-  const report = { account: null, tags: [], webhook: null };
+  const report = { account: null, tags: [], webhook: null, nylas: null };
 
   // 1. Verify the API key works
   try {
@@ -53,6 +54,18 @@ export default async function handler(req, res) {
     }
   } catch (e) {
     report.webhook = `error - ${e.message}`;
+  }
+
+  // 4. Verify Nylas calendar connection (needed for AI replies with times)
+  if (process.env.NYLAS_API_KEY) {
+    try {
+      const grant = await getGrant();
+      report.nylas = `calendar connected: ${grant.email}`;
+    } catch (e) {
+      report.nylas = `error - ${e.message}`;
+    }
+  } else {
+    report.nylas = "NYLAS_API_KEY not set — replies with calendar times are disabled (tagging still works)";
   }
 
   return res.status(200).json(report);

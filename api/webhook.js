@@ -4,7 +4,8 @@
 
 import crypto from "node:crypto";
 import { classifyReply } from "../lib/classify.js";
-import { getConversation, tagConversations } from "../lib/sendkit.js";
+import { generateReply, replyConfig } from "../lib/reply.js";
+import { getConversation, tagConversations, sendReply, saveDraft } from "../lib/sendkit.js";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "POST only" });
@@ -85,6 +86,34 @@ export default async function handler(req, res) {
       }
     }
 
+    // --- AI reply with calendar times (Nylas) ---
+    let replyAction = "none";
+    const { replyCategories, autosendCategories } = replyConfig();
+    if (
+      process.env.NYLAS_API_KEY &&
+      conversationId &&
+      replyCategories.includes(result.category)
+    ) {
+      try {
+        const { body } = await generateReply({
+          category: result.category,
+          replyText: stripHtml(replyText),
+          leadName,
+          subject,
+        });
+        if (autosendCategories.includes(result.category)) {
+          await sendReply(conversationId, body);
+          replyAction = "sent";
+        } else {
+          await saveDraft(conversationId, body);
+          replyAction = "drafted";
+        }
+      } catch (e) {
+        console.error(`Reply generation failed: ${e.message}`);
+        replyAction = `error: ${e.message.slice(0, 120)}`;
+      }
+    }
+
     // --- Log to Google Sheet (optional) ---
     if (process.env.SHEETS_WEBHOOK_URL) {
       logToSheet({
@@ -96,12 +125,13 @@ export default async function handler(req, res) {
         category: result.category,
         confidence: result.confidence,
         reason: result.reason,
+        replyAction,
         conversationId: conversationId || "",
         replyPreview: stripHtml(replyText).slice(0, 500),
       }).catch((e) => console.error(`Sheet logging failed: ${e.message}`));
     }
 
-    return res.status(200).json({ ok: true, category: result.category, confidence: result.confidence, tagged });
+    return res.status(200).json({ ok: true, category: result.category, confidence: result.confidence, tagged, replyAction });
   } catch (err) {
     console.error(err);
     // Return 200 so SendKit doesn't endlessly retry unrecoverable payloads;

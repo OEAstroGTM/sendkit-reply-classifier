@@ -12,7 +12,7 @@
 
 var HEADERS = [
   "Timestamp", "Lead Email", "Lead Name", "Campaign", "Subject",
-  "Category", "Confidence", "Reason", "Conversation ID", "Reply Preview"
+  "Category", "Confidence", "Reason", "Reply Action", "Conversation ID", "Reply Preview"
 ];
 
 function doPost(e) {
@@ -34,6 +34,7 @@ function doPost(e) {
     data.category || "",
     data.confidence || "",
     data.reason || "",
+    data.replyAction || "",
     data.conversationId || "",
     data.replyPreview || ""
   ]);
