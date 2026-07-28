@@ -111,6 +111,10 @@ test("opt-out guard ignores normal replies and quoted pitch text", () => {
   assert.ok(!isOptOut("RE: quick question", "sounds interesting, tell me more"));
   // "unsubscribe" only appears in the quoted original below "From:"
   assert.ok(!isOptOut("RE: hello", "yes let's talk From: Wendy Price unsubscribe link here"));
+  // Gmail-style quote
+  assert.ok(!isOptOut("Re: pricing", "what's the per-inbox cost? On Mon, Jun 29, 2026 at 7:27 PM Amelia wrote: reply STOP to opt out"));
+  // "> " quoted lines
+  assert.ok(!isOptOut("Re: hi", "sounds good\n> unsubscribe anytime with this link"));
 });
 
 // --- HMAC signature (mirrors webhook.js logic) ---
