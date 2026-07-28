@@ -117,6 +117,19 @@ test("opt-out guard ignores normal replies and quoted pitch text", () => {
   assert.ok(!isOptOut("Re: hi", "sounds good\n> unsubscribe anytime with this link"));
 });
 
+// --- Sender persona extraction ---
+import { senderPersona } from "../lib/inbox.js";
+
+test("sender persona comes from the mailbox the lead replied to", () => {
+  const msgs = [
+    { type: "sent", subject: "hi", body: "..." },
+    { type: "reply", from: "andrew@additivecpa.com", to: "stephanie.taylor@koldmailworks.com", content: "works for me" },
+  ];
+  assert.equal(senderPersona(msgs), "Stephanie");
+  assert.equal(senderPersona([{ type: "reply", to: "aria.evans@koldmailnet.co", content: "x" }]), "Aria");
+  assert.equal(senderPersona([]), "");
+});
+
 // --- Booking link signatures ---
 process.env.SETUP_SECRET = process.env.SETUP_SECRET || "test-secret";
 const { signSlot, verifySlot, bookUrl } = await import("../lib/booking.js");

@@ -6,7 +6,7 @@ import crypto from "node:crypto";
 import { classifyReply } from "../lib/classify.js";
 import { generateReply, replyConfig } from "../lib/reply.js";
 import { getConversation, tagConversations, sendReply, saveDraft, addToDnc } from "../lib/sendkit.js";
-import { CATEGORY_SET, extractTags, latestInbound, messageText, isOptOut } from "../lib/inbox.js";
+import { CATEGORY_SET, extractTags, latestInbound, messageText, isOptOut, senderPersona } from "../lib/inbox.js";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "POST only" });
@@ -46,6 +46,7 @@ export default async function handler(req, res) {
     let leadName = d.leadName || d.lead?.firstName || d.lead?.name || "";
     let campaignName = d.campaignName || d.campaign?.name || "";
     let existingTag = null;
+    let persona = "";
 
     // Fetch the conversation for the reply body, lead info, and any tag
     // SendKit's own AI already applied
@@ -62,6 +63,7 @@ export default async function handler(req, res) {
           subject = subject || inbound.subject || "";
         }
         existingTag = extractTags(conv).find((t) => CATEGORY_SET.has(t)) || null;
+        persona = senderPersona(conv.messages);
       } catch (e) {
         console.warn(`Could not fetch conversation ${conversationId}: ${e.message}`);
       }
@@ -131,6 +133,7 @@ export default async function handler(req, res) {
           subject,
           leadEmail,
           baseUrl: `https://${req.headers.host}`,
+          senderName: persona,
         });
         if (autosendCategories.includes(result.category)) {
           await sendReply(conversationId, html);

@@ -7,7 +7,7 @@
 
 import { generateReply } from "../lib/reply.js";
 import { getConversation, sendReply, saveDraft, addToDnc } from "../lib/sendkit.js";
-import { CATEGORY_SET, extractTags, latestInbound, messageText, isOptOut } from "../lib/inbox.js";
+import { CATEGORY_SET, extractTags, latestInbound, messageText, isOptOut, senderPersona } from "../lib/inbox.js";
 
 export const config = { maxDuration: 60 };
 
@@ -52,6 +52,7 @@ export default async function handler(req, res) {
       subject: inbound.subject || "",
       leadEmail: lead.email || "",
       baseUrl: `https://${req.headers.host}`,
+      senderName: senderPersona(detail.messages),
     });
 
     let action = "preview only, nothing saved or sent";
