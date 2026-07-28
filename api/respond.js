@@ -22,9 +22,10 @@ export default async function handler(req, res) {
 
   // ?draft=<id> pulls an approved reply from drafts/sendkit-batch.json,
   // so exact wording can be sent without stuffing it into a URL.
-  if (p.draft) {
-    const d = (sendkitDrafts || []).find((x) => x.id === p.draft);
-    if (!d) return res.status(404).json({ error: `No draft "${p.draft}"` });
+  const draftId = p.draft || p.use;
+  if (draftId) {
+    const d = (sendkitDrafts || []).find((x) => x.id === draftId);
+    if (!d) return res.status(404).json({ error: `No draft "${draftId}"` });
     p = { ...p, id: d.conversationId, body: d.body, slots: [] };
   }
   const id = p.id;
