@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SendKit Reply Agent</title>
+<style>
+  :root {
+    --bg: #0f1117; --card: #181b23; --border: #2a2e3a; --text: #e6e8ee;
+    --muted: #8b90a0; --accent: #4f8cff; --green: #22c55e; --red: #ef4444;
+    --amber: #f59e0b; --purple: #a855f7; --blue: #3b82f6; --gray: #6b7280;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: var(--bg); color: var(--text); font: 15px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; padding: 32px 16px; }
+  .wrap { max-width: 880px; margin: 0 auto; }
+  h1 { font-size: 22px; margin-bottom: 4px; }
+  .sub { color: var(--muted); margin-bottom: 24px; font-size: 14px; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+  .card h2 { font-size: 15px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  label { display: block; font-size: 12px; color: var(--muted); margin: 10px 0 4px; }
+  input, textarea { width: 100%; background: #10131a; color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; font: inherit; }
+  textarea { min-height: 84px; resize: vertical; }
+  button { background: var(--accent); color: #fff; border: 0; border-radius: 8px; padding: 10px 16px; font: inherit; font-weight: 600; cursor: pointer; margin-top: 12px; }
+  button:hover { filter: brightness(1.1); }
+  button.secondary { background: #262a36; }
+  button:disabled { opacity: .5; cursor: wait; }
+  pre { background: #10131a; border: 1px solid var(--border); border-radius: 8px; padding: 12px; overflow-x: auto; font-size: 13px; white-space: pre-wrap; word-break: break-word; margin-top: 12px; }
+  .pill { display: inline-block; padding: 2px 10px; border-radius: 99px; font-size: 12px; font-weight: 600; }
+  .row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .row > * { flex: 1; min-width: 180px; }
+  .status-line { display: flex; gap: 8px; align-items: baseline; padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
+  .status-line:last-child { border-bottom: 0; }
+  .status-line .k { color: var(--muted); min-width: 90px; }
+  .ok { color: var(--green); } .err { color: var(--red); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
+  th { text-align: left; color: var(--muted); font-weight: 500; padding: 6px 8px; border-bottom: 1px solid var(--border); }
+  td { padding: 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .preview { background: #fff; color: #111; border-radius: 8px; padding: 20px; margin-top: 12px; font-family: Arial, sans-serif; }
+  .preview a { color: #1a56db; }
+  .hint { color: var(--muted); font-size: 12px; margin-top: 8px; }
+  .hide { display: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>SendKit Reply Agent</h1>
+  <div class="sub">Classifies replies, tags conversations, and answers with real calendar times.</div>
+
+  <div class="card">
+    <h2>&#128273; Access</h2>
+    <label>Setup secret (your SETUP_SECRET env var)</label>
+    <input id="secret" type="password" placeholder="paste your setup secret">
+    <div class="hint">Stored only in this browser.</div>
+  </div>
+
+  <div class="card">
+    <h2>&#9881;&#65039; System status</h2>
+    <button id="btn-status">Check status / run setup</button>
+    <div id="status-out" class="hide"></div>
+  </div>
+
+  <div class="card">
+    <h2>&#129514; Test a reply</h2>
+    <div class="row">
+      <div>
+        <label>Lead first name</label>
+        <input id="lead-name" placeholder="Greg" value="Greg">
+      </div>
+    </div>
+    <label>Paste an incoming reply</label>
+    <textarea id="lead-text">I am interested, please send details</textarea>
+    <div class="row">
+      <button id="btn-classify" class="secondary">Classify only</button>
+      <button id="btn-reply">Generate full reply preview</button>
+    </div>
+    <div id="test-out" class="hide"></div>
+  </div>
+
+  <div class="card">
+    <h2>&#128229; Recent conversations</h2>
+    <button id="btn-recent" class="secondary">Load recent</button>
+    <div id="recent-out" class="hide"></div>
+  </div>
+</div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const secretEl = $("secret");
+secretEl.value = localStorage.getItem("sk_secret") || "";
+secretEl.addEventListener("change", () => localStorage.setItem("sk_secret", secretEl.value.trim()));
+
+const TAG_COLORS = {
+  "Interested": "var(--green)", "Meeting Request": "var(--blue)",
+  "More Info Needed": "var(--purple)", "Objection": "var(--red)",
+  "Pricing Question": "var(--amber)", "Timing Issue": "var(--gray)", "None": "#444a5a",
+};
+const pill = (t) => `<span class="pill" style="background:${TAG_COLORS[t] || "#444a5a"};color:#fff">${esc(t)}</span>`;
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+function key() {
+  const k = secretEl.value.trim();
+  if (!k) { alert("Enter your setup secret first."); throw new Error("no key"); }
+  return encodeURIComponent(k);
+}
+async function call(btn, path) {
+  btn.disabled = true;
+  try {
+    const res = await fetch(path);
+    const text = await res.text();
+    try { return JSON.parse(text); } catch { return { error: text.slice(0, 500) }; }
+  } finally { btn.disabled = false; }
+}
+
+$("btn-status").onclick = async () => {
+  const out = $("status-out"); out.classList.remove("hide");
+  out.innerHTML = "<pre>Running setup checks…</pre>";
+  const d = await call($("btn-status"), `/api/setup?key=${key()}`);
+  if (d.error) { out.innerHTML = `<pre class="err">${esc(JSON.stringify(d, null, 2))}</pre>`; return; }
+  const line = (k, v) => {
+    const bad = /error|failed/i.test(String(v));
+    return `<div class="status-line"><span class="k">${k}</span><span class="${bad ? "err" : "ok"}">${esc(Array.isArray(v) ? v.join(" · ") : v)}</span></div>`;
+  };
+  out.innerHTML =
+    line("SendKit", d.account ? `connected (${d.account})` : "not verified") +
+    line("Tags", d.tags || []) +
+    line("Webhook", d.webhook || "-") +
+    line("Nylas", d.nylas || "-") +
+    (d.action_required ? `<div class="status-line"><span class="k err">Action</span><span class="err">${esc(d.action_required)}</span></div>` : "");
+};
+
+$("btn-classify").onclick = async () => {
+  const out = $("test-out"); out.classList.remove("hide");
+  out.innerHTML = "<pre>Classifying…</pre>";
+  const d = await call($("btn-classify"), `/api/classify-test?key=${key()}&text=${encodeURIComponent($("lead-text").value)}`);
+  out.innerHTML = d.error
+    ? `<pre class="err">${esc(d.error)}</pre>`
+    : `<div style="margin-top:12px">${pill(d.category)} <span class="hint">confidence ${(d.confidence * 100).toFixed(0)}% , ${esc(d.reason)}</span></div>`;
+};
+
+$("btn-reply").onclick = async () => {
+  const out = $("test-out"); out.classList.remove("hide");
+  out.innerHTML = "<pre>Classifying, pulling calendar availability, writing reply…</pre>";
+  const d = await call($("btn-reply"), `/api/reply-test?key=${key()}&name=${encodeURIComponent($("lead-name").value)}&text=${encodeURIComponent($("lead-text").value)}`);
+  if (d.error) { out.innerHTML = `<pre class="err">${esc(d.error)}</pre>`; return; }
+  if (!d.wouldReply) {
+    out.innerHTML = `<div style="margin-top:12px">${pill(d.classification.category)} <span class="hint">${esc(d.note)}</span></div>`;
+    return;
+  }
+  out.innerHTML =
+    `<div style="margin-top:12px">${pill(d.classification.category)} <span class="hint">${esc(d.action)}</span></div>` +
+    `<div class="preview">${d.replyHtml}</div>` +
+    `<div class="hint">This is exactly how the lead sees it. Times are live from your calendar.</div>`;
+};
+
+$("btn-recent").onclick = async () => {
+  const out = $("recent-out"); out.classList.remove("hide");
+  out.innerHTML = "<pre>Loading…</pre>";
+  const d = await call($("btn-recent"), `/api/recent?key=${key()}`);
+  if (d.error) { out.innerHTML = `<pre class="err">${esc(d.error)}</pre>`; return; }
+  if (!d.conversations?.length) { out.innerHTML = `<div class="hint">No conversations yet.</div>`; return; }
+  out.innerHTML = `<table><tr><th>Lead</th><th>Subject</th><th>Tags</th></tr>` +
+    d.conversations.map((c) =>
+      `<tr><td>${esc(c.lead || c.email)}${c.unread ? " &#128309;" : ""}</td><td>${esc(c.subject)}</td><td>${(c.tags || []).map(pill).join(" ") || "<span class='hint'>untagged</span>"}</td></tr>`
+    ).join("") + `</table>`;
+};
+</script>
+</body>
+</html>
