@@ -77,8 +77,13 @@
   </div>
 
   <div class="card">
-    <h2>&#128229; Recent conversations</h2>
-    <button id="btn-recent" class="secondary">Load recent</button>
+    <h2>&#128229; Classified replies</h2>
+    <div class="row">
+      <button id="btn-recent" class="secondary">Load tagged</button>
+      <button id="btn-recent-all" class="secondary">Show all</button>
+      <button id="btn-backfill">Backfill untagged (10 at a time)</button>
+    </div>
+    <div class="hint">Backfill classifies and tags older conversations. It never sends or drafts replies to them.</div>
     <div id="recent-out" class="hide"></div>
   </div>
 </div>
@@ -152,17 +157,36 @@ $("btn-reply").onclick = async () => {
     `<div class="hint">This is exactly how the lead sees it. Times are live from your calendar.</div>`;
 };
 
-$("btn-recent").onclick = async () => {
+async function loadRecent(btn, all) {
   const out = $("recent-out"); out.classList.remove("hide");
   out.innerHTML = "<pre>Loading…</pre>";
-  const d = await call($("btn-recent"), `/api/recent?key=${key()}`);
+  const d = await call(btn, `/api/recent?key=${key()}${all ? "&all=1" : ""}`);
   if (d.error) { out.innerHTML = `<pre class="err">${esc(d.error)}</pre>`; return; }
-  if (!d.conversations?.length) { out.innerHTML = `<div class="hint">No conversations yet.</div>`; return; }
+  const note = d.untaggedCount ? `<div class="hint">${d.untaggedCount} untagged conversation(s) — use Backfill to classify them.</div>` : "";
+  if (!d.conversations?.length) {
+    out.innerHTML = `<div class="hint">No tagged conversations yet.</div>` + note;
+    return;
+  }
   out.innerHTML = `<table><tr><th>Lead</th><th>Subject</th><th>Tags</th></tr>` +
     d.conversations.map((c) =>
       `<tr><td>${esc(c.lead || c.email)}${c.unread ? " &#128309;" : ""}</td><td>${esc(c.subject)}</td><td>${(c.tags || []).map(pill).join(" ") || "<span class='hint'>untagged</span>"}</td></tr>`
-    ).join("") + `</table>`;
+    ).join("") + `</table>` + note;
+}
+$("btn-recent").onclick = () => loadRecent($("btn-recent"), false);
+$("btn-recent-all").onclick = () => loadRecent($("btn-recent-all"), true);
+
+$("btn-backfill").onclick = async () => {
+  const out = $("recent-out"); out.classList.remove("hide");
+  out.innerHTML = "<pre>Classifying up to 10 untagged conversations, this can take ~30s…</pre>";
+  const d = await call($("btn-backfill"), `/api/backfill?key=${key()}&limit=10`);
+  if (d.error) { out.innerHTML = `<pre class="err">${esc(d.error)}</pre>`; return; }
+  out.innerHTML = `<table><tr><th>Subject</th><th>Result</th></tr>` +
+    (d.results || []).map((r) =>
+      `<tr><td>${esc(r.subject)}</td><td>${CATEGORY_COLORS_HAS(r.category) ? pill(r.category) : esc(r.category)}</td></tr>`
+    ).join("") + `</table>` +
+    `<div class="hint">Scanned ${d.scanned}. Remaining untagged: ${d.remainingUntagged}. ${d.remainingUntagged > 0 ? "Click Backfill again for the next batch." : "All caught up."}</div>`;
 };
+const CATEGORY_COLORS_HAS = (c) => Object.prototype.hasOwnProperty.call(TAG_COLORS, c);
 </script>
 </body>
 </html>
