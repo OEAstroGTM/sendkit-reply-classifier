@@ -9,6 +9,7 @@ import {
   replyToLead, unsubscribeLead, isMachineReply, ownWords,
 } from "../lib/smartlead.js";
 import { toHtml } from "../lib/reply.js";
+import batch from "../drafts/smartlead-batch.json" with { type: "json" };
 
 export const config = { maxDuration: 60 };
 
@@ -106,6 +107,44 @@ export default async function handler(req, res) {
         human,
         errors: detailed.filter((d) => d.error),
       });
+    }
+
+    // ?action=drafts            -> list the approved batch
+    // ?action=send-draft&id=x   -> send one of them (or &id=all)
+    if (action === "drafts") {
+      return res.status(200).json({
+        drafts: batch.drafts.map((d) => ({ id: d.id, lead: d.lead, email: d.email, body: d.body })),
+      });
+    }
+    if (action === "send-draft") {
+      const id = req.query.id;
+      const targets = id === "all" ? batch.drafts : batch.drafts.filter((d) => d.id === id);
+      if (!targets.length) return res.status(404).json({ error: `No draft with id "${id}"` });
+      const results = [];
+      for (const d of targets) {
+        try {
+          const lead = await leadByEmail(d.email);
+          if (lead.is_unsubscribed) { results.push({ id: d.id, skipped: "unsubscribed" }); continue; }
+          const hist = await messageHistory(d.campaign_id, lead.id);
+          const msgs = hist.history || [];
+          const lastReply = [...msgs].reverse().find((m) => m.type === "REPLY");
+          if (!lastReply) { results.push({ id: d.id, error: "no lead reply on thread" }); continue; }
+          const r = await replyToLead(d.campaign_id, {
+            email_stats_id: lastReply.stats_id,
+            email_body: toHtml(d.body),
+            reply_message_id: lastReply.message_id,
+            reply_email_time: lastReply.time,
+            to_email: lead.email,
+            to_first_name: lead.first_name || "",
+            to_last_name: lead.last_name || "",
+            add_signature: false,
+          });
+          results.push({ id: d.id, lead: d.lead, sent: true, response: r });
+        } catch (e) {
+          results.push({ id: d.id, error: e.message.slice(0, 200) });
+        }
+      }
+      return res.status(200).json({ results });
     }
 
     // POST /api/smartlead?key=...  { action:"send", campaign_id, email, body, [scheduled_time] }
