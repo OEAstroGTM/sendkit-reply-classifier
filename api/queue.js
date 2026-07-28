@@ -1,8 +1,9 @@
 // GET /api/queue?key=YOUR_SETUP_SECRET
-// The "needs response" queue: conversations that carry one of the 6 tags
-// AND whose most recent message is from the lead (nobody replied yet).
+// The "needs response" queue: conversations whose SendKit tag (tags array or
+// aiTag) matches one of the 6 categories AND whose latest message is from the
+// lead (no one has replied yet). Auto-replies (OOO etc.) don't count.
 
-import { CATEGORY_SET, extractTags, listConversations } from "../lib/inbox.js";
+import { CATEGORY_SET, extractTags, listConversations, latestInbound, messageText, isInbound } from "../lib/inbox.js";
 import { getConversation } from "../lib/sendkit.js";
 
 export const config = { maxDuration: 60 };
@@ -13,7 +14,9 @@ export default async function handler(req, res) {
   }
   try {
     const list = await listConversations(50);
-    const tagged = list.filter((c) => extractTags(c).some((t) => CATEGORY_SET.has(t)));
+    const tagged = list.filter((c) =>
+      extractTags(c).some((t) => CATEGORY_SET.has(t))
+    );
 
     const queue = [];
     for (const convo of tagged.slice(0, 20)) {
@@ -21,19 +24,21 @@ export default async function handler(req, res) {
       try {
         const detail = (await getConversation(id)).data || {};
         const messages = detail.messages || [];
-        if (!messages.length) continue;
         const last = messages[messages.length - 1];
-        const lastIsInbound = last.direction === "inbound" || last.type === "received";
-        if (!lastIsInbound) continue; // we already answered
+        if (!isInbound(last)) continue;        // we already answered
+        const inbound = latestInbound(messages); // skips auto-replies
+        if (!inbound) continue;
 
+        const lead = detail.lead || {};
         queue.push({
           id,
-          lead: convo.leadName || detail.leadName || convo.leadEmail || detail.leadEmail || "",
-          email: convo.leadEmail || detail.leadEmail || "",
-          subject: convo.subject || detail.subject || "",
-          tags: extractTags(convo).filter((t) => CATEGORY_SET.has(t)),
-          lastMessagePreview: stripHtml(last.body || last.text || last.html || "").slice(0, 300),
-          lastMessageAt: last.createdAt || last.date || convo.updatedAt || "",
+          lead: [lead.firstName, lead.lastName].filter(Boolean).join(" ") || lead.email || "",
+          email: lead.email || "",
+          company: lead.companyName || "",
+          subject: inbound.subject || messages[0]?.subject || "",
+          tags: extractTags({ ...convo, ...detail }).filter((t) => CATEGORY_SET.has(t)),
+          lastMessagePreview: messageText(inbound).slice(0, 300),
+          lastMessageAt: inbound.receivedAt || "",
         });
       } catch (e) {
         console.warn(`queue: could not inspect ${id}: ${e.message}`);
@@ -44,9 +49,4 @@ export default async function handler(req, res) {
   } catch (e) {
     return res.status(500).json({ error: e.message });
   }
-}
-
-function stripHtml(s) {
-  return String(s).replace(/<style[\s\S]*?<\/style>/gi, "").replace(/<[^>]+>/g, " ")
-    .replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").replace(/\s+/g, " ").trim();
 }

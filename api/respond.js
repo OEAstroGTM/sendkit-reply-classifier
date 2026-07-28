@@ -1,12 +1,13 @@
 // GET /api/respond?key=YOUR_SETUP_SECRET&id=CONVERSATION_ID&mode=preview|draft|send
-// Generates the AI reply (with calendar times) for one specific conversation.
+// Generates the AI reply (with calendar times) for one conversation, using the
+// tag SendKit already applied as the category.
 //   mode=preview (default) — returns the reply, touches nothing
 //   mode=draft            — saves it as a draft on the conversation
 //   mode=send             — sends it immediately
 
 import { generateReply } from "../lib/reply.js";
 import { getConversation, sendReply, saveDraft } from "../lib/sendkit.js";
-import { CATEGORY_SET, extractTags } from "../lib/inbox.js";
+import { CATEGORY_SET, extractTags, latestInbound, messageText } from "../lib/inbox.js";
 
 export const config = { maxDuration: 60 };
 
@@ -23,22 +24,22 @@ export default async function handler(req, res) {
 
   try {
     const detail = (await getConversation(id)).data || {};
-    const messages = detail.messages || [];
-    const inbound = [...messages].reverse().find(
-      (m) => m.direction === "inbound" || m.type === "received"
-    );
-    if (!inbound) return res.status(400).json({ error: "No inbound message found on this conversation" });
+    const inbound = latestInbound(detail.messages);
+    if (!inbound) return res.status(400).json({ error: "No lead reply found on this conversation (auto-replies are skipped)" });
 
-    const replyText = stripHtml(inbound.body || inbound.text || inbound.html || "");
-    const leadName = detail.leadName || detail.lead?.name || "";
+    const replyText = messageText(inbound);
+    const lead = detail.lead || {};
     const tags = extractTags(detail).filter((t) => CATEGORY_SET.has(t));
-    const category = req.query.category || tags[0] || "Interested";
+    const category = req.query.category || tags[0];
+    if (!category) {
+      return res.status(400).json({ error: `Conversation has no matching tag. Tags found: ${extractTags(detail).join(", ") || "none"}` });
+    }
 
     const { body, html, slotLines } = await generateReply({
       category,
       replyText,
-      leadName,
-      subject: detail.subject || "",
+      leadName: lead.firstName || "",
+      subject: inbound.subject || "",
     });
 
     let action = "preview only, nothing saved or sent";
@@ -47,18 +48,15 @@ export default async function handler(req, res) {
 
     return res.status(200).json({
       conversationId: id,
-      lead: leadName || detail.leadEmail || "",
+      lead: [lead.firstName, lead.lastName].filter(Boolean).join(" ") || lead.email || "",
+      company: lead.companyName || "",
       category,
       action,
+      leadSaid: replyText.slice(0, 300),
       proposedTimes: slotLines,
       replyBody: body,
     });
   } catch (e) {
     return res.status(500).json({ error: e.message });
   }
-}
-
-function stripHtml(s) {
-  return String(s).replace(/<style[\s\S]*?<\/style>/gi, "").replace(/<[^>]+>/g, " ")
-    .replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").replace(/\s+/g, " ").trim();
 }

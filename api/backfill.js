@@ -4,7 +4,7 @@
 
 import { classifyReply } from "../lib/classify.js";
 import { getConversation, tagConversations } from "../lib/sendkit.js";
-import { CATEGORY_SET, extractTags, listConversations } from "../lib/inbox.js";
+import { CATEGORY_SET, extractTags, listConversations, latestInbound, messageText } from "../lib/inbox.js";
 
 export const config = { maxDuration: 60 };
 
@@ -24,12 +24,9 @@ export default async function handler(req, res) {
       const id = convo._id || convo.id;
       try {
         const detail = (await getConversation(id)).data || {};
-        const messages = detail.messages || [];
-        const inbound = [...messages].reverse().find(
-          (m) => m.direction === "inbound" || m.type === "received"
-        ) || messages[messages.length - 1];
-        const text = stripHtml(inbound?.body || inbound?.text || inbound?.html || "");
-        if (!text) { results.push({ id, subject: convo.subject, category: "skipped (no text)" }); continue; }
+        const inbound = latestInbound(detail.messages);
+        const text = messageText(inbound);
+        if (!text) { results.push({ id, subject: convo.subject, category: "skipped (no lead reply)" }); continue; }
 
         const r = await classifyReply({ replyText: text, subject: convo.subject || "" });
         if (r.category !== "None") await tagConversations([id], r.category);

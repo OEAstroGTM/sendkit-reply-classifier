@@ -6,6 +6,7 @@ import crypto from "node:crypto";
 import { classifyReply } from "../lib/classify.js";
 import { generateReply, replyConfig } from "../lib/reply.js";
 import { getConversation, tagConversations, sendReply, saveDraft } from "../lib/sendkit.js";
+import { CATEGORY_SET, extractTags, latestInbound, messageText } from "../lib/inbox.js";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "POST only" });
@@ -39,41 +40,49 @@ export default async function handler(req, res) {
       d.conversationId || d.conversation_id || d.conversation?._id || d.conversation?.id || d._id || d.id;
 
     // Pull whatever reply content the payload carries
-    let replyText = d.replyText || d.reply?.body || d.message?.body || d.body || d.text || "";
+    let replyText = d.replyText || d.reply?.content || d.reply?.body || d.message?.content || d.message?.body || d.content || d.body || d.text || "";
     let subject = d.subject || d.conversation?.subject || "";
     let leadEmail = d.leadEmail || d.lead?.email || d.from || "";
-    let leadName = d.leadName || d.lead?.name || "";
+    let leadName = d.leadName || d.lead?.firstName || d.lead?.name || "";
     let campaignName = d.campaignName || d.campaign?.name || "";
+    let existingTag = null;
 
-    // If the payload didn't include the reply body, fetch the conversation
-    if (conversationId && !replyText) {
+    // Fetch the conversation for the reply body, lead info, and any tag
+    // SendKit's own AI already applied
+    if (conversationId) {
       try {
         const conv = (await getConversation(conversationId)).data || {};
-        subject = subject || conv.subject || "";
-        leadEmail = leadEmail || conv.leadEmail || conv.lead?.email || "";
-        leadName = leadName || conv.leadName || conv.lead?.name || "";
-        const messages = conv.messages || [];
-        // Last inbound (lead-sent) message
-        const inbound = [...messages].reverse().find(
-          (m) => m.direction === "inbound" || m.from === leadEmail || m.type === "received"
-        ) || messages[messages.length - 1];
-        replyText = inbound?.body || inbound?.text || inbound?.html || "";
+        const lead = conv.lead || {};
+        leadEmail = leadEmail || lead.email || "";
+        leadName = leadName || lead.firstName || "";
+        campaignName = campaignName || conv.campaign?.name || "";
+        const inbound = latestInbound(conv.messages);
+        if (inbound) {
+          replyText = replyText || messageText(inbound);
+          subject = subject || inbound.subject || "";
+        }
+        existingTag = extractTags(conv).find((t) => CATEGORY_SET.has(t)) || null;
       } catch (e) {
         console.warn(`Could not fetch conversation ${conversationId}: ${e.message}`);
       }
     }
 
     if (!replyText) {
-      return res.status(200).json({ skipped: true, reason: "No reply text found in payload or conversation" });
+      return res.status(200).json({ skipped: true, reason: "No lead reply text found (auto-replies are skipped)" });
     }
 
-    // --- Classify ---
-    const result = await classifyReply({
-      replyText: stripHtml(replyText),
-      subject,
-      leadName,
-      campaignName,
-    });
+    // --- Category: trust SendKit's existing tag first, classify as fallback ---
+    let result;
+    if (existingTag) {
+      result = { category: existingTag, confidence: 1, reason: "tag already set in SendKit" };
+    } else {
+      result = await classifyReply({
+        replyText: stripHtml(replyText),
+        subject,
+        leadName,
+        campaignName,
+      });
+    }
 
     // --- Tag in SendKit ---
     let tagged = false;
