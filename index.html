@@ -94,6 +94,13 @@
   </div>
 
   <div class="card">
+    <h2>&#9200; Scheduled follow-ups</h2>
+    <div class="hint">Pending bumps for leads who haven't answered. Auto-cancelled when they reply or book.</div>
+    <button id="btn-followups" class="secondary">Load follow-ups</button>
+    <div id="followups-out" class="hide"></div>
+  </div>
+
+  <div class="card">
     <h2>&#128229; Classified replies</h2>
     <div class="row">
       <button id="btn-recent" class="secondary">Load tagged</button>
@@ -335,6 +342,33 @@ async function act(c, mode) {
 }
 
 function next() { Q.i += 1; showQueueItem(); }
+
+// ---------- Scheduled follow-ups ----------
+$("btn-followups").onclick = loadFollowups;
+
+async function loadFollowups() {
+  const out = $("followups-out"); out.classList.remove("hide");
+  out.innerHTML = "<pre>Checking scheduled follow-ups…</pre>";
+  const d = await call($("btn-followups"), `/api/followups?key=${key()}&_=${Date.now()}`);
+  if (d.error) { out.innerHTML = `<pre class="err">${esc(d.error)}</pre>`; return; }
+  if (!d.followups?.length) { out.innerHTML = `<div class="hint" style="margin-top:12px">No follow-ups pending.</div>`; return; }
+  out.innerHTML = `<table><tr><th>Lead</th><th>Goes out</th><th>Message</th><th></th></tr>` +
+    d.followups.map((f, i) =>
+      `<tr><td><b>${esc(f.lead)}</b><br><span class="hint">${esc(f.email)}</span></td>
+      <td>${f.scheduledFor ? esc(new Date(f.scheduledFor).toLocaleString([], { weekday: "short", month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })) : "-"}</td>
+      <td class="hint">${esc(f.preview)}</td>
+      <td><button class="secondary" style="margin:0;padding:6px 10px;font-size:12px" data-fu="${i}">Cancel</button></td></tr>`
+    ).join("") + `</table><div class="hint">${d.pending} pending</div>`;
+  out.querySelectorAll("[data-fu]").forEach((btn) => {
+    btn.onclick = async () => {
+      const f = d.followups[Number(btn.dataset.fu)];
+      btn.disabled = true; btn.textContent = "Cancelling…";
+      const r = await fetch(`/api/followups?key=${key()}&cancel=1&id=${f.conversationId}&replyId=${f.replyId}`).then((x) => x.json()).catch((e) => ({ error: e.message }));
+      if (r.error) { btn.textContent = "Failed"; btn.disabled = false; return; }
+      loadFollowups();
+    };
+  });
+}
 </script>
 </body>
 </html>
