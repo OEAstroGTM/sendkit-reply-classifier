@@ -9,7 +9,7 @@ import { generateReply, renderReplyHtml } from "../lib/reply.js";
 import { getConversation, sendReply, saveDraft, addToDnc } from "../lib/sendkit.js";
 import { CATEGORY_SET, extractTags, latestInbound, messageText, isOptOut, senderPersona } from "../lib/inbox.js";
 import { scheduleFollowups } from "../lib/followup.js";
-import sendkitBatch from "../drafts/sendkit-batch.json" with { type: "json" };
+import { drafts as sendkitDrafts } from "../drafts/sendkit-batch.js";
 
 export const config = { maxDuration: 60 };
 
@@ -23,7 +23,7 @@ export default async function handler(req, res) {
   // ?draft=<id> pulls an approved reply from drafts/sendkit-batch.json,
   // so exact wording can be sent without stuffing it into a URL.
   if (p.draft) {
-    const d = sendkitBatch.drafts.find((x) => x.id === p.draft);
+    const d = (sendkitDrafts || []).find((x) => x.id === p.draft);
     if (!d) return res.status(404).json({ error: `No draft "${p.draft}"` });
     p = { ...p, id: d.conversationId, body: d.body, slots: [] };
   }
