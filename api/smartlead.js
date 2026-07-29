@@ -45,6 +45,50 @@ export default async function handler(req, res) {
       });
     }
 
+    // ?action=categories&campaign_id=123
+    // Tallies Smartlead's own AI categories across every replied record, and
+    // lists the leads it marked positive so they can be checked by hand.
+    if (action === "categories") {
+      const campaignId = req.query.campaign_id;
+      if (!campaignId) return res.status(400).json({ error: "Need campaign_id" });
+      const POSITIVE = new Set(["Interested", "Meeting Request", "Information Request"]);
+
+      const tally = {};
+      const positives = [];
+      let offset = 0, total = null, pages = 0;
+      while (pages < 8) {
+        const page = await campaignStats(campaignId, {
+          email_status: "replied", limit: "100", offset: String(offset),
+        });
+        total = Number(page.total_stats || 0);
+        const rows = page.data || [];
+        if (!rows.length) break;
+        for (const r of rows) {
+          const cat = r.lead_category || "(uncategorized)";
+          tally[cat] = (tally[cat] || 0) + 1;
+          if (POSITIVE.has(cat)) {
+            positives.push({
+              name: r.lead_name, email: r.lead_email, category: cat,
+              delaySeconds: Math.round((new Date(r.reply_time) - new Date(r.sent_time)) / 1000),
+            });
+          }
+        }
+        offset += rows.length;
+        pages++;
+        if (offset >= total) break;
+      }
+
+      const positiveCount = positives.length;
+      return res.status(200).json({
+        campaignId, totalReplied: total, scanned: offset,
+        byCategory: tally,
+        positiveCount,
+        // Positives that arrived too fast to be typed by a human
+        positivesUnder60s: positives.filter((p) => p.delaySeconds < 60).length,
+        positives: positives.slice(0, 40),
+      });
+    }
+
     if (action === "audit") {
       const campaignId = req.query.campaign_id;
       if (!campaignId) return res.status(400).json({ error: "Need campaign_id" });
