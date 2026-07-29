@@ -49,7 +49,16 @@ export default async function handler(req, res) {
       const campaignId = req.query.campaign_id;
       if (!campaignId) return res.status(400).json({ error: "Need campaign_id" });
       const max = Math.min(Number(req.query.max || 60), 200);
-      const offset = Number(req.query.offset || 0);
+      let offset = Number(req.query.offset || 0);
+
+      // ?recent=1 reads the tail of the list, where new arrivals land.
+      // The API returns records in internal-id order, not newest-first, so
+      // scanning from offset 0 always re-reads the oldest replies.
+      if (req.query.recent === "1") {
+        const probe = await campaignStats(campaignId, { email_status: "replied", limit: "1", offset: "0" });
+        const total = Number(probe.total_stats || 0);
+        offset = Math.max(total - max, 0);
+      }
 
       // 1. Pull replied records; reply delay is the first cheap signal
       const stats = await campaignStats(campaignId, {
@@ -100,6 +109,7 @@ export default async function handler(req, res) {
       return res.status(200).json({
         campaignId,
         scanned: rows.length,
+        window: req.query.recent === "1" ? `newest ${max} (offset ${offset})` : `offset ${offset}`,
         totalReplied: stats.total_stats,
         instantAutoResponders: instantAuto,
         machineAfterTextCheck: machine.length,

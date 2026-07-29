@@ -148,6 +148,25 @@ test("review flags stay quiet on plain positive replies", () => {
   assert.deepEqual(reviewFlags("Sounds great, looking forward to it"), []);
 });
 
+// --- Multilingual autoresponder detection ---
+const { isMachineReply } = await import("../lib/smartlead.js");
+
+test("machine detection covers non-English out-of-office", () => {
+  const long = 9000; // delay long enough that only text can flag it
+  assert.ok(isMachineReply("questa casella di posta è disattivata", long));      // Italian
+  assert.ok(isMachineReply("Ich bin nicht im Büro und lese keine Mails", long)); // German
+  assert.ok(isMachineReply("Estoy fuera de la oficina hasta el lunes", long));   // Spanish
+  assert.ok(isMachineReply("Je suis absent du bureau cette semaine", long));     // French
+  assert.ok(isMachineReply("Ik ben afwezig tot maandag", long));                 // Dutch
+  assert.ok(isMachineReply("Olen poissa toimistolta", long));                    // Finnish
+});
+
+test("machine detection leaves real replies alone", () => {
+  assert.ok(!isMachineReply("Dear Zoe yes", 9000));
+  assert.ok(!isMachineReply("Sure, send something over", 9000));
+  assert.ok(!isMachineReply("Plse adv more details", 9000));
+});
+
 // --- Booking link signatures ---
 process.env.SETUP_SECRET = process.env.SETUP_SECRET || "test-secret";
 const bookingMod = await import("../lib/booking.js");
