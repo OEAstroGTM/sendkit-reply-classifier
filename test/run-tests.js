@@ -150,7 +150,9 @@ test("review flags stay quiet on plain positive replies", () => {
 
 // --- Booking link signatures ---
 process.env.SETUP_SECRET = process.env.SETUP_SECRET || "test-secret";
-const { signSlot, verifySlot, bookUrl } = await import("../lib/booking.js");
+const bookingMod = await import("../lib/booking.js");
+const { signSlot, verifySlot, bookUrl } = bookingMod;
+const require_booking = () => bookingMod;
 
 test("booking link signature round-trip", () => {
   const sig = signSlot("greg@x.com", 1782743400, 30, "conv1");
@@ -176,6 +178,24 @@ test("follow-up bodies are short, personalized, signed", () => {
   assert.ok(b1.endsWith("Stephanie"));
   assert.ok(b2.includes("Last nudge"));
   assert.ok(!b1.includes("—") && !b2.includes("—"));
+});
+
+test("linkifySlots makes localized labels clickable", () => {
+  const { linkifySlots } = require_booking();
+  const html = "Here are times:<br>• Thursday, July 30 at 5:30 PM IST<br>• Friday, July 31 at 5:30 PM IST";
+  const out = linkifySlots(html, [
+    { start_time: 1785412800, label: "Thursday, July 30 at 5:30 PM IST" },
+    { start_time: 1785499200, label: "Friday, July 31 at 5:30 PM IST" },
+  ], { email: "babita@x.com", name: "Babita", baseUrl: "https://app.example.com" });
+  assert.equal((out.match(/<a href="https:\/\/app\.example\.com\/api\/book\?/g) || []).length, 2);
+  assert.ok(out.includes(">Thursday, July 30 at 5:30 PM IST</a>"));
+  assert.ok(out.includes("t=1785412800"));
+});
+
+test("linkifySlots is a no-op without email or baseUrl", () => {
+  const { linkifySlots } = require_booking();
+  const html = "• Monday at 9:00 AM";
+  assert.equal(linkifySlots(html, [{ start_time: 1, label: "Monday at 9:00 AM" }], {}), html);
 });
 
 test("bookUrl contains signed params", () => {

@@ -9,6 +9,7 @@ import {
   replyToLead, unsubscribeLead, isMachineReply, ownWords,
 } from "../lib/smartlead.js";
 import { toHtml } from "../lib/reply.js";
+import { linkifySlots } from "../lib/booking.js";
 import batch from "../drafts/smartlead-batch.json" with { type: "json" };
 
 export const config = { maxDuration: 60 };
@@ -129,9 +130,17 @@ export default async function handler(req, res) {
           const msgs = hist.history || [];
           const lastReply = [...msgs].reverse().find((m) => m.type === "REPLY");
           if (!lastReply) { results.push({ id: d.id, error: "no lead reply on thread" }); continue; }
+          // Times in the draft become one-click booking links, paired by
+          // timestamp so localized labels still resolve to the right moment.
+          const emailHtml = linkifySlots(toHtml(d.body), d.slots || [], {
+            email: lead.email,
+            name: lead.first_name || "",
+            baseUrl: `https://${req.headers.host}`,
+            durationMin: Number(process.env.MEETING_MINUTES || 30),
+          });
           const r = await replyToLead(d.campaign_id, {
             email_stats_id: lastReply.stats_id,
-            email_body: toHtml(d.body),
+            email_body: emailHtml,
             reply_message_id: lastReply.message_id,
             reply_email_time: lastReply.time,
             to_email: lead.email,
