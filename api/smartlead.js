@@ -6,7 +6,7 @@
 
 import {
   listCampaigns, campaignStats, leadByEmail, messageHistory,
-  replyToLead, unsubscribeLead, isMachineReply, ownWords,
+  replyToLead, unsubscribeLead, isMachineReply, ownWords, clearCache,
 } from "../lib/smartlead.js";
 import { toHtml, generateReply, generateBump } from "../lib/reply.js";
 import { linkifySlots } from "../lib/booking.js";
@@ -19,6 +19,8 @@ export default async function handler(req, res) {
     return res.status(401).json({ error: "Unauthorized" });
   }
   const action = req.query.action || "campaigns";
+  // ?fresh=1 forces a re-read instead of using the cached responses
+  if (req.query.fresh === "1") clearCache();
 
   try {
     if (action === "campaigns") {

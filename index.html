@@ -68,7 +68,8 @@
   <div class="card">
     <h2>&#127760; Scope</h2>
     <select id="scope"></select>
-    <div class="hint">Optional filter. Defaults to every campaign that has sent, so no positive reply hides from you.</div>
+    <button id="btn-fresh" class="secondary">Refresh from Smartlead</button>
+    <div class="hint">Optional filter. Reads are cached for a few minutes to stay under Smartlead's rate limit, so use Refresh after sending or when you want the very latest.</div>
   </div>
 
   <div class="card">
@@ -115,7 +116,13 @@ const esc = (s) => String(s ?? "").replace(/[&<>"]/g,(c)=>({"&":"&amp;","<":"&lt
 const CAT_COLORS = {"Interested":"var(--green)","Meeting Request":"var(--blue)","Information Request":"var(--purple)"};
 const pill = (t) => `<span class="pill" style="background:${CAT_COLORS[t]||"var(--gray)"}">${esc(t)}</span>`;
 function key(){ const k=secretEl.value.trim(); if(!k){alert("Enter your setup secret first.");throw new Error("no key");} return encodeURIComponent(k); }
-async function api(path){ const r = await fetch(path + `&_=${Date.now()}`); const t = await r.text(); try{return JSON.parse(t);}catch{return {error:t.slice(0,400)};} }
+let FRESH = false;   // set by the Refresh button, clears the server cache once
+async function api(path){
+  const url = path + (FRESH ? "&fresh=1" : "");
+  FRESH = false;
+  const r = await fetch(url); const t = await r.text();
+  try{return JSON.parse(t);}catch{return {error:t.slice(0,400)};}
+}
 
 // ---------- campaigns ----------
 let CAMPAIGNS = [], CAMPAIGN_NAMES = {};
@@ -135,6 +142,7 @@ async function loadCampaigns(){
   sel.value = [...sel.options].some(o=>o.value===saved) ? saved : "live";
   sel.onchange = () => localStorage.setItem("sl_scope", sel.value);
 }
+$("btn-fresh").onclick = () => { FRESH = true; loadCampaigns(); alert("Cache cleared. The next panel you load reads fresh from Smartlead."); };
 loadCampaigns();
 
 // Campaign ids for the current scope
