@@ -68,7 +68,7 @@
   <div class="card">
     <h2>&#127760; Scope</h2>
     <select id="scope"></select>
-    <div class="hint">Applies to both panels below. The March/April recruitment campaign is excluded everywhere.</div>
+    <div class="hint">Applies to both panels. The archived March/April recruitment campaign is never in a bulk view, but you can select it here on its own.</div>
   </div>
 
   <div class="card">
@@ -104,18 +104,17 @@ async function api(path){ const r = await fetch(path + `&_=${Date.now()}`); cons
 
 // ---------- campaigns ----------
 let CAMPAIGNS = [];
-// The March/April recruitment campaign is finished work, never in scope.
-const inScope = (c) => c.status !== "ARCHIVED";
 async function loadCampaigns(){
   if(!secretEl.value.trim()) return;
   const d = await api(`/api/smartlead?key=${key()}&action=campaigns`);
   if(d.error||!d.campaigns) return;
-  CAMPAIGNS = d.campaigns.filter(inScope);
+  CAMPAIGNS = d.campaigns;   // archived included, selectable but never in a default scope
   const sel = $("scope");
   const saved = localStorage.getItem("sl_scope") || "live";
   sel.innerHTML =
     `<option value="live">All live campaigns (sending now)</option>` +
-    `<option value="all">All campaigns, excluding the archived one</option>` +
+    `<option value="all">All current campaigns (excludes archived)</option>` +
+    `<option disabled>──────────</option>` +
     CAMPAIGNS.map(c=>`<option value="${c.id}">${esc(c.name)}${c.status!=="ACTIVE"?" — "+c.status.toLowerCase():""}</option>`).join("");
   sel.value = [...sel.options].some(o=>o.value===saved) ? saved : "live";
   sel.onchange = () => localStorage.setItem("sl_scope", sel.value);
@@ -126,7 +125,7 @@ loadCampaigns();
 function scopeIds(){
   const v = $("scope").value || "live";
   if(v === "live") return CAMPAIGNS.filter(c=>c.status==="ACTIVE").map(c=>String(c.id));
-  if(v === "all")  return CAMPAIGNS.map(c=>String(c.id));
+  if(v === "all")  return CAMPAIGNS.filter(c=>c.status!=="ARCHIVED").map(c=>String(c.id));
   return [v];
 }
 
