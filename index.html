@@ -73,7 +73,15 @@
 
   <div class="card">
     <h2>&#128202; Inbox performance</h2>
-    <button id="btn-stats">Load performance</button>
+    <div class="row">
+      <select id="statsdays">
+        <option value="7">Last 7 days</option>
+        <option value="30" selected>Last 30 days</option>
+        <option value="90">Last 90 days</option>
+        <option value="0">All time</option>
+      </select>
+      <button id="btn-stats">Load performance</button>
+    </div>
     <div id="stats-out" class="hide"></div>
   </div>
 
@@ -134,9 +142,10 @@ function scopeIds(){
 $("btn-stats").onclick = async () => {
   const out=$("stats-out"); out.classList.remove("hide");
   out.innerHTML="<pre>Reading every reply and checking which are answered. This takes a moment…</pre>";
+  STATS_DAYS = $("statsdays").value;
   const ids = scopeIds();
   if(!ids.length){out.innerHTML=`<div class="hint">No campaigns in scope.</div>`;return;}
-  const d = await api(`/api/smartlead?key=${key()}&action=stats&campaign_id=${ids.join(",")}`);
+  const d = await api(`/api/smartlead?key=${key()}&action=stats&campaign_id=${ids.join(",")}&days=${STATS_DAYS}`);
   if(d.error){out.innerHTML=`<pre class="err">${esc(d.error)}</pre>`;return;}
   const t=d.totals;
   const kpi=(v,l,cls="")=>`<div class="kpi ${cls}"><div class="v">${v}</div><div class="l">${l}</div></div>`;
@@ -157,11 +166,11 @@ $("btn-stats").onclick = async () => {
          <td class="n">${c.humanReplies}</td><td class="n">${c.positives}</td><td class="n">${c.answered}</td>
          <td class="n" style="${c.awaiting?"color:var(--amber);font-weight:600":""}">${c.awaiting}</td>
          <td class="n">${c.positivesPer1k}</td></tr>`).join("") +
-    `</table><div class="hint">Positive = Interested, Meeting Request or Information Request, matching Smartlead's own categories. Autoresponders are replies arriving under 60 seconds. Generated ${new Date(d.generatedAt).toLocaleString()}.</div>`;
+    `</table><div class="hint">Positive = Interested, Meeting Request or Information Request, matching Smartlead's own categories. Autoresponders are replies arriving under 60 seconds. ${d.windowDays?`Covering the last ${d.windowDays} days (since ${d.since}).`:"All time."} Generated ${new Date(d.generatedAt).toLocaleString()}.</div>`;
 };
 
 // ---------- queue ----------
-let Q={items:[],i:0}; let STALE_DAYS=30, STALE_COUNT=0;
+let Q={items:[],i:0}; let STALE_DAYS=30, STALE_COUNT=0; let STATS_DAYS=30;
 $("btn-queue").onclick = async () => {
   const out=$("queue-out"); out.classList.remove("hide");
   out.innerHTML="<pre>Finding positive replies that are waiting on you…</pre>";

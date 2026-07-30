@@ -132,17 +132,24 @@ export default async function handler(req, res) {
       // Live campaigns only. DRAFTED never went out; ARCHIVED is finished work.
       if (!ids.length) ids = list.filter((c) => c.status !== "DRAFTED" && c.status !== "ARCHIVED").map((c) => String(c.id));
 
+      // Performance is a rolling window. ?days=0 for all time.
+      const windowDays = req.query.days === undefined ? 30 : Number(req.query.days);
+      const since = windowDays > 0
+        ? new Date(Date.now() - windowDays * 86400000).toISOString().slice(0, 10)
+        : null;
+      const win = since ? { sent_time_start_date: since } : {};
+
       const perCampaign = await Promise.all(ids.map(async (id) => {
         try {
-          // total sent
-          const head = await campaignStats(id, { limit: "1", offset: "0" });
+          // total sent in window
+          const head = await campaignStats(id, { limit: "1", offset: "0", ...win });
           const sent = Number(head.total_stats || 0);
 
           // every replied record
           const rows = [];
           let offset = 0, total = 0, pages = 0;
           while (pages < 8) {
-            const page = await campaignStats(id, { email_status: "replied", limit: "100", offset: String(offset) });
+            const page = await campaignStats(id, { email_status: "replied", limit: "100", offset: String(offset), ...win });
             total = Number(page.total_stats || 0);
             const r = page.data || [];
             if (!r.length) break;
@@ -214,6 +221,7 @@ export default async function handler(req, res) {
       const medians = ok.map((c) => c.medianResponseHours).filter((n) => typeof n === "number");
       return res.status(200).json({
         generatedAt: new Date().toISOString(),
+        windowDays, since,
         totals: {
           sent: sum("sent"), replies: sum("replies"),
           machines: sum("machines"), humanReplies: sum("humanReplies"),
