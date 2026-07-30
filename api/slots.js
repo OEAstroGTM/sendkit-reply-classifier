@@ -2,7 +2,7 @@
 // Availability for a specific window. `for` additionally renders each slot in
 // the lead's timezone so you can offer times that actually work for them.
 
-import { getAvailableSlots, pickSlots, formatSlot } from "../lib/nylas.js";
+import { getAvailableSlots, pickSlots, formatSlot, getParticipants } from "../lib/nylas.js";
 
 export const config = { maxDuration: 60 };
 
@@ -25,6 +25,8 @@ export default async function handler(req, res) {
 
     return res.status(200).json({
       window: `${req.query.start || process.env.WORK_START || "9:00"}-${req.query.end || process.env.WORK_END || "17:00"}`,
+      // every calendar these slots were checked against
+      participants: await getParticipants(),
       found: slots.length,
       slots: picked.map((s) => ({
         start_time: s.start_time,
