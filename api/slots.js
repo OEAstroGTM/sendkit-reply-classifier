@@ -15,6 +15,7 @@ export default async function handler(req, res) {
       workStart: req.query.start,
       workEnd: req.query.end,
       lookaheadDays: req.query.days,
+      workDays: req.query.workdays,
       minNoticeHours: req.query.notice,
       meetingMinutes: req.query.duration,
     });
