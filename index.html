@@ -66,6 +66,12 @@
   </div>
 
   <div class="card">
+    <h2>&#127760; Scope</h2>
+    <select id="scope"></select>
+    <div class="hint">Applies to both panels below. The March/April recruitment campaign is excluded everywhere.</div>
+  </div>
+
+  <div class="card">
     <h2>&#128202; Inbox performance</h2>
     <button id="btn-stats">Load performance</button>
     <div id="stats-out" class="hide"></div>
@@ -74,10 +80,7 @@
   <div class="card">
     <h2>&#9993;&#65039; Reply queue</h2>
     <div class="hint">Positive replies where the lead spoke last. Nothing else is waiting on you.</div>
-    <div class="row">
-      <select id="campaign"><option value="">All live campaigns</option></select>
-      <button id="btn-queue">Load queue</button>
-    </div>
+    <button id="btn-queue">Load queue</button>
     <div id="queue-out" class="hide"></div>
   </div>
 </div>
@@ -100,21 +103,40 @@ function key(){ const k=secretEl.value.trim(); if(!k){alert("Enter your setup se
 async function api(path){ const r = await fetch(path + `&_=${Date.now()}`); const t = await r.text(); try{return JSON.parse(t);}catch{return {error:t.slice(0,400)};} }
 
 // ---------- campaigns ----------
+let CAMPAIGNS = [];
+// The March/April recruitment campaign is finished work, never in scope.
+const inScope = (c) => c.status !== "ARCHIVED";
 async function loadCampaigns(){
   if(!secretEl.value.trim()) return;
   const d = await api(`/api/smartlead?key=${key()}&action=campaigns`);
   if(d.error||!d.campaigns) return;
-  const sel = $("campaign");
-  sel.innerHTML = `<option value="">All live campaigns</option>` +
-    d.campaigns.filter(c=>c.status!=="DRAFTED"&&c.status!=="ARCHIVED").map(c=>`<option value="${c.id}">${esc(c.name)}${c.status!=="ACTIVE"?" ("+c.status.toLowerCase()+")":""}</option>`).join("");
+  CAMPAIGNS = d.campaigns.filter(inScope);
+  const sel = $("scope");
+  const saved = localStorage.getItem("sl_scope") || "live";
+  sel.innerHTML =
+    `<option value="live">All live campaigns (sending now)</option>` +
+    `<option value="all">All campaigns, excluding the archived one</option>` +
+    CAMPAIGNS.map(c=>`<option value="${c.id}">${esc(c.name)}${c.status!=="ACTIVE"?" — "+c.status.toLowerCase():""}</option>`).join("");
+  sel.value = [...sel.options].some(o=>o.value===saved) ? saved : "live";
+  sel.onchange = () => localStorage.setItem("sl_scope", sel.value);
 }
 loadCampaigns();
+
+// Campaign ids for the current scope
+function scopeIds(){
+  const v = $("scope").value || "live";
+  if(v === "live") return CAMPAIGNS.filter(c=>c.status==="ACTIVE").map(c=>String(c.id));
+  if(v === "all")  return CAMPAIGNS.map(c=>String(c.id));
+  return [v];
+}
 
 // ---------- performance ----------
 $("btn-stats").onclick = async () => {
   const out=$("stats-out"); out.classList.remove("hide");
   out.innerHTML="<pre>Reading every reply and checking which are answered. This takes a moment…</pre>";
-  const d = await api(`/api/smartlead?key=${key()}&action=stats`);
+  const ids = scopeIds();
+  if(!ids.length){out.innerHTML=`<div class="hint">No campaigns in scope.</div>`;return;}
+  const d = await api(`/api/smartlead?key=${key()}&action=stats&campaign_id=${ids.join(",")}`);
   if(d.error){out.innerHTML=`<pre class="err">${esc(d.error)}</pre>`;return;}
   const t=d.totals;
   const kpi=(v,l,cls="")=>`<div class="kpi ${cls}"><div class="v">${v}</div><div class="l">${l}</div></div>`;
@@ -143,13 +165,8 @@ let Q={items:[],i:0};
 $("btn-queue").onclick = async () => {
   const out=$("queue-out"); out.classList.remove("hide");
   out.innerHTML="<pre>Finding positive replies that are waiting on you…</pre>";
-  const cid=$("campaign").value;
-  let ids=[];
-  if(cid) ids=[cid];
-  else {
-    const c = await api(`/api/smartlead?key=${key()}&action=campaigns`);
-    ids=(c.campaigns||[]).filter(x=>x.status!=="DRAFTED"&&x.status!=="ARCHIVED").map(x=>String(x.id));
-  }
+  const ids = scopeIds();
+  if(!ids.length){out.innerHTML=`<div class="hint">No campaigns in scope.</div>`;return;}
   const all=[];
   for(const id of ids){
     const d = await api(`/api/smartlead?key=${key()}&action=queue&campaign_id=${id}`);
