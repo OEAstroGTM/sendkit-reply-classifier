@@ -89,6 +89,74 @@ export default async function handler(req, res) {
       });
     }
 
+    // ?action=queue&campaign_id=123
+    // Positives that are still waiting on us: reads each positive thread and
+    // keeps only those where the lead spoke last. This is the work list.
+    if (action === "queue") {
+      const campaignId = req.query.campaign_id;
+      if (!campaignId) return res.status(400).json({ error: "Need campaign_id" });
+      const POSITIVE = new Set(["Interested", "Meeting Request", "Information Request"]);
+
+      // 1. Collect positives across all replied records
+      const positives = [];
+      let offset = 0, total = 0, pages = 0;
+      while (pages < 8) {
+        const page = await campaignStats(campaignId, {
+          email_status: "replied", limit: "100", offset: String(offset),
+        });
+        total = Number(page.total_stats || 0);
+        const rows = page.data || [];
+        if (!rows.length) break;
+        for (const r of rows) {
+          if (POSITIVE.has(r.lead_category)) {
+            positives.push({
+              name: r.lead_name, email: r.lead_email, category: r.lead_category,
+              delaySeconds: Math.round((new Date(r.reply_time) - new Date(r.sent_time)) / 1000),
+            });
+          }
+        }
+        offset += rows.length; pages++;
+        if (offset >= total) break;
+      }
+
+      // 2. Read each thread in parallel and keep the ones awaiting a reply
+      const checked = await Promise.all(positives.slice(0, 40).map(async (p) => {
+        try {
+          const lead = await leadByEmail(p.email);
+          if (lead.is_unsubscribed) return null;
+          const hist = await messageHistory(campaignId, lead.id);
+          const msgs = hist.history || [];
+          const last = msgs[msgs.length - 1];
+          if (!last || last.type !== "REPLY") return null;   // we already answered
+          const lastReply = [...msgs].reverse().find((m) => m.type === "REPLY");
+          const text = ownWords(lastReply?.email_body);
+          if (isMachineReply(text, p.delaySeconds)) return null;
+          return {
+            ...p,
+            leadId: lead.id,
+            company: lead.company_name || "",
+            title: lead.custom_fields?.Current_Job_Title || "",
+            location: lead.location || "",
+            phone: lead.phone_number || "",
+            persona: (lastReply?.to || "").split("@")[0].split(".")[0],
+            repliedAt: lastReply?.time || "",
+            hoursWaiting: lastReply?.time
+              ? Math.round((Date.now() - new Date(lastReply.time).getTime()) / 3600000) : null,
+            said: text.slice(0, 300),
+          };
+        } catch { return null; }
+      }));
+
+      const queue = checked.filter(Boolean)
+        .sort((a, b) => (b.hoursWaiting ?? 0) - (a.hoursWaiting ?? 0));
+      return res.status(200).json({
+        campaignId, totalReplied: total,
+        positives: positives.length,
+        awaitingReply: queue.length,
+        queue,
+      });
+    }
+
     if (action === "audit") {
       const campaignId = req.query.campaign_id;
       if (!campaignId) return res.status(400).json({ error: "Need campaign_id" });
