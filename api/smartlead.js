@@ -129,7 +129,8 @@ export default async function handler(req, res) {
       const all = await listCampaigns();
       const list = Array.isArray(all) ? all : all.campaigns || [];
       for (const c of list) names[String(c.id)] = { name: c.name, status: c.status };
-      if (!ids.length) ids = list.filter((c) => c.status === "ACTIVE").map((c) => String(c.id));
+      // Every campaign that has actually sent. DRAFTED ones never went out.
+      if (!ids.length) ids = list.filter((c) => c.status !== "DRAFTED").map((c) => String(c.id));
 
       const perCampaign = await Promise.all(ids.map(async (id) => {
         try {
