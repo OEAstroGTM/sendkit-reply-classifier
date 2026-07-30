@@ -10,6 +10,24 @@ export default async function handler(req, res) {
   if (!process.env.SETUP_SECRET || req.query.key !== process.env.SETUP_SECRET) {
     return res.status(401).json({ error: "Unauthorized" });
   }
+  // ?grants=1 lists every calendar connected to the Nylas app
+  if (req.query.grants === "1") {
+    try {
+      const r = await fetch(
+        `https://api.${(process.env.NYLAS_REGION || "us").toLowerCase()}.nylas.com/v3/grants`,
+        { headers: { Authorization: `Bearer ${process.env.NYLAS_API_KEY}`, Accept: "application/json" } }
+      );
+      const j = await r.json();
+      return res.status(200).json({
+        grants: (j.data || []).map((g) => ({
+          id: g.id, email: g.email, provider: g.provider, status: g.grant_status,
+        })),
+      });
+    } catch (e) {
+      return res.status(500).json({ error: e.message });
+    }
+  }
+
   try {
     const slots = await getAvailableSlots({
       workStart: req.query.start,
