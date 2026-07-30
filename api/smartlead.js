@@ -137,19 +137,21 @@ export default async function handler(req, res) {
       const since = windowDays > 0
         ? new Date(Date.now() - windowDays * 86400000).toISOString().slice(0, 10)
         : null;
-      const win = since ? { sent_time_start_date: since } : {};
+      // Smartlead ignores sent_time_start_date on this endpoint, so the window
+      // is applied here against each reply's own timestamp.
+      const sinceMs = since ? new Date(since).getTime() : null;
 
       const perCampaign = await Promise.all(ids.map(async (id) => {
         try {
-          // total sent in window
-          const head = await campaignStats(id, { limit: "1", offset: "0", ...win });
+          // lifetime sends for this campaign (used for the per-1k efficiency figure)
+          const head = await campaignStats(id, { limit: "1", offset: "0" });
           const sent = Number(head.total_stats || 0);
 
           // every replied record
           const rows = [];
           let offset = 0, total = 0, pages = 0;
           while (pages < 8) {
-            const page = await campaignStats(id, { email_status: "replied", limit: "100", offset: String(offset), ...win });
+            const page = await campaignStats(id, { email_status: "replied", limit: "100", offset: String(offset) });
             total = Number(page.total_stats || 0);
             const r = page.data || [];
             if (!r.length) break;
@@ -158,10 +160,16 @@ export default async function handler(req, res) {
             if (offset >= total) break;
           }
 
+          const lifetimeReplies = total;
+          const windowed = sinceMs
+            ? rows.filter((r) => new Date(r.reply_time).getTime() >= sinceMs)
+            : rows;
+          total = windowed.length;
+
           const byCategory = {};
           let machines = 0;
           const positives = [];
-          for (const r of rows) {
+          for (const r of windowed) {
             const cat = r.lead_category || "(uncategorized)";
             byCategory[cat] = (byCategory[cat] || 0) + 1;
             const delay = Math.round((new Date(r.reply_time) - new Date(r.sent_time)) / 1000);
@@ -199,7 +207,7 @@ export default async function handler(req, res) {
             campaignId: id,
             name: names[id]?.name || id,
             status: names[id]?.status || "",
-            sent, replies: total,
+            sent, lifetimeReplies, replies: total,
             machines,
             humanReplies: total - machines,
             positives: positives.length,
