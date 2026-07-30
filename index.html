@@ -68,7 +68,7 @@
   <div class="card">
     <h2>&#127760; Scope</h2>
     <select id="scope"></select>
-    <div class="hint">Applies to both panels. The archived March/April recruitment campaign is never in a bulk view, but you can select it here on its own.</div>
+    <div class="hint">Optional filter. Defaults to every campaign that has sent, so no positive reply hides from you.</div>
   </div>
 
   <div class="card">
@@ -103,17 +103,18 @@ function key(){ const k=secretEl.value.trim(); if(!k){alert("Enter your setup se
 async function api(path){ const r = await fetch(path + `&_=${Date.now()}`); const t = await r.text(); try{return JSON.parse(t);}catch{return {error:t.slice(0,400)};} }
 
 // ---------- campaigns ----------
-let CAMPAIGNS = [];
+let CAMPAIGNS = [], CAMPAIGN_NAMES = {};
 async function loadCampaigns(){
   if(!secretEl.value.trim()) return;
   const d = await api(`/api/smartlead?key=${key()}&action=campaigns`);
   if(d.error||!d.campaigns) return;
-  CAMPAIGNS = d.campaigns;   // archived included, selectable but never in a default scope
+  CAMPAIGNS = d.campaigns;
+  CAMPAIGN_NAMES = Object.fromEntries(d.campaigns.map(c=>[String(c.id), c.name]));
   const sel = $("scope");
-  const saved = localStorage.getItem("sl_scope") || "live";
+  const saved = localStorage.getItem("sl_scope") || "sent";
   sel.innerHTML =
-    `<option value="live">All live campaigns (sending now)</option>` +
-    `<option value="all">All current campaigns (excludes archived)</option>` +
+    `<option value="sent">Everything that has sent</option>` +
+    `<option value="live">Live campaigns only</option>` +
     `<option disabled>──────────</option>` +
     CAMPAIGNS.map(c=>`<option value="${c.id}">${esc(c.name)}${c.status!=="ACTIVE"?" — "+c.status.toLowerCase():""}</option>`).join("");
   sel.value = [...sel.options].some(o=>o.value===saved) ? saved : "live";
@@ -125,7 +126,7 @@ loadCampaigns();
 function scopeIds(){
   const v = $("scope").value || "live";
   if(v === "live") return CAMPAIGNS.filter(c=>c.status==="ACTIVE").map(c=>String(c.id));
-  if(v === "all")  return CAMPAIGNS.filter(c=>c.status!=="ARCHIVED").map(c=>String(c.id));
+  if(v === "sent") return CAMPAIGNS.filter(c=>c.status!=="DRAFTED").map(c=>String(c.id));
   return [v];
 }
 
@@ -184,6 +185,7 @@ function header(c){
   if(/not a|we are not|wrong|mix-?up/i.test(c.said)) flags.push("Possible mismatch");
   return `<div style="margin-top:16px;display:flex;justify-content:space-between;align-items:flex-start;gap:10px">
       <div><b>${esc(c.name||c.email)}</b> <span class="hint">${esc(c.company||"")} ${c.title?"· "+esc(c.title):""}</span><br>
+        <span class="hint">${esc(CAMPAIGN_NAMES[c.campaign_id]||"")}</span><br>
         <span class="hint">${esc(c.email)} ${c.location?"· "+esc(c.location):""} ${c.phone?"· "+esc(c.phone):""}</span></div>
       <div style="text-align:right">${pill(c.category)}<br><span class="hint">${c.hoursWaiting}h waiting · ${Q.i+1} of ${Q.items.length}</span></div>
     </div>
