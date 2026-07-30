@@ -8,7 +8,7 @@ import {
   listCampaigns, campaignStats, leadByEmail, messageHistory,
   replyToLead, unsubscribeLead, isMachineReply, ownWords,
 } from "../lib/smartlead.js";
-import { toHtml } from "../lib/reply.js";
+import { toHtml, generateReply } from "../lib/reply.js";
 import { linkifySlots } from "../lib/booking.js";
 import batch from "../drafts/smartlead-batch.json" with { type: "json" };
 
@@ -86,6 +86,143 @@ export default async function handler(req, res) {
         // Positives that arrived too fast to be typed by a human
         positivesUnder60s: positives.filter((p) => p.delaySeconds < 60).length,
         positives: positives.slice(0, 40),
+      });
+    }
+
+    // ?action=draft&campaign_id=123&email=lead@x.com
+    // Writes a reply for one lead: reads the thread, pulls live availability
+    // in the lead's timezone, returns text + HTML with booking links.
+    if (action === "draft") {
+      const { campaign_id, email } = req.query;
+      if (!campaign_id || !email) return res.status(400).json({ error: "Need campaign_id and email" });
+      const lead = await leadByEmail(email);
+      const hist = await messageHistory(campaign_id, lead.id);
+      const msgs = hist.history || [];
+      const lastReply = [...msgs].reverse().find((m) => m.type === "REPLY");
+      if (!lastReply) return res.status(400).json({ error: "No lead reply on this thread" });
+
+      const said = ownWords(lastReply.email_body);
+      const persona = (lastReply.to || "").split("@")[0].split(".")[0];
+      const personaName = persona ? persona.charAt(0).toUpperCase() + persona.slice(1) : "";
+      const category = req.query.category || "Interested";
+
+      const { body, html, slots } = await generateReply({
+        category,
+        replyText: said,
+        leadName: lead.first_name || "",
+        subject: lastReply.subject || "",
+        leadEmail: lead.email,
+        baseUrl: `https://${req.headers.host}`,
+        senderName: personaName,
+        leadTimezone: guessTimezone(lead),
+      });
+      return res.status(200).json({ email: lead.email, persona: personaName, said: said.slice(0, 400), body, html, slots });
+    }
+
+    // ?action=stats[&campaign_id=a,b]  — inbox management performance.
+    // Defaults to every ACTIVE campaign. Reports how the replies are being
+    // handled, not just how the campaign is sending.
+    if (action === "stats") {
+      const POSITIVE = new Set(["Interested", "Meeting Request", "Information Request"]);
+      let ids = (req.query.campaign_id || "").split(",").map((s) => s.trim()).filter(Boolean);
+      let names = {};
+      const all = await listCampaigns();
+      const list = Array.isArray(all) ? all : all.campaigns || [];
+      for (const c of list) names[String(c.id)] = { name: c.name, status: c.status };
+      if (!ids.length) ids = list.filter((c) => c.status === "ACTIVE").map((c) => String(c.id));
+
+      const perCampaign = await Promise.all(ids.map(async (id) => {
+        try {
+          // total sent
+          const head = await campaignStats(id, { limit: "1", offset: "0" });
+          const sent = Number(head.total_stats || 0);
+
+          // every replied record
+          const rows = [];
+          let offset = 0, total = 0, pages = 0;
+          while (pages < 8) {
+            const page = await campaignStats(id, { email_status: "replied", limit: "100", offset: String(offset) });
+            total = Number(page.total_stats || 0);
+            const r = page.data || [];
+            if (!r.length) break;
+            rows.push(...r);
+            offset += r.length; pages++;
+            if (offset >= total) break;
+          }
+
+          const byCategory = {};
+          let machines = 0;
+          const positives = [];
+          for (const r of rows) {
+            const cat = r.lead_category || "(uncategorized)";
+            byCategory[cat] = (byCategory[cat] || 0) + 1;
+            const delay = Math.round((new Date(r.reply_time) - new Date(r.sent_time)) / 1000);
+            if (delay < 60) machines++;
+            if (POSITIVE.has(cat)) positives.push({ name: r.lead_name, email: r.lead_email, category: cat, delaySeconds: delay });
+          }
+
+          // answered vs awaiting, plus how quickly we responded
+          const checked = await Promise.all(positives.slice(0, 40).map(async (p) => {
+            try {
+              const lead = await leadByEmail(p.email);
+              const hist = await messageHistory(id, lead.id);
+              const msgs = hist.history || [];
+              const last = msgs[msgs.length - 1];
+              const lastReplyIdx = [...msgs].map((m) => m.type).lastIndexOf("REPLY");
+              const lastReply = msgs[lastReplyIdx];
+              const awaiting = last && last.type === "REPLY";
+              let responseHours = null;
+              if (!awaiting && lastReply) {
+                // first outbound after their most recent inbound
+                const after = msgs.slice(lastReplyIdx + 1).find((m) => m.type !== "REPLY");
+                if (after) responseHours = (new Date(after.time) - new Date(lastReply.time)) / 3600000;
+              }
+              return { ...p, awaiting, responseHours, hoursWaiting: awaiting && lastReply
+                ? (Date.now() - new Date(lastReply.time).getTime()) / 3600000 : null };
+            } catch { return null; }
+          }));
+          const seen = checked.filter(Boolean);
+          const answered = seen.filter((x) => !x.awaiting);
+          const responded = answered.filter((x) => typeof x.responseHours === "number");
+
+          return {
+            campaignId: id,
+            name: names[id]?.name || id,
+            status: names[id]?.status || "",
+            sent, replies: total,
+            machines,
+            humanReplies: total - machines,
+            positives: positives.length,
+            positivesPer1k: sent ? +(positives.length / sent * 1000).toFixed(2) : 0,
+            answered: answered.length,
+            awaiting: seen.filter((x) => x.awaiting).length,
+            oldestWaitingHours: Math.round(Math.max(0, ...seen.filter((x) => x.awaiting).map((x) => x.hoursWaiting || 0))),
+            medianResponseHours: responded.length
+              ? +median(responded.map((x) => x.responseHours)).toFixed(1) : null,
+            byCategory,
+          };
+        } catch (e) {
+          return { campaignId: id, name: names[id]?.name || id, error: e.message.slice(0, 160) };
+        }
+      }));
+
+      const ok = perCampaign.filter((c) => !c.error);
+      const sum = (k) => ok.reduce((n, c) => n + (c[k] || 0), 0);
+      const medians = ok.map((c) => c.medianResponseHours).filter((n) => typeof n === "number");
+      return res.status(200).json({
+        generatedAt: new Date().toISOString(),
+        totals: {
+          sent: sum("sent"), replies: sum("replies"),
+          machines: sum("machines"), humanReplies: sum("humanReplies"),
+          positives: sum("positives"),
+          answered: sum("answered"), awaiting: sum("awaiting"),
+          answeredPct: sum("positives") ? Math.round(sum("answered") / sum("positives") * 100) : 0,
+          machinePct: sum("replies") ? Math.round(sum("machines") / sum("replies") * 100) : 0,
+          positivesPer1k: sum("sent") ? +(sum("positives") / sum("sent") * 1000).toFixed(2) : 0,
+          medianResponseHours: medians.length ? +median(medians).toFixed(1) : null,
+          oldestWaitingHours: Math.max(0, ...ok.map((c) => c.oldestWaitingHours || 0)),
+        },
+        campaigns: perCampaign,
       });
     }
 
@@ -295,9 +432,14 @@ export default async function handler(req, res) {
       const lastReply = [...msgs].reverse().find((m) => m.type === "REPLY");
       if (!lastReply) return res.status(400).json({ error: "No lead reply found on this thread" });
 
+      const emailHtml = linkifySlots(toHtml(body), Array.isArray(p.slots) ? p.slots : [], {
+        email: lead.email, name: lead.first_name || "",
+        baseUrl: `https://${req.headers.host}`,
+        durationMin: Number(process.env.MEETING_MINUTES || 30),
+      });
       const result = await replyToLead(campaign_id, {
         email_stats_id: lastReply.stats_id,
-        email_body: toHtml(body),
+        email_body: emailHtml,
         reply_message_id: lastReply.message_id,
         reply_email_time: lastReply.time,
         to_email: lead.email,
@@ -330,4 +472,32 @@ export default async function handler(req, res) {
   } catch (e) {
     return res.status(500).json({ error: e.message });
   }
+}
+
+function median(nums) {
+  const a = [...nums].sort((x, y) => x - y);
+  const m = Math.floor(a.length / 2);
+  return a.length % 2 ? a[m] : (a[m - 1] + a[m]) / 2;
+}
+
+// Rough timezone from the lead record, so proposed times land in their day.
+const TZ_BY_COUNTRY = {
+  india:"Asia/Kolkata", "united arab emirates":"Asia/Dubai", uae:"Asia/Dubai",
+  "saudi arabia":"Asia/Riyadh", egypt:"Africa/Cairo", nigeria:"Africa/Lagos",
+  indonesia:"Asia/Makassar", poland:"Europe/Warsaw", italy:"Europe/Rome",
+  finland:"Europe/Helsinki", netherlands:"Europe/Amsterdam", germany:"Europe/Berlin",
+  austria:"Europe/Vienna", ireland:"Europe/Dublin", "united kingdom":"Europe/London",
+  brazil:"America/Sao_Paulo", mexico:"America/Mexico_City", "costa rica":"America/Costa_Rica",
+  canada:"America/Toronto", australia:"Australia/Sydney", singapore:"Asia/Singapore",
+  "south africa":"Africa/Johannesburg", ghana:"Africa/Accra", bulgaria:"Europe/Sofia",
+  pakistan:"Asia/Karachi", "united states":"America/New_York",
+};
+function guessTimezone(lead) {
+  const loc = String(lead?.location || "").toLowerCase();
+  for (const [k, tz] of Object.entries(TZ_BY_COUNTRY)) if (loc.includes(k)) return tz;
+  const tld = String(lead?.email || "").split(".").pop().toLowerCase();
+  const byTld = { in:"Asia/Kolkata", ae:"Asia/Dubai", sa:"Asia/Riyadh", pl:"Europe/Warsaw",
+    it:"Europe/Rome", fi:"Europe/Helsinki", de:"Europe/Berlin", uk:"Europe/London",
+    br:"America/Sao_Paulo", mx:"America/Mexico_City", id:"Asia/Makassar", ng:"Africa/Lagos" };
+  return byTld[tld] || process.env.TIMEZONE || "America/New_York";
 }

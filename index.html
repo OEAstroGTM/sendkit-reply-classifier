@@ -3,411 +3,236 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SendKit Reply Agent</title>
+<title>Reply Agent — Smartlead</title>
 <style>
   :root {
-    --bg: #0f1117; --card: #181b23; --border: #2a2e3a; --text: #e6e8ee;
-    --muted: #8b90a0; --accent: #4f8cff; --green: #22c55e; --red: #ef4444;
-    --amber: #f59e0b; --purple: #a855f7; --blue: #3b82f6; --gray: #6b7280;
-    --input-bg: #10131a; --btn2-bg: #262a36; --btn2-text: #e6e8ee;
+    --bg:#0f1117; --card:#181b23; --border:#2a2e3a; --text:#e6e8ee; --muted:#8b90a0;
+    --accent:#4f8cff; --green:#22c55e; --red:#ef4444; --amber:#f59e0b; --purple:#a855f7;
+    --blue:#3b82f6; --gray:#6b7280; --input-bg:#10131a; --btn2-bg:#262a36; --btn2-text:#e6e8ee;
   }
   [data-theme="light"] {
-    --bg: #f5f6f8; --card: #ffffff; --border: #e2e5ea; --text: #1a1d26;
-    --muted: #6b7180; --accent: #2563eb; --green: #16a34a; --red: #dc2626;
-    --amber: #d97706; --purple: #9333ea; --blue: #2563eb; --gray: #6b7280;
-    --input-bg: #f2f4f7; --btn2-bg: #e8eaef; --btn2-text: #1a1d26;
+    --bg:#f5f6f8; --card:#fff; --border:#e2e5ea; --text:#1a1d26; --muted:#6b7180;
+    --accent:#2563eb; --green:#16a34a; --red:#dc2626; --amber:#d97706; --purple:#9333ea;
+    --blue:#2563eb; --gray:#6b7280; --input-bg:#f2f4f7; --btn2-bg:#e8eaef; --btn2-text:#1a1d26;
   }
-  * { box-sizing: border-box; margin: 0; }
-  body { background: var(--bg); color: var(--text); font: 15px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; padding: 32px 16px; }
-  .wrap { max-width: 880px; margin: 0 auto; }
-  h1 { font-size: 22px; margin-bottom: 4px; }
-  .sub { color: var(--muted); margin-bottom: 24px; font-size: 14px; }
-  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 16px; }
-  .card h2 { font-size: 15px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
-  label { display: block; font-size: 12px; color: var(--muted); margin: 10px 0 4px; }
-  input, textarea { width: 100%; background: var(--input-bg); color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; font: inherit; }
-  textarea { min-height: 84px; resize: vertical; }
-  button { background: var(--accent); color: #fff; border: 0; border-radius: 8px; padding: 10px 16px; font: inherit; font-weight: 600; cursor: pointer; margin-top: 12px; }
-  button:hover { filter: brightness(1.1); }
-  button.secondary { background: var(--btn2-bg); color: var(--btn2-text); }
-  button:disabled { opacity: .5; cursor: wait; }
-  pre { background: var(--input-bg); border: 1px solid var(--border); border-radius: 8px; padding: 12px; overflow-x: auto; font-size: 13px; white-space: pre-wrap; word-break: break-word; margin-top: 12px; }
-  .pill { display: inline-block; padding: 2px 10px; border-radius: 99px; font-size: 12px; font-weight: 600; }
-  .row { display: flex; gap: 12px; flex-wrap: wrap; }
-  .row > * { flex: 1; min-width: 180px; }
-  .status-line { display: flex; gap: 8px; align-items: baseline; padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
-  .status-line:last-child { border-bottom: 0; }
-  .status-line .k { color: var(--muted); min-width: 90px; }
-  .ok { color: var(--green); } .err { color: var(--red); }
-  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
-  th { text-align: left; color: var(--muted); font-weight: 500; padding: 6px 8px; border-bottom: 1px solid var(--border); }
-  td { padding: 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
-  .preview { background: #fff; color: #111; border-radius: 8px; padding: 20px; margin-top: 12px; font-family: Arial, sans-serif; }
-  .preview a { color: #1a56db; }
-  .hint { color: var(--muted); font-size: 12px; margin-top: 8px; }
-  .hide { display: none; }
+  *{box-sizing:border-box;margin:0}
+  body{background:var(--bg);color:var(--text);font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;padding:28px 16px}
+  .wrap{max-width:940px;margin:0 auto}
+  h1{font-size:21px}
+  .sub{color:var(--muted);font-size:13px;margin-bottom:20px}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:16px}
+  .card h2{font-size:15px;margin-bottom:12px}
+  label{display:block;font-size:12px;color:var(--muted);margin:10px 0 4px}
+  input,textarea,select{width:100%;background:var(--input-bg);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:10px 12px;font:inherit}
+  textarea{min-height:200px;resize:vertical}
+  button{background:var(--accent);color:#fff;border:0;border-radius:8px;padding:10px 16px;font:inherit;font-weight:600;cursor:pointer;margin-top:12px}
+  button:hover{filter:brightness(1.1)}
+  button.secondary{background:var(--btn2-bg);color:var(--btn2-text)}
+  button:disabled{opacity:.5;cursor:wait}
+  pre{background:var(--input-bg);border:1px solid var(--border);border-radius:8px;padding:12px;font-size:13px;white-space:pre-wrap;word-break:break-word;margin-top:12px}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+  .kpi{background:var(--input-bg);border:1px solid var(--border);border-radius:10px;padding:12px 14px}
+  .kpi .v{font-size:24px;font-weight:700;line-height:1.1}
+  .kpi .l{font-size:11px;color:var(--muted);margin-top:3px;text-transform:uppercase;letter-spacing:.03em}
+  .kpi.good .v{color:var(--green)} .kpi.warn .v{color:var(--amber)} .kpi.bad .v{color:var(--red)}
+  table{width:100%;border-collapse:collapse;font-size:13px;margin-top:10px}
+  th{text-align:left;color:var(--muted);font-weight:500;padding:6px 8px;border-bottom:1px solid var(--border)}
+  td{padding:8px;border-bottom:1px solid var(--border);vertical-align:top}
+  td.n,th.n{text-align:right}
+  .pill{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600;color:#fff}
+  .row{display:flex;gap:12px;flex-wrap:wrap}
+  .row>*{flex:1;min-width:150px}
+  .preview{background:#fff;color:#111;border-radius:8px;padding:22px;margin-top:12px;font-family:Arial,sans-serif;line-height:1.6}
+  .preview a{color:#1a56db}
+  .said{margin-top:10px;padding:12px;border-radius:8px;background:var(--input-bg);font-size:13px}
+  .hint{color:var(--muted);font-size:12px;margin-top:8px}
+  .err{color:var(--red)}
+  .hide{display:none}
+  .flag{display:inline-block;padding:2px 9px;border-radius:99px;font-size:11px;font-weight:600;background:rgba(245,158,11,.18);color:var(--amber);border:1px solid var(--amber);margin-right:4px}
 </style>
 </head>
 <body>
 <div class="wrap">
   <div style="display:flex;justify-content:space-between;align-items:flex-start">
-    <h1>SendKit Reply Agent</h1>
+    <h1>Reply Agent</h1>
     <button id="btn-theme" class="secondary" style="margin-top:0;padding:6px 12px;font-size:13px">&#9788; Light</button>
   </div>
-  <div class="sub">Classifies replies, tags conversations, and answers with real calendar times.</div>
+  <div class="sub">Smartlead inbox management — find positive replies, answer them, book meetings.</div>
 
   <div class="card">
     <h2>&#128273; Access</h2>
-    <label>Setup secret (your SETUP_SECRET env var)</label>
-    <input id="secret" type="password" placeholder="paste your setup secret">
-    <div class="hint">Stored only in this browser.</div>
+    <input id="secret" type="password" placeholder="setup secret">
+    <div class="hint">Stored in this browser only.</div>
   </div>
 
   <div class="card">
-    <h2>&#9881;&#65039; System status</h2>
-    <button id="btn-status">Check status / run setup</button>
-    <div id="status-out" class="hide"></div>
+    <h2>&#128202; Inbox performance</h2>
+    <button id="btn-stats">Load performance</button>
+    <div id="stats-out" class="hide"></div>
   </div>
 
   <div class="card">
-    <h2>&#129514; Test a reply</h2>
+    <h2>&#9993;&#65039; Reply queue</h2>
+    <div class="hint">Positive replies where the lead spoke last. Nothing else is waiting on you.</div>
     <div class="row">
-      <div>
-        <label>Lead first name</label>
-        <input id="lead-name" placeholder="Greg" value="Greg">
-      </div>
+      <select id="campaign"><option value="">All active campaigns</option></select>
+      <button id="btn-queue">Load queue</button>
     </div>
-    <label>Paste an incoming reply</label>
-    <textarea id="lead-text">I am interested, please send details</textarea>
-    <div class="row">
-      <button id="btn-classify" class="secondary">Classify only</button>
-      <button id="btn-reply">Generate full reply preview</button>
-    </div>
-    <div id="test-out" class="hide"></div>
-  </div>
-
-  <div class="card">
-    <h2>&#9993;&#65039; Review queue</h2>
-    <div class="hint">Tagged replies waiting on a response. Review each AI reply, then send, draft, or skip.</div>
-    <button id="btn-queue">Load queue</button>
     <div id="queue-out" class="hide"></div>
-  </div>
-
-  <div class="card">
-    <h2>&#9200; Awaiting reply</h2>
-    <div class="hint">Leads we answered who haven't come back. Shows any scheduled bumps, or schedule them on demand. Bumps auto-cancel when the lead replies or books.</div>
-    <button id="btn-followups" class="secondary">Load</button>
-    <div id="followups-out" class="hide"></div>
-  </div>
-
-  <div class="card">
-    <h2>&#128229; Classified replies</h2>
-    <div class="row">
-      <button id="btn-recent" class="secondary">Load tagged</button>
-      <button id="btn-recent-all" class="secondary">Show all</button>
-      <button id="btn-backfill">Backfill untagged (10 at a time)</button>
-    </div>
-    <div class="hint">Backfill classifies and tags older conversations. It never sends or drafts replies to them.</div>
-    <div id="recent-out" class="hide"></div>
   </div>
 </div>
 
 <script>
 const $ = (id) => document.getElementById(id);
-
-// Theme: saved choice > system preference > dark
 const themeBtn = $("btn-theme");
-function applyTheme(t) {
-  document.documentElement.dataset.theme = t;
-  themeBtn.innerHTML = t === "light" ? "&#9789; Dark" : "&#9788; Light";
-  localStorage.setItem("sk_theme", t);
-}
-applyTheme(localStorage.getItem("sk_theme") ||
-  (window.matchMedia?.("(prefers-color-scheme: light)").matches ? "light" : "dark"));
-themeBtn.onclick = () =>
-  applyTheme(document.documentElement.dataset.theme === "light" ? "dark" : "light");
+function applyTheme(t){document.documentElement.dataset.theme=t;themeBtn.innerHTML=t==="light"?"&#9789; Dark":"&#9788; Light";localStorage.setItem("sl_theme",t);}
+applyTheme(localStorage.getItem("sl_theme") || (window.matchMedia?.("(prefers-color-scheme: light)").matches?"light":"dark"));
+themeBtn.onclick=()=>applyTheme(document.documentElement.dataset.theme==="light"?"dark":"light");
 
 const secretEl = $("secret");
-secretEl.value = localStorage.getItem("sk_secret") || "";
-secretEl.addEventListener("change", () => localStorage.setItem("sk_secret", secretEl.value.trim()));
+secretEl.value = localStorage.getItem("sl_secret") || "";
+secretEl.addEventListener("change", () => { localStorage.setItem("sl_secret", secretEl.value.trim()); loadCampaigns(); });
 
-const TAG_COLORS = {
-  "Interested": "var(--green)", "Meeting Request": "var(--blue)",
-  "More Info Needed": "var(--purple)", "Objection": "var(--red)",
-  "Pricing Question": "var(--amber)", "Timing Issue": "var(--gray)", "None": "#444a5a",
-};
-const pill = (t) => `<span class="pill" style="background:${TAG_COLORS[t] || "#444a5a"};color:#fff">${esc(t)}</span>`;
-const flagPill = (f) => `<span class="pill" style="background:rgba(245,158,11,.18);color:var(--amber);border:1px solid var(--amber);margin-right:4px">&#9873; ${esc(f)}</span>`;
-const flagRow = (flags) => (flags && flags.length) ? `<div style="margin-top:6px">${flags.map(flagPill).join("")}</div>` : "";
-const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g,(c)=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const CAT_COLORS = {"Interested":"var(--green)","Meeting Request":"var(--blue)","Information Request":"var(--purple)"};
+const pill = (t) => `<span class="pill" style="background:${CAT_COLORS[t]||"var(--gray)"}">${esc(t)}</span>`;
+function key(){ const k=secretEl.value.trim(); if(!k){alert("Enter your setup secret first.");throw new Error("no key");} return encodeURIComponent(k); }
+async function api(path){ const r = await fetch(path + `&_=${Date.now()}`); const t = await r.text(); try{return JSON.parse(t);}catch{return {error:t.slice(0,400)};} }
 
-function key() {
-  const k = secretEl.value.trim();
-  if (!k) { alert("Enter your setup secret first."); throw new Error("no key"); }
-  return encodeURIComponent(k);
+// ---------- campaigns ----------
+async function loadCampaigns(){
+  if(!secretEl.value.trim()) return;
+  const d = await api(`/api/smartlead?key=${key()}&action=campaigns`);
+  if(d.error||!d.campaigns) return;
+  const sel = $("campaign");
+  sel.innerHTML = `<option value="">All active campaigns</option>` +
+    d.campaigns.filter(c=>c.status==="ACTIVE").map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join("");
 }
-async function call(btn, path) {
-  btn.disabled = true;
-  try {
-    const res = await fetch(path);
-    const text = await res.text();
-    try { return JSON.parse(text); } catch { return { error: text.slice(0, 500) }; }
-  } finally { btn.disabled = false; }
-}
+loadCampaigns();
 
-$("btn-status").onclick = async () => {
-  const out = $("status-out"); out.classList.remove("hide");
-  out.innerHTML = "<pre>Running setup checks…</pre>";
-  const d = await call($("btn-status"), `/api/setup?key=${key()}`);
-  if (d.error) { out.innerHTML = `<pre class="err">${esc(JSON.stringify(d, null, 2))}</pre>`; return; }
-  const line = (k, v) => {
-    const bad = /error|failed/i.test(String(v));
-    return `<div class="status-line"><span class="k">${k}</span><span class="${bad ? "err" : "ok"}">${esc(Array.isArray(v) ? v.join(" · ") : v)}</span></div>`;
-  };
-  out.innerHTML =
-    line("SendKit", d.account ? `connected (${d.account})` : "not verified") +
-    line("Tags", d.tags || []) +
-    line("Webhook", d.webhook || "-") +
-    line("Nylas", d.nylas || "-") +
-    (d.action_required ? `<div class="status-line"><span class="k err">Action</span><span class="err">${esc(d.action_required)}</span></div>` : "");
-};
-
-$("btn-classify").onclick = async () => {
-  const out = $("test-out"); out.classList.remove("hide");
-  out.innerHTML = "<pre>Classifying…</pre>";
-  const d = await call($("btn-classify"), `/api/classify-test?key=${key()}&text=${encodeURIComponent($("lead-text").value)}`);
-  out.innerHTML = d.error
-    ? `<pre class="err">${esc(d.error)}</pre>`
-    : `<div style="margin-top:12px">${pill(d.category)} <span class="hint">confidence ${(d.confidence * 100).toFixed(0)}% , ${esc(d.reason)}</span></div>`;
-};
-
-$("btn-reply").onclick = async () => {
-  const out = $("test-out"); out.classList.remove("hide");
-  out.innerHTML = "<pre>Classifying, pulling calendar availability, writing reply…</pre>";
-  const d = await call($("btn-reply"), `/api/reply-test?key=${key()}&name=${encodeURIComponent($("lead-name").value)}&text=${encodeURIComponent($("lead-text").value)}`);
-  if (d.error) { out.innerHTML = `<pre class="err">${esc(d.error)}</pre>`; return; }
-  if (!d.wouldReply) {
-    out.innerHTML = `<div style="margin-top:12px">${pill(d.classification.category)} <span class="hint">${esc(d.note)}</span></div>`;
-    return;
-  }
-  out.innerHTML =
-    `<div style="margin-top:12px">${pill(d.classification.category)} <span class="hint">${esc(d.action)}</span></div>` +
-    `<div class="preview">${d.replyHtml}</div>` +
-    `<div class="hint">This is exactly how the lead sees it. Times are live from your calendar.</div>`;
-};
-
-async function loadRecent(btn, all) {
-  const out = $("recent-out"); out.classList.remove("hide");
-  out.innerHTML = "<pre>Loading…</pre>";
-  const d = await call(btn, `/api/recent?key=${key()}${all ? "&all=1" : ""}`);
-  if (d.error) { out.innerHTML = `<pre class="err">${esc(d.error)}</pre>`; return; }
-  const note = d.untaggedCount ? `<div class="hint">${d.untaggedCount} untagged conversation(s) — use Backfill to classify them.</div>` : "";
-  if (!d.conversations?.length) {
-    out.innerHTML = `<div class="hint">No tagged conversations yet.</div>` + note;
-    return;
-  }
-  out.innerHTML = `<table><tr><th>Lead</th><th>Subject</th><th>Tags</th></tr>` +
-    d.conversations.map((c) =>
-      `<tr><td>${esc(c.lead || c.email)}${c.unread ? " &#128309;" : ""}</td><td>${esc(c.subject)}</td><td>${(c.tags || []).map(pill).join(" ") || "<span class='hint'>untagged</span>"}</td></tr>`
-    ).join("") + `</table>` + note;
-}
-$("btn-recent").onclick = () => loadRecent($("btn-recent"), false);
-$("btn-recent-all").onclick = () => loadRecent($("btn-recent-all"), true);
-
-$("btn-backfill").onclick = async () => {
-  const out = $("recent-out"); out.classList.remove("hide");
-  out.innerHTML = "<pre>Classifying up to 10 untagged conversations, this can take ~30s…</pre>";
-  const d = await call($("btn-backfill"), `/api/backfill?key=${key()}&limit=10`);
-  if (d.error) { out.innerHTML = `<pre class="err">${esc(d.error)}</pre>`; return; }
-  out.innerHTML = `<table><tr><th>Subject</th><th>Result</th></tr>` +
-    (d.results || []).map((r) =>
-      `<tr><td>${esc(r.subject)}</td><td>${CATEGORY_COLORS_HAS(r.category) ? pill(r.category) : esc(r.category)}</td></tr>`
-    ).join("") + `</table>` +
-    `<div class="hint">Scanned ${d.scanned}. Remaining untagged: ${d.remainingUntagged}. ${d.remainingUntagged > 0 ? "Click Backfill again for the next batch." : "All caught up."}</div>`;
-};
-const CATEGORY_COLORS_HAS = (c) => Object.prototype.hasOwnProperty.call(TAG_COLORS, c);
-
-// ---------- Review queue workflow ----------
-let Q = { items: [], i: 0 };
-
-$("btn-queue").onclick = async () => {
-  const out = $("queue-out"); out.classList.remove("hide");
-  out.innerHTML = "<pre>Finding tagged replies that are waiting on a response…</pre>";
-  const d = await call($("btn-queue"), `/api/queue?key=${key()}`);
-  if (d.error) { out.innerHTML = `<pre class="err">${esc(d.error)}</pre>`; return; }
-  Q = { items: d.queue || [], i: 0 };
-  if (!Q.items.length) { out.innerHTML = `<div class="hint" style="margin-top:12px">Queue is empty. Every tagged reply has been answered. &#127881;</div>`; return; }
-  showQueueItem();
-};
-
-function queueHeader(c) {
-  return `<div style="margin-top:16px;display:flex;justify-content:space-between;align-items:center">
-      <div><b>${esc(c.lead || c.email)}</b> <span class="hint">${esc(c.company || "")}</span><br>
-      <span class="hint">${esc(c.email)}</span></div>
-      <div>${(c.tags || []).map(pill).join(" ")} <span class="hint">${Q.i + 1} of ${Q.items.length}</span></div>
+// ---------- performance ----------
+$("btn-stats").onclick = async () => {
+  const out=$("stats-out"); out.classList.remove("hide");
+  out.innerHTML="<pre>Reading every reply and checking which are answered. This takes a moment…</pre>";
+  const d = await api(`/api/smartlead?key=${key()}&action=stats`);
+  if(d.error){out.innerHTML=`<pre class="err">${esc(d.error)}</pre>`;return;}
+  const t=d.totals;
+  const kpi=(v,l,cls="")=>`<div class="kpi ${cls}"><div class="v">${v}</div><div class="l">${l}</div></div>`;
+  out.innerHTML = `<div class="kpis" style="margin-top:14px">
+      ${kpi(t.positives,"Positive replies")}
+      ${kpi(t.awaiting, "Awaiting reply", t.awaiting>0?"warn":"good")}
+      ${kpi(t.answeredPct+"%","Answered", t.answeredPct>=90?"good":t.answeredPct>=60?"warn":"bad")}
+      ${kpi(t.medianResponseHours==null?"—":t.medianResponseHours+"h","Median response")}
+      ${kpi(t.oldestWaitingHours?Math.round(t.oldestWaitingHours)+"h":"—","Longest wait", t.oldestWaitingHours>24?"bad":"")}
+      ${kpi(t.positivesPer1k,"Positives / 1k sent")}
+      ${kpi(t.machinePct+"%","Autoresponders", t.machinePct>80?"bad":t.machinePct>50?"warn":"")}
+      ${kpi(t.replies,"Total replies")}
     </div>
-    ${c.optOut ? `<div style="margin-top:8px;padding:10px;border-radius:8px;background:rgba(239,68,68,.12);color:var(--red);font-size:13px"><b>Opt-out detected.</b> This lead asked to stop receiving email. Replying is blocked.</div>` : ""}
-    ${flagRow(c.flags)}
-    <div style="margin-top:10px;padding:12px;border-radius:8px;background:var(--input-bg);font-size:13px">
-      <span class="hint">They said:</span><br>${esc(c.lastMessagePreview)}</div>`;
+    <table><tr><th>Campaign</th><th class="n">Sent</th><th class="n">Replies</th><th class="n">Human</th><th class="n">Positive</th><th class="n">Answered</th><th class="n">Waiting</th><th class="n">/1k</th></tr>` +
+    d.campaigns.map(c=>c.error
+      ? `<tr><td>${esc(c.name)}</td><td colspan="7" class="err">${esc(c.error)}</td></tr>`
+      : `<tr><td>${esc(c.name)}</td><td class="n">${c.sent.toLocaleString()}</td><td class="n">${c.replies}</td>
+         <td class="n">${c.humanReplies}</td><td class="n">${c.positives}</td><td class="n">${c.answered}</td>
+         <td class="n" style="${c.awaiting?"color:var(--amber);font-weight:600":""}">${c.awaiting}</td>
+         <td class="n">${c.positivesPer1k}</td></tr>`).join("") +
+    `</table><div class="hint">Positive = Interested, Meeting Request or Information Request, matching Smartlead's own categories. Autoresponders are replies arriving under 60 seconds. Generated ${new Date(d.generatedAt).toLocaleString()}.</div>`;
+};
+
+// ---------- queue ----------
+let Q={items:[],i:0};
+$("btn-queue").onclick = async () => {
+  const out=$("queue-out"); out.classList.remove("hide");
+  out.innerHTML="<pre>Finding positive replies that are waiting on you…</pre>";
+  const cid=$("campaign").value;
+  let ids=[];
+  if(cid) ids=[cid];
+  else {
+    const c = await api(`/api/smartlead?key=${key()}&action=campaigns`);
+    ids=(c.campaigns||[]).filter(x=>x.status==="ACTIVE").map(x=>String(x.id));
+  }
+  const all=[];
+  for(const id of ids){
+    const d = await api(`/api/smartlead?key=${key()}&action=queue&campaign_id=${id}`);
+    if(d.queue) all.push(...d.queue.map(x=>({...x,campaign_id:id})));
+  }
+  Q={items:all.sort((a,b)=>(b.hoursWaiting||0)-(a.hoursWaiting||0)),i:0};
+  if(!Q.items.length){out.innerHTML=`<div class="hint" style="margin-top:12px">Queue is empty. Every positive reply has been answered. &#127881;</div>`;return;}
+  showItem();
+};
+
+function header(c){
+  const flags=[];
+  if(/whatsapp/i.test(c.said)) flags.push("Wants WhatsApp");
+  if(/\bcall me\b|my number|reach me at/i.test(c.said)) flags.push("Gave a number");
+  if(/price|pricing|cost|how much|\$\s?\d/i.test(c.said)) flags.push("Pricing");
+  if(/not a|we are not|wrong|mix-?up/i.test(c.said)) flags.push("Possible mismatch");
+  return `<div style="margin-top:16px;display:flex;justify-content:space-between;align-items:flex-start;gap:10px">
+      <div><b>${esc(c.name||c.email)}</b> <span class="hint">${esc(c.company||"")} ${c.title?"· "+esc(c.title):""}</span><br>
+        <span class="hint">${esc(c.email)} ${c.location?"· "+esc(c.location):""} ${c.phone?"· "+esc(c.phone):""}</span></div>
+      <div style="text-align:right">${pill(c.category)}<br><span class="hint">${c.hoursWaiting}h waiting · ${Q.i+1} of ${Q.items.length}</span></div>
+    </div>
+    ${flags.length?`<div style="margin-top:6px">${flags.map(f=>`<span class="flag">&#9873; ${f}</span>`).join("")}</div>`:""}
+    <div class="said"><span class="hint">They said:</span><br>${esc(c.said)}</div>`;
 }
 
-async function showQueueItem() {
-  const out = $("queue-out");
-  if (Q.i >= Q.items.length) {
-    out.innerHTML = `<div class="hint" style="margin-top:12px">Done. Reviewed all ${Q.items.length} conversations. &#127881;</div>`;
-    return;
-  }
-  const c = Q.items[Q.i];
-
-  if (c.optOut) {
-    out.innerHTML = queueHeader(c) + `<div class="row">
-      <button id="q-dnc">Add to DNC (no reply)</button>
-      <button id="q-skip" class="secondary">Skip</button></div>`;
-    $("q-skip").onclick = next;
-    $("q-dnc").onclick = async () => {
-      await call($("q-dnc"), `/api/respond?key=${key()}&id=${c.id}&dnc=1`);
-      next();
-    };
-    return;
-  }
-
-  out.innerHTML = queueHeader(c) + `<pre>Pulling calendar availability and writing the reply…</pre>`;
-  const d = await fetch(`/api/respond?key=${key()}&id=${c.id}&mode=preview&_=${Date.now()}`).then((r) => r.json()).catch((e) => ({ error: e.message }));
-  if (d.error) {
-    out.innerHTML = queueHeader(c) + `<pre class="err">${esc(d.error)}</pre>
+async function showItem(){
+  const out=$("queue-out");
+  if(Q.i>=Q.items.length){out.innerHTML=`<div class="hint" style="margin-top:12px">Done. Worked through all ${Q.items.length}. &#127881;</div>`;return;}
+  const c=Q.items[Q.i];
+  out.innerHTML=header(c)+`<pre>Reading the thread, pulling your availability and writing a reply…</pre>`;
+  const d = await api(`/api/smartlead?key=${key()}&action=draft&campaign_id=${c.campaign_id}&email=${encodeURIComponent(c.email)}`);
+  if(d.error){
+    out.innerHTML=header(c)+`<pre class="err">${esc(d.error)}</pre>
       <div class="row"><button id="q-retry" class="secondary">Retry</button><button id="q-skip" class="secondary">Skip</button></div>`;
-    $("q-retry").onclick = showQueueItem; $("q-skip").onclick = next;
-    return;
+    $("q-retry").onclick=showItem; $("q-skip").onclick=next; return;
   }
-  if (d.category === "Unsubscribe") { c.optOut = true; showQueueItem(); return; }
-  c.preview = { body: d.replyBody, slots: d.slots || [] };
-  renderPreview(c, d.replyHtml);
+  c.draft={body:d.body,slots:d.slots||[],html:d.html};
+  render(c);
 }
 
-function renderPreview(c, html) {
-  const out = $("queue-out");
-  out.innerHTML = queueHeader(c) +
-    `<div class="preview">${html || esc(c.preview.body)}</div>
-    <div class="hint">Times are clickable booking links pulled live from your calendar. Signed as the campaign persona.</div>
-    <div class="row">
-      <button id="q-send">Send</button>
-      <button id="q-draft" class="secondary">Save draft</button>
-      <button id="q-edit" class="secondary">Edit</button>
-      <button id="q-regen" class="secondary">Regenerate</button>
-      <button id="q-skip" class="secondary">Skip</button>
-    </div>`;
-  $("q-regen").onclick = showQueueItem;
-  $("q-skip").onclick = next;
-  $("q-edit").onclick = () => renderEditor(c);
-  $("q-send").onclick = () => act(c, "send");
-  $("q-draft").onclick = () => act(c, "draft");
+function render(c){
+  $("queue-out").innerHTML=header(c)+
+    `<div class="preview">${c.draft.html||esc(c.draft.body)}</div>
+     <div class="hint">Times are booking links checked against every connected calendar. Signed as ${esc(c.persona||"the campaign persona")}.</div>
+     <div class="row">
+       <button id="q-send">Send</button>
+       <button id="q-edit" class="secondary">Edit</button>
+       <button id="q-regen" class="secondary">Regenerate</button>
+       <button id="q-skip" class="secondary">Skip</button>
+     </div>`;
+  $("q-send").onclick=()=>send(c);
+  $("q-edit").onclick=()=>edit(c);
+  $("q-regen").onclick=showItem;
+  $("q-skip").onclick=next;
 }
 
-function renderEditor(c) {
-  const out = $("queue-out");
-  out.innerHTML = queueHeader(c) +
-    `<label style="margin-top:14px">Edit the reply (plain text — the proposed times become clickable links automatically if you keep their wording)</label>
-    <textarea id="q-editor" style="min-height:220px">${esc(c.preview.body)}</textarea>
-    <div class="row">
-      <button id="q-esend">Send edited</button>
-      <button id="q-edraft" class="secondary">Save edited as draft</button>
-      <button id="q-ecancel" class="secondary">Cancel</button>
-    </div>`;
-  $("q-ecancel").onclick = () => { renderPreviewFromBody(c); };
-  $("q-esend").onclick = () => { c.preview.body = $("q-editor").value; act(c, "send"); };
-  $("q-edraft").onclick = () => { c.preview.body = $("q-editor").value; act(c, "draft"); };
+function edit(c){
+  $("queue-out").innerHTML=header(c)+
+    `<label style="margin-top:14px">Edit the reply. Keep the time wording to keep the booking links working.</label>
+     <textarea id="q-ed">${esc(c.draft.body)}</textarea>
+     <div class="row">
+       <button id="q-esend">Send edited</button>
+       <button id="q-ecancel" class="secondary">Cancel</button>
+     </div>`;
+  $("q-ecancel").onclick=()=>render(c);
+  $("q-esend").onclick=()=>{c.draft.body=$("q-ed").value;send(c);};
 }
 
-function renderPreviewFromBody(c) {
-  // Re-render locally without booking-link decoration (links re-applied at send)
-  const safe = esc(c.preview.body).replace(/\n/g, "<br>");
-  renderPreview(c, safe);
-}
-
-async function act(c, mode) {
-  const out = $("queue-out");
-  out.innerHTML = queueHeader(c) + `<pre>${mode === "send" ? "Sending" : "Saving draft"}…</pre>`;
-  const d = await fetch(`/api/respond?key=${key()}`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ id: c.id, mode, body: c.preview.body, slots: c.preview.slots }),
-  }).then((r) => r.json()).catch((e) => ({ error: e.message }));
-  if (d.error) {
-    out.innerHTML = queueHeader(c) + `<pre class="err">${esc(d.error)}</pre>
-      <div class="row"><button id="q-retry" class="secondary">Back</button></div>`;
-    $("q-retry").onclick = () => renderPreviewFromBody(c);
-    return;
+async function send(c){
+  const out=$("queue-out");
+  out.innerHTML=header(c)+`<pre>Sending…</pre>`;
+  const r = await fetch(`/api/smartlead?key=${key()}&action=send`,{
+    method:"POST",headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({campaign_id:c.campaign_id,email:c.email,body:c.draft.body,slots:c.draft.slots})
+  }).then(x=>x.json()).catch(e=>({error:e.message}));
+  if(r.error){
+    out.innerHTML=header(c)+`<pre class="err">${esc(r.error)}</pre><div class="row"><button id="q-back" class="secondary">Back</button></div>`;
+    $("q-back").onclick=()=>render(c); return;
   }
-  const fu = d.followupsScheduled ? ` ${d.followupsScheduled} follow-up bump${d.followupsScheduled > 1 ? "s" : ""} scheduled (auto-cancelled if they reply or book).` : "";
-  out.innerHTML = queueHeader(c) + `<div style="margin-top:12px;color:var(--green)"><b>${mode === "send" ? "Sent" : "Draft saved"}.</b> Exactly what was on screen.${fu}</div>`;
-  setTimeout(next, 1200);
+  out.innerHTML=header(c)+`<div style="margin-top:12px;color:var(--green)"><b>Sent.</b> Exactly what was on screen.</div>`;
+  setTimeout(next,900);
 }
-
-function next() { Q.i += 1; showQueueItem(); }
-
-// ---------- Scheduled follow-ups ----------
-$("btn-followups").onclick = loadFollowups;
-
-const fmtWhen = (s) => s ? new Date(s).toLocaleString([], { weekday: "short", month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }) : "-";
-
-async function loadFollowups() {
-  const out = $("followups-out"); out.classList.remove("hide");
-  out.innerHTML = "<pre>Finding conversations waiting on the lead…</pre>";
-  const d = await call($("btn-followups"), `/api/followups?key=${key()}&_=${Date.now()}`);
-  if (d.error) { out.innerHTML = `<pre class="err">${esc(d.error)}</pre>`; return; }
-  if (!d.conversations?.length) { out.innerHTML = `<div class="hint" style="margin-top:12px">Nothing waiting. Every tagged conversation has the lead speaking last, so check the Review queue.</div>`; return; }
-
-  const statusPill = (s) => s === "scheduled"
-    ? `<span class="pill" style="background:var(--green);color:#fff">Scheduled</span>`
-    : `<span class="pill" style="background:var(--gray);color:#fff">Awaiting</span>`;
-
-  out.innerHTML = `<table><tr><th>Lead</th><th>Status</th><th>Follow-ups</th><th></th></tr>` +
-    d.conversations.map((c, i) => {
-      const waited = c.daysWaiting === null ? "" : `<span class="hint">replied ${c.daysWaiting}d ago</span>`;
-      const bumps = c.scheduled.length
-        ? c.scheduled.map((s, j) =>
-            `<div style="margin-bottom:8px">&#128337; <b>${esc(fmtWhen(s.scheduledFor))}</b>
-             <button class="secondary" style="margin:0 0 0 6px;padding:3px 8px;font-size:11px" data-cancel="${i}:${j}">cancel</button>
-             <div class="hint" style="margin-top:2px">${esc(s.preview)}</div></div>`
-          ).join("")
-        : `<span class="hint">none scheduled</span>`;
-      return `<tr>
-        <td><b>${esc(c.lead || c.email)}</b><br><span class="hint">${esc(c.email)}</span><br>${(c.tags || []).map(pill).join(" ")}${flagRow(c.flags)}</td>
-        <td>${statusPill(c.status)}<br>${waited}</td>
-        <td>${bumps}</td>
-        <td>${c.scheduled.length ? "" : `<button class="secondary" style="margin:0;padding:6px 10px;font-size:12px" data-sched="${i}">Schedule</button>`}</td>
-      </tr>`;
-    }).join("") +
-    `</table><div class="hint">${d.awaitingReply} awaiting reply · ${d.pendingBumps} bump(s) scheduled${d.conversations.some((c) => c.flags?.length) ? " · &#9873; flagged conversations need a human look" : ""}</div>`;
-
-  out.querySelectorAll("[data-cancel]").forEach((btn) => {
-    btn.onclick = async () => {
-      const [i, j] = btn.dataset.cancel.split(":").map(Number);
-      const c = d.conversations[i], s = c.scheduled[j];
-      btn.disabled = true; btn.textContent = "…";
-      await fetch(`/api/followups?key=${key()}&cancel=1&id=${c.conversationId}&replyId=${s.replyId}`).catch(() => {});
-      loadFollowups();
-    };
-  });
-  out.querySelectorAll("[data-sched]").forEach((btn) => {
-    btn.onclick = async () => {
-      const c = d.conversations[Number(btn.dataset.sched)];
-      btn.disabled = true; btn.textContent = "Scheduling…";
-      const r = await fetch(`/api/followups?key=${key()}&schedule=1&id=${c.conversationId}`).then((x) => x.json()).catch((e) => ({ error: e.message }));
-      if (r.error) { btn.textContent = "Failed"; btn.disabled = false; return; }
-      if (!r.scheduled?.length) {
-        const why = (r.errors && r.errors[0]) || r.reason || "Nothing scheduled";
-        const friendly = /no workspace mailbox/i.test(why)
-          ? "Sending mailbox disconnected in SendKit — reconnect it to reply or schedule"
-          : why.replace(/^SendKit [^:]+: /, "").slice(0, 160);
-        btn.outerHTML = `<span class="hint err" style="font-size:11px">${esc(friendly)}</span>`;
-        return;
-      }
-      loadFollowups();
-    };
-  });
-}
+function next(){Q.i+=1;showItem();}
 </script>
 </body>
 </html>
