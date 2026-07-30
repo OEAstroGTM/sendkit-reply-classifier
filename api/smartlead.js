@@ -170,7 +170,9 @@ export default async function handler(req, res) {
               const last = msgs[msgs.length - 1];
               const lastReplyIdx = [...msgs].map((m) => m.type).lastIndexOf("REPLY");
               const lastReply = msgs[lastReplyIdx];
-              const awaiting = last && last.type === "REPLY";
+              // Same rule the queue uses: an autoresponder is not someone waiting
+              const machine = isMachineReply(ownWords(lastReply?.email_body), p.delaySeconds);
+              const awaiting = !machine && last && last.type === "REPLY";
               let responseHours = null;
               if (!awaiting && lastReply) {
                 // first outbound after their most recent inbound
