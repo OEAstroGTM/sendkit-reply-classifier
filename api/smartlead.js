@@ -8,7 +8,7 @@ import {
   listCampaigns, campaignStats, leadByEmail, messageHistory,
   replyToLead, unsubscribeLead, isMachineReply, ownWords,
 } from "../lib/smartlead.js";
-import { toHtml, generateReply } from "../lib/reply.js";
+import { toHtml, generateReply, generateBump } from "../lib/reply.js";
 import { linkifySlots } from "../lib/booking.js";
 import batch from "../drafts/smartlead-batch.json" with { type: "json" };
 
@@ -117,6 +117,32 @@ export default async function handler(req, res) {
         leadTimezone: guessTimezone(lead),
       });
       return res.status(200).json({ email: lead.email, persona: personaName, said: said.slice(0, 400), body, html, slots });
+    }
+
+    // ?action=bump&campaign_id=123&email=lead@x.com  — draft a nudge
+    if (action === "bump") {
+      const { campaign_id, email } = req.query;
+      if (!campaign_id || !email) return res.status(400).json({ error: "Need campaign_id and email" });
+      const lead = await leadByEmail(email);
+      const hist = await messageHistory(campaign_id, lead.id);
+      const msgs = hist.history || [];
+      const lastReplyIdx = [...msgs].map((m) => m.type).lastIndexOf("REPLY");
+      const lastReply = msgs[lastReplyIdx];
+      const bumpsSent = Math.max(0, msgs.slice(lastReplyIdx + 1).length - 1);
+      const schedule = (process.env.FOLLOWUP_DAYS || "3,7").split(",");
+      const persona = (lastReply?.to || "").split("@")[0].split(".")[0];
+
+      const { body, html, slots } = await generateBump({
+        leadName: lead.first_name || "",
+        senderName: persona ? persona.charAt(0).toUpperCase() + persona.slice(1) : "",
+        said: ownWords(lastReply?.email_body),
+        bumpNumber: bumpsSent + 1,
+        isFinal: bumpsSent + 1 >= schedule.length,
+        leadEmail: lead.email,
+        baseUrl: `https://${req.headers.host}`,
+        leadTimezone: guessTimezone(lead),
+      });
+      return res.status(200).json({ email: lead.email, bumpNumber: bumpsSent + 1, body, html, slots });
     }
 
     // ?action=stats[&campaign_id=a,b]  — inbox management performance.
@@ -242,6 +268,90 @@ export default async function handler(req, res) {
           oldestWaitingHours: Math.max(0, ...ok.map((c) => c.oldestWaitingHours || 0)),
         },
         campaigns: perCampaign,
+      });
+    }
+
+
+    // ?action=followups[&campaign_id=a,b][&days=30]
+    // Leads we answered who then went quiet. Smartlead's sequence stops once a
+    // lead replies, so nothing chases these unless we do.
+    if (action === "followups") {
+      const POSITIVE = new Set(["Interested", "Meeting Request", "Information Request"]);
+      let ids = (req.query.campaign_id || "").split(",").map((x) => x.trim()).filter(Boolean);
+      if (!ids.length) {
+        const all = await listCampaigns();
+        const list = Array.isArray(all) ? all : all.campaigns || [];
+        ids = list.filter((c) => c.status === "ACTIVE").map((c) => String(c.id));
+      }
+      const windowDays = req.query.days === undefined ? 30 : Number(req.query.days);
+      const sinceMs = windowDays > 0 ? Date.now() - windowDays * 86400000 : null;
+      const bumpDays = (process.env.FOLLOWUP_DAYS || "3,7").split(",").map((n) => Number(n.trim()));
+      const maxBumps = bumpDays.length;
+
+      const out = [];
+      for (const id of ids) {
+        const rows = [];
+        let offset = 0, total = 0, pages = 0;
+        while (pages < 8) {
+          const page = await campaignStats(id, { email_status: "replied", limit: "100", offset: String(offset) });
+          total = Number(page.total_stats || 0);
+          const r = page.data || [];
+          if (!r.length) break;
+          rows.push(...r); offset += r.length; pages++;
+          if (offset >= total) break;
+        }
+        const positives = rows.filter((r) => POSITIVE.has(r.lead_category) &&
+          (!sinceMs || new Date(r.reply_time).getTime() >= sinceMs));
+
+        const checked = await Promise.all(positives.slice(0, 40).map(async (r) => {
+          try {
+            const lead = await leadByEmail(r.lead_email);
+            if (lead.is_unsubscribed) return null;
+            const hist = await messageHistory(id, lead.id);
+            const msgs = hist.history || [];
+            const last = msgs[msgs.length - 1];
+            if (!last || last.type === "REPLY") return null;      // still our turn, that's the reply queue
+
+            // how many outbound messages since their last word = bumps already sent
+            const lastReplyIdx = [...msgs].map((m) => m.type).lastIndexOf("REPLY");
+            const lastReply = msgs[lastReplyIdx];
+            const outboundSince = msgs.slice(lastReplyIdx + 1).length;
+            const bumpsSent = Math.max(0, outboundSince - 1);      // first one was the actual answer
+            const daysQuiet = (Date.now() - new Date(last.time).getTime()) / 86400000;
+            const nextBumpAt = bumpDays[bumpsSent];
+
+            return {
+              campaign_id: id,
+              leadId: lead.id,
+              name: [lead.first_name, lead.last_name].filter(Boolean).join(" ") || lead.email,
+              email: lead.email,
+              company: lead.company_name || "",
+              location: lead.location || "",
+              phone: lead.phone_number || "",
+              category: r.lead_category,
+              persona: (lastReply?.to || "").split("@")[0].split(".")[0],
+              theySaid: ownWords(lastReply?.email_body).slice(0, 220),
+              weSaid: ownWords(last.email_body).slice(0, 220),
+              ourLastMessageAt: last.time,
+              daysQuiet: +daysQuiet.toFixed(1),
+              bumpsSent,
+              exhausted: bumpsSent >= maxBumps,
+              due: bumpsSent < maxBumps && nextBumpAt !== undefined && daysQuiet >= nextBumpAt,
+              nextBumpInDays: nextBumpAt === undefined ? null : +Math.max(0, nextBumpAt - daysQuiet).toFixed(1),
+            };
+          } catch { return null; }
+        }));
+        out.push(...checked.filter(Boolean));
+      }
+
+      out.sort((a, b) => b.daysQuiet - a.daysQuiet);
+      return res.status(200).json({
+        schedule: bumpDays,
+        total: out.length,
+        due: out.filter((x) => x.due).length,
+        waiting: out.filter((x) => !x.due && !x.exhausted).length,
+        exhausted: out.filter((x) => x.exhausted).length,
+        followups: out,
       });
     }
 

@@ -86,6 +86,13 @@
   </div>
 
   <div class="card">
+    <h2>&#128260; Follow-ups</h2>
+    <div class="hint">Leads you answered who went quiet. Smartlead's sequence stops once someone replies, so nothing chases these unless you do.</div>
+    <button id="btn-fu">Load follow-ups</button>
+    <div id="fu-out" class="hide"></div>
+  </div>
+
+  <div class="card">
     <h2>&#9993;&#65039; Reply queue</h2>
     <div class="hint">Positive replies where the lead spoke last. Nothing else is waiting on you.</div>
     <button id="btn-queue">Load queue</button>
@@ -267,6 +274,76 @@ async function send(c){
   setTimeout(next,900);
 }
 function next(){Q.i+=1;showItem();}
+
+// ---------- follow-ups ----------
+let F={items:[],i:0};
+$("btn-fu").onclick = async () => {
+  const out=$("fu-out"); out.classList.remove("hide");
+  out.innerHTML="<pre>Checking who went quiet after we replied…</pre>";
+  const ids=scopeIds();
+  if(!ids.length){out.innerHTML=`<div class="hint">No campaigns in scope.</div>`;return;}
+  const d = await api(`/api/smartlead?key=${key()}&action=followups&campaign_id=${ids.join(",")}&days=${STALE_DAYS}`);
+  if(d.error){out.innerHTML=`<pre class="err">${esc(d.error)}</pre>`;return;}
+  if(!d.followups.length){out.innerHTML=`<div class="hint" style="margin-top:12px">Nobody is waiting on a nudge.</div>`;return;}
+  const kpi=(v,l,cls="")=>`<div class="kpi ${cls}"><div class="v">${v}</div><div class="l">${l}</div></div>`;
+  out.innerHTML=`<div class="kpis" style="margin-top:14px">
+      ${kpi(d.due,"Due now", d.due?"warn":"good")}
+      ${kpi(d.waiting,"Not due yet")}
+      ${kpi(d.exhausted,"Nudges used up")}
+      ${kpi(d.schedule.join(" & ")+"d","Bump schedule")}
+    </div>
+    <table><tr><th>Lead</th><th>Quiet</th><th>Nudges</th><th>Status</th><th></th></tr>` +
+    d.followups.map((f,i)=>`<tr>
+      <td><b>${esc(f.name)}</b><br><span class="hint">${esc(f.company||"")} ${esc(CAMPAIGN_NAMES[f.campaign_id]||"")}</span><br>
+        <span class="hint">said: ${esc(f.theySaid.slice(0,90))}</span></td>
+      <td>${f.daysQuiet}d</td>
+      <td>${f.bumpsSent}</td>
+      <td>${f.exhausted?`<span class="hint">done</span>`
+            :f.due?`<span class="pill" style="background:var(--amber)">due</span>`
+            :`<span class="hint">in ${f.nextBumpInDays}d</span>`}</td>
+      <td>${f.exhausted?"":`<button class="secondary" style="margin:0;padding:6px 10px;font-size:12px" data-bump="${i}">Nudge</button>`}</td>
+    </tr>`).join("") + `</table>`;
+  F={items:d.followups,i:0};
+  out.querySelectorAll("[data-bump]").forEach(b=>{
+    b.onclick=()=>bump(d.followups[Number(b.dataset.bump)]);
+  });
+};
+
+async function bump(f){
+  const out=$("fu-out");
+  const head=`<div style="margin-top:16px"><b>${esc(f.name)}</b> <span class="hint">${esc(f.company||"")} · quiet ${f.daysQuiet}d · nudge ${f.bumpsSent+1}</span>
+    <div class="said"><span class="hint">They originally said:</span><br>${esc(f.theySaid)}</div></div>`;
+  out.innerHTML=head+`<pre>Writing a short nudge…</pre>`;
+  const d = await api(`/api/smartlead?key=${key()}&action=bump&campaign_id=${f.campaign_id}&email=${encodeURIComponent(f.email)}`);
+  if(d.error){out.innerHTML=head+`<pre class="err">${esc(d.error)}</pre><div class="row"><button id="fu-back" class="secondary">Back</button></div>`;$("fu-back").onclick=()=>$("btn-fu").click();return;}
+  f.draft={body:d.body,slots:d.slots||[]};
+  out.innerHTML=head+`<div class="preview">${d.html||esc(d.body)}</div>
+    <div class="row">
+      <button id="fu-send">Send nudge</button>
+      <button id="fu-edit" class="secondary">Edit</button>
+      <button id="fu-cancel" class="secondary">Back</button>
+    </div>`;
+  $("fu-cancel").onclick=()=>$("btn-fu").click();
+  $("fu-edit").onclick=()=>{
+    out.innerHTML=head+`<textarea id="fu-ed">${esc(f.draft.body)}</textarea>
+      <div class="row"><button id="fu-esend">Send edited</button><button id="fu-ec" class="secondary">Back</button></div>`;
+    $("fu-ec").onclick=()=>bump(f);
+    $("fu-esend").onclick=()=>{f.draft.body=$("fu-ed").value;sendBump(f,head);};
+  };
+  $("fu-send").onclick=()=>sendBump(f,head);
+}
+
+async function sendBump(f,head){
+  const out=$("fu-out");
+  out.innerHTML=head+`<pre>Sending…</pre>`;
+  const r = await fetch(`/api/smartlead?key=${key()}&action=send`,{
+    method:"POST",headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({campaign_id:f.campaign_id,email:f.email,body:f.draft.body,slots:f.draft.slots})
+  }).then(x=>x.json()).catch(e=>({error:e.message}));
+  if(r.error){out.innerHTML=head+`<pre class="err">${esc(r.error)}</pre>`;return;}
+  out.innerHTML=head+`<div style="margin-top:12px;color:var(--green)"><b>Nudge sent.</b></div>`;
+  setTimeout(()=>$("btn-fu").click(),1200);
+}
 </script>
 </body>
 </html>
