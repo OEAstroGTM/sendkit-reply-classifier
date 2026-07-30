@@ -2,32 +2,50 @@
   "note": "Approved replies. Send with /api/smartlead?action=send-draft&id=<id>. Slots carry start_time + label so times render as one-click booking links.",
   "drafts": [
     {
+      "id": "faithful",
+      "campaign_id": "3721845",
+      "email": "fedozie@folti.io",
+      "lead": "Faithful Edozie, Folti (Nigeria) — proposed 'tomorrow 1pm', which falls on a Friday",
+      "body": "Hello Faithful,\n\nThanks for coming back so quickly. 1pm is a good time on my side, though Friday is outside our meeting hours.\n\nSame time early next week works:\n\n• Monday, August 3 at 1:00 PM WAT\n• Tuesday, August 4 at 1:00 PM WAT\n\nPick whichever suits and the invite will come straight through.\n\nSandra",
+      "slots": [
+        { "start_time": 1785758400, "label": "Monday, August 3 at 1:00 PM WAT" },
+        { "start_time": 1785844800, "label": "Tuesday, August 4 at 1:00 PM WAT" }
+      ]
+    },
+    {
+      "id": "amarjeet",
+      "campaign_id": "3721845",
+      "email": "amarjeet@sajmbrandhub.com",
+      "lead": "Amarjeet Roy, SAJM Brand Hub (India) — asked for our availability",
+      "body": "Hi Amarjeet,\n\nHappy to. Here are a few times that work on my side, in IST:\n\n• Monday, August 3 at 5:30 PM IST\n• Tuesday, August 4 at 5:30 PM IST\n• Wednesday, August 5 at 5:30 PM IST\n\nPick whichever suits and I'll send the invite across. Fifteen minutes is plenty.\n\nAllison",
+      "slots": [
+        { "start_time": 1785758400, "label": "Monday, August 3 at 5:30 PM IST" },
+        { "start_time": 1785844800, "label": "Tuesday, August 4 at 5:30 PM IST" },
+        { "start_time": 1785931200, "label": "Wednesday, August 5 at 5:30 PM IST" }
+      ]
+    },
+    {
+      "id": "saif",
+      "campaign_id": "3721845",
+      "email": "saif.siddiqui@wareiq.com",
+      "lead": "Saif Siddiqui, WareIQ (India) — gave his mobile, bot offered unusable times",
+      "body": "Hi Saif,\n\nThanks, I'll call you on +91 98348 44426.\n\nWould Monday, August 3 at 5:30 PM IST work? If another time suits you better, just say and I'll fit around it.\n\nCatherine",
+      "slots": [
+        { "start_time": 1785758400, "label": "Monday, August 3 at 5:30 PM IST" }
+      ]
+    },
+    {
       "id": "faraz",
       "campaign_id": "3721834",
       "email": "farazkhan@hamdanalsobhi.com",
-      "lead": "Faraz Khan, Hamdan Alsobhi (Saudi Arabia) — accepted Sun Aug 2, which is outside meeting hours",
+      "lead": "Faraz Khan, Hamdan Alsobhi (Saudi) — accepted Sunday, outside meeting hours",
+      "sent": "2026-07-30",
       "body": "Dear Faraz,\n\nThank you for confirming. Sunday falls outside our meeting hours, so I have these instead, all in your afternoon:\n\n• Monday, August 3 at 3:00 PM KSA\n• Tuesday, August 4 at 3:00 PM KSA\n• Wednesday, August 5 at 3:00 PM KSA\n\nLet me know which suits and I will send the invite across.\n\nHappy to connect on WhatsApp first if that is easier for you.\n\nErica",
       "slots": [
         { "start_time": 1785758400, "label": "Monday, August 3 at 3:00 PM KSA" },
         { "start_time": 1785844800, "label": "Tuesday, August 4 at 3:00 PM KSA" },
         { "start_time": 1785931200, "label": "Wednesday, August 5 at 3:00 PM KSA" }
       ]
-    },
-    {
-      "id": "walid2",
-      "campaign_id": "3721845",
-      "email": "abdallah_adel@lattlogistics.com",
-      "lead": "Walid Ramadan, Latt Logistics (asked for details by email, no calls)",
-      "sent": "2026-07-29",
-      "body": "Hi Walid,\n\nNo problem, here it is in writing.\n\nWe run outbound email campaigns for 3PLs and warehousing operators. We build the target list around your fulfilment capacity and the customer types you want, handle the sending infrastructure and inbox health, then manage the replies so you only see genuine enquiries.\n\nTypical setup is 150k to 250k emails a month, and most clients see around 50 qualified conversations inside 90 days.\n\nHere's an overview if it's useful: https://koldify.io\n\nIf any questions come up, just reply here and I'll answer by email. No call needed.\n\nVictoria"
-    },
-    {
-      "id": "elina",
-      "campaign_id": "3721834",
-      "email": "elina.malkia@meriaura.fi",
-      "lead": "Elina Malkia, Meriaura (not the buyer, pointed to Minna and COO Mathias)",
-      "sent": "2026-07-29",
-      "body": "Hi Elina,\n\nThanks, and sorry for the back and forth.\n\nI only have first names on my side, no addresses. If it's easiest, just pass my note along to Minna and Mathias. Otherwise send me their emails and I'll reach out directly so you're not stuck in the middle.\n\nAppreciate the help either way.\n\nNatalie"
     }
   ]
 }
