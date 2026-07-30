@@ -287,13 +287,20 @@ export default async function handler(req, res) {
         } catch { return null; }
       }));
 
-      const queue = checked.filter(Boolean)
+      // Anything older than this is cold, not a work item. ?days=0 for all.
+      const maxAgeDays = req.query.days === undefined ? 30 : Number(req.query.days);
+      const all = checked.filter(Boolean)
         .sort((a, b) => (b.hoursWaiting ?? 0) - (a.hoursWaiting ?? 0));
+      const fresh = maxAgeDays > 0
+        ? all.filter((x) => (x.hoursWaiting ?? 0) <= maxAgeDays * 24)
+        : all;
       return res.status(200).json({
         campaignId, totalReplied: total,
         positives: positives.length,
-        awaitingReply: queue.length,
-        queue,
+        awaitingReply: fresh.length,
+        staleHidden: all.length - fresh.length,
+        maxAgeDays,
+        queue: fresh,
       });
     }
 

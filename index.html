@@ -161,19 +161,26 @@ $("btn-stats").onclick = async () => {
 };
 
 // ---------- queue ----------
-let Q={items:[],i:0};
+let Q={items:[],i:0}; let STALE_DAYS=30, STALE_COUNT=0;
 $("btn-queue").onclick = async () => {
   const out=$("queue-out"); out.classList.remove("hide");
   out.innerHTML="<pre>Finding positive replies that are waiting on you…</pre>";
   const ids = scopeIds();
   if(!ids.length){out.innerHTML=`<div class="hint">No campaigns in scope.</div>`;return;}
-  const all=[];
+  const all=[]; let stale=0;
   for(const id of ids){
-    const d = await api(`/api/smartlead?key=${key()}&action=queue&campaign_id=${id}`);
+    const d = await api(`/api/smartlead?key=${key()}&action=queue&campaign_id=${id}&days=${STALE_DAYS}`);
     if(d.queue) all.push(...d.queue.map(x=>({...x,campaign_id:id})));
+    stale += d.staleHidden || 0;
   }
+  STALE_COUNT = stale;
   Q={items:all.sort((a,b)=>(b.hoursWaiting||0)-(a.hoursWaiting||0)),i:0};
-  if(!Q.items.length){out.innerHTML=`<div class="hint" style="margin-top:12px">Queue is empty. Every positive reply has been answered. &#127881;</div>`;return;}
+  if(!Q.items.length){
+    out.innerHTML=`<div class="hint" style="margin-top:12px">Queue is empty. Every positive reply from the last ${STALE_DAYS} days has been answered. &#127881;` +
+      (STALE_COUNT?`<br>${STALE_COUNT} older than ${STALE_DAYS} days not shown. <a href="#" id="show-stale" style="color:var(--accent)">Show them anyway</a>`:"") + `</div>`;
+    if(STALE_COUNT) $("show-stale").onclick=(e)=>{e.preventDefault();STALE_DAYS=0;$("btn-queue").click();};
+    return;
+  }
   showItem();
 };
 
