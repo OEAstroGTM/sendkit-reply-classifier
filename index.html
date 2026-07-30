@@ -75,7 +75,7 @@
     <h2>&#9993;&#65039; Reply queue</h2>
     <div class="hint">Positive replies where the lead spoke last. Nothing else is waiting on you.</div>
     <div class="row">
-      <select id="campaign"><option value="">All campaigns with sends</option></select>
+      <select id="campaign"><option value="">All live campaigns</option></select>
       <button id="btn-queue">Load queue</button>
     </div>
     <div id="queue-out" class="hide"></div>
@@ -105,8 +105,8 @@ async function loadCampaigns(){
   const d = await api(`/api/smartlead?key=${key()}&action=campaigns`);
   if(d.error||!d.campaigns) return;
   const sel = $("campaign");
-  sel.innerHTML = `<option value="">All campaigns with sends</option>` +
-    d.campaigns.filter(c=>c.status!=="DRAFTED").map(c=>`<option value="${c.id}">${esc(c.name)}${c.status!=="ACTIVE"?" ("+c.status.toLowerCase()+")":""}</option>`).join("");
+  sel.innerHTML = `<option value="">All live campaigns</option>` +
+    d.campaigns.filter(c=>c.status!=="DRAFTED"&&c.status!=="ARCHIVED").map(c=>`<option value="${c.id}">${esc(c.name)}${c.status!=="ACTIVE"?" ("+c.status.toLowerCase()+")":""}</option>`).join("");
 }
 loadCampaigns();
 
@@ -148,7 +148,7 @@ $("btn-queue").onclick = async () => {
   if(cid) ids=[cid];
   else {
     const c = await api(`/api/smartlead?key=${key()}&action=campaigns`);
-    ids=(c.campaigns||[]).filter(x=>x.status!=="DRAFTED").map(x=>String(x.id));
+    ids=(c.campaigns||[]).filter(x=>x.status!=="DRAFTED"&&x.status!=="ARCHIVED").map(x=>String(x.id));
   }
   const all=[];
   for(const id of ids){
