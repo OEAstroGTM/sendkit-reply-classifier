@@ -11,6 +11,7 @@ import {
 import { toHtml, generateReply, generateBump } from "../lib/reply.js";
 import { linkifySlots } from "../lib/booking.js";
 import batch from "../drafts/smartlead-batch.json" with { type: "json" };
+import holdList from "../drafts/followup-hold.json" with { type: "json" };
 
 export const config = { maxDuration: 60 };
 
@@ -287,8 +288,16 @@ export default async function handler(req, res) {
       }
       const windowDays = req.query.days === undefined ? 30 : Number(req.query.days);
       const sinceMs = windowDays > 0 ? Date.now() - windowDays * 86400000 : null;
-      const bumpDays = (process.env.FOLLOWUP_DAYS || "3,7").split(",").map((n) => Number(n.trim()));
+      // Cadence: the list is worked every weekday, but each contact is only
+      // touched on these days-since-quiet. ?schedule=2,5,10 overrides.
+      const bumpDays = (req.query.schedule || process.env.FOLLOWUP_DAYS || "2,5,10")
+        .split(",").map((n) => Number(n.trim())).filter((n) => !Number.isNaN(n));
       const maxBumps = bumpDays.length;
+      // Booked meetings and promised calls never get nudged.
+      const HOLD = new Map(holdList.hold.map((h) => [h.email.toLowerCase(), h.reason]));
+      // Nothing goes out at the weekend. Availability is Mon-Thu and Sundays are closed.
+      const dow = new Date().getUTCDay();
+      const sendingDay = dow >= 1 && dow <= 5;
 
       const out = [];
       for (const id of ids) {
@@ -338,7 +347,9 @@ export default async function handler(req, res) {
               daysQuiet: +daysQuiet.toFixed(1),
               bumpsSent,
               exhausted: bumpsSent >= maxBumps,
-              due: bumpsSent < maxBumps && nextBumpAt !== undefined && daysQuiet >= nextBumpAt,
+              hold: HOLD.get(lead.email.toLowerCase()) || null,
+              due: !HOLD.has(lead.email.toLowerCase()) && sendingDay &&
+                   bumpsSent < maxBumps && nextBumpAt !== undefined && daysQuiet >= nextBumpAt,
               nextBumpInDays: nextBumpAt === undefined ? null : +Math.max(0, nextBumpAt - daysQuiet).toFixed(1),
             };
           } catch { return null; }
@@ -349,10 +360,16 @@ export default async function handler(req, res) {
       out.sort((a, b) => b.daysQuiet - a.daysQuiet);
       return res.status(200).json({
         schedule: bumpDays,
+        sendingDay,
         total: out.length,
         due: out.filter((x) => x.due).length,
-        waiting: out.filter((x) => !x.due && !x.exhausted).length,
+        held: out.filter((x) => x.hold).length,
+        waiting: out.filter((x) => !x.due && !x.hold && !x.exhausted).length,
         exhausted: out.filter((x) => x.exhausted).length,
+        dueNow: out.filter((x) => x.due).map((x) => ({
+          name: x.name, email: x.email, company: x.company, campaign_id: x.campaign_id,
+          daysQuiet: x.daysQuiet, bumpsSent: x.bumpsSent, persona: x.persona,
+        })),
         followups: out,
       });
     }
