@@ -8,8 +8,14 @@
       "lead": "Bikash Jha, Snow Way Logistics (India) — thinks we want logistics services",
       "body": "Dear Bikash,\n\nThanks for coming back. I think there may be a small mix-up, so let me clarify.\n\nWe are not looking for logistics services. We run outbound campaigns for 3PLs and warehousing companies, so that Snow Way reaches brands needing fulfilment support and those enquiries come to you directly.\n\nIf that is useful, here are a couple of times:\n\n• Monday, August 3 at 5:30 PM IST\n• Tuesday, August 4 at 5:30 PM IST\n\nHappy to talk on WhatsApp instead if that is easier, just send me your number.\n\nKristen",
       "slots": [
-        { "start_time": 1785758400, "label": "Monday, August 3 at 5:30 PM IST" },
-        { "start_time": 1785844800, "label": "Tuesday, August 4 at 5:30 PM IST" }
+        {
+          "start_time": 1785758400,
+          "label": "Monday, August 3 at 5:30 PM IST"
+        },
+        {
+          "start_time": 1785844800,
+          "label": "Tuesday, August 4 at 5:30 PM IST"
+        }
       ]
     },
     {
@@ -19,8 +25,14 @@
       "lead": "Teguh Haryanto, Samudera (Indonesia) — asked for an ocean freight quote, thinks we are a forwarder",
       "body": "Dear Teguh,\n\nThank you for the detail, though I should be upfront: we are not a freight forwarder, so I cannot quote Ningbo to Tarakan.\n\nWhat we do is help forwarders like Samudera win more of that work, by putting your name in front of shippers moving that kind of cargo.\n\nIf that is of interest:\n\n• Monday, August 3 at 8:00 PM WITA\n• Tuesday, August 4 at 8:00 PM WITA\n\nHappy to use WhatsApp instead if that suits you better, or to find an earlier hour if the evening does not work.\n\nCarolyn",
       "slots": [
-        { "start_time": 1785758400, "label": "Monday, August 3 at 8:00 PM WITA" },
-        { "start_time": 1785844800, "label": "Tuesday, August 4 at 8:00 PM WITA" }
+        {
+          "start_time": 1785758400,
+          "label": "Monday, August 3 at 8:00 PM WITA"
+        },
+        {
+          "start_time": 1785844800,
+          "label": "Tuesday, August 4 at 8:00 PM WITA"
+        }
       ]
     },
     {
@@ -30,8 +42,14 @@
       "lead": "Ashif Ali, Hastenway Shipping (UAE) — warm acknowledgement, no specifics",
       "body": "Dear Ashif,\n\nThank you, and likewise.\n\nEasiest is probably a short call. These work on my side:\n\n• Monday, August 3 at 4:00 PM Dubai time\n• Tuesday, August 4 at 4:00 PM Dubai time\n\nIf WhatsApp is simpler, send me your number and I will reach you there instead.\n\nAlexandra",
       "slots": [
-        { "start_time": 1785758400, "label": "Monday, August 3 at 4:00 PM Dubai time" },
-        { "start_time": 1785844800, "label": "Tuesday, August 4 at 4:00 PM Dubai time" }
+        {
+          "start_time": 1785758400,
+          "label": "Monday, August 3 at 4:00 PM Dubai time"
+        },
+        {
+          "start_time": 1785844800,
+          "label": "Tuesday, August 4 at 4:00 PM Dubai time"
+        }
       ]
     },
     {
@@ -41,9 +59,31 @@
       "lead": "Jeffrey Coats, APG USA — forwarded to C-level, will keep us posted",
       "body": "Hi Jeffrey,\n\nAppreciate you passing it along, thank you.\n\nNo rush on my side. If it helps your team decide, I am happy to walk through it briefly:\n\n• Monday, August 3 at 8:00 AM EDT\n• Tuesday, August 4 at 8:00 AM EDT\n\nOr WhatsApp works if that is easier than email.\n\nNancy",
       "slots": [
-        { "start_time": 1785758400, "label": "Monday, August 3 at 8:00 AM EDT" },
-        { "start_time": 1785844800, "label": "Tuesday, August 4 at 8:00 AM EDT" }
+        {
+          "start_time": 1785758400,
+          "label": "Monday, August 3 at 8:00 AM EDT"
+        },
+        {
+          "start_time": 1785844800,
+          "label": "Tuesday, August 4 at 8:00 AM EDT"
+        }
       ]
+    },
+    {
+      "id": "veronika",
+      "campaign_id": "3721834",
+      "email": "kenneth@clippermarinespain.com",
+      "lead": "Veronika Lentz, Clipper Marine Spain — CORRECTION: we wrongly said we'd transport her Bavaria SR41",
+      "body": "Hi Veronika,\n\nI owe you a correction and an apology. My last note said I could help with the Bavaria SR41. That was wrong.\n\nWe are not a transport company. We help logistics and shipping firms find more customers, so I cannot quote or arrange the move from Fuerteventura to Mallorca.\n\nSorry for the mix up and for taking your time. If Clipper Marine ever wants more enquiries coming in, I am glad to explain how that side works. Otherwise please ignore this and good luck with the delivery.\n\nEleanor",
+      "slots": []
+    },
+    {
+      "id": "emily",
+      "campaign_id": "3721834",
+      "email": "erobertson@emcsindustries.com",
+      "lead": "Emily Robertson, EMCS Industries (BC, Canada) — CORRECTION: we offered 'Monday, January 12', five months out",
+      "body": "Hi Emily,\n\nThanks again for bringing Brad and Ange in, and apologies for my last message. The date I gave you was in January, which was plainly a mistake on my part.\n\nRather than guess at times across three time zones, here is my colleague Logan's calendar: [pick whatever suits your team](https://calendly.com/logan-nerdyjoe/30min). Anything that works for the three of you works for us.\n\nSorry again for the muddle.\n\nKelly",
+      "slots": []
     }
   ]
 }
