@@ -1,14 +1,49 @@
 {
   "note": "Leads excluded from the follow-up cadence. Booked meetings and promised calls are held so a nudge never talks someone out of a call they already agreed to. Remove an entry once the meeting has happened.",
   "hold": [
-    { "email": "enave@chipmanrelo.com",       "reason": "Meeting booked, Fri 31 Jul 11:00 PT" },
-    { "email": "ajay.pal@delhivery.com",      "reason": "Meeting booked, Fri 31 Jul 12:30 IST" },
-    { "email": "juan.obregon@daystore.mx",    "reason": "Meeting booked, Mon 3 Aug 10:00 CST" },
-    { "email": "paulina.szolc@scmpoland.pl",  "reason": "Meeting booked, week of 3 Aug" },
-    { "email": "ricardo@rprtruckingllc.com",  "reason": "Meeting booked, Mon 3 Aug afternoon" },
-    { "email": "puneet@sajmbrandhub.com",     "reason": "We promised to phone 9999453435" },
-    { "email": "saif.siddiqui@wareiq.com",    "reason": "We promised to phone +91 98348 44426" },
-    { "email": "kenneth@clippermarinespain.com", "reason": "Corrected 31 Jul: we cannot help her, no nudge" },
-    { "email": "alessandro.miozzo@karrell.it",   "reason": "Autoresponder, Karrell merged, mailbox dead" }
+    {
+      "email": "enave@chipmanrelo.com",
+      "reason": "Meeting booked, Fri 31 Jul 11:00 PT"
+    },
+    {
+      "email": "ajay.pal@delhivery.com",
+      "reason": "Meeting booked, Fri 31 Jul 12:30 IST"
+    },
+    {
+      "email": "juan.obregon@daystore.mx",
+      "reason": "Meeting booked, Mon 3 Aug 10:00 CST"
+    },
+    {
+      "email": "paulina.szolc@scmpoland.pl",
+      "reason": "Meeting booked, week of 3 Aug"
+    },
+    {
+      "email": "ricardo@rprtruckingllc.com",
+      "reason": "Meeting booked, Mon 3 Aug afternoon"
+    },
+    {
+      "email": "puneet@sajmbrandhub.com",
+      "reason": "We promised to phone 9999453435"
+    },
+    {
+      "email": "saif.siddiqui@wareiq.com",
+      "reason": "We promised to phone +91 98348 44426"
+    },
+    {
+      "email": "kenneth@clippermarinespain.com",
+      "reason": "Corrected 31 Jul: we cannot help her, no nudge"
+    },
+    {
+      "email": "alessandro.miozzo@karrell.it",
+      "reason": "Autoresponder, Karrell merged, mailbox dead"
+    },
+    {
+      "email": "amarjeet@sajmbrandhub.com",
+      "reason": "Meeting booked, Tue 4 Aug 17:30 IST, invite sent"
+    },
+    {
+      "email": "david@yorkshirerosecoaches.co.uk",
+      "reason": "Asked where we got his address. UK contact, do not chase"
+    }
   ]
 }
