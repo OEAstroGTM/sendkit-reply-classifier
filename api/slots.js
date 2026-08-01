@@ -29,7 +29,12 @@ export default async function handler(req, res) {
   }
 
   try {
+    // ?who=a@x.com,b@x.com restricts the check to specific people.
+    // ?method=collective forces "everyone must be free".
+    const who = (req.query.who || "").split(",").map((x) => x.trim()).filter(Boolean);
     const slots = await getAvailableSlots({
+      participants: who.length ? who : undefined,
+      method: req.query.method,
       workStart: req.query.start,
       workEnd: req.query.end,
       lookaheadDays: req.query.days,
@@ -44,12 +49,15 @@ export default async function handler(req, res) {
     return res.status(200).json({
       window: `${req.query.start || process.env.WORK_START || "9:00"}-${req.query.end || process.env.WORK_END || "17:00"}`,
       // every calendar these slots were checked against
-      participants: await getParticipants(),
+      participants: who.length ? who : await getParticipants(),
+      method: req.query.method || process.env.AVAILABILITY_METHOD || "max-fairness",
       found: slots.length,
       slots: picked.map((s) => ({
         start_time: s.start_time,
         end_time: s.end_time,
         label: s.label,
+        // which of the team is actually free for this slot
+        free: s.emails || [],
         ...(leadTz ? { leadLocal: safeFormat(s.start_time, leadTz) } : {}),
       })),
     });
