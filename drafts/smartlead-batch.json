@@ -124,6 +124,22 @@
       "lead": "Ivan Gonzalez, CBN Trade (Argentina) — we promised a brochure and never sent it",
       "body": "Hi Ivan,\n\nI said I would send our brochure and then did not. Sorry about that.\n\nThe short version: we run outbound email campaigns for freight and logistics companies. We build the target list around your lanes, set up the sending domains, write and send the emails, and the replies come straight back to you.\n\nIf you would rather see it than read it, [here is my calendar](https://calendly.com/logan-nerdyjoe/30min).\n\nSophie",
       "slots": []
+    },
+    {
+      "id": "faraz2",
+      "campaign_id": "3721834",
+      "email": "farazkhan@hamdanalsobhi.com",
+      "lead": "Faraz Khan, Hamdan Alsobhi (KSA) — picked Mon 3 Aug 15:00 KSA and asked for Zoom",
+      "body": "Dear Faraz,\n\nMonday, August 3 at 3:00 PM KSA is confirmed, and Zoom is no problem.\n\nMy colleague Logan will send the invite with the Zoom link on it, so look for his name rather than mine. If it has not landed by Monday morning, tell me and I will resend it.\n\nLooking forward to speaking.\n\nErica",
+      "slots": []
+    },
+    {
+      "id": "siebren",
+      "campaign_id": "3721845",
+      "email": "siebren.hoekstra@qls.nl",
+      "lead": "Siebren Hoekstra, QLS (Netherlands), Director Strategic Partnerships — asked to be called on WhatsApp +31613707651",
+      "body": "Hi Siebren,\n\nThanks, and sorry for the slow reply. I will message you on WhatsApp at +31 6 13 70 76 51.\n\nIf it is easier to just put something in the diary, you can pick a time here instead: [my calendar](https://calendly.com/logan-nerdyjoe/30min).\n\nChristina",
+      "slots": []
     }
   ]
 }
