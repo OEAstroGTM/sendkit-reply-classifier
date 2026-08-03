@@ -10,6 +10,7 @@ import {
 } from "../lib/smartlead.js";
 import { toHtml, generateReply, generateBump } from "../lib/reply.js";
 import { linkifySlots } from "../lib/booking.js";
+import { createEvent, formatSlot, getGrantFor } from "../lib/nylas.js";
 import batch from "../drafts/smartlead-batch.json" with { type: "json" };
 import holdList from "../drafts/followup-hold.json" with { type: "json" };
 
@@ -606,6 +607,41 @@ export default async function handler(req, res) {
       return res.status(200).json({
         sent: true, lead: lead.email, campaign_id,
         statsId: lastReply.stats_id, result,
+      });
+    }
+
+    // ?action=invite&email=lead@x.com&start=<unix>&host=naufal@koldifyleads.co
+    // Creates the calendar event on the host's own calendar with a Google Meet
+    // link, and emails the invite to the lead.
+    if (action === "invite") {
+      const { email, start, host } = req.query;
+      if (!email || !start) return res.status(400).json({ error: "Need email and start (unix seconds)" });
+      const startTime = Number(start);
+      const durationMin = Number(req.query.duration || process.env.MEETING_MINUTES || 30);
+      let lead = null;
+      try { lead = await leadByEmail(email); } catch { /* invite can still go out */ }
+      const leadName = [lead?.first_name, lead?.last_name].filter(Boolean).join(" ");
+      const grant = await getGrantFor(host);
+      const title = req.query.title ||
+        `Koldify <> ${leadName || email}${lead?.company_name ? ` (${lead.company_name})` : ""}`;
+      const event = await createEvent({
+        startTime,
+        endTime: startTime + durationMin * 60,
+        title,
+        leadEmail: email,
+        leadName,
+        description: "Introductory call.",
+        hostEmail: host,
+      });
+      return res.status(200).json({
+        booked: true,
+        host: grant.email,
+        lead: email,
+        leadName,
+        when: formatSlot(startTime, req.query.tz || process.env.TIMEZONE || "America/New_York"),
+        leadLocal: req.query.for ? formatSlot(startTime, req.query.for) : undefined,
+        conferencing: event.data?.conferencing || null,
+        eventId: event.data?.id || null,
       });
     }
 
