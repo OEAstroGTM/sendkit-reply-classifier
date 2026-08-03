@@ -6,7 +6,7 @@
 
 import {
   listCampaigns, campaignStats, leadByEmail, messageHistory,
-  replyToLead, unsubscribeLead, isMachineReply, isOptOut, ownWords, clearCache,
+  replyToLead, unsubscribeLead, isMachineReply, isOptOut, isDecline, ownWords, clearCache,
 } from "../lib/smartlead.js";
 import { toHtml, generateReply, generateBump } from "../lib/reply.js";
 import { linkifySlots } from "../lib/booking.js";
@@ -389,7 +389,7 @@ export default async function handler(req, res) {
 
       const max = Math.min(Number(req.query.max || 60), 120);
       const perCampaign = Math.min(Number(req.query.threads || 25), 40);
-      const awaiting = [], optouts = [];
+      const awaiting = [], optouts = [], declines = [];
       let scanned = 0, instantMachines = 0;
 
       for (const id of ids) {
@@ -435,6 +435,7 @@ export default async function handler(req, res) {
                 ? Math.round((Date.now() - new Date(lastReply.time).getTime()) / 3600000) : null,
               suppressed: !!lead.is_unsubscribed,
               optOut: isOptOut(text),
+              decline: isDecline(text),
               machine: isMachineReply(text, c.delaySeconds),
               ourTurn: !!last && last.type === "REPLY",
               said: text.slice(0, 300),
@@ -445,6 +446,7 @@ export default async function handler(req, res) {
         for (const x of checked.filter(Boolean)) {
           if (x.optOut) { if (!x.suppressed) optouts.push(x); continue; }
           if (x.machine || !x.ourTurn || x.suppressed) continue;
+          if (x.decline) { declines.push(x); continue; }
           awaiting.push(x);
         }
       }
@@ -456,6 +458,8 @@ export default async function handler(req, res) {
         repliesScanned: scanned,
         instantMachines,
         awaitingCount: awaiting.length,
+        // Polite no's. Nothing to answer, but they must not enter follow-ups.
+        declined: declines.map((x) => ({ name: x.name, email: x.email, company: x.company, said: x.said.slice(0, 100) })),
         // Asked to be removed and not yet suppressed. Handle these first.
         optOutsToSuppress: optouts.map((x) => ({ name: x.name, email: x.email, said: x.said.slice(0, 120) })),
         awaiting,
