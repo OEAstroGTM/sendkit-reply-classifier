@@ -6,7 +6,7 @@
 
 import {
   listCampaigns, campaignStats, leadByEmail, messageHistory,
-  replyToLead, unsubscribeLead, isMachineReply, ownWords, clearCache,
+  replyToLead, unsubscribeLead, isMachineReply, isOptOut, ownWords, clearCache,
 } from "../lib/smartlead.js";
 import { toHtml, generateReply, generateBump } from "../lib/reply.js";
 import { linkifySlots } from "../lib/booking.js";
@@ -372,6 +372,93 @@ export default async function handler(req, res) {
           daysQuiet: x.daysQuiet, bumpsSent: x.bumpsSent, persona: x.persona,
         })),
         followups: out,
+      });
+    }
+
+    // ?action=inbox[&campaign_id=a,b][&max=60]
+    // The real work list. Scans EVERY active campaign and decides from the
+    // reply text itself, not from Smartlead's category tags, because roughly
+    // 84% of replies come back uncategorized and were invisible to ?action=queue.
+    if (action === "inbox") {
+      let ids = (req.query.campaign_id || "").split(",").map((x) => x.trim()).filter(Boolean);
+      const all = await listCampaigns();
+      const list = Array.isArray(all) ? all : all.campaigns || [];
+      const names = {};
+      for (const c of list) names[String(c.id)] = c.name;
+      if (!ids.length) ids = list.filter((c) => c.status === "ACTIVE").map((c) => String(c.id));
+
+      const max = Math.min(Number(req.query.max || 60), 120);
+      const perCampaign = Math.min(Number(req.query.threads || 25), 40);
+      const awaiting = [], optouts = [];
+      let scanned = 0, instantMachines = 0;
+
+      for (const id of ids) {
+        // Read the tail of the list, where new arrivals land
+        const probe = await campaignStats(id, { email_status: "replied", limit: "1", offset: "0" });
+        const total = Number(probe.total_stats || 0);
+        const offset = Math.max(total - max, 0);
+        const stats = await campaignStats(id, {
+          email_status: "replied", limit: String(max), offset: String(offset),
+        });
+        const rows = stats.data || [];
+        scanned += rows.length;
+
+        // Anything answered within a minute was not typed by a person
+        const candidates = [];
+        for (const r of rows) {
+          const delay = (new Date(r.reply_time) - new Date(r.sent_time)) / 1000;
+          if (delay < 60) { instantMachines++; continue; }
+          candidates.push({ ...r, delaySeconds: Math.round(delay) });
+        }
+
+        const checked = await Promise.all(candidates.slice(0, perCampaign).map(async (c) => {
+          try {
+            const lead = await leadByEmail(c.lead_email);
+            const hist = await messageHistory(id, lead.id);
+            const msgs = hist.history || [];
+            const last = msgs[msgs.length - 1];
+            const lastReply = [...msgs].reverse().find((m) => m.type === "REPLY");
+            const text = ownWords(lastReply?.email_body);
+            return {
+              campaign_id: id, campaign: names[id] || id,
+              leadId: lead.id,
+              name: [lead.first_name, lead.last_name].filter(Boolean).join(" ") || c.lead_name,
+              email: c.lead_email,
+              company: lead.company_name || "",
+              title: lead.custom_fields?.Current_Job_Title || "",
+              location: lead.location || "",
+              phone: lead.phone_number || "",
+              category: c.lead_category || "(uncategorized)",
+              persona: (lastReply?.to || "").split("@")[0].split(".")[0],
+              repliedAt: lastReply?.time || c.reply_time,
+              hoursWaiting: lastReply?.time
+                ? Math.round((Date.now() - new Date(lastReply.time).getTime()) / 3600000) : null,
+              suppressed: !!lead.is_unsubscribed,
+              optOut: isOptOut(text),
+              machine: isMachineReply(text, c.delaySeconds),
+              ourTurn: !!last && last.type === "REPLY",
+              said: text.slice(0, 300),
+            };
+          } catch { return null; }
+        }));
+
+        for (const x of checked.filter(Boolean)) {
+          if (x.optOut) { if (!x.suppressed) optouts.push(x); continue; }
+          if (x.machine || !x.ourTurn || x.suppressed) continue;
+          awaiting.push(x);
+        }
+      }
+
+      awaiting.sort((a, b) => (b.hoursWaiting ?? 0) - (a.hoursWaiting ?? 0));
+      return res.status(200).json({
+        generatedAt: new Date().toISOString(),
+        campaignsScanned: ids.length,
+        repliesScanned: scanned,
+        instantMachines,
+        awaitingCount: awaiting.length,
+        // Asked to be removed and not yet suppressed. Handle these first.
+        optOutsToSuppress: optouts.map((x) => ({ name: x.name, email: x.email, said: x.said.slice(0, 120) })),
+        awaiting,
       });
     }
 
