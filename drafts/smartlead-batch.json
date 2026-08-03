@@ -132,6 +132,14 @@
       "lead": "Faraz Khan, Hamdan Alsobhi (KSA) — picked Mon 3 Aug 15:00 KSA and asked for Zoom",
       "body": "Dear Faraz,\n\nMonday, August 3 at 3:00 PM KSA is confirmed.\n\nThe invite comes from my colleague Logan and it carries a Google Meet link, which is what we run on. If you would rather stay on Zoom, say so and we will send a Zoom room instead, no trouble either way.\n\nLooking forward to speaking.\n\nErica",
       "slots": []
+    },
+    {
+      "id": "faraz3",
+      "campaign_id": "3721834",
+      "email": "farazkhan@hamdanalsobhi.com",
+      "lead": "Faraz Khan — heads-up that the invite is from Naufal, not Logan",
+      "body": "Dear Faraz,\n\nOne quick correction. The invite is from my colleague Naufal rather than Logan, so look for his name. It should already be in your inbox for Monday at 3:00 PM KSA, with the Google Meet link on it.\n\nSee you Monday.\n\nErica",
+      "slots": []
     }
   ]
 }
