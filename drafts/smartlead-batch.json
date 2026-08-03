@@ -193,6 +193,27 @@
       "lead": "Elina Mälkiä, Meriaura (Finland) — looped colleagues into the thread and got no answer for 5 days",
       "body": "Hi Elina,\n\nApologies for the slow reply. Yes, I can see them on the thread now, thank you for looping them in.\n\nI will pick it up with them directly so you are not left in the middle of it. Thanks again for pointing me the right way.\n\nNatalie",
       "slots": []
+    },
+    {
+      "id": "stef",
+      "campaign_id": "3751716",
+      "email": "stef@helm.africa",
+      "lead": "Stef Adonis, Helm (South Africa, Chief Evangelist) — asked 'What's your URL please'",
+      "body": "Hi Stef,\n\nHere you go: [koldify.io](https://koldify.io).\n\nShort version, we build and run outbound email systems for B2B companies, our own sending infrastructure and data, and the replies come straight back to your inbox.\n\nIf you want to talk it through, these are open, all your afternoon:\n\n• Tuesday, August 4 at 2:00 PM SAST\n• Wednesday, August 5 at 2:00 PM SAST\n• Thursday, August 6 at 2:00 PM SAST\n\nDanielle",
+      "slots": [
+        {
+          "start_time": 1785844800,
+          "label": "Tuesday, August 4 at 2:00 PM SAST"
+        },
+        {
+          "start_time": 1785931200,
+          "label": "Wednesday, August 5 at 2:00 PM SAST"
+        },
+        {
+          "start_time": 1786017600,
+          "label": "Thursday, August 6 at 2:00 PM SAST"
+        }
+      ]
     }
   ]
 }
