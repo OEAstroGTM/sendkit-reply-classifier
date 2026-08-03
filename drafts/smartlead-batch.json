@@ -140,6 +140,35 @@
       "lead": "Faraz Khan — heads-up that the invite is from Naufal, not Logan",
       "body": "Dear Faraz,\n\nOne quick correction. The invite is from my colleague Naufal rather than Logan, so look for his name. It should already be in your inbox for Monday at 3:00 PM KSA, with the Google Meet link on it.\n\nSee you Monday.\n\nErica",
       "slots": []
+    },
+    {
+      "id": "ashish2",
+      "campaign_id": "3721834",
+      "email": "ashish@alphatrucking.com.au",
+      "lead": "Ashish Patel, Alpha Trucking (CEO, AU) — asked who sends, how leads pass, payment terms, legal entity",
+      "body": "Hi Ashish,\n\nIn one line: we set up separate sending domains and mailboxes on our side, write and send the campaigns to importers and exporters moving freight on your lanes, and anyone who replies lands straight in your inbox as a warm enquiry, so nothing touches Alpha Trucking's own domain and you only ever speak to people who already put their hand up.\n\nOn the commercial side, easier to walk through on a call. Would any of these suit? All your morning:\n\n• Wednesday, August 5 at 8:00 AM AEST\n• Thursday, August 6 at 8:00 AM AEST\n• Friday, August 7 at 8:00 AM AEST\n\nCarolyn",
+      "slots": [
+        {
+          "start_time": 1785880800,
+          "label": "Wednesday, August 5 at 8:00 AM AEST"
+        },
+        {
+          "start_time": 1785967200,
+          "label": "Thursday, August 6 at 8:00 AM AEST"
+        },
+        {
+          "start_time": 1786053600,
+          "label": "Friday, August 7 at 8:00 AM AEST"
+        }
+      ]
+    },
+    {
+      "id": "pratham",
+      "campaign_id": "3721834",
+      "email": "pratham@aeroprime.in",
+      "lead": "Pratham Goyal, GLID Technologies / Aeroprime (Delhi) — gave 10am-6pm IST this week, Naufal to book",
+      "body": "Hi Pratham,\n\nThat window helps, thank you.\n\nMy colleague Naufal will be taking the call and sending the invite across, so look for his name rather than mine. It will land within your 10 to 6 IST window and will have the Google Meet link on it.\n\nSpeak soon.\n\nAmanda",
+      "slots": []
     }
   ]
 }
