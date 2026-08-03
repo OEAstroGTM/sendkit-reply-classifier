@@ -214,6 +214,27 @@
           "label": "Thursday, August 6 at 2:00 PM SAST"
         }
       ]
+    },
+    {
+      "id": "ronnie",
+      "campaign_id": "3721834",
+      "email": "cr@keywordtrucking.com",
+      "lead": "Ronnie Chinchilla, Keyword Trucking LLC (US, Dir. BD) — asked for our availability this week",
+      "body": "Hi Ronnie,\n\nThanks, this week works on my side too. Here is what is open, just click whichever suits and it will book itself:\n\n• Tuesday, August 4 at 9:00 AM EDT\n• Wednesday, August 5 at 9:00 AM EDT\n• Thursday, August 6 at 9:00 AM EDT\n\nThe invite will come through with a Google Meet link on it. If none of those work, tell me what does and I will fit around you.\n\nJennifer",
+      "slots": [
+        {
+          "start_time": 1785848400,
+          "label": "Tuesday, August 4 at 9:00 AM EDT"
+        },
+        {
+          "start_time": 1785934800,
+          "label": "Wednesday, August 5 at 9:00 AM EDT"
+        },
+        {
+          "start_time": 1786021200,
+          "label": "Thursday, August 6 at 9:00 AM EDT"
+        }
+      ]
     }
   ]
 }
