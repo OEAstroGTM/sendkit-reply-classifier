@@ -3,388 +3,224 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Reply Agent — Smartlead</title>
+<title>Reply Pipeline</title>
 <style>
-  :root {
+  :root{
     --bg:#0f1117; --card:#181b23; --border:#2a2e3a; --text:#e6e8ee; --muted:#8b90a0;
     --accent:#4f8cff; --green:#22c55e; --red:#ef4444; --amber:#f59e0b; --purple:#a855f7;
     --blue:#3b82f6; --gray:#6b7280; --input-bg:#10131a; --btn2-bg:#262a36; --btn2-text:#e6e8ee;
+    --col-bg:#12151c;
   }
-  [data-theme="light"] {
+  [data-theme="light"]{
     --bg:#f5f6f8; --card:#fff; --border:#e2e5ea; --text:#1a1d26; --muted:#6b7180;
     --accent:#2563eb; --green:#16a34a; --red:#dc2626; --amber:#d97706; --purple:#9333ea;
     --blue:#2563eb; --gray:#6b7280; --input-bg:#f2f4f7; --btn2-bg:#e8eaef; --btn2-text:#1a1d26;
+    --col-bg:#eef0f4;
   }
   *{box-sizing:border-box;margin:0}
-  body{background:var(--bg);color:var(--text);font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;padding:28px 16px}
-  .wrap{max-width:940px;margin:0 auto}
+  body{background:var(--bg);color:var(--text);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;padding:24px 16px 60px}
+  .wrap{max-width:1400px;margin:0 auto}
   h1{font-size:21px}
-  .sub{color:var(--muted);font-size:13px;margin-bottom:20px}
-  .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:16px}
-  .card h2{font-size:15px;margin-bottom:12px}
-  label{display:block;font-size:12px;color:var(--muted);margin:10px 0 4px}
-  input,textarea,select{width:100%;background:var(--input-bg);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:10px 12px;font:inherit}
-  textarea{min-height:200px;resize:vertical}
-  button{background:var(--accent);color:#fff;border:0;border-radius:8px;padding:10px 16px;font:inherit;font-weight:600;cursor:pointer;margin-top:12px}
-  button:hover{filter:brightness(1.1)}
+  .sub{color:var(--muted);font-size:13px;margin-bottom:18px}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:14px}
+  label{display:block;font-size:12px;color:var(--muted);margin:0 0 4px}
+  input,select{background:var(--input-bg);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:9px 11px;font:inherit}
+  button{background:var(--accent);color:#fff;border:0;border-radius:8px;padding:9px 15px;font:inherit;font-weight:600;cursor:pointer}
+  button:hover{filter:brightness(1.1)} button:disabled{opacity:.5;cursor:wait}
   button.secondary{background:var(--btn2-bg);color:var(--btn2-text)}
-  button:disabled{opacity:.5;cursor:wait}
-  pre{background:var(--input-bg);border:1px solid var(--border);border-radius:8px;padding:12px;font-size:13px;white-space:pre-wrap;word-break:break-word;margin-top:12px}
-  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
-  .kpi{background:var(--input-bg);border:1px solid var(--border);border-radius:10px;padding:12px 14px}
-  .kpi .v{font-size:24px;font-weight:700;line-height:1.1}
-  .kpi .l{font-size:11px;color:var(--muted);margin-top:3px;text-transform:uppercase;letter-spacing:.03em}
-  .kpi.good .v{color:var(--green)} .kpi.warn .v{color:var(--amber)} .kpi.bad .v{color:var(--red)}
-  table{width:100%;border-collapse:collapse;font-size:13px;margin-top:10px}
-  th{text-align:left;color:var(--muted);font-weight:500;padding:6px 8px;border-bottom:1px solid var(--border)}
-  td{padding:8px;border-bottom:1px solid var(--border);vertical-align:top}
-  td.n,th.n{text-align:right}
-  .pill{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600;color:#fff}
-  .row{display:flex;gap:12px;flex-wrap:wrap}
-  .row>*{flex:1;min-width:150px}
-  .preview{background:#fff;color:#111;border-radius:8px;padding:22px;margin-top:12px;font-family:Arial,sans-serif;line-height:1.6}
-  .preview a{color:#1a56db}
-  .said{margin-top:10px;padding:12px;border-radius:8px;background:var(--input-bg);font-size:13px}
-  .hint{color:var(--muted);font-size:12px;margin-top:8px}
+  .bar{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap}
+  .hint{color:var(--muted);font-size:12px}
   .err{color:var(--red)}
   .hide{display:none}
-  .flag{display:inline-block;padding:2px 9px;border-radius:99px;font-size:11px;font-weight:600;background:rgba(245,158,11,.18);color:var(--amber);border:1px solid var(--amber);margin-right:4px}
+
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:16px}
+  .kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:11px 13px}
+  .kpi .v{font-size:23px;font-weight:700;line-height:1.1}
+  .kpi .l{font-size:10.5px;color:var(--muted);margin-top:3px;text-transform:uppercase;letter-spacing:.04em}
+  .kpi.good .v{color:var(--green)} .kpi.warn .v{color:var(--amber)} .kpi.bad .v{color:var(--red)}
+
+  .board{display:grid;grid-template-columns:repeat(4,minmax(260px,1fr));gap:12px;align-items:start}
+  @media(max-width:1100px){.board{grid-template-columns:repeat(2,minmax(260px,1fr))}}
+  @media(max-width:680px){.board{grid-template-columns:1fr}}
+  .col{background:var(--col-bg);border:1px solid var(--border);border-radius:12px;padding:10px;min-height:80px}
+  .col h3{font-size:13px;display:flex;justify-content:space-between;align-items:center;margin-bottom:9px;padding:0 2px}
+  .col h3 .n{background:var(--btn2-bg);color:var(--btn2-text);border-radius:99px;padding:1px 9px;font-size:12px}
+  .col.act h3{color:var(--amber)} .col.warm h3{color:var(--blue)}
+  .col.wait h3{color:var(--muted)} .col.done h3{color:var(--green)}
+
+  .lead{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--gray);
+        border-radius:9px;padding:10px 11px;margin-bottom:8px}
+  .lead.sl{border-left-color:var(--accent)} .lead.sk{border-left-color:var(--purple)}
+  .lead .top{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+  .lead .nm{font-weight:600;font-size:13.5px}
+  .lead .co{color:var(--muted);font-size:12px;margin-top:1px}
+  .lead .said{font-size:12px;color:var(--muted);margin-top:7px;line-height:1.45;
+              border-left:2px solid var(--border);padding-left:8px}
+  .age{font-size:11.5px;font-weight:600;white-space:nowrap}
+  .age.hot{color:var(--red)} .age.warm{color:var(--amber)} .age.cold{color:var(--muted)}
+  .tags{margin-top:7px;display:flex;gap:4px;flex-wrap:wrap}
+  .tag{font-size:10.5px;padding:1px 7px;border-radius:99px;background:var(--btn2-bg);color:var(--btn2-text)}
+  .src{font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;padding:1px 6px;border-radius:4px;font-weight:700}
+  .src.sl{background:rgba(79,140,255,.16);color:var(--accent)}
+  .src.sk{background:rgba(168,85,247,.16);color:var(--purple)}
+  .alert{border:1px solid var(--red);background:rgba(239,68,68,.07);border-radius:10px;padding:12px;margin-bottom:14px}
+  .alert h3{font-size:13px;color:var(--red);margin-bottom:7px}
+  .alert .row{font-size:12.5px;padding:3px 0}
+  details{margin-top:14px} summary{cursor:pointer;color:var(--muted);font-size:13px}
+  table{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:9px}
+  th{text-align:left;color:var(--muted);font-weight:500;padding:5px 7px;border-bottom:1px solid var(--border)}
+  td{padding:6px 7px;border-bottom:1px solid var(--border);vertical-align:top}
 </style>
 </head>
 <body>
 <div class="wrap">
   <div style="display:flex;justify-content:space-between;align-items:flex-start">
-    <h1>Reply Agent</h1>
-    <button id="btn-theme" class="secondary" style="margin-top:0;padding:6px 12px;font-size:13px">&#9788; Light</button>
-  </div>
-  <div class="sub">Smartlead inbox management — find positive replies, answer them, book meetings.</div>
-
-  <div class="card">
-    <h2>&#128273; Access</h2>
-    <input id="secret" type="password" placeholder="setup secret">
-    <div class="hint">Stored in this browser only.</div>
-  </div>
-
-  <div class="card">
-    <h2>&#127760; Scope</h2>
-    <select id="scope"></select>
-    <button id="btn-fresh" class="secondary">Refresh from Smartlead</button>
-    <div class="hint">Optional filter. Reads are cached for a few minutes to stay under Smartlead's rate limit, so use Refresh after sending or when you want the very latest.</div>
-  </div>
-
-  <div class="card">
-    <h2>&#128202; Inbox performance</h2>
-    <div class="row">
-      <select id="statsdays">
-        <option value="7">Last 7 days</option>
-        <option value="30" selected>Last 30 days</option>
-        <option value="90">Last 90 days</option>
-        <option value="0">All time</option>
-      </select>
-      <button id="btn-stats">Load performance</button>
+    <div>
+      <h1>Reply Pipeline</h1>
+      <div class="sub">Every lead that replied, across Smartlead and SendKit, by what it needs next.</div>
     </div>
-    <div id="stats-out" class="hide"></div>
+    <button id="btn-theme" class="secondary" style="padding:6px 12px;font-size:13px">&#9788; Light</button>
   </div>
 
   <div class="card">
-    <h2>&#128260; Follow-ups</h2>
-    <div class="hint">Leads you answered who went quiet. Smartlead's sequence stops once someone replies, so nothing chases these unless you do.</div>
-    <button id="btn-fu">Load follow-ups</button>
-    <div id="fu-out" class="hide"></div>
+    <div class="bar">
+      <div><label>Setup secret</label><input id="secret" type="password" placeholder="secret" style="width:180px"></div>
+      <div><label>Source</label>
+        <select id="src"><option value="all">Both platforms</option><option value="sl">Smartlead only</option><option value="sk">SendKit only</option></select>
+      </div>
+      <button id="btn-load">Load pipeline</button>
+      <div class="hint" id="stamp" style="margin-left:auto"></div>
+    </div>
   </div>
 
-  <div class="card">
-    <h2>&#9993;&#65039; Reply queue</h2>
-    <div class="hint">Positive replies where the lead spoke last. Nothing else is waiting on you.</div>
-    <button id="btn-queue">Load queue</button>
-    <div id="queue-out" class="hide"></div>
-  </div>
-
-  <div class="card">
-    <h2>&#128228; SendKit queue <span style="font-size:11px;color:var(--muted);font-weight:400">legacy</span></h2>
-    <div class="hint">The old SendKit workspace, kept visible so nothing tagged there gets stranded. Read only: reply to these in SendKit itself.</div>
-    <button id="btn-skqueue" class="secondary">Load SendKit queue</button>
-    <div id="sk-out" class="hide"></div>
-  </div>
+  <div id="alerts"></div>
+  <div id="kpis" class="kpis hide"></div>
+  <div id="board" class="board hide"></div>
+  <div id="extra"></div>
 </div>
 
 <script>
-const $ = (id) => document.getElementById(id);
-const themeBtn = $("btn-theme");
-function applyTheme(t){document.documentElement.dataset.theme=t;themeBtn.innerHTML=t==="light"?"&#9789; Dark":"&#9788; Light";localStorage.setItem("sl_theme",t);}
-applyTheme(localStorage.getItem("sl_theme") || (window.matchMedia?.("(prefers-color-scheme: light)").matches?"light":"dark"));
+const $=(id)=>document.getElementById(id);
+const themeBtn=$("btn-theme");
+function applyTheme(t){document.documentElement.dataset.theme=t;themeBtn.innerHTML=t==="light"?"&#9789; Dark":"&#9788; Light";localStorage.setItem("pl_theme",t);}
+applyTheme(localStorage.getItem("pl_theme")||(window.matchMedia?.("(prefers-color-scheme: light)").matches?"light":"dark"));
 themeBtn.onclick=()=>applyTheme(document.documentElement.dataset.theme==="light"?"dark":"light");
 
-const secretEl = $("secret");
-secretEl.value = localStorage.getItem("sl_secret") || "";
-secretEl.addEventListener("change", () => { localStorage.setItem("sl_secret", secretEl.value.trim()); loadCampaigns(); });
+const secretEl=$("secret");
+secretEl.value=localStorage.getItem("pl_secret")||"";
+secretEl.addEventListener("change",()=>localStorage.setItem("pl_secret",secretEl.value.trim()));
+$("src").value=localStorage.getItem("pl_src")||"all";
+$("src").addEventListener("change",()=>localStorage.setItem("pl_src",$("src").value));
 
-const esc = (s) => String(s ?? "").replace(/[&<>"]/g,(c)=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const CAT_COLORS = {"Interested":"var(--green)","Meeting Request":"var(--blue)","Information Request":"var(--purple)"};
-const pill = (t) => `<span class="pill" style="background:${CAT_COLORS[t]||"var(--gray)"}">${esc(t)}</span>`;
-function key(){ const k=secretEl.value.trim(); if(!k){alert("Enter your setup secret first.");throw new Error("no key");} return encodeURIComponent(k); }
-let FRESH = false;   // set by the Refresh button, clears the server cache once
+const esc=(s)=>String(s??"").replace(/[&<>"]/g,(c)=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function key(){const k=secretEl.value.trim();if(!k){alert("Enter your setup secret first.");throw new Error("no key");}return encodeURIComponent(k);}
+// Responses are cached upstream and will come back byte-identical, timestamp
+// included, so every request carries a throwaway parameter.
+const nonce=()=>Math.random().toString(36).slice(2,9);
 async function api(path){
-  const url = path + (FRESH ? "&fresh=1" : "");
-  FRESH = false;
-  const r = await fetch(url); const t = await r.text();
-  try{return JSON.parse(t);}catch{return {error:t.slice(0,400)};}
+  try{
+    const r=await fetch(path+`&fresh=1&nonce=${nonce()}`);
+    const t=await r.text();
+    if(!t.trim()) return {error:"empty response (the request most likely timed out)"};
+    try{return JSON.parse(t);}catch{return {error:t.slice(0,300)};}
+  }catch(e){return {error:e.message};}
 }
 
-// ---------- campaigns ----------
-let CAMPAIGNS = [], CAMPAIGN_NAMES = {};
-async function loadCampaigns(){
-  if(!secretEl.value.trim()) return;
-  const d = await api(`/api/smartlead?key=${key()}&action=campaigns`);
-  if(d.error||!d.campaigns) return;
-  CAMPAIGNS = d.campaigns;
-  CAMPAIGN_NAMES = Object.fromEntries(d.campaigns.map(c=>[String(c.id), c.name]));
-  const sel = $("scope");
-  const saved = localStorage.getItem("sl_scope") || "sent";
-  sel.innerHTML =
-    `<option value="sent">Everything that has sent</option>` +
-    `<option value="live">Live campaigns only</option>` +
-    `<option disabled>──────────</option>` +
-    CAMPAIGNS.map(c=>`<option value="${c.id}">${esc(c.name)}${c.status!=="ACTIVE"?" — "+c.status.toLowerCase():""}</option>`).join("");
-  sel.value = [...sel.options].some(o=>o.value===saved) ? saved : "live";
-  sel.onchange = () => localStorage.setItem("sl_scope", sel.value);
-}
-$("btn-fresh").onclick = () => { FRESH = true; loadCampaigns(); alert("Cache cleared. The next panel you load reads fresh from Smartlead."); };
-loadCampaigns();
+const age=(h)=>h==null?"":h<48?`${Math.round(h)}h`:`${Math.round(h/24)}d`;
+const ageCls=(h)=>h==null?"cold":h>=120?"hot":h>=48?"warm":"cold";
 
-// Campaign ids for the current scope
-function scopeIds(){
-  const v = $("scope").value || "live";
-  if(v === "live") return CAMPAIGNS.filter(c=>c.status==="ACTIVE").map(c=>String(c.id));
-  if(v === "sent") return CAMPAIGNS.filter(c=>c.status!=="DRAFTED").map(c=>String(c.id));
-  return [v];
-}
-
-// ---------- performance ----------
-$("btn-stats").onclick = async () => {
-  const out=$("stats-out"); out.classList.remove("hide");
-  out.innerHTML="<pre>Reading every reply and checking which are answered. This takes a moment…</pre>";
-  STATS_DAYS = $("statsdays").value;
-  const ids = scopeIds();
-  if(!ids.length){out.innerHTML=`<div class="hint">No campaigns in scope.</div>`;return;}
-  const d = await api(`/api/smartlead?key=${key()}&action=stats&campaign_id=${ids.join(",")}&days=${STATS_DAYS}`);
-  if(d.error){out.innerHTML=`<pre class="err">${esc(d.error)}</pre>`;return;}
-  const t=d.totals;
-  const kpi=(v,l,cls="")=>`<div class="kpi ${cls}"><div class="v">${v}</div><div class="l">${l}</div></div>`;
-  out.innerHTML = `<div class="kpis" style="margin-top:14px">
-      ${kpi(t.positives,"Positive replies")}
-      ${kpi(t.awaiting, "Awaiting reply", t.awaiting>0?"warn":"good")}
-      ${kpi(t.answeredPct+"%","Answered", t.answeredPct>=90?"good":t.answeredPct>=60?"warn":"bad")}
-      ${kpi(t.medianResponseHours==null?"—":t.medianResponseHours+"h","Median response")}
-      ${kpi(t.oldestWaitingHours?Math.round(t.oldestWaitingHours)+"h":"—","Longest wait", t.oldestWaitingHours>24?"bad":"")}
-      ${kpi(t.positivesPer1k,"Positives / 1k sent")}
-      ${kpi(t.machinePct+"%","Autoresponders", t.machinePct>80?"bad":t.machinePct>50?"warn":"")}
-      ${kpi(t.replies,"Total replies")}
+function leadCard(x){
+  const s=x.src==="sk"?"sk":"sl";
+  return `<div class="lead ${s}">
+    <div class="top">
+      <div><div class="nm">${esc(x.name||x.email)}</div>
+           <div class="co">${esc(x.company||x.email)}</div></div>
+      <div class="age ${ageCls(x.hours)}">${age(x.hours)}</div>
     </div>
-    <table><tr><th>Campaign</th><th class="n">Sent</th><th class="n">Replies</th><th class="n">Human</th><th class="n">Positive</th><th class="n">Answered</th><th class="n">Waiting</th><th class="n">/1k</th></tr>` +
-    d.campaigns.map(c=>c.error
-      ? `<tr><td>${esc(c.name)}</td><td colspan="7" class="err">${esc(c.error)}</td></tr>`
-      : `<tr><td>${esc(c.name)}</td><td class="n">${c.sent.toLocaleString()}</td><td class="n">${c.replies}</td>
-         <td class="n">${c.humanReplies}</td><td class="n">${c.positives}</td><td class="n">${c.answered}</td>
-         <td class="n" style="${c.awaiting?"color:var(--amber);font-weight:600":""}">${c.awaiting}</td>
-         <td class="n">${c.positivesPer1k}</td></tr>`).join("") +
-    `</table><div class="hint">Positive = Interested, Meeting Request or Information Request, matching Smartlead's own categories. Autoresponders are replies arriving under 60 seconds. ${d.windowDays?`Covering the last ${d.windowDays} days (since ${d.since}).`:"All time."} Generated ${new Date(d.generatedAt).toLocaleString()}.</div>`;
-};
-
-// ---------- queue ----------
-let Q={items:[],i:0}; let STALE_DAYS=30, STALE_COUNT=0; let STATS_DAYS=30;
-$("btn-queue").onclick = async () => {
-  const out=$("queue-out"); out.classList.remove("hide");
-  out.innerHTML="<pre>Finding positive replies that are waiting on you…</pre>";
-  const ids = scopeIds();
-  if(!ids.length){out.innerHTML=`<div class="hint">No campaigns in scope.</div>`;return;}
-  const all=[]; let stale=0;
-  for(const id of ids){
-    const d = await api(`/api/smartlead?key=${key()}&action=queue&campaign_id=${id}&days=${STALE_DAYS}`);
-    if(d.queue) all.push(...d.queue.map(x=>({...x,campaign_id:id})));
-    stale += d.staleHidden || 0;
-  }
-  STALE_COUNT = stale;
-  Q={items:all.sort((a,b)=>(b.hoursWaiting||0)-(a.hoursWaiting||0)),i:0};
-  if(!Q.items.length){
-    out.innerHTML=`<div class="hint" style="margin-top:12px">Queue is empty. Every positive reply from the last ${STALE_DAYS} days has been answered. &#127881;` +
-      (STALE_COUNT?`<br>${STALE_COUNT} older than ${STALE_DAYS} days not shown. <a href="#" id="show-stale" style="color:var(--accent)">Show them anyway</a>`:"") + `</div>`;
-    if(STALE_COUNT) $("show-stale").onclick=(e)=>{e.preventDefault();STALE_DAYS=0;$("btn-queue").click();};
-    return;
-  }
-  showItem();
-};
-
-function header(c){
-  const flags=[];
-  if(/whatsapp/i.test(c.said)) flags.push("Wants WhatsApp");
-  if(/\bcall me\b|my number|reach me at/i.test(c.said)) flags.push("Gave a number");
-  if(/price|pricing|cost|how much|\$\s?\d/i.test(c.said)) flags.push("Pricing");
-  if(/not a|we are not|wrong|mix-?up/i.test(c.said)) flags.push("Possible mismatch");
-  return `<div style="margin-top:16px;display:flex;justify-content:space-between;align-items:flex-start;gap:10px">
-      <div><b>${esc(c.name||c.email)}</b> <span class="hint">${esc(c.company||"")} ${c.title?"· "+esc(c.title):""}</span><br>
-        <span class="hint">${esc(CAMPAIGN_NAMES[c.campaign_id]||"")}</span><br>
-        <span class="hint">${esc(c.email)} ${c.location?"· "+esc(c.location):""} ${c.phone?"· "+esc(c.phone):""}</span></div>
-      <div style="text-align:right">${pill(c.category)}<br><span class="hint">${c.hoursWaiting}h waiting · ${Q.i+1} of ${Q.items.length}</span></div>
-    </div>
-    ${flags.length?`<div style="margin-top:6px">${flags.map(f=>`<span class="flag">&#9873; ${f}</span>`).join("")}</div>`:""}
-    <div class="said"><span class="hint">They said:</span><br>${esc(c.said)}</div>`;
-}
-
-async function showItem(){
-  const out=$("queue-out");
-  if(Q.i>=Q.items.length){out.innerHTML=`<div class="hint" style="margin-top:12px">Done. Worked through all ${Q.items.length}. &#127881;</div>`;return;}
-  const c=Q.items[Q.i];
-  out.innerHTML=header(c)+`<pre>Reading the thread, pulling your availability and writing a reply…</pre>`;
-  const d = await api(`/api/smartlead?key=${key()}&action=draft&campaign_id=${c.campaign_id}&email=${encodeURIComponent(c.email)}`);
-  if(d.error){
-    out.innerHTML=header(c)+`<pre class="err">${esc(d.error)}</pre>
-      <div class="row"><button id="q-retry" class="secondary">Retry</button><button id="q-skip" class="secondary">Skip</button></div>`;
-    $("q-retry").onclick=showItem; $("q-skip").onclick=next; return;
-  }
-  c.draft={body:d.body,slots:d.slots||[],html:d.html};
-  render(c);
-}
-
-function render(c){
-  $("queue-out").innerHTML=header(c)+
-    `<div class="preview">${c.draft.html||esc(c.draft.body)}</div>
-     <div class="hint">Times are booking links checked against every connected calendar. Signed as ${esc(c.persona||"the campaign persona")}.</div>
-     <div class="row">
-       <button id="q-send">Send</button>
-       <button id="q-edit" class="secondary">Edit</button>
-       <button id="q-regen" class="secondary">Regenerate</button>
-       <button id="q-skip" class="secondary">Skip</button>
-     </div>`;
-  $("q-send").onclick=()=>send(c);
-  $("q-edit").onclick=()=>edit(c);
-  $("q-regen").onclick=showItem;
-  $("q-skip").onclick=next;
-}
-
-function edit(c){
-  $("queue-out").innerHTML=header(c)+
-    `<label style="margin-top:14px">Edit the reply. Keep the time wording to keep the booking links working.</label>
-     <textarea id="q-ed">${esc(c.draft.body)}</textarea>
-     <div class="row">
-       <button id="q-esend">Send edited</button>
-       <button id="q-ecancel" class="secondary">Cancel</button>
-     </div>`;
-  $("q-ecancel").onclick=()=>render(c);
-  $("q-esend").onclick=()=>{c.draft.body=$("q-ed").value;send(c);};
-}
-
-async function send(c){
-  const out=$("queue-out");
-  out.innerHTML=header(c)+`<pre>Sending…</pre>`;
-  const r = await fetch(`/api/smartlead?key=${key()}&action=send`,{
-    method:"POST",headers:{"Content-Type":"application/json"},
-    body:JSON.stringify({campaign_id:c.campaign_id,email:c.email,body:c.draft.body,slots:c.draft.slots})
-  }).then(x=>x.json()).catch(e=>({error:e.message}));
-  if(r.error){
-    out.innerHTML=header(c)+`<pre class="err">${esc(r.error)}</pre><div class="row"><button id="q-back" class="secondary">Back</button></div>`;
-    $("q-back").onclick=()=>render(c); return;
-  }
-  out.innerHTML=header(c)+`<div style="margin-top:12px;color:var(--green)"><b>Sent.</b> Exactly what was on screen.</div>`;
-  setTimeout(next,900);
-}
-function next(){Q.i+=1;showItem();}
-
-// ---------- follow-ups ----------
-let F={items:[],i:0};
-$("btn-fu").onclick = async () => {
-  const out=$("fu-out"); out.classList.remove("hide");
-  out.innerHTML="<pre>Checking who went quiet after we replied…</pre>";
-  const ids=scopeIds();
-  if(!ids.length){out.innerHTML=`<div class="hint">No campaigns in scope.</div>`;return;}
-  const d = await api(`/api/smartlead?key=${key()}&action=followups&campaign_id=${ids.join(",")}&days=${STALE_DAYS}`);
-  if(d.error){out.innerHTML=`<pre class="err">${esc(d.error)}</pre>`;return;}
-  if(!d.followups.length){out.innerHTML=`<div class="hint" style="margin-top:12px">Nobody is waiting on a nudge.</div>`;return;}
-  const kpi=(v,l,cls="")=>`<div class="kpi ${cls}"><div class="v">${v}</div><div class="l">${l}</div></div>`;
-  out.innerHTML=`<div class="kpis" style="margin-top:14px">
-      ${kpi(d.due,"Due now", d.due?"warn":"good")}
-      ${kpi(d.waiting,"Not due yet")}
-      ${kpi(d.exhausted,"Nudges used up")}
-      ${kpi(d.schedule.join(" & ")+"d","Bump schedule")}
-    </div>
-    <table><tr><th>Lead</th><th>Quiet</th><th>Nudges</th><th>Status</th><th></th></tr>` +
-    d.followups.map((f,i)=>`<tr>
-      <td><b>${esc(f.name)}</b><br><span class="hint">${esc(f.company||"")} ${esc(CAMPAIGN_NAMES[f.campaign_id]||"")}</span><br>
-        <span class="hint">said: ${esc(f.theySaid.slice(0,90))}</span></td>
-      <td>${f.daysQuiet}d</td>
-      <td>${f.bumpsSent}</td>
-      <td>${f.exhausted?`<span class="hint">done</span>`
-            :f.due?`<span class="pill" style="background:var(--amber)">due</span>`
-            :`<span class="hint">in ${f.nextBumpInDays}d</span>`}</td>
-      <td>${f.exhausted?"":`<button class="secondary" style="margin:0;padding:6px 10px;font-size:12px" data-bump="${i}">Nudge</button>`}</td>
-    </tr>`).join("") + `</table>`;
-  F={items:d.followups,i:0};
-  out.querySelectorAll("[data-bump]").forEach(b=>{
-    b.onclick=()=>bump(d.followups[Number(b.dataset.bump)]);
-  });
-};
-
-async function bump(f){
-  const out=$("fu-out");
-  const head=`<div style="margin-top:16px"><b>${esc(f.name)}</b> <span class="hint">${esc(f.company||"")} · quiet ${f.daysQuiet}d · nudge ${f.bumpsSent+1}</span>
-    <div class="said"><span class="hint">They originally said:</span><br>${esc(f.theySaid)}</div></div>`;
-  out.innerHTML=head+`<pre>Writing a short nudge…</pre>`;
-  const d = await api(`/api/smartlead?key=${key()}&action=bump&campaign_id=${f.campaign_id}&email=${encodeURIComponent(f.email)}`);
-  if(d.error){out.innerHTML=head+`<pre class="err">${esc(d.error)}</pre><div class="row"><button id="fu-back" class="secondary">Back</button></div>`;$("fu-back").onclick=()=>$("btn-fu").click();return;}
-  f.draft={body:d.body,slots:d.slots||[]};
-  out.innerHTML=head+`<div class="preview">${d.html||esc(d.body)}</div>
-    <div class="row">
-      <button id="fu-send">Send nudge</button>
-      <button id="fu-edit" class="secondary">Edit</button>
-      <button id="fu-cancel" class="secondary">Back</button>
-    </div>`;
-  $("fu-cancel").onclick=()=>$("btn-fu").click();
-  $("fu-edit").onclick=()=>{
-    out.innerHTML=head+`<textarea id="fu-ed">${esc(f.draft.body)}</textarea>
-      <div class="row"><button id="fu-esend">Send edited</button><button id="fu-ec" class="secondary">Back</button></div>`;
-    $("fu-ec").onclick=()=>bump(f);
-    $("fu-esend").onclick=()=>{f.draft.body=$("fu-ed").value;sendBump(f,head);};
-  };
-  $("fu-send").onclick=()=>sendBump(f,head);
-}
-
-async function sendBump(f,head){
-  const out=$("fu-out");
-  out.innerHTML=head+`<pre>Sending…</pre>`;
-  const r = await fetch(`/api/smartlead?key=${key()}&action=send`,{
-    method:"POST",headers:{"Content-Type":"application/json"},
-    body:JSON.stringify({campaign_id:f.campaign_id,email:f.email,body:f.draft.body,slots:f.draft.slots})
-  }).then(x=>x.json()).catch(e=>({error:e.message}));
-  if(r.error){out.innerHTML=head+`<pre class="err">${esc(r.error)}</pre>`;return;}
-  out.innerHTML=head+`<div style="margin-top:12px;color:var(--green)"><b>Nudge sent.</b></div>`;
-  setTimeout(()=>$("btn-fu").click(),1200);
-}
-
-// ---------- SendKit queue (legacy, read only) ----------
-$("btn-skqueue").onclick = async () => {
-  const out=$("sk-out"); out.classList.remove("hide");
-  out.innerHTML="<pre>Reading the SendKit workspace…</pre>";
-  const d = await api(`/api/queue?key=${key()}&max=25`);
-  if(d.error){out.innerHTML=`<pre class="err">${esc(d.error)}</pre>`;return;}
-  const q=d.queue||[];
-  const head=`<div class="kpis" style="margin-top:12px">
-    <div class="kpi"><div class="v">${d.tagged??0}</div><div class="l">Tagged</div></div>
-    <div class="kpi"><div class="v">${d.inspected??0}</div><div class="l">Inspected</div></div>
-    <div class="kpi ${q.length?"warn":"good"}"><div class="v">${q.length}</div><div class="l">Awaiting reply</div></div>
+    ${x.said?`<div class="said">${esc(String(x.said).slice(0,150))}</div>`:""}
+    <div class="tags"><span class="src ${s}">${s==="sk"?"SendKit":"Smartlead"}</span>
+      ${(x.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join("")}
+      ${x.note?`<span class="tag">${esc(x.note)}</span>`:""}</div>
   </div>`;
-  if(!q.length){out.innerHTML=head+`<div class="hint" style="margin-top:12px">Nothing waiting in SendKit.</div>`;return;}
-  const stale=(h)=>h>=336;   // a fortnight, almost certainly cold
-  out.innerHTML = head + `<table><tr><th>Lead</th><th>Company</th><th>Tag</th><th class="n">Waiting</th><th>Said</th></tr>` +
-    q.map(x=>`<tr>
-      <td>${esc(x.lead)}${x.optOut?' <span class="flag">Opt-out</span>':""}<br><span style="color:var(--muted);font-size:12px">${esc(x.email)}</span></td>
-      <td>${esc(x.company)}</td>
-      <td>${(x.tags||[]).map(pill).join(" ")}</td>
-      <td class="n" style="color:${stale(x.hoursWaiting)?"var(--muted)":"var(--amber)"}">${
-        x.hoursWaiting==null?"":x.hoursWaiting>=48?Math.round(x.hoursWaiting/24)+"d":x.hoursWaiting+"h"}</td>
-      <td style="max-width:320px">${esc((x.lastMessagePreview||"").slice(0,150))}</td>
-    </tr>`).join("") + `</table>
-    <div class="hint" style="margin-top:8px">Greyed times are older than two weeks and probably cold. Only ${d.inspected} of ${d.tagged} tagged conversations are checked per load, to stay inside the request timeout.</div>`;
+}
+function column(cls,title,items,empty){
+  return `<div class="col ${cls}"><h3>${title}<span class="n">${items.length}</span></h3>
+    ${items.length?items.map(leadCard).join(""):`<div class="hint" style="padding:6px 2px">${empty}</div>`}</div>`;
+}
+
+$("btn-load").onclick=async()=>{
+  const btn=$("btn-load"); btn.disabled=true; btn.textContent="Loading…";
+  $("alerts").innerHTML=""; $("extra").innerHTML="";
+  $("board").classList.remove("hide"); $("kpis").classList.add("hide");
+  $("board").innerHTML=`<div class="hint" style="padding:10px">Reading both platforms…</div>`;
+  const want=$("src").value, k=key();
+
+  const [inbox,fups,skq]=await Promise.all([
+    want!=="sk"?api(`/api/smartlead?key=${k}&action=inbox&max=40&threads=14`):Promise.resolve(null),
+    want!=="sk"?api(`/api/smartlead?key=${k}&action=followups&days=30`):Promise.resolve(null),
+    want!=="sl"?api(`/api/queue?key=${k}&max=25`):Promise.resolve(null),
+  ]);
+
+  const errs=[];
+  if(inbox?.error) errs.push(`Smartlead inbox: ${inbox.error}`);
+  if(fups?.error) errs.push(`Smartlead follow-ups: ${fups.error}`);
+  if(skq?.error) errs.push(`SendKit queue: ${skq.error}`);
+
+  // --- needs a reply, both platforms ---
+  const needs=[
+    ...((inbox?.awaiting)||[]).map(x=>({src:"sl",name:x.name,company:x.company,email:x.email,
+      hours:x.hoursWaiting,said:x.said,tags:x.category&&x.category!=="(uncategorized)"?[x.category]:[]})),
+    ...((skq?.queue)||[]).map(x=>({src:"sk",name:x.lead,company:x.company,email:x.email,
+      hours:x.hoursWaiting,said:x.lastMessagePreview,tags:x.tags||[]})),
+  ].sort((a,b)=>(b.hours??0)-(a.hours??0));
+
+  const F=(fups?.followups)||[];
+  const mk=(x,note)=>({src:"sl",name:x.name,company:x.company,email:x.email,
+    hours:x.daysQuiet*24,said:x.theySaid,tags:x.category?[x.category]:[],note});
+  const due   =F.filter(x=>x.due).map(x=>mk(x,`bump ${x.bumpsSent+1}`));
+  const waiting=F.filter(x=>!x.due&&!x.hold&&!x.exhausted).map(x=>mk(x,x.nextBumpInDays!=null?`next in ${x.nextBumpInDays}d`:null));
+  const held  =F.filter(x=>x.hold).map(x=>mk(x,x.hold));
+
+  // --- alerts ---
+  const opt=(inbox?.optOutsToSuppress)||[];
+  if(opt.length) $("alerts").innerHTML=`<div class="alert"><h3>&#9888;&#65039; ${opt.length} opt-out${opt.length>1?"s":""} not yet suppressed</h3>`+
+    opt.map(o=>`<div class="row"><b>${esc(o.name)}</b> &lt;${esc(o.email)}&gt; &mdash; ${esc((o.said||"").slice(0,90))}</div>`).join("")+
+    `<div class="hint" style="margin-top:6px">Suppress these before the next send.</div></div>`;
+  if(errs.length) $("alerts").innerHTML+=`<div class="alert"><h3>Could not load everything</h3>`+
+    errs.map(e=>`<div class="row">${esc(e)}</div>`).join("")+`</div>`;
+
+  // --- kpis ---
+  const oldest=Math.max(0,...needs.map(x=>x.hours||0));
+  $("kpis").classList.remove("hide");
+  $("kpis").innerHTML=`
+    <div class="kpi ${needs.length?"warn":"good"}"><div class="v">${needs.length}</div><div class="l">Needs reply</div></div>
+    <div class="kpi ${due.length?"warn":""}"><div class="v">${due.length}</div><div class="l">Follow-up due</div></div>
+    <div class="kpi"><div class="v">${waiting.length}</div><div class="l">Waiting on them</div></div>
+    <div class="kpi good"><div class="v">${held.length}</div><div class="l">Booked or held</div></div>
+    <div class="kpi ${oldest>=120?"bad":oldest>=48?"warn":"good"}"><div class="v">${oldest?age(oldest):"0"}</div><div class="l">Oldest unanswered</div></div>
+    <div class="kpi"><div class="v">${inbox?.instantMachines??0}</div><div class="l">Machines filtered</div></div>`;
+
+  $("board").innerHTML=
+    column("act","Needs reply",needs,"Nothing waiting on you.")+
+    column("warm","Follow-up due",due,"Nothing due today.")+
+    column("wait","Waiting on them",waiting,"Nobody pending.")+
+    column("done","Booked or held",held,"Nothing booked.");
+
+  const dec=(inbox?.declined)||[];
+  $("extra").innerHTML=`
+    <details><summary>Closed this window &mdash; ${dec.length} declined</summary>
+      <table><tr><th>Lead</th><th>Company</th><th>Said</th></tr>
+      ${dec.map(x=>`<tr><td>${esc(x.name)}</td><td>${esc(x.company||"")}</td><td>${esc((x.said||"").slice(0,110))}</td></tr>`).join("")||`<tr><td colspan="3" class="hint">None.</td></tr>`}
+      </table></details>
+    <div class="hint" style="margin-top:14px">
+      Smartlead cards are decided from the reply text, not Smartlead's category tags, because most replies come back uncategorised.
+      SendKit is still tag-based and read only, so reply to those in SendKit itself, and note that the follow-up cadence covers Smartlead only.
+    </div>`;
+
+  $("stamp").textContent="Loaded "+new Date().toLocaleTimeString();
+  btn.disabled=false; btn.textContent="Refresh";
 };
+if(secretEl.value) $("btn-load").click();
 </script>
 </body>
 </html>
