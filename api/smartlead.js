@@ -10,7 +10,7 @@ import {
 } from "../lib/smartlead.js";
 import { toHtml, generateReply, generateBump } from "../lib/reply.js";
 import { linkifySlots } from "../lib/booking.js";
-import { createEvent, formatSlot, getGrantFor } from "../lib/nylas.js";
+import { createEvent, cancelEvent, formatSlot, getGrantFor } from "../lib/nylas.js";
 import batch from "../drafts/smartlead-batch.json" with { type: "json" };
 import holdList from "../drafts/followup-hold.json" with { type: "json" };
 
@@ -734,6 +734,14 @@ export default async function handler(req, res) {
         conferencing: event.data?.conferencing || null,
         eventId: event.data?.id || null,
       });
+    }
+
+    // ?action=cancel-event&event=<id>&host=<email>
+    if (action === "cancel-event") {
+      const { event, host } = req.query;
+      if (!event) return res.status(400).json({ error: "Need event id" });
+      await cancelEvent(event, host);
+      return res.status(200).json({ cancelled: true, event, host: host || "(default grant)" });
     }
 
     // GET/POST ?action=unsubscribe&email=...  — global suppression
