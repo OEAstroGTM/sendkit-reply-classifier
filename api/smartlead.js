@@ -760,12 +760,19 @@ export default async function handler(req, res) {
 
       const per = await Promise.all(live.map(async (c) => {
         try {
+          // Returns one summary object for the window, not a row per day.
           const a = await analyticsByDate(String(c.id), from, to);
-          const rows = Array.isArray(a) ? a : (a.data || a.analytics || []);
-          const num = (r) => Number(r.sent_count ?? r.sent ?? r.total_sent ?? 0);
-          const sent = rows.reduce((n, r) => n + num(r), 0);
-          const replies = rows.reduce((n, r) => n + Number(r.reply_count ?? r.replies ?? 0), 0);
-          return { id: String(c.id), name: c.name, status: c.status, sent, replies, days: rows.length };
+          const n = (v) => Number(v || 0);
+          return {
+            id: String(c.id), name: c.name, status: c.status,
+            sent: n(a.sent_count),
+            uniqueSent: n(a.unique_sent_count),
+            replies: n(a.reply_count),
+            bounces: n(a.bounce_count),
+            unsubscribes: n(a.unsubscribed_count),
+            replyRate: n(a.sent_count) ? +(n(a.reply_count) / n(a.sent_count) * 100).toFixed(2) : 0,
+            bounceRate: n(a.sent_count) ? +(n(a.bounce_count) / n(a.sent_count) * 100).toFixed(2) : 0,
+          };
         } catch (e) {
           return { id: String(c.id), name: c.name, status: c.status, error: e.message.slice(0, 200) };
         }
@@ -775,7 +782,8 @@ export default async function handler(req, res) {
         window: { from, to },
         totalSent: ok.reduce((n, x) => n + x.sent, 0),
         totalReplies: ok.reduce((n, x) => n + x.replies, 0),
-        campaigns: per,
+        totalBounces: ok.reduce((n, x) => n + x.bounces, 0),
+        campaigns: per.sort((a, b) => (b.sent || 0) - (a.sent || 0)),
       });
     }
 
