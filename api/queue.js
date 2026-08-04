@@ -4,7 +4,7 @@
 // lead (no one has replied yet). Auto-replies (OOO etc.) don't count.
 
 import { CATEGORY_SET, extractTags, listConversationsWithAnyTag, latestInbound, messageText, isInbound, isOptOut, reviewFlags } from "../lib/inbox.js";
-import { getConversation } from "../lib/sendkit.js";
+import { getConversation, analyticsDaily, analyticsOverview } from "../lib/sendkit.js";
 
 export const config = { maxDuration: 60 };
 
@@ -12,6 +12,30 @@ export default async function handler(req, res) {
   if (!process.env.SETUP_SECRET || req.query.key !== process.env.SETUP_SECRET) {
     return res.status(401).json({ error: "Unauthorized" });
   }
+  // ?mode=sends&from=YYYY-MM-DD&to=YYYY-MM-DD — SendKit volume in a date window
+  if (req.query.mode === "sends") {
+    const { from, to } = req.query;
+    try {
+      const daily = await analyticsDaily(from && to ? { start_date: from, end_date: to } : undefined);
+      const rows = Array.isArray(daily) ? daily : (daily.data || daily.days || []);
+      const pick = (r, keys) => { for (const k of keys) if (r[k] != null) return Number(r[k]); return 0; };
+      const inWindow = rows.filter((r) => {
+        const d = String(r.date || r.day || "").slice(0, 10);
+        return !from || !to || (d >= from && d <= to);
+      });
+      return res.status(200).json({
+        source: "sendkit", window: { from, to },
+        totalSent: inWindow.reduce((n, r) => n + pick(r, ["sent", "sent_count", "emails_sent", "total_sent"]), 0),
+        totalReplies: inWindow.reduce((n, r) => n + pick(r, ["replies", "reply_count", "replied"]), 0),
+        days: inWindow.length,
+        rows: inWindow.slice(0, 40),
+      });
+    } catch (e) {
+      try { return res.status(200).json({ source: "sendkit", dailyError: e.message.slice(0, 200), overview: await analyticsOverview({ start_date: from, end_date: to }) }); }
+      catch (e2) { return res.status(500).json({ error: `daily: ${e.message.slice(0,150)} | overview: ${e2.message.slice(0,150)}` }); }
+    }
+  }
+
   try {
     // OR across all 6 tags via SendKit's tag filter (whole workspace)
     const tagged = await listConversationsWithAnyTag(100);
