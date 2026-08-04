@@ -235,6 +235,258 @@
           "label": "Thursday, August 6 at 9:00 AM EDT"
         }
       ]
+    },
+    {
+      "id": "fu2-maggie",
+      "campaign_id": "3721845",
+      "email": "maggie@agcold.com",
+      "lead": "Maggie Holloway, Agcold — 6.7d quiet after we explained who we are",
+      "body": "Hi Maggie,\n\nCircling back on this one in case it got buried.\n\nIf a short call is useful, these are open:\n\n• Wednesday, August 5 at 3:00 PM EDT\n• Thursday, August 6 at 3:00 PM EDT\n• Friday, August 7 at 3:00 PM EDT\n\nClick whichever suits and it books itself. If cold storage outbound is not a priority right now, just say so and I will leave it there.\n\nJamie",
+      "slots": [
+        {
+          "start_time": 1785956400,
+          "label": "Wednesday, August 5 at 3:00 PM EDT"
+        },
+        {
+          "start_time": 1786042800,
+          "label": "Thursday, August 6 at 3:00 PM EDT"
+        },
+        {
+          "start_time": 1786129200,
+          "label": "Friday, August 7 at 3:00 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "fu2-tarunvir",
+      "campaign_id": "3721845",
+      "email": "tarunvirkukreja@attarsinghandsons.in",
+      "lead": "Tarunvir Kukreja, Attar Singh & Sons — 6.7d quiet",
+      "body": "Hi Tarunvir,\n\nFollowing up in case my last note got lost.\n\nIf it is worth a short conversation, these work on my side:\n\n• Wednesday, August 5 at 5:30 PM IST\n• Thursday, August 6 at 5:30 PM IST\n• Friday, August 7 at 5:30 PM IST\n\nClick one and it will book itself. If the timing is off, just tell me and I will leave it there.\n\nZoe",
+      "slots": [
+        {
+          "start_time": 1785931200,
+          "label": "Wednesday, August 5 at 5:30 PM IST"
+        },
+        {
+          "start_time": 1786017600,
+          "label": "Thursday, August 6 at 5:30 PM IST"
+        },
+        {
+          "start_time": 1786104000,
+          "label": "Friday, August 7 at 5:30 PM IST"
+        }
+      ]
+    },
+    {
+      "id": "fu2-sagar",
+      "campaign_id": "3721845",
+      "email": "sagar@safeship.in",
+      "lead": "Sagar Sura, SafeShip — 4.8d quiet after we explained the service",
+      "body": "Hi Sagar,\n\nJust picking this back up.\n\nIf you would like to talk it through, these are open:\n\n• Wednesday, August 5 at 5:30 PM IST\n• Thursday, August 6 at 5:30 PM IST\n• Friday, August 7 at 5:30 PM IST\n\nClick whichever suits and it books itself.\n\nSophia",
+      "slots": [
+        {
+          "start_time": 1785931200,
+          "label": "Wednesday, August 5 at 5:30 PM IST"
+        },
+        {
+          "start_time": 1786017600,
+          "label": "Thursday, August 6 at 5:30 PM IST"
+        },
+        {
+          "start_time": 1786104000,
+          "label": "Friday, August 7 at 5:30 PM IST"
+        }
+      ]
+    },
+    {
+      "id": "fu2-walid",
+      "campaign_id": "3721845",
+      "email": "abdallah_adel@lattlogistics.com",
+      "lead": "Walid Ramadan, Latt Logistics — asked for detail by email, said too busy for calls",
+      "body": "Hi Walid,\n\nJust checking the details I sent actually reached you.\n\nNo pressure on a call, I know you said the diary is tight. But if it is easier to ask questions out loud, these are open:\n\n• Wednesday, August 5 at 4:00 PM Cairo time\n• Thursday, August 6 at 4:00 PM Cairo time\n• Friday, August 7 at 4:00 PM Cairo time\n\nEither way, happy to keep it to email.\n\nVictoria",
+      "slots": [
+        {
+          "start_time": 1785934800,
+          "label": "Wednesday, August 5 at 4:00 PM Cairo time"
+        },
+        {
+          "start_time": 1786021200,
+          "label": "Thursday, August 6 at 4:00 PM Cairo time"
+        },
+        {
+          "start_time": 1786107600,
+          "label": "Friday, August 7 at 4:00 PM Cairo time"
+        }
+      ]
+    },
+    {
+      "id": "fu2-babita",
+      "campaign_id": "3721834",
+      "email": "babita@aargusglobal.com",
+      "lead": "Babita Pandey, Aargus Global — times we offered have all passed",
+      "body": "Dear Babita,\n\nThe times I sent last week have all gone by, so here are fresh ones:\n\n• Wednesday, August 5 at 5:30 PM IST\n• Thursday, August 6 at 5:30 PM IST\n• Friday, August 7 at 5:30 PM IST\n\nClick whichever suits and the invite will come straight through.\n\nZoe",
+      "slots": [
+        {
+          "start_time": 1785931200,
+          "label": "Wednesday, August 5 at 5:30 PM IST"
+        },
+        {
+          "start_time": 1786017600,
+          "label": "Thursday, August 6 at 5:30 PM IST"
+        },
+        {
+          "start_time": 1786104000,
+          "label": "Friday, August 7 at 5:30 PM IST"
+        }
+      ]
+    },
+    {
+      "id": "fu2-bikash",
+      "campaign_id": "3721845",
+      "email": "bikash.jha@snowway.in",
+      "lead": "Bikash Jha, Snow Way — stale times, after we cleared up the mix-up",
+      "body": "Dear Bikash,\n\nMy last times have passed, so here are new ones:\n\n• Wednesday, August 5 at 5:30 PM IST\n• Thursday, August 6 at 5:30 PM IST\n• Friday, August 7 at 5:30 PM IST\n\nClick one and it books itself. And to be clear on the earlier mix-up, we are not buying logistics services, we help companies like Snow Way win more customers.\n\nKristen",
+      "slots": [
+        {
+          "start_time": 1785931200,
+          "label": "Wednesday, August 5 at 5:30 PM IST"
+        },
+        {
+          "start_time": 1786017600,
+          "label": "Thursday, August 6 at 5:30 PM IST"
+        },
+        {
+          "start_time": 1786104000,
+          "label": "Friday, August 7 at 5:30 PM IST"
+        }
+      ]
+    },
+    {
+      "id": "fu2-faithful",
+      "campaign_id": "3721845",
+      "email": "fedozie@folti.io",
+      "lead": "Faithful Edozie, Foltï — offered Aug 3/4 WAT, both passed",
+      "body": "Hello Faithful,\n\nSorry, the days I offered have been and gone. Here is what is open now:\n\n• Wednesday, August 5 at 2:00 PM WAT\n• Thursday, August 6 at 2:00 PM WAT\n• Friday, August 7 at 2:00 PM WAT\n\nClick whichever works and it will book itself.\n\nSandra",
+      "slots": [
+        {
+          "start_time": 1785934800,
+          "label": "Wednesday, August 5 at 2:00 PM WAT"
+        },
+        {
+          "start_time": 1786021200,
+          "label": "Thursday, August 6 at 2:00 PM WAT"
+        },
+        {
+          "start_time": 1786107600,
+          "label": "Friday, August 7 at 2:00 PM WAT"
+        }
+      ]
+    },
+    {
+      "id": "fu2-teguh",
+      "campaign_id": "3721834",
+      "email": "teguh.haryanto@samudera.id",
+      "lead": "Teguh Haryanto, Samudera — stale times after we clarified we are not a forwarder",
+      "body": "Dear Teguh,\n\nThe times I offered have passed. These are open instead:\n\n• Wednesday, August 5 at 8:00 PM WITA\n• Thursday, August 6 at 8:00 PM WITA\n• Friday, August 7 at 8:00 PM WITA\n\nClick one and it books itself. Evening on your side, so tell me if a different hour suits better.\n\nCarolyn",
+      "slots": [
+        {
+          "start_time": 1785931200,
+          "label": "Wednesday, August 5 at 8:00 PM WITA"
+        },
+        {
+          "start_time": 1786017600,
+          "label": "Thursday, August 6 at 8:00 PM WITA"
+        },
+        {
+          "start_time": 1786104000,
+          "label": "Friday, August 7 at 8:00 PM WITA"
+        }
+      ]
+    },
+    {
+      "id": "fu2-ashif",
+      "campaign_id": "3721834",
+      "email": "ashif@hastenwayshipping.com",
+      "lead": "Ashif Ali, Hastenway Shipping — stale Aug 3/4 Dubai times",
+      "body": "Dear Ashif,\n\nMy earlier times have gone by. Here is fresh availability:\n\n• Wednesday, August 5 at 5:00 PM Dubai time\n• Thursday, August 6 at 5:00 PM Dubai time\n• Friday, August 7 at 5:00 PM Dubai time\n\nClick whichever suits and it books itself. WhatsApp still works too if that is simpler, just send me your number.\n\nAlexandra",
+      "slots": [
+        {
+          "start_time": 1785934800,
+          "label": "Wednesday, August 5 at 5:00 PM Dubai time"
+        },
+        {
+          "start_time": 1786021200,
+          "label": "Thursday, August 6 at 5:00 PM Dubai time"
+        },
+        {
+          "start_time": 1786107600,
+          "label": "Friday, August 7 at 5:00 PM Dubai time"
+        }
+      ]
+    },
+    {
+      "id": "fu2-jeffrey",
+      "campaign_id": "3721834",
+      "email": "jeffrey.coats@apg-ga.us",
+      "lead": "Jeffrey Coats, APG USA — said he forwarded to C-level and would keep us posted",
+      "body": "Hi Jeffrey,\n\nNo pressure at all, just keeping the thread warm while your team considers it.\n\nIf it helps to have the conversation directly, these are open:\n\n• Wednesday, August 5 at 3:00 PM EDT\n• Thursday, August 6 at 3:00 PM EDT\n• Friday, August 7 at 3:00 PM EDT\n\nOtherwise I will wait to hear from you.\n\nNancy",
+      "slots": [
+        {
+          "start_time": 1785956400,
+          "label": "Wednesday, August 5 at 3:00 PM EDT"
+        },
+        {
+          "start_time": 1786042800,
+          "label": "Thursday, August 6 at 3:00 PM EDT"
+        },
+        {
+          "start_time": 1786129200,
+          "label": "Friday, August 7 at 3:00 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "fu2-swarup",
+      "campaign_id": "3721845",
+      "email": "swarup.chakraborty@aumexpress.in",
+      "lead": "Swarup Chakraborty, Aum Express — we asked 'tomorrow same time' on 31 Jul and never confirmed",
+      "body": "Hi Swarup,\n\nApologies, I left that hanging without pinning a time down.\n\nHere is concrete availability:\n\n• Wednesday, August 5 at 5:30 PM IST\n• Thursday, August 6 at 5:30 PM IST\n• Friday, August 7 at 5:30 PM IST\n\nClick whichever suits and it books itself.\n\nPaula",
+      "slots": [
+        {
+          "start_time": 1785931200,
+          "label": "Wednesday, August 5 at 5:30 PM IST"
+        },
+        {
+          "start_time": 1786017600,
+          "label": "Thursday, August 6 at 5:30 PM IST"
+        },
+        {
+          "start_time": 1786104000,
+          "label": "Friday, August 7 at 5:30 PM IST"
+        }
+      ]
+    },
+    {
+      "id": "fu2-vivek",
+      "campaign_id": "3721834",
+      "email": "vb@baleslogistics.com",
+      "lead": "Vivek Bhardwaj, Bales Logistics — we said 'Tuesday or Wednesday midday', today is Tuesday",
+      "body": "Hi Vivek,\n\nFollowing up on the midday slot I mentioned. Rather than guess, here are exact times:\n\n• Wednesday, August 5 at 5:30 PM IST\n• Thursday, August 6 at 5:30 PM IST\n• Friday, August 7 at 5:30 PM IST\n\nClick one and the invite comes straight through.\n\nVictoria",
+      "slots": [
+        {
+          "start_time": 1785931200,
+          "label": "Wednesday, August 5 at 5:30 PM IST"
+        },
+        {
+          "start_time": 1786017600,
+          "label": "Thursday, August 6 at 5:30 PM IST"
+        },
+        {
+          "start_time": 1786104000,
+          "label": "Friday, August 7 at 5:30 PM IST"
+        }
+      ]
     }
   ]
 }
