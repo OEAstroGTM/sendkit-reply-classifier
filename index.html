@@ -99,6 +99,13 @@
     <button id="btn-queue">Load queue</button>
     <div id="queue-out" class="hide"></div>
   </div>
+
+  <div class="card">
+    <h2>&#128228; SendKit queue <span style="font-size:11px;color:var(--muted);font-weight:400">legacy</span></h2>
+    <div class="hint">The old SendKit workspace, kept visible so nothing tagged there gets stranded. Read only: reply to these in SendKit itself.</div>
+    <button id="btn-skqueue" class="secondary">Load SendKit queue</button>
+    <div id="sk-out" class="hide"></div>
+  </div>
 </div>
 
 <script>
@@ -352,6 +359,32 @@ async function sendBump(f,head){
   out.innerHTML=head+`<div style="margin-top:12px;color:var(--green)"><b>Nudge sent.</b></div>`;
   setTimeout(()=>$("btn-fu").click(),1200);
 }
+
+// ---------- SendKit queue (legacy, read only) ----------
+$("btn-skqueue").onclick = async () => {
+  const out=$("sk-out"); out.classList.remove("hide");
+  out.innerHTML="<pre>Reading the SendKit workspace…</pre>";
+  const d = await api(`/api/queue?key=${key()}&max=25`);
+  if(d.error){out.innerHTML=`<pre class="err">${esc(d.error)}</pre>`;return;}
+  const q=d.queue||[];
+  const head=`<div class="kpis" style="margin-top:12px">
+    <div class="kpi"><div class="v">${d.tagged??0}</div><div class="l">Tagged</div></div>
+    <div class="kpi"><div class="v">${d.inspected??0}</div><div class="l">Inspected</div></div>
+    <div class="kpi ${q.length?"warn":"good"}"><div class="v">${q.length}</div><div class="l">Awaiting reply</div></div>
+  </div>`;
+  if(!q.length){out.innerHTML=head+`<div class="hint" style="margin-top:12px">Nothing waiting in SendKit.</div>`;return;}
+  const stale=(h)=>h>=336;   // a fortnight, almost certainly cold
+  out.innerHTML = head + `<table><tr><th>Lead</th><th>Company</th><th>Tag</th><th class="n">Waiting</th><th>Said</th></tr>` +
+    q.map(x=>`<tr>
+      <td>${esc(x.lead)}${x.optOut?' <span class="flag">Opt-out</span>':""}<br><span style="color:var(--muted);font-size:12px">${esc(x.email)}</span></td>
+      <td>${esc(x.company)}</td>
+      <td>${(x.tags||[]).map(pill).join(" ")}</td>
+      <td class="n" style="color:${stale(x.hoursWaiting)?"var(--muted)":"var(--amber)"}">${
+        x.hoursWaiting==null?"":x.hoursWaiting>=48?Math.round(x.hoursWaiting/24)+"d":x.hoursWaiting+"h"}</td>
+      <td style="max-width:320px">${esc((x.lastMessagePreview||"").slice(0,150))}</td>
+    </tr>`).join("") + `</table>
+    <div class="hint" style="margin-top:8px">Greyed times are older than two weeks and probably cold. Only ${d.inspected} of ${d.tagged} tagged conversations are checked per load, to stay inside the request timeout.</div>`;
+};
 </script>
 </body>
 </html>
