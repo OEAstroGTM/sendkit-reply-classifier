@@ -6,7 +6,7 @@
 
 import {
   listCampaigns, campaignStats, leadByEmail, messageHistory,
-  replyToLead, unsubscribeLead, isMachineReply, isOptOut, isDecline, ownWords, clearCache,
+  replyToLead, unsubscribeLead, analyticsByDate, isMachineReply, isOptOut, isDecline, ownWords, clearCache,
 } from "../lib/smartlead.js";
 import { toHtml, generateReply, generateBump } from "../lib/reply.js";
 import { linkifySlots } from "../lib/booking.js";
@@ -742,6 +742,35 @@ export default async function handler(req, res) {
       if (!event) return res.status(400).json({ error: "Need event id" });
       await cancelEvent(event, host);
       return res.status(200).json({ cancelled: true, event, host: host || "(default grant)" });
+    }
+
+    // ?action=sends&from=YYYY-MM-DD&to=YYYY-MM-DD  — volume in a real date window
+    if (action === "sends") {
+      const from = req.query.from, to = req.query.to;
+      if (!from || !to) return res.status(400).json({ error: "Need from and to (YYYY-MM-DD)" });
+      const all = await listCampaigns();
+      const list = Array.isArray(all) ? all : all.campaigns || [];
+      const live = list.filter((c) => c.status !== "DRAFTED");
+
+      const per = await Promise.all(live.map(async (c) => {
+        try {
+          const a = await analyticsByDate(String(c.id), from, to);
+          const rows = Array.isArray(a) ? a : (a.data || a.analytics || []);
+          const num = (r) => Number(r.sent_count ?? r.sent ?? r.total_sent ?? 0);
+          const sent = rows.reduce((n, r) => n + num(r), 0);
+          const replies = rows.reduce((n, r) => n + Number(r.reply_count ?? r.replies ?? 0), 0);
+          return { id: String(c.id), name: c.name, status: c.status, sent, replies, days: rows.length };
+        } catch (e) {
+          return { id: String(c.id), name: c.name, status: c.status, error: e.message.slice(0, 200) };
+        }
+      }));
+      const ok = per.filter((x) => !x.error);
+      return res.status(200).json({
+        window: { from, to },
+        totalSent: ok.reduce((n, x) => n + x.sent, 0),
+        totalReplies: ok.reduce((n, x) => n + x.replies, 0),
+        campaigns: per,
+      });
     }
 
     // GET/POST ?action=unsubscribe&email=...  — global suppression
