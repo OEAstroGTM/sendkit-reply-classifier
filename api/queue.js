@@ -26,15 +26,19 @@ export default async function handler(req, res) {
         });
       }
       const rows = Array.isArray(daily) ? daily : (daily.data || daily.days || []);
+      // Rows are keyed _id: "YYYY-MM-DD"; the endpoint ignores the date params
+      // it is given, so the window has to be applied here.
       const pick = (r, keys) => { for (const k of keys) if (r[k] != null) return Number(r[k]); return 0; };
       const inWindow = rows.filter((r) => {
-        const d = String(r.date || r.day || "").slice(0, 10);
+        const d = String(r._id || r.date || r.day || "").slice(0, 10);
         return !from || !to || (d >= from && d <= to);
       });
       return res.status(200).json({
         source: "sendkit", window: { from, to },
         totalSent: inWindow.reduce((n, r) => n + pick(r, ["sent", "sent_count", "emails_sent", "total_sent"]), 0),
-        totalReplies: inWindow.reduce((n, r) => n + pick(r, ["replies", "reply_count", "replied"]), 0),
+        totalReplies: inWindow.reduce((n, r) => n + pick(r, ["replied", "replies", "reply_count"]), 0),
+        totalBounces: inWindow.reduce((n, r) => n + pick(r, ["bounced", "bounces", "bounce_count"]), 0),
+        totalPositive: inWindow.reduce((n, r) => n + pick(r, ["positiveReplied"]), 0),
         days: inWindow.length,
         rows: inWindow.slice(0, 40),
       });
