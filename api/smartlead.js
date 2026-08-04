@@ -748,6 +748,12 @@ export default async function handler(req, res) {
     if (action === "sends") {
       const from = req.query.from, to = req.query.to;
       if (!from || !to) return res.status(400).json({ error: "Need from and to (YYYY-MM-DD)" });
+      // ?raw=1&campaign_id=x dumps the untouched payload so the shape can be read
+      if (req.query.raw === "1") {
+        const cid = req.query.campaign_id || "3721834";
+        const a = await analyticsByDate(cid, from, to);
+        return res.status(200).json({ campaignId: cid, keys: Object.keys(a || {}), raw: a });
+      }
       const all = await listCampaigns();
       const list = Array.isArray(all) ? all : all.campaigns || [];
       const live = list.filter((c) => c.status !== "DRAFTED");
