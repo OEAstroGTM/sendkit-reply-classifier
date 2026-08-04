@@ -26,7 +26,7 @@ export default async function handler(req, res) {
   if (draftId) {
     const d = (sendkitDrafts || []).find((x) => x.id === draftId);
     if (!d) return res.status(404).json({ error: `No draft "${draftId}"` });
-    p = { ...p, id: d.conversationId, body: d.body, slots: [] };
+    p = { ...p, id: d.conversationId, body: d.body, slots: d.slots || [] };
   }
   const id = p.id;
   const mode = p.mode || "preview";
