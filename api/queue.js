@@ -16,19 +16,21 @@ export default async function handler(req, res) {
     // OR across all 6 tags via SendKit's tag filter (whole workspace)
     const tagged = await listConversationsWithAnyTag(100);
 
-    const queue = [];
-    for (const convo of tagged.slice(0, 25)) {
+    // Fetched in parallel. Serially this walked 25 conversations one at a
+    // time and blew past the function timeout, so the panel never rendered.
+    const max = Math.min(Number(req.query.max || 12), 25);
+    const inspected = await Promise.all(tagged.slice(0, max).map(async (convo) => {
       const id = convo._id || convo.id;
       try {
         const detail = (await getConversation(id)).data || {};
         const messages = detail.messages || [];
         const last = messages[messages.length - 1];
-        if (!isInbound(last)) continue;        // we already answered
-        const inbound = latestInbound(messages); // skips auto-replies
-        if (!inbound) continue;
+        if (!isInbound(last)) return null;        // we already answered
+        const inbound = latestInbound(messages);  // skips auto-replies
+        if (!inbound) return null;
 
         const lead = detail.lead || {};
-        queue.push({
+        return {
           id,
           optOut: isOptOut(inbound.subject, messageText(inbound)),
           flags: reviewFlags(messageText(inbound)),
@@ -39,13 +41,18 @@ export default async function handler(req, res) {
           tags: extractTags({ ...convo, ...detail }).filter((t) => CATEGORY_SET.has(t)),
           lastMessagePreview: messageText(inbound).slice(0, 300),
           lastMessageAt: inbound.receivedAt || "",
-        });
+          hoursWaiting: inbound.receivedAt
+            ? Math.round((Date.now() - new Date(inbound.receivedAt).getTime()) / 3600000) : null,
+        };
       } catch (e) {
         console.warn(`queue: could not inspect ${id}: ${e.message}`);
+        return null;
       }
-    }
+    }));
+    const queue = inspected.filter(Boolean)
+      .sort((a, b) => (b.hoursWaiting ?? 0) - (a.hoursWaiting ?? 0));
 
-    return res.status(200).json({ awaitingResponse: queue.length, queue });
+    return res.status(200).json({ source: "sendkit", tagged: tagged.length, inspected: Math.min(tagged.length, max), awaitingResponse: queue.length, queue });
   } catch (e) {
     return res.status(500).json({ error: e.message });
   }
