@@ -17,6 +17,14 @@ export default async function handler(req, res) {
     const { from, to } = req.query;
     try {
       const daily = await analyticsDaily(from && to ? { start_date: from, end_date: to } : undefined);
+      if (req.query.raw === "1") {
+        let ov = null; try { ov = await analyticsOverview(); } catch (e) { ov = { error: e.message.slice(0,150) }; }
+        return res.status(200).json({
+          dailyType: Array.isArray(daily) ? "array" : typeof daily,
+          dailyKeys: daily && !Array.isArray(daily) ? Object.keys(daily) : null,
+          daily, overview: ov,
+        });
+      }
       const rows = Array.isArray(daily) ? daily : (daily.data || daily.days || []);
       const pick = (r, keys) => { for (const k of keys) if (r[k] != null) return Number(r[k]); return 0; };
       const inWindow = rows.filter((r) => {
