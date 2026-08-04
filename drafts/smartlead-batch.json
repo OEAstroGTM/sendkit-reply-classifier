@@ -487,6 +487,14 @@
           "label": "Friday, August 7 at 5:30 PM IST"
         }
       ]
+    },
+    {
+      "id": "faraz4",
+      "campaign_id": "3721834",
+      "email": "farazkhan@hamdanalsobhi.com",
+      "lead": "Faraz Khan — missed Monday, asked for today or tomorrow 3pm KSA; rebooked Wed 5 Aug, and he asked for Zoom twice",
+      "body": "Dear Faraz,\n\nNo problem at all, these things happen.\n\nToday's 3:00 PM has already gone by on my side, so I have put us in for tomorrow instead: Wednesday, August 5 at 3:00 PM KSA. The invite is in your inbox now from my colleague Naufal.\n\nOn Zoom, I should have answered you properly earlier. We do not run Zoom on our side, so I cannot send you a room. The invite carries a Google Meet link which opens straight in your browser with nothing to install. If Zoom is a firm requirement on your end, send me your room and we will join yours instead.\n\nHere is the link either way: https://meet.google.com/dqh-vefx-yra\n\nSee you tomorrow.\n\nErica",
+      "slots": []
     }
   ]
 }
