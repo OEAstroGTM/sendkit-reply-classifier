@@ -503,6 +503,27 @@
       "lead": "Faraz Khan — Logan is hosting Wed 3pm KSA, Naufal's duplicate invite withdrawn",
       "body": "Dear Faraz,\n\nOne correction to my last note, apologies for the shuffle.\n\nTomorrow's meeting, Wednesday at 3:00 PM KSA, is hosted by my colleague Logan rather than Naufal. Please use his invite, the joining link is on that one. The earlier invite has been withdrawn so you should only have his in your calendar.\n\nEverything else stands, and if you would rather use your own Zoom room just send it across and we will join you there.\n\nSee you tomorrow.\n\nErica",
       "slots": []
+    },
+    {
+      "id": "pratham2",
+      "campaign_id": "3721834",
+      "email": "pratham@aeroprime.in",
+      "lead": "Pratham Goyal, Aeroprime — promised invite never sent; offering 1:30pm EDT slots (11pm IST, outside his stated window)",
+      "body": "Hi Pratham,\n\nApologies, I told you an invite was on its way and it never arrived. That was on me.\n\nHere is what I have open. Fair warning, these land late in your evening:\n\n• Thursday, August 6 at 11:00 PM IST\n• Friday, August 7 at 11:00 PM IST\n• Monday, August 10 at 11:00 PM IST\n\nClick whichever suits and it books itself, the Google Meet link comes on the invite. If that is too late on your side, just say so and I will find something inside your working day instead.\n\nAmanda",
+      "slots": [
+        {
+          "start_time": 1786037400,
+          "label": "Thursday, August 6 at 11:00 PM IST"
+        },
+        {
+          "start_time": 1786123800,
+          "label": "Friday, August 7 at 11:00 PM IST"
+        },
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 11:00 PM IST"
+        }
+      ]
     }
   ]
 }
