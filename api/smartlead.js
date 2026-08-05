@@ -285,7 +285,9 @@ export default async function handler(req, res) {
       if (!ids.length) {
         const all = await listCampaigns();
         const list = Array.isArray(all) ? all : all.campaigns || [];
-        ids = list.filter((c) => c.status === "ACTIVE").map((c) => String(c.id));
+        // Same reasoning as the inbox scan: paused campaigns still have threads.
+        ids = list.filter((c) => c.status !== "DRAFTED" && c.status !== "ARCHIVED")
+                  .map((c) => String(c.id));
       }
       const windowDays = req.query.days === undefined ? 30 : Number(req.query.days);
       const sinceMs = windowDays > 0 ? Date.now() - windowDays * 86400000 : null;
@@ -385,7 +387,12 @@ export default async function handler(req, res) {
       const list = Array.isArray(all) ? all : all.campaigns || [];
       const names = {};
       for (const c of list) names[String(c.id)] = c.name;
-      if (!ids.length) ids = list.filter((c) => c.status === "ACTIVE").map((c) => String(c.id));
+      // PAUSED stops sending, it does not stop people replying, so paused
+      // campaigns still hold live conversations. Only DRAFTED (never sent)
+      // and ARCHIVED (finished) are genuinely out of scope.
+      if (!ids.length) ids = list
+        .filter((c) => c.status !== "DRAFTED" && c.status !== "ARCHIVED")
+        .map((c) => String(c.id));
 
       const max = Math.min(Number(req.query.max || 60), 120);
       const perCampaign = Math.min(Number(req.query.threads || 25), 40);
