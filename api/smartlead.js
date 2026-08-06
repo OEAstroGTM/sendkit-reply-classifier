@@ -405,14 +405,26 @@ export default async function handler(req, res) {
       let scanned = 0, instantMachines = 0, candidatesTotal = 0;
 
       for (const id of ids) {
-        // Read the tail of the list, where new arrivals land
+        // Records come back in internal lead-id order, NOT reply order, so
+        // reading the tail misses recent replies from leads added earlier.
+        // Four interested leads were invisible for hours because of exactly
+        // that. Page the whole replied set, then sort by reply_time.
         const probe = await campaignStats(id, { email_status: "replied", limit: "1", offset: "0" });
         const total = Number(probe.total_stats || 0);
-        const offset = Math.max(total - max, 0);
-        const stats = await campaignStats(id, {
-          email_status: "replied", limit: String(max), offset: String(offset),
-        });
-        const rows = stats.data || [];
+        const pageSize = 100;
+        const pages = Math.min(Math.ceil(total / pageSize), 8);
+        const all = [];
+        for (let p = 0; p < pages; p++) {
+          const page = await campaignStats(id, {
+            email_status: "replied", limit: String(pageSize), offset: String(p * pageSize),
+          });
+          const r = page.data || [];
+          if (!r.length) break;
+          all.push(...r);
+        }
+        const rows = all
+          .sort((a, b) => new Date(b.reply_time) - new Date(a.reply_time))
+          .slice(0, max);
         scanned += rows.length;
 
         // Cheap pre-filter before spending two API calls on a thread. Kept
