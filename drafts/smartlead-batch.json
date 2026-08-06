@@ -679,6 +679,27 @@
           "label": "Wednesday, August 12 at 1:30 PM EDT"
         }
       ]
+    },
+    {
+      "id": "primepick",
+      "campaign_id": "3762048",
+      "email": "dvilbaum@primepick.com",
+      "lead": "Dmitry Vilbaum, CEO Primepick — asked for success-based compensation; answer is retainer",
+      "body": "Hi Dmitry,\n\nThanks for asking straight out, it saves us both time.\n\nWe work on a retainer rather than success-based. The infrastructure sits with us from day one, domains, mailboxes, the list build and the sequences, so the cost is ours before a single reply lands. A pure success model does not work against that.\n\nWhat I can do is walk you through exactly what the retainer covers and what volume it buys, so you can judge it properly:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nAngela",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
     }
   ]
 }
