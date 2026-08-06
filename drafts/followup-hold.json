@@ -116,6 +116,18 @@
     {
       "email": "james@arktos.bio",
       "reason": "Declined: No"
+    },
+    {
+      "email": "postrow@technicalcommunities.com",
+      "reason": "Out of office travelling, points to Jeff Wheeler CFO"
+    },
+    {
+      "email": "steve@mwc-llc.com",
+      "reason": "No longer in role, points to Ian Mawson / Eric Milliken"
+    },
+    {
+      "email": "joseph.durko@timetopanick.com",
+      "reason": "Declined: not interested at this time"
     }
   ]
 }

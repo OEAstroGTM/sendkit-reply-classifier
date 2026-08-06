@@ -989,6 +989,132 @@
           "label": "Wednesday, August 12 at 10:00 AM CT"
         }
       ]
+    },
+    {
+      "id": "sipptech",
+      "campaign_id": "3762048",
+      "email": "tmcandrew@sipptech.com",
+      "lead": "Tom McAndrew, President & CEO SippTech (Wichita KS) — 'Always.'",
+      "body": "Hi Tom,\n\nGood to hear.\n\nHere is what is open on my side:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nTiffany",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786546800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "enginuity",
+      "campaign_id": "3762048",
+      "email": "m.ayers@enginuityusa.com",
+      "lead": "Michael Ayers PE, Enginuity Consulting Engineers (Tampa) — 'Interested, let's talk early next week'",
+      "body": "Hi Mike,\n\nEarly next week works well.\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nLaura",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786546800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "cygen",
+      "campaign_id": "3762048",
+      "email": "bxiong@cygen.health",
+      "lead": "Brandon Xiong, CyGen Alpha Systems — available after 12-1pm daily",
+      "body": "Hi Brandon,\n\nNoted on afternoons, these all sit after your lunch window:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nImogen",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786546800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "eaglesystems",
+      "campaign_id": "3762048",
+      "email": "emanning@thefoilexperts.com",
+      "lead": "Ellen Manning, Eagle Systems — 'What is your company?'",
+      "body": "Hi Ellen,\n\nKoldify, here is the site: [koldify.io](https://koldify.io).\n\nIn short, we run outbound email campaigns for companies like Eagle Systems, end to end. Separate sending domains and mailboxes on our side so your own domain is never exposed, a target list built around the buyers you want, sequences written and sent by us, and replies land straight with your team.\n\nHappy to walk through what that would look like for you:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nKayla",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786546800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "momentum",
+      "campaign_id": "3762048",
+      "email": "baxter@momentumtechnologyglobal.com",
+      "lead": "Baxter, Momentum Technology Global — asked for website, LinkedIn and costs",
+      "body": "Hi Baxter,\n\nWebsite is [koldify.io](https://koldify.io).\n\nOn cost, it moves with the volume you want going out and how much of the setup we run for you, so any number I put in an email now would be the wrong one. Fifteen minutes and I can give you a real figure rather than a guess:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nHeather",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786546800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "tsrb",
+      "campaign_id": "3762048",
+      "email": "tim.smith@tsrbsys.com",
+      "lead": "Tim Smith, Partner TSRB Systems — 'How are you compensated?'",
+      "body": "Hi Tim,\n\nStraight question, so a straight answer: we are paid directly by you, not on commission from anyone else and not from any third party. There is no arrangement where someone else is paying us to put you in front of them.\n\nWhat it costs depends on volume and how much of the setup we run, so rather than guess in an email:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nRiley",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786546800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
     }
   ]
 }
