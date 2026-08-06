@@ -108,6 +108,14 @@
     {
       "email": "kevin@oxman.com",
       "reason": "Declined: no thank you"
+    },
+    {
+      "email": "jed@tychem.net",
+      "reason": "Hostile decline: no company name, no phone"
+    },
+    {
+      "email": "james@arktos.bio",
+      "reason": "Declined: No"
     }
   ]
 }

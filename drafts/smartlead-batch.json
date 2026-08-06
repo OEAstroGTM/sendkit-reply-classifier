@@ -842,6 +842,111 @@
           "label": "Wednesday, August 12 at 1:30 PM EDT"
         }
       ]
+    },
+    {
+      "id": "stp",
+      "campaign_id": "3762048",
+      "email": "alejandro@stprecruit.com",
+      "lead": "Alejandro Mata, Strategic Talent Partners — asked our rate",
+      "body": "Hi Alejandro,\n\nWe work on a retainer rather than per lead or commission. The infrastructure sits with us from day one, domains, mailboxes, list build and sequences, so the cost is ours before a single reply lands. What the retainer is depends on volume and how much of the setup you want us to own, so I would rather walk you through it properly than throw a number at you.\n\n• Monday, August 10 at 11:00 AM EDT\n• Tuesday, August 11 at 11:00 AM EDT\n• Wednesday, August 12 at 11:00 AM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nJulia",
+      "slots": [
+        {
+          "start_time": 1786374000,
+          "label": "Monday, August 10 at 11:00 AM EDT"
+        },
+        {
+          "start_time": 1786460400,
+          "label": "Tuesday, August 11 at 11:00 AM EDT"
+        },
+        {
+          "start_time": 1786546800,
+          "label": "Wednesday, August 12 at 11:00 AM EDT"
+        }
+      ]
+    },
+    {
+      "id": "solarewaste",
+      "campaign_id": "3762048",
+      "email": "dwight@solarewastesolutions.com",
+      "lead": "Dwight Clark, GM Solar eWaste Solutions — said 'Yes'",
+      "body": "Hi Dwight,\n\nGood to hear.\n\nHere is what is open on my side:\n\n• Monday, August 10 at 11:00 AM EDT\n• Tuesday, August 11 at 11:00 AM EDT\n• Wednesday, August 12 at 11:00 AM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker. I saw your booking link too, so if it is easier to put it in your own calendar, use that and I will work around it.\n\nBrooke",
+      "slots": [
+        {
+          "start_time": 1786374000,
+          "label": "Monday, August 10 at 11:00 AM EDT"
+        },
+        {
+          "start_time": 1786460400,
+          "label": "Tuesday, August 11 at 11:00 AM EDT"
+        },
+        {
+          "start_time": 1786546800,
+          "label": "Wednesday, August 12 at 11:00 AM EDT"
+        }
+      ]
+    },
+    {
+      "id": "dbtech",
+      "campaign_id": "3762048",
+      "email": "dj@db-tech.us",
+      "lead": "DJ, DB Tech — 'You have my attention'",
+      "body": "Hi DJ,\n\nGlad to hear it.\n\nShort version: we run the outbound for you end to end. Separate sending domains and mailboxes on our side so your own domain is never exposed, a target list built around the consumer electronics and IoT companies you want, sequences written and sent by us, and replies land straight with your team.\n\nHappy to go through what that looks like for DB Tech:\n\n• Monday, August 10 at 11:00 AM EDT\n• Tuesday, August 11 at 11:00 AM EDT\n• Wednesday, August 12 at 11:00 AM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nLeah",
+      "slots": [
+        {
+          "start_time": 1786374000,
+          "label": "Monday, August 10 at 11:00 AM EDT"
+        },
+        {
+          "start_time": 1786460400,
+          "label": "Tuesday, August 11 at 11:00 AM EDT"
+        },
+        {
+          "start_time": 1786546800,
+          "label": "Wednesday, August 12 at 11:00 AM EDT"
+        }
+      ]
+    },
+    {
+      "id": "nohr",
+      "campaign_id": "3762048",
+      "email": "jimnohr@nohrllc.com",
+      "lead": "Jim Nohr, President Nohr Pattern & Casting — asked how much it would cost",
+      "body": "Hi Jim,\n\nWe work on a retainer rather than per lead or commission. The infrastructure sits with us from day one, domains, mailboxes, list build and sequences, so the cost is ours before a single reply lands. What the retainer is depends on volume and how much of the setup you want us to own, so I would rather walk you through it properly than throw a number at you.\n\n• Monday, August 10 at 11:00 AM EDT\n• Tuesday, August 11 at 11:00 AM EDT\n• Wednesday, August 12 at 11:00 AM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nCatherine",
+      "slots": [
+        {
+          "start_time": 1786374000,
+          "label": "Monday, August 10 at 11:00 AM EDT"
+        },
+        {
+          "start_time": 1786460400,
+          "label": "Tuesday, August 11 at 11:00 AM EDT"
+        },
+        {
+          "start_time": 1786546800,
+          "label": "Wednesday, August 12 at 11:00 AM EDT"
+        }
+      ]
+    },
+    {
+      "id": "godela",
+      "campaign_id": "3762048",
+      "email": "cinnamon@godela.ai",
+      "lead": "Cinnamon, Godela — asked where we source data and how we find the targets",
+      "body": "Hi Cinnamon,\n\nGood question, and the sourcing is the part that decides whether any of this works.\n\nWe pull from several B2B data providers rather than one, then enrich and verify before anything is used. On top of that we run our own scrapers against signal sources, job postings, tech stacks, company news, so the list is built around what a company is actually doing rather than a static database entry. Everything is then filtered down to the profile you define.\n\nThe part that matters most: you see the list before we send to it. If the accounts are wrong, we rebuild it. You are never guessing about who we are contacting on your behalf.\n\nHappy to walk through it properly, including what the list would look like for Godela:\n\n• Monday, August 10 at 11:00 AM EDT\n• Tuesday, August 11 at 11:00 AM EDT\n• Wednesday, August 12 at 11:00 AM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nJulia",
+      "slots": [
+        {
+          "start_time": 1786374000,
+          "label": "Monday, August 10 at 11:00 AM EDT"
+        },
+        {
+          "start_time": 1786460400,
+          "label": "Tuesday, August 11 at 11:00 AM EDT"
+        },
+        {
+          "start_time": 1786546800,
+          "label": "Wednesday, August 12 at 11:00 AM EDT"
+        }
+      ]
     }
   ]
 }
