@@ -845,6 +845,52 @@ export default async function handler(req, res) {
       return res.status(200).json({ added: lead, campaign_id, result });
     }
 
+    // ?action=slack-react&channel=C..&ts=..&emoji=white_check_mark
+    // ?action=slack-react&channel=C..&match=email@x.com&emoji=..   (finds the message)
+    // The Claude Slack connector cannot write to externally shared (Slack Connect)
+    // channels, so reactions go through a native bot token instead.
+    if (action === "slack-react") {
+      const token = process.env.SLACK_BOT_TOKEN;
+      if (!token) return res.status(400).json({ error: "SLACK_BOT_TOKEN env var is not set" });
+      const channel = req.query.channel;
+      const emoji = req.query.emoji || "white_check_mark";
+      if (!channel) return res.status(400).json({ error: "Need channel" });
+
+      const slack = async (method, params) => {
+        const r = await fetch(`https://slack.com/api/${method}?${new URLSearchParams(params)}`, {
+          method: "POST",
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        return r.json();
+      };
+
+      // Resolve a timestamp: either given directly, or by finding the newest
+      // message whose text contains `match` (an email works well).
+      let stamps = (req.query.ts || "").split(",").map((s) => s.trim()).filter(Boolean);
+      if (!stamps.length && req.query.match) {
+        const hist = await slack("conversations.history", { channel, limit: "200" });
+        if (!hist.ok) return res.status(400).json({ error: `slack history: ${hist.error}` });
+        const needles = req.query.match.split(",").map((s) => s.trim().toLowerCase()).filter(Boolean);
+        stamps = (hist.messages || [])
+          .filter((m) => needles.some((n) => String(m.text || "").toLowerCase().includes(n)))
+          .map((m) => m.ts);
+      }
+      if (!stamps.length) return res.status(404).json({ error: "No matching messages" });
+
+      const results = [];
+      for (const ts of stamps) {
+        const r = await slack("reactions.add", { channel, timestamp: ts, name: emoji });
+        results.push({ ts, ok: r.ok, error: r.error || null });
+      }
+      return res.status(200).json({
+        channel, emoji,
+        reacted: results.filter((x) => x.ok).length,
+        alreadyDone: results.filter((x) => x.error === "already_reacted").length,
+        failed: results.filter((x) => !x.ok && x.error !== "already_reacted"),
+        results,
+      });
+    }
+
     // GET/POST ?action=unsubscribe&email=...  — global suppression
     if (action === "unsubscribe") {
       const email = req.query.email || req.body?.email;
