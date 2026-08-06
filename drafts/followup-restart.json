@@ -1,0 +1,10 @@
+{
+  "note": "Leads put back into the follow-up cadence. bumpsAtRestart is the bump count at the moment of restart; the cadence counts from there rather than from zero.",
+  "restart": [
+    {
+      "email": "maggie@agcold.com",
+      "bumpsAtRestart": 3,
+      "reason": "No-showed the call on 5 Aug, restarted at Felipe's request"
+    }
+  ]
+}

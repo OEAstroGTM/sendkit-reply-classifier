@@ -13,6 +13,7 @@ import { linkifySlots } from "../lib/booking.js";
 import { createEvent, cancelEvent, formatSlot, getGrantFor } from "../lib/nylas.js";
 import batch from "../drafts/smartlead-batch.json" with { type: "json" };
 import holdList from "../drafts/followup-hold.json" with { type: "json" };
+import restartList from "../drafts/followup-restart.json" with { type: "json" };
 
 export const config = { maxDuration: 60 };
 
@@ -298,6 +299,10 @@ export default async function handler(req, res) {
       const maxBumps = bumpDays.length;
       // Booked meetings and promised calls never get nudged.
       const HOLD = new Map(holdList.hold.map((h) => [h.email.toLowerCase(), h.reason]));
+      // Restarted leads count bumps from the restart point, not from zero,
+      // so an exhausted sequence can be reopened without losing the history.
+      const RESTART = new Map((restartList.restart || [])
+        .map((r) => [r.email.toLowerCase(), Number(r.bumpsAtRestart || 0)]));
       // Nothing goes out at the weekend. Availability is Mon-Thu and Sundays are closed.
       const dow = new Date().getUTCDay();
       const sendingDay = dow >= 1 && dow <= 5;
@@ -330,7 +335,8 @@ export default async function handler(req, res) {
             const lastReplyIdx = [...msgs].map((m) => m.type).lastIndexOf("REPLY");
             const lastReply = msgs[lastReplyIdx];
             const outboundSince = msgs.slice(lastReplyIdx + 1).length;
-            const bumpsSent = Math.max(0, outboundSince - 1);      // first one was the actual answer
+            const rawBumps = Math.max(0, outboundSince - 1);        // first one was the actual answer
+            const bumpsSent = Math.max(0, rawBumps - (RESTART.get(lead.email.toLowerCase()) || 0));
             const daysQuiet = (Date.now() - new Date(last.time).getTime()) / 86400000;
             const nextBumpAt = bumpDays[bumpsSent];
 
@@ -349,6 +355,7 @@ export default async function handler(req, res) {
               ourLastMessageAt: last.time,
               daysQuiet: +daysQuiet.toFixed(1),
               bumpsSent,
+              restarted: RESTART.has(lead.email.toLowerCase()) || undefined,
               exhausted: bumpsSent >= maxBumps,
               hold: HOLD.get(lead.email.toLowerCase()) || null,
               due: !HOLD.has(lead.email.toLowerCase()) && sendingDay &&

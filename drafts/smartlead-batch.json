@@ -1619,6 +1619,27 @@
           "label": "Wednesday, August 12 at 3:00 PM AEST"
         }
       ]
+    },
+    {
+      "id": "agcold2",
+      "campaign_id": "3721845",
+      "email": "maggie@agcold.com",
+      "lead": "Maggie Holloway, Agcold — no-showed the call on 5 Aug, restarting",
+      "body": "Hi Maggie,\n\nNo problem at all about yesterday, these things happen and I would rather rebook than let it drop.\n\nHere is what is open:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nAnd if the timing has simply gone off for now, say so and I will leave it there rather than keep chasing.\n\nJamie",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
     }
   ]
 }
