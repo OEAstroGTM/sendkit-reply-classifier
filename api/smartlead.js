@@ -415,11 +415,13 @@ export default async function handler(req, res) {
         const rows = stats.data || [];
         scanned += rows.length;
 
-        // Anything answered within a minute was not typed by a person
+        // Cheap pre-filter before spending two API calls on a thread. Kept
+        // deliberately low: people do reply inside a minute from a phone.
+        const machineFloor = Number(process.env.MACHINE_DELAY_SECONDS || 15);
         const candidates = [];
         for (const r of rows) {
           const delay = (new Date(r.reply_time) - new Date(r.sent_time)) / 1000;
-          if (delay < 60) { instantMachines++; continue; }
+          if (delay < machineFloor) { instantMachines++; continue; }
           candidates.push({ ...r, delaySeconds: Math.round(delay) });
         }
         candidatesTotal = Math.max(candidatesTotal, candidates.length);
