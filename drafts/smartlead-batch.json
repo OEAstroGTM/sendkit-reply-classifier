@@ -1136,6 +1136,69 @@
           "label": "Wednesday, August 12 at 1:30 PM EDT"
         }
       ]
+    },
+    {
+      "id": "tandem",
+      "campaign_id": "3762048",
+      "email": "carolyn.hendrickson@tandemgroupinc.com",
+      "lead": "Carolyn Hendrickson, Tandem Group — 'And how do you think you would be able to do that?'",
+      "body": "Hi Carolyn,\n\nFair challenge.\n\nWe set up separate sending domains and mailboxes on our side, so your own domain is never exposed. We build the target list around the buyers you actually want, write the sequences, send them, and every reply lands directly with your team. You see the list before anything goes out, and if the accounts are wrong we rebuild it.\n\nFor Tandem that means going out to mid-market and enterprise companies actually going through change or scaling leadership, rather than a generic list of executives.\n\nHappy to show you what the list would look like before you decide anything:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nHeather",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786546800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "qcharge",
+      "campaign_id": "3762048",
+      "email": "sergej@qcharge123.com",
+      "lead": "Sergej Marojevic, Co-Founder & CEO QCharge (Dallas) — asked commission vs upfront fee",
+      "body": "Hi Sergej,\n\nStraight answer: it is a fee you pay us, not commission and not success-based. We are not taking a cut of anything you close, and nobody else is paying us to put you in front of them.\n\nWhat the fee is depends on the volume you want going out and how much of the setup we run, so rather than guess at a number in an email:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nAlicia",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786546800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "megasupply",
+      "campaign_id": "3762048",
+      "email": "paco@megasupplyllc.com",
+      "lead": "Paco, Mega Supply — 'Interested, tell me how and how much $?'",
+      "body": "Hi Paco,\n\nGood to hear. Taking the how first:\n\nWe set up separate sending domains and mailboxes on our side, so your own domain is never exposed. We build the target list around the buyers you actually want, write the sequences, send them, and every reply lands directly with your team. You see the list before anything goes out, and if the accounts are wrong we rebuild it.\n\nOn the cost, it moves with volume and how much of the setup we own, so any number I put in an email now would be the wrong one. Fifteen minutes and I can give you a real figure:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nSusan",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786546800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
     }
   ]
 }
