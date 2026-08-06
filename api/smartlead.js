@@ -6,7 +6,7 @@
 
 import {
   listCampaigns, campaignStats, leadByEmail, messageHistory,
-  replyToLead, unsubscribeLead, analyticsByDate, isMachineReply, isOptOut, isDecline, ownWords, clearCache,
+  replyToLead, unsubscribeLead, analyticsByDate, addLeadsToCampaign, isMachineReply, isOptOut, isDecline, ownWords, clearCache,
 } from "../lib/smartlead.js";
 import { toHtml, generateReply, generateBump } from "../lib/reply.js";
 import { linkifySlots } from "../lib/booking.js";
@@ -808,6 +808,29 @@ export default async function handler(req, res) {
         totalBounces: ok.reduce((n, x) => n + x.bounces, 0),
         campaigns: per.sort((a, b) => (b.sent || 0) - (a.sent || 0)),
       });
+    }
+
+    // ?action=add-lead&campaign_id=..&email=..&first_name=..&company=..
+    // Used when a lead tells us we have the wrong address: the existing thread
+    // is dead, so the corrected address has to enter the sequence as a new lead.
+    if (action === "add-lead") {
+      const { campaign_id, email } = req.query;
+      if (!campaign_id || !email) return res.status(400).json({ error: "Need campaign_id and email" });
+      const lead = {
+        email,
+        first_name: req.query.first_name || "",
+        last_name: req.query.last_name || "",
+        company_name: req.query.company || "",
+      };
+      const result = await addLeadsToCampaign(campaign_id, {
+        lead_list: [lead],
+        settings: {
+          ignore_global_block_list: false,
+          ignore_unsubscribe_list: false,
+          ignore_duplicate_leads_in_other_campaign: false,
+        },
+      });
+      return res.status(200).json({ added: lead, campaign_id, result });
     }
 
     // GET/POST ?action=unsubscribe&email=...  — global suppression
