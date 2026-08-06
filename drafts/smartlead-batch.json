@@ -658,6 +658,27 @@
           "label": "Wednesday, August 12 at 1:30 PM EDT"
         }
       ]
+    },
+    {
+      "id": "aspire",
+      "campaign_id": "3762048",
+      "email": "john.gargasz@aspireres.co",
+      "lead": "John Gargasz, Aspire Residential — asked fee, check sizes, target LP IRR; thinks we place capital",
+      "body": "Hi John,\n\nFair questions, and you deserve a straight answer before you spend more time on this.\n\nI am not placing capital. We are not a placement agent, so there are no check sizes or LP IRR on my side, and I should not have framed it as introductions to investors.\n\nWhat we actually do is run the outbound for you. Separate sending domains and mailboxes on our side, a target list built around the developers, investors and partners you want in front of, sequences written and sent by us, and the replies come straight back to your team. You have the conversations, we create them.\n\nOn our fee, it moves with volume and how much of the setup you want us to own, so I would rather quote it properly than throw a number at you. Happy to cover it on a short call:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nAnd if it is capital you are looking for rather than conversations, say so and I will leave you to it.\n\nTeresa",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
     }
   ]
 }
