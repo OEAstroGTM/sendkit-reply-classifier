@@ -396,8 +396,13 @@ export default async function handler(req, res) {
 
       const max = Math.min(Number(req.query.max || 60), 120);
       const perCampaign = Math.min(Number(req.query.threads || 25), 40);
+      // Thread reads are the slow part, so a single call can only inspect a
+      // slice before the function times out. ?skip=N walks further down the
+      // candidate list, which lets several calls cover a campaign completely
+      // instead of silently reporting a clean queue on a truncated view.
+      const skip = Math.max(0, Number(req.query.skip || 0));
       const awaiting = [], optouts = [], declines = [];
-      let scanned = 0, instantMachines = 0;
+      let scanned = 0, instantMachines = 0, candidatesTotal = 0;
 
       for (const id of ids) {
         // Read the tail of the list, where new arrivals land
@@ -417,8 +422,10 @@ export default async function handler(req, res) {
           if (delay < 60) { instantMachines++; continue; }
           candidates.push({ ...r, delaySeconds: Math.round(delay) });
         }
+        candidatesTotal = Math.max(candidatesTotal, candidates.length);
 
-        const checked = await Promise.all(candidates.slice(0, perCampaign).map(async (c) => {
+        const window = candidates.slice(skip, skip + perCampaign);
+        const checked = await Promise.all(window.map(async (c) => {
           try {
             const lead = await leadByEmail(c.lead_email);
             const hist = await messageHistory(id, lead.id);
@@ -463,6 +470,10 @@ export default async function handler(req, res) {
         generatedAt: new Date().toISOString(),
         campaignsScanned: ids.length,
         repliesScanned: scanned,
+        skip,
+        // true when there are candidates past this slice that were not read
+        moreToScan: candidatesTotal > skip + perCampaign,
+        candidatesTotal,
         instantMachines,
         awaitingCount: awaiting.length,
         // Polite no's. Nothing to answer, but they must not enter follow-ups.
