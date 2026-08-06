@@ -1262,6 +1262,237 @@
           "label": "Wednesday, August 12 at 1:30 PM EDT"
         }
       ]
+    },
+    {
+      "id": "cella",
+      "campaign_id": "3762048",
+      "email": "mmiller@cellagr.com",
+      "lead": "Matthew Miller, Cella Building Company — 'Yes'",
+      "body": "Hi Matthew,\n\nGood to hear.\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nSophie",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "compliance",
+      "campaign_id": "3762048",
+      "email": "arthur.eberle@compliance-assurance.com",
+      "lead": "Arthur Eberle, CEO Compliance Assurance Associates — 'yes'",
+      "body": "Hi Arthur,\n\nGood to hear.\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker. I saw your own booking link as well, so if it is easier to put it in your calendar directly, use that and I will work around it.\n\nChelsea",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "aurix",
+      "campaign_id": "3762048",
+      "email": "a.raffay@aurixinternational.com",
+      "lead": "Abdul Raffay, Aurix International — 'Sure'",
+      "body": "Hi Abdul,\n\nGood to hear.\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nPaige",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "redlion",
+      "campaign_id": "3762048",
+      "email": "simit.shah@redlionadv.com",
+      "lead": "Simit Shah, Red Lion Advisory — 'Tell me more. I am interested.'",
+      "body": "Hi Simit,\n\nOf course.\n\nWe set up separate sending domains and mailboxes on our side, so your own domain is never exposed. We build the target list around the buyers you want, write the sequences, send them, and every reply lands directly with your team. You have the conversations, we create them.\n\nHappy to go through what that would look like for Red Lion:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nImogen",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "washon",
+      "campaign_id": "3762048",
+      "email": "jbo@washonmeddata.com",
+      "lead": "James Bo, Washon MedData — wants a call, gave cell, asked for Zoom",
+      "body": "Hi James,\n\nGood to hear.\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nOne note on Zoom: we run Google Meet, so the invite carries a Meet link rather than a Zoom room. It opens in the browser with nothing to install. If Zoom is a firm requirement your end, send me your room and we will join yours instead.\n\nDiana",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "growthlenz",
+      "campaign_id": "3762048",
+      "email": "ns@growthlenz.com",
+      "lead": "Swaminathan, GrowthLenz — interested, wants to understand the fit",
+      "body": "Dear Swaminathan,\n\nThank you, and you have read it correctly.\n\nWe set up separate sending domains and mailboxes on our side, so your own domain is never exposed. We build the target list around the buyers you want, write the sequences, send them, and every reply lands directly with your team. For GrowthLenz that would mean going out to asset-intensive manufacturers and OEMs who are actively working on digital transformation or aftermarket performance, rather than a broad industrial list.\n\nHappy to walk through how we would build that list:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nMargaret",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "stratech",
+      "campaign_id": "3762048",
+      "email": "alex@stratechglobal.com",
+      "lead": "Alexander Cohen, Stratech — 'WHAT IS THE CATCH?'",
+      "body": "Hi Alexander,\n\nNo catch, and here is the whole of it.\n\nWe set up separate sending domains and mailboxes on our side, so your own domain is never exposed. We build the target list around the buyers you want, write the sequences, send them, and every reply lands directly with your team. You pay us a fee to run it. We are not taking a cut of anything you close, we are not selling you a list, and nobody else is paying us to put you in front of them.\n\nThat is the entire model. If it sounds like it would work for Stratech:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nKimberly",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "odi",
+      "campaign_id": "3762048",
+      "email": "rich@odi.net",
+      "lead": "Rich Slevin, ODI (Palo Alto) — 'willing to talk if you can actually deliver'",
+      "body": "Hi Rich,\n\nThat is the right way to judge it, and honestly the briefs with a real bar on them are the ones we would rather take.\n\nHappy to be held to it:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nWendy",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "cruzader",
+      "campaign_id": "3762048",
+      "email": "edward@cruzader.info",
+      "lead": "Edward, Cruzader Recruiting — 'Knowing to hire, or ready to buy services?'",
+      "body": "Hi Edward,\n\nReady to buy services is the target, companies actively looking for a recruiting partner rather than simply posting roles.\n\nIn practice it runs both ways. Hiring activity is usually the signal that surfaces them, and some turn out to be further along than others. We tune that as we go, so the list moves toward the ones actually in the market rather than just busy.\n\nHappy to go through how we would set that up for Cruzader:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nBrianna",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "uplift",
+      "campaign_id": "3762048",
+      "email": "charlie@upliftmicrohome.com",
+      "lead": "Charlie, Uplift Microhome — 'How did you get my email?'",
+      "body": "Hi Charlie,\n\nFair question, and you deserve a direct answer.\n\nYour address came from a publicly available B2B business database, the kind that lists business contact details published by or on behalf of companies. It was not taken from a private source, a breach, or a consumer list, and it is a business address rather than a personal one.\n\nIf you would rather not hear from us again, say the word and I will remove you straight away, no need to explain.\n\nIf you are curious rather than annoyed, I am happy to talk:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nLeah",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "exitready",
+      "campaign_id": "3762048",
+      "email": "matt@exitreadysolutions.biz",
+      "lead": "Matt, Exit-Ready Solutions — long sarcastic rejection about solicitation volume",
+      "body": "Hi Matt,\n\nFair, and the volume of that noise is real. You are right that everyone claims the same thing, and I am not going to try to out-claim the other ten messages you got this week.\n\nWhat I would rather do is show you instead of tell you. Fifteen minutes, and if it is more of the same you will know inside five and can throw me out with the rest.\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nLindsay",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
     }
   ]
 }
