@@ -616,6 +616,48 @@
       "lead": "Jerry Acuff, Delta Point — wants to talk after Labor Day (7 Sept)",
       "body": "Hi Jerry,\n\nAfter Labor Day is fine, and 28 years in business speaks for itself.\n\nI will come back to you in the week of the 7th of September with a couple of times rather than pester you before then. If anything changes and you would rather talk sooner, just say.\n\nDiana",
       "slots": []
+    },
+    {
+      "id": "packfire",
+      "campaign_id": "3762048",
+      "email": "jpolke@packfire.com",
+      "lead": "Jeffrey Polke, PACKFIRE — asked where the retailers are located",
+      "body": "Hi Jeffrey,\n\nGood morning.\n\nHonest answer: in the markets you already play in. We do not work from a fixed list of retailers. We build the target list around the countries and states PACKFIRE sells into, or the ones you want to open up next.\n\nSo the useful question back to you is which markets matter most right now. Tell me that and I will show you what the list looks like there.\n\nHappy to cover it on a short call if that is easier:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nKaren",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "polybond",
+      "campaign_id": "3762048",
+      "email": "erik.larson@polybondna.com",
+      "lead": "Erik Larson, VP/GM Polybond North America — asked for our website",
+      "body": "Hi Erik,\n\nHere you go: [koldify.io](https://koldify.io).\n\nShort version, we run outbound email campaigns end to end. Separate sending domains and mailboxes so your own domain is never exposed, a target list built around the buyers you want, sequences written and sent by us, and replies land straight with your team.\n\nIf it is worth a conversation:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nKatherine",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
     }
   ]
 }
