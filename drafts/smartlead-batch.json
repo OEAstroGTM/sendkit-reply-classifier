@@ -1115,6 +1115,27 @@
           "label": "Wednesday, August 12 at 1:30 PM EDT"
         }
       ]
+    },
+    {
+      "id": "koeda",
+      "campaign_id": "3762048",
+      "email": "yukio@koeda.co.jp",
+      "lead": "Yukio, KOEDA (replied from yukioadvisors.com) — 'What are your or your company's services?'",
+      "body": "Hi Yukio,\n\nOf course.\n\nWe run outbound email campaigns end to end. We set up separate sending domains and mailboxes on our side so your own domain is never exposed, build the target list around the people you actually want to reach, write and send the sequences, and every reply lands directly with your team. You have the conversations, we create them.\n\nFor KOEDA that would mean going out to the gastroenterology and interventional endoscopy centres worth talking to, chosen deliberately rather than scraped in bulk.\n\nHappy to walk through it:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker. If you are working on Japan time those will be awkward, so say the word and I will find something that fits your morning instead.\n\nStephanie",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786546800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
     }
   ]
 }
