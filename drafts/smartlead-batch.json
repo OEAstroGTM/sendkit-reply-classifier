@@ -800,6 +800,27 @@
           "label": "Wednesday, August 12 at 1:30 PM EDT"
         }
       ]
+    },
+    {
+      "id": "tropical",
+      "campaign_id": "3762048",
+      "email": "eberman@tropicalproducts.com",
+      "lead": "Ed Berman, President Tropical Products (Salem MA) — 'always open', said email or call me",
+      "body": "Hi Ed,\n\nThanks, that is good to hear.\n\nRather than trade emails, here are a few times that are open on my side:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nIf you would rather I simply called, say the word and I will use 978-740-5665 ext. 104.\n\nChristina",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
     }
   ]
 }
