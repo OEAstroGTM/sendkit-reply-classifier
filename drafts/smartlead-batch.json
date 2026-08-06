@@ -524,6 +524,85 @@
           "label": "Monday, August 10 at 11:00 PM IST"
         }
       ]
+    },
+    {
+      "id": "trim",
+      "campaign_id": "3762048",
+      "email": "ae@trimnetworks.com",
+      "lead": "Alex, Trim Networks (China) — thinks we broker direct brand introductions; CORRECTION, no times (window is 1:30am his time)",
+      "body": "Hi Alex,\n\nStraight answer: no, we do not have direct contacts at multinational brands to hand over, and we are not selling email or phone lists either.\n\nWhat we actually do is run outbound campaigns for you. We set up separate sending domains and mailboxes, build the target list around the buyers you want, write and send the sequences, and replies land directly with your team. The relationships are ones you build on those calls, not ones we pass across.\n\nIf that is not what you are after, I would rather say so now than waste your time.\n\nHappy to call your cell if it is worth a conversation. What time works on your side? Our afternoon is the middle of your night, so tell me a window that suits you in China and I will work to it.\n\nCharlotte",
+      "slots": []
+    },
+    {
+      "id": "masmate",
+      "campaign_id": "3762048",
+      "email": "alex.lapshun@masmate.online",
+      "lead": "Alex Lapshun, Masmate — 'Absolutely open'",
+      "body": "Hi Alex,\n\nGood to hear.\n\nHere is what I have open:\n\n• Monday, August 10 at 10:30 AM PT\n• Tuesday, August 11 at 10:30 AM PT\n• Wednesday, August 12 at 10:30 AM PT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker for you.\n\nGeorgia",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 10:30 AM PT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 10:30 AM PT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 10:30 AM PT"
+        }
+      ]
+    },
+    {
+      "id": "magicmenu",
+      "campaign_id": "3762048",
+      "email": "dusty@magicmenu.ai",
+      "lead": "Dusty Dequine, MagicMenu.ai CEO — busy this week with a deployment, wants something soon",
+      "body": "Hi Dusty,\n\nUnderstood, deployment week is not the time. Let us put something in for next week instead.\n\n• Monday, August 10 at 10:30 AM PT\n• Tuesday, August 11 at 10:30 AM PT\n• Wednesday, August 12 at 10:30 AM PT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker for you. And good luck with the rollout.\n\nElizabeth",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 10:30 AM PT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 10:30 AM PT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 10:30 AM PT"
+        }
+      ]
+    },
+    {
+      "id": "fpl",
+      "campaign_id": "3762048",
+      "email": "avery@fpl.dev",
+      "lead": "Avery Wagar, Future Present Labs CEO — travelling until 9th, back in Seattle, call after the 10th",
+      "body": "Hi Avery,\n\nNo problem, safe travels.\n\nHere is what I have from once you are back:\n\n• Tuesday, August 11 at 10:30 AM PT\n• Wednesday, August 12 at 10:30 AM PT\n• Thursday, August 13 at 10:30 AM PT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker for you.\n\nIsabel",
+      "slots": [
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 10:30 AM PT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 10:30 AM PT"
+        },
+        {
+          "start_time": 1786642200,
+          "label": "Thursday, August 13 at 10:30 AM PT"
+        }
+      ]
+    },
+    {
+      "id": "deltapoint",
+      "campaign_id": "3762048",
+      "email": "jacuff@deltapoint.com",
+      "lead": "Jerry Acuff, Delta Point — wants to talk after Labor Day (7 Sept)",
+      "body": "Hi Jerry,\n\nAfter Labor Day is fine, and 28 years in business speaks for itself.\n\nI will come back to you in the week of the 7th of September with a couple of times rather than pester you before then. If anything changes and you would rather talk sooner, just say.\n\nDiana",
+      "slots": []
     }
   ]
 }
