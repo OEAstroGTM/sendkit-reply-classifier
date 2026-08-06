@@ -700,6 +700,14 @@
           "label": "Wednesday, August 12 at 1:30 PM EDT"
         }
       ]
+    },
+    {
+      "id": "feynman",
+      "campaign_id": "3762048",
+      "email": "arun@feynmanenergyusa.com",
+      "lead": "Arun, Feynman Energy USA — booked Fri 7 Aug 2pm EDT with Logan; asked for Zoom, we run Meet",
+      "body": "Hi Arun,\n\nGreat, we are booked in for tomorrow, Friday 7 August at 2:00 PM EDT. The invite is in your inbox now and my colleague Logan is on it too.\n\nOne thing on Zoom: we run Google Meet, so the invite carries a Meet link rather than a Zoom room. It opens straight in the browser with nothing to install. If Zoom is a firm requirement your end, send me your room and we will join yours instead, no trouble either way.\n\nHere is the link either way: https://meet.google.com/vce-vyvd-ciu\n\nSpeak tomorrow.\n\nNicole",
+      "slots": []
     }
   ]
 }
