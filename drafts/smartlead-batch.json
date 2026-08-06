@@ -1514,6 +1514,111 @@
           "label": "Wednesday, August 12 at 1:30 PM EDT"
         }
       ]
+    },
+    {
+      "id": "fu3-pratham",
+      "campaign_id": "3721834",
+      "email": "pratham@aeroprime.in",
+      "lead": "Pratham Goyal, Aeroprime — 11pm IST times ignored; re-offering inside his stated 10-6 window",
+      "body": "Hi Pratham,\n\nThe times I sent were late in your evening, which was my doing rather than yours. Here is the same conversation at a sensible hour:\n\n• Monday, August 10 at 5:30 PM IST\n• Tuesday, August 11 at 5:30 PM IST\n• Wednesday, August 12 at 5:30 PM IST\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nAmanda",
+      "slots": [
+        {
+          "start_time": 1786363200,
+          "label": "Monday, August 10 at 5:30 PM IST"
+        },
+        {
+          "start_time": 1786449600,
+          "label": "Tuesday, August 11 at 5:30 PM IST"
+        },
+        {
+          "start_time": 1786536000,
+          "label": "Wednesday, August 12 at 5:30 PM IST"
+        }
+      ]
+    },
+    {
+      "id": "fu3-tommi",
+      "campaign_id": "3721845",
+      "email": "tommi.tormala@logitri.fi",
+      "lead": "Tommi Törmälä, Logitri — we called him Tommy and gave a thin answer",
+      "body": "Hi Tommi,\n\nFirst, apologies for getting your name wrong last time.\n\nSecond, my answer was thin. Properly: we run outbound email campaigns end to end. Separate sending domains and mailboxes on our side so Logitri's own domain is never exposed, a target list built around the customers you actually want, sequences written and sent by us, and every reply lands directly with your team.\n\nIf it is worth a conversation:\n\n• Monday, August 10 at 8:30 PM EEST\n• Tuesday, August 11 at 8:30 PM EEST\n• Wednesday, August 12 at 8:30 PM EEST\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nNicole",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 8:30 PM EEST"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 8:30 PM EEST"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 8:30 PM EEST"
+        }
+      ]
+    },
+    {
+      "id": "fu3-sullivan",
+      "campaign_id": "3721845",
+      "email": "sullivan.goh@janio.asia",
+      "lead": "Sullivan Goh, Janio Asia — sent the write-up, no reply since",
+      "body": "Hi Sullivan,\n\nJust checking the write-up reached you and your team.\n\nIf there are questions it did not answer, I am happy to take them by email. If it is easier to talk:\n\n• Tuesday, August 11 at 1:30 AM SGT\n• Wednesday, August 12 at 1:30 AM SGT\n• Thursday, August 13 at 1:30 AM SGT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nKatherine",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Tuesday, August 11 at 1:30 AM SGT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Wednesday, August 12 at 1:30 AM SGT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Thursday, August 13 at 1:30 AM SGT"
+        }
+      ]
+    },
+    {
+      "id": "fu3-ronnie",
+      "campaign_id": "3721834",
+      "email": "cr@keywordtrucking.com",
+      "lead": "Ronnie Chinchilla, Keyword Trucking — earlier times all expired; 3pm ET as requested",
+      "body": "Hi Ronnie,\n\nThe times I sent have all gone by, sorry about that. Here is fresh availability, later in the day this time:\n\n• Monday, August 10 at 3:00 PM EDT\n• Tuesday, August 11 at 3:00 PM EDT\n• Wednesday, August 12 at 3:00 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nJennifer",
+      "slots": [
+        {
+          "start_time": 1786388400,
+          "label": "Monday, August 10 at 3:00 PM EDT"
+        },
+        {
+          "start_time": 1786474800,
+          "label": "Tuesday, August 11 at 3:00 PM EDT"
+        },
+        {
+          "start_time": 1786561200,
+          "label": "Wednesday, August 12 at 3:00 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "fu3-ashish",
+      "campaign_id": "3721834",
+      "email": "ashish@alphatrucking.com.au",
+      "lead": "Ashish Patel, Alpha Trucking — we asked 'would that range work on thursday' and never pinned it down",
+      "body": "Hi Ashish,\n\nI left that hanging without pinning anything down, apologies.\n\nHere are exact times rather than a range:\n\n• Tuesday, August 11 at 3:30 AM AEST\n• Wednesday, August 12 at 3:30 AM AEST\n• Thursday, August 13 at 3:30 AM AEST\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nCarolyn",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Tuesday, August 11 at 3:30 AM AEST"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Wednesday, August 12 at 3:30 AM AEST"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Thursday, August 13 at 3:30 AM AEST"
+        }
+      ]
     }
   ]
 }
