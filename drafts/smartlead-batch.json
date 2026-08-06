@@ -947,6 +947,27 @@
           "label": "Wednesday, August 12 at 11:00 AM EDT"
         }
       ]
+    },
+    {
+      "id": "brainstorm",
+      "campaign_id": "3762048",
+      "email": "robert.fremeau@brainstormtherapeutics.org",
+      "lead": "Dr Robert Fremeau, Founder & CEO BrainStorm Therapeutics — 'we would be interested in learning more'",
+      "body": "Hi Robert,\n\nGlad to hear it.\n\nShort version: we run the outbound for you end to end. Separate sending domains and mailboxes on our side so your own domain is never exposed, a target list built around the specific companies and roles you want in front of, sequences written and sent by us, and every reply comes straight back to your team.\n\nFor BrainStorm that would mean going out to the CNS and neurodegenerative programmes worth talking to, chosen deliberately rather than scraped in bulk. It is a small, well defined world, which tends to suit this approach rather than work against it.\n\nHappy to go through how we would build that list:\n\n• Monday, August 10 at 11:00 AM EDT\n• Tuesday, August 11 at 11:00 AM EDT\n• Wednesday, August 12 at 11:00 AM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nKatherine",
+      "slots": [
+        {
+          "start_time": 1786374000,
+          "label": "Monday, August 10 at 11:00 AM EDT"
+        },
+        {
+          "start_time": 1786460400,
+          "label": "Tuesday, August 11 at 11:00 AM EDT"
+        },
+        {
+          "start_time": 1786546800,
+          "label": "Wednesday, August 12 at 11:00 AM EDT"
+        }
+      ]
     }
   ]
 }
