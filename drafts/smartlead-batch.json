@@ -821,6 +821,27 @@
           "label": "Wednesday, August 12 at 1:30 PM EDT"
         }
       ]
+    },
+    {
+      "id": "bcfo",
+      "campaign_id": "3762048",
+      "email": "stan@bcfoforhire.com",
+      "lead": "Stan Alhadeff, Business CFO for Hire — asked what guarantee the leads are within his ICP",
+      "body": "Hi Stan,\n\nFair question, and the honest answer is that getting the ICP right is our job, not something you should have to police.\n\nWe build the list to your definition of the profile, and we keep working it until it matches. If it comes back off target, we rebuild it. That is part of what you are paying for rather than an extra you have to argue for. What we hold ourselves to is the outcome I put in my first note, conversations with people who genuinely fit, not a volume of sends.\n\nPut plainly, we will go to whatever length it takes to land on the right profile. That is what you are hiring, and if we cannot do it we should not be charging you.\n\nHappy to walk through exactly how we define and verify the ICP before a single email goes out:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nSophie",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
     }
   ]
 }
