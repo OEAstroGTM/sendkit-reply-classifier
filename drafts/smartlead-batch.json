@@ -968,6 +968,27 @@
           "label": "Wednesday, August 12 at 11:00 AM EDT"
         }
       ]
+    },
+    {
+      "id": "skywire",
+      "campaign_id": "3762048",
+      "email": "john.pantzer@skywiredesign.com",
+      "lead": "John Pantzer, Skywire Design (Richardson TX, SATCOM ground segment) — 'Certainly worth a conversation'",
+      "body": "Hi John,\n\nGood to hear.\n\nHere is what is open on my side:\n\n• Monday, August 10 at 10:00 AM CT\n• Tuesday, August 11 at 10:00 AM CT\n• Wednesday, August 12 at 10:00 AM CT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nJordan",
+      "slots": [
+        {
+          "start_time": 1786374000,
+          "label": "Monday, August 10 at 10:00 AM CT"
+        },
+        {
+          "start_time": 1786460400,
+          "label": "Tuesday, August 11 at 10:00 AM CT"
+        },
+        {
+          "start_time": 1786546800,
+          "label": "Wednesday, August 12 at 10:00 AM CT"
+        }
+      ]
     }
   ]
 }
