@@ -713,6 +713,7 @@ export default async function handler(req, res) {
     // link, and emails the invite to the lead.
     if (action === "invite") {
       const { email, start, host } = req.query;
+      const alsoInvite = (req.query.with || "").split(",").map((x) => x.trim()).filter(Boolean);
       if (!email || !start) return res.status(400).json({ error: "Need email and start (unix seconds)" });
       const startTime = Number(start);
       const durationMin = Number(req.query.duration || process.env.MEETING_MINUTES || 30);
@@ -730,10 +731,12 @@ export default async function handler(req, res) {
         leadName,
         description: "Introductory call.",
         hostEmail: host,
+        alsoInvite,
       });
       return res.status(200).json({
         booked: true,
         host: grant.email,
+        alsoInvited: alsoInvite,
         lead: email,
         leadName,
         when: formatSlot(startTime, req.query.tz || process.env.TIMEZONE || "America/New_York"),
