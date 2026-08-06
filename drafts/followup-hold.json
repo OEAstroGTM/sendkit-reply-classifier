@@ -92,6 +92,22 @@
     {
       "email": "rileigh.greutert@emdcp.com",
       "reason": "Declined: outreach lacked detail"
+    },
+    {
+      "email": "mitul@creatiquetech.com",
+      "reason": "Meeting booked via his own Calendly"
+    },
+    {
+      "email": "ida@autoworkz.org",
+      "reason": "Meeting booked via her own e-calendar"
+    },
+    {
+      "email": "jwhite@kbmodiagnostics.com",
+      "reason": "Declined: not interested at this time"
+    },
+    {
+      "email": "kevin@oxman.com",
+      "reason": "Declined: no thank you"
     }
   ]
 }
