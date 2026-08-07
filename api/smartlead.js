@@ -1084,10 +1084,18 @@ a{color:#1a56db}
         if (HOLD.has(email)) return { email, skipped: `held: ${HOLD.get(email)}` };
         try {
           const lead = await leadByEmail(email);
-          const hist2 = await messageHistory("3762048", lead.id);
-          const msgs = hist2.history || [];
+          if (!lead?.id) return { email, skipped: "lead not found" };
+          // A lead can sit in any campaign, so try each until a thread appears.
+          const tryIds = (req.query.campaigns || "3762048,3721834,3721845,3721850,3721840").split(",");
+          let msgs = [];
+          for (const cid of tryIds) {
+            try {
+              const h2 = await messageHistory(cid.trim(), lead.id);
+              if ((h2.history || []).length) { msgs = h2.history; break; }
+            } catch { /* not in this campaign */ }
+          }
           const last = msgs[msgs.length - 1];
-          if (!last) return { email, skipped: "no thread" };
+          if (!last) return { email, skipped: "no thread in any campaign" };
           if (last.type === "REPLY") return { email, skipped: "still awaiting our reply" };
           return { email, ts: info.ts, answered: true };
         } catch (e) { return { email, skipped: `lookup failed: ${e.message.slice(0, 60)}` }; }
