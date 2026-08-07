@@ -1044,6 +1044,73 @@ a{color:#1a56db}
       return res.status(200).json({ total: (data.touches || []).length, byAccount, touches: data.touches || [] });
     }
 
+    // ?action=slack-sync[&channel=..][&max=25][&skip=0][&dry=1]
+    // Reads the lead-notification channel, works out which leads we have
+    // already answered, and ticks those messages. No list to pass in, which
+    // matters because comma-separated params get stripped in transit.
+    if (action === "slack-sync") {
+      const token = process.env.SLACK_BOT_TOKEN;
+      if (!token) return res.status(200).json({ ok: false, error: "SLACK_BOT_TOKEN env var is not set" });
+      const channel = req.query.channel || process.env.SLACK_CHANNEL_ID;
+      if (!channel) return res.status(200).json({ ok: false, error: "Need channel" });
+      const emoji = req.query.emoji || "white_check_mark";
+      const max = Math.min(Number(req.query.max || 25), 60);
+      const skip = Math.max(0, Number(req.query.skip || 0));
+      const dry = req.query.dry === "1";
+      const HOLD = new Map(holdList.hold.map((h) => [h.email.toLowerCase(), h.reason]));
+
+      const slack = async (method, params) => {
+        const r = await fetch(`https://slack.com/api/${method}?${new URLSearchParams(params)}`,
+          { method: "POST", headers: { Authorization: `Bearer ${token}` } });
+        return r.json();
+      };
+      const hist = await slack("conversations.history", { channel, limit: "200" });
+      if (!hist.ok) return res.status(200).json({ ok: false, error: `slack history: ${hist.error}` });
+
+      // One notification per lead; keep the newest message per email
+      const seen = new Map();
+      for (const m of hist.messages || []) {
+        const mail = (String(m.text || "").match(/[\w.+-]+@[\w-]+\.[\w.-]+/) || [])[0];
+        if (!mail) continue;
+        const key = mail.toLowerCase().replace(/[|>].*$/, "");
+        const done = (m.reactions || []).some((r) => r.name === emoji);
+        if (!seen.has(key)) seen.set(key, { ts: m.ts, done });
+      }
+      const all = [...seen.entries()];
+      const window = all.slice(skip, skip + max);
+
+      const out = await Promise.all(window.map(async ([email, info]) => {
+        if (info.done) return { email, skipped: "already ticked" };
+        if (HOLD.has(email)) return { email, skipped: `held: ${HOLD.get(email)}` };
+        try {
+          const lead = await leadByEmail(email);
+          const hist2 = await messageHistory("3762048", lead.id);
+          const msgs = hist2.history || [];
+          const last = msgs[msgs.length - 1];
+          if (!last) return { email, skipped: "no thread" };
+          if (last.type === "REPLY") return { email, skipped: "still awaiting our reply" };
+          return { email, ts: info.ts, answered: true };
+        } catch (e) { return { email, skipped: `lookup failed: ${e.message.slice(0, 60)}` }; }
+      }));
+
+      const toTick = out.filter((x) => x.answered);
+      let ticked = 0;
+      if (!dry) {
+        for (const x of toTick) {
+          const r = await slack("reactions.add", { channel, timestamp: x.ts, name: emoji });
+          if (r.ok || r.error === "already_reacted") ticked++;
+          else x.error = r.error;
+        }
+      }
+      return res.status(200).json({
+        ok: true, channel, emoji, dry,
+        leadsInChannel: all.length, inspected: window.length,
+        moreToScan: all.length > skip + max,
+        ticked, wouldTick: toTick.length,
+        detail: out,
+      });
+    }
+
     // GET/POST ?action=unsubscribe&email=...  — global suppression
     if (action === "unsubscribe") {
       const email = req.query.email || req.body?.email;
