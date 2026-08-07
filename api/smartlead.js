@@ -696,6 +696,8 @@ export default async function handler(req, res) {
             to_first_name: lead.first_name || "",
             to_last_name: lead.last_name || "",
             add_signature: false,
+            // Colleagues to bring onto the thread, from the draft or ?cc=
+            ...((d.cc || req.query.cc) ? { cc: d.cc || req.query.cc } : {}),
             ...(when ? { scheduled_time: when } : {}),
           });
           results.push({ id: d.id, lead: d.lead, sent: true, response: r });
