@@ -862,11 +862,13 @@ export default async function handler(req, res) {
     // The Claude Slack connector cannot write to externally shared (Slack Connect)
     // channels, so reactions go through a native bot token instead.
     if (action === "slack-react") {
+      // Always answers 200: non-200 bodies come back empty through some
+      // clients, which hides the actual Slack error.
       const token = process.env.SLACK_BOT_TOKEN;
-      if (!token) return res.status(400).json({ error: "SLACK_BOT_TOKEN env var is not set" });
-      const channel = req.query.channel;
+      if (!token) return res.status(200).json({ ok: false, error: "SLACK_BOT_TOKEN env var is not set" });
+      const channel = req.query.channel || process.env.SLACK_CHANNEL_ID;
       const emoji = req.query.emoji || "white_check_mark";
-      if (!channel) return res.status(400).json({ error: "Need channel" });
+      if (!channel) return res.status(200).json({ ok: false, error: "Need channel" });
 
       const slack = async (method, params) => {
         const r = await fetch(`https://slack.com/api/${method}?${new URLSearchParams(params)}`, {
@@ -881,13 +883,13 @@ export default async function handler(req, res) {
       let stamps = (req.query.ts || "").split(",").map((s) => s.trim()).filter(Boolean);
       if (!stamps.length && req.query.match) {
         const hist = await slack("conversations.history", { channel, limit: "200" });
-        if (!hist.ok) return res.status(400).json({ error: `slack history: ${hist.error}` });
+        if (!hist.ok) return res.status(200).json({ ok: false, error: `slack conversations.history: ${hist.error}` });
         const needles = req.query.match.split(",").map((s) => s.trim().toLowerCase()).filter(Boolean);
         stamps = (hist.messages || [])
           .filter((m) => needles.some((n) => String(m.text || "").toLowerCase().includes(n)))
           .map((m) => m.ts);
       }
-      if (!stamps.length) return res.status(404).json({ error: "No matching messages" });
+      if (!stamps.length) return res.status(200).json({ ok: false, error: "No matching messages in the last 200" });
 
       const results = [];
       for (const ts of stamps) {
@@ -895,7 +897,7 @@ export default async function handler(req, res) {
         results.push({ ts, ok: r.ok, error: r.error || null });
       }
       return res.status(200).json({
-        channel, emoji,
+        ok: true, channel, emoji,
         reacted: results.filter((x) => x.ok).length,
         alreadyDone: results.filter((x) => x.error === "already_reacted").length,
         failed: results.filter((x) => !x.ok && x.error !== "already_reacted"),
