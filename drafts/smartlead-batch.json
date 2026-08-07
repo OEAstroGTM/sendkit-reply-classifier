@@ -2173,6 +2173,69 @@
           "label": "Wednesday, August 12 at 1:30 PM EDT"
         }
       ]
+    },
+    {
+      "id": "goodearth",
+      "campaign_id": "3762048",
+      "email": "bgoodman@goodearthminerals.net",
+      "lead": "Bob Goodman, EVP Corporate Development Good Earth Minerals — 'Absolutely!'",
+      "body": "Hi Bob,\n\nGood to hear.\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nSarah",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "ironfitness",
+      "campaign_id": "3762048",
+      "email": "don@ironla.com",
+      "lead": "Don Chambers, Owner IRON Fitness — 'What Organization are you reaching out from?'",
+      "body": "Hi Don,\n\nFair question. Koldify, here is the site: [koldify.io](https://koldify.io).\n\nWe run outbound email campaigns for companies like IRON Fitness. Separate sending domains and mailboxes on our side so your own domain is never exposed, a target list built around the buyers you want, sequences written and sent by us, and replies land straight with your team.\n\nIf it is worth a conversation:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nSarah",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "epic",
+      "campaign_id": "3762048",
+      "email": "patrick@epicengineeringsolutions.com",
+      "lead": "Patrick Delohery, EPIC Engineering — said check back in a few months; scheduled for late August",
+      "body": "Hi Patrick,\n\nCircling back as promised.\n\nNo pressure if it is still early, and if it is just say the word and I will leave it a while longer. But if the timing has moved, here is what is open:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nEleanor",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
     }
   ]
 }
