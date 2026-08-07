@@ -1955,6 +1955,195 @@
           "label": "Wednesday, August 12 at 1:30 PM EDT"
         }
       ]
+    },
+    {
+      "id": "assisting",
+      "campaign_id": "3762048",
+      "email": "psotos@assistinghands.com",
+      "lead": "Peter Sotos, Assisting Hands Chicago North — 'Of course. When do we meet?'",
+      "body": "Hi Peter,\n\nHere is what is open:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nAlice",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "allcoast",
+      "campaign_id": "3762048",
+      "email": "fletch@allcoastcanvas.com",
+      "lead": "Dan, All Coast Canvas — 'Talk to me.'",
+      "body": "Hi Dan,\n\nHappy to.\n\nWe set up separate sending domains and mailboxes on our side, so your own domain is never exposed. We build the target list around the buyers you want, write the sequences, send them, and every reply lands directly with your team. You have the conversations, we create them.\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nHarriet",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "doorbotics",
+      "campaign_id": "3762048",
+      "email": "sevy@doorbotics.com",
+      "lead": "Sevy, Doorbotics — 'Tell me more'",
+      "body": "Hi Sevy,\n\nOf course.\n\nWe set up separate sending domains and mailboxes on our side, so your own domain is never exposed. We build the target list around the buyers you want, write the sequences, send them, and every reply lands directly with your team. For Doorbotics that would mean going out to the senior living and home care operators worth talking to, chosen deliberately rather than scraped in bulk.\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nSamantha",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "phoenixrural",
+      "campaign_id": "3762048",
+      "email": "jim.kennedy@phoenixruralhealth.com",
+      "lead": "Jim Kennedy, Phoenix Rural Health — wants to hear more about the offer",
+      "body": "Hi Jim,\n\nOf course.\n\nWe set up separate sending domains and mailboxes on our side, so your own domain is never exposed. We build the target list around the buyers you want, write the sequences, send them, and every reply lands directly with your team. You see the target list before anything goes out, and if the accounts are wrong we rebuild it.\n\nHappy to go through what that looks like for Phoenix Rural Health:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nKatherine",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "thirdessential",
+      "campaign_id": "3762048",
+      "email": "roopesh@thirdessential.com",
+      "lead": "Roopesh Namdev, Thirdessential — 'Sure please we can connect'",
+      "body": "Hi Roopesh,\n\nGood to hear.\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nEmma",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "learnkernel",
+      "campaign_id": "3762048",
+      "email": "jpotter@learnkernel.com",
+      "lead": "Jeffrey Potter, CEO Learn Kernel — handing us to Erica to schedule",
+      "body": "Hi Jeff, and hello Erica,\n\nThank you, and good to meet you Erica.\n\nHere is what is open next week:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nErica, tell me which suits and I will send the invite across. The times are clickable too if that is quicker. Happy to work around something else if none of those fit.\n\nBrittany",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "scalefood",
+      "campaign_id": "3762048",
+      "email": "travis@scalefoodlabs.com",
+      "lead": "Travis Zissu, Founder Scale Food Labs — proposed percentage of signed contracts",
+      "body": "Hi Travis,\n\nStraight answer on the percentage: no. We work on a retainer and we are not in your deal flow, so taking a cut of what you close is not a model we run.\n\nThere is a second option that might suit you better. We build the whole outbound system for you, infrastructure, target list, sequences, the lot, and then hand it over. You run it yourself from that point and keep one hundred percent of whatever it produces. No ongoing cut, no dependency on us.\n\nHappy to walk through both and let you pick:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nLauren",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "barandbar",
+      "campaign_id": "3762048",
+      "email": "clint@barandbar.com",
+      "lead": "Jared Anderson, Bar & Bar — asked about our model for placing products in salons",
+      "body": "Hi Jared,\n\nSimple answer: we do lead generation. That is the whole of it.\n\nWe run outbound email campaigns that put you in front of buyers, and the replies come straight back to your team. We do not place products, hold stock, or take a margin on anything you sell. If placement is what you were after, we are the wrong people and I would rather say so now.\n\nIf lead generation is useful:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nHeather",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "cannatech",
+      "campaign_id": "3762048",
+      "email": "don@cannatechnetwork.com",
+      "lead": "Donald, CannaTech Network — off-grid until 8 Aug, scheduled for his return",
+      "body": "Hi Donald,\n\nHope the Redwoods were good.\n\nPicking this back up now you are back. Here is what is open:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nRiley",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
     }
   ]
 }

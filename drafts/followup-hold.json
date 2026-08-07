@@ -180,6 +180,18 @@
     {
       "email": "bdesplinter@txpm.com",
       "reason": "Declined: no thanks"
+    },
+    {
+      "email": "deryck@igloodigitalmarketing.com",
+      "reason": "Competitor, pitched us their own platform - ignore"
+    },
+    {
+      "email": "pat@atkinsonbedlift.com",
+      "reason": "Declined: no thanks"
+    },
+    {
+      "email": "wayne@ecs.jobs",
+      "reason": "Empty reply, tagged Do Not Contact"
     }
   ]
 }

@@ -684,6 +684,9 @@ export default async function handler(req, res) {
             baseUrl: `https://${req.headers.host}`,
             durationMin: Number(process.env.MEETING_MINUTES || 30),
           });
+          // ?when=ISO schedules instead of sending now, for leads who told us
+          // when they are back rather than going quiet.
+          const when = req.query.when;
           const r = await replyToLead(d.campaign_id, {
             email_stats_id: lastReply.stats_id,
             email_body: emailHtml,
@@ -693,6 +696,7 @@ export default async function handler(req, res) {
             to_first_name: lead.first_name || "",
             to_last_name: lead.last_name || "",
             add_signature: false,
+            ...(when ? { scheduled_time: when } : {}),
           });
           results.push({ id: d.id, lead: d.lead, sent: true, response: r });
         } catch (e) {
