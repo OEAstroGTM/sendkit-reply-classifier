@@ -10,6 +10,7 @@ import {
 } from "../lib/smartlead.js";
 import { toHtml, generateReply, generateBump } from "../lib/reply.js";
 import { linkifySlots } from "../lib/booking.js";
+import { readLedger, addTouch } from "../lib/ledger.js";
 import { createEvent, cancelEvent, formatSlot, getGrantFor } from "../lib/nylas.js";
 import batch from "../drafts/smartlead-batch.json" with { type: "json" };
 import holdList from "../drafts/followup-hold.json" with { type: "json" };
@@ -948,6 +949,12 @@ a{color:#1a56db}
       const ids = (req.query.campaign_id || "3762048").split(",").map((x) => x.trim());
       const minDays = Number(req.query.mindays || 2);
       const HOLD = new Set(holdList.hold.map((h) => h.email.toLowerCase()));
+      // Anyone already contacted on LinkedIn drops off the list entirely
+      let TOUCHED = new Set();
+      try {
+        const { data } = await readLedger();
+        TOUCHED = new Set((data.touches || []).map((x) => String(x.email).toLowerCase()));
+      } catch { /* no token yet, fall back to showing everyone */ }
       const POSITIVE = new Set(["Interested", "Meeting Request", "Information Request"]);
       const out = [];
       for (const id of ids) {
@@ -962,7 +969,8 @@ a{color:#1a56db}
           .sort((a, b) => new Date(b.reply_time) - new Date(a.reply_time)).slice(0, 40);
         const checked = await Promise.all(rows.map(async (r) => {
           try {
-            if (HOLD.has(String(r.lead_email).toLowerCase())) return null;
+            const key = String(r.lead_email).toLowerCase();
+            if (HOLD.has(key) || TOUCHED.has(key)) return null;
             const lead = await leadByEmail(r.lead_email);
             if (lead.is_unsubscribed) return null;
             const hist = await messageHistory(id, lead.id);
@@ -1000,6 +1008,26 @@ a{color:#1a56db}
           || `<tr><td colspan="5">Nobody due.</td></tr>`) + `</table>`;
       res.setHeader("Content-Type", "text/html; charset=utf-8");
       return res.status(200).send(shell("LinkedIn targets", body));
+    }
+
+    // ?action=touched&email=..&account=..[&note=..]  — record a LinkedIn touch
+    // ?action=touches                                 — read the ledger
+    if (action === "touched") {
+      const { email, account } = req.query;
+      if (!email || !account) return res.status(400).json({ error: "Need email and account" });
+      const r = await addTouch({
+        email, account,
+        name: req.query.name || "",
+        company: req.query.company || "",
+        note: req.query.note || "",
+      });
+      return res.status(200).json(r);
+    }
+    if (action === "touches") {
+      const { data } = await readLedger();
+      const byAccount = {};
+      for (const x of data.touches || []) byAccount[x.account] = (byAccount[x.account] || 0) + 1;
+      return res.status(200).json({ total: (data.touches || []).length, byAccount, touches: data.touches || [] });
     }
 
     // GET/POST ?action=unsubscribe&email=...  — global suppression
