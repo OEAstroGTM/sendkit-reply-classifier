@@ -1014,14 +1014,20 @@ a{color:#1a56db}
     // ?action=touches                                 — read the ledger
     if (action === "touched") {
       const { email, account } = req.query;
-      if (!email || !account) return res.status(400).json({ error: "Need email and account" });
-      const r = await addTouch({
-        email, account,
-        name: req.query.name || "",
-        company: req.query.company || "",
-        note: req.query.note || "",
-      });
-      return res.status(200).json(r);
+      // Always answers 200 so the caller (and a browser agent) can read what
+      // happened instead of getting an opaque failure.
+      if (!email || !account) return res.status(200).json({ ok: false, error: "Need email and account" });
+      try {
+        const r = await addTouch({
+          email, account,
+          name: req.query.name || "",
+          company: req.query.company || "",
+          note: req.query.note || "",
+        });
+        return res.status(200).json({ ok: true, ...r });
+      } catch (e) {
+        return res.status(200).json({ ok: false, error: e.message });
+      }
     }
     if (action === "touches") {
       const { data } = await readLedger();
