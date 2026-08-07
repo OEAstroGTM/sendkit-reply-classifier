@@ -898,6 +898,99 @@ export default async function handler(req, res) {
       });
     }
 
+    // ?action=card&campaign_id=..&email=..   -> clean screenshot-ready thread
+    // ?action=card                             -> today's LinkedIn target list
+    // Both render HTML so a browser agent can read or capture them directly.
+    if (action === "card") {
+      const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) =>
+        ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+      const shell = (title, body) => `<!DOCTYPE html><html><head><meta charset="utf-8">
+<title>${esc(title)}</title><style>
+body{margin:0;background:#fff;color:#111;font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+.wrap{width:680px;margin:0 auto;padding:28px}
+h1{font-size:17px;margin:0 0 4px}.sub{color:#6b7280;font-size:13px;margin-bottom:18px}
+.msg{border:1px solid #e5e7eb;border-radius:10px;padding:14px 16px;margin-bottom:10px}
+.msg.them{background:#f6f8fb;border-color:#d8e0ec}
+.who{font-weight:600;font-size:13px}.when{color:#8b90a0;font-size:12px;float:right}
+.body{margin-top:8px;white-space:pre-wrap;font-size:14px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;color:#6b7280;font-weight:500;padding:7px 8px;border-bottom:1px solid #e5e7eb}
+td{padding:9px 8px;border-bottom:1px solid #f0f2f5;vertical-align:top}
+a{color:#1a56db}
+</style></head><body><div class="wrap">${body}</div></body></html>`;
+
+      const { campaign_id, email } = req.query;
+
+      // --- single thread, rendered for screenshotting ---
+      if (email) {
+        const cid = campaign_id || "3762048";
+        const lead = await leadByEmail(email);
+        const hist = await messageHistory(cid, lead.id);
+        const msgs = (hist.history || []).filter((m) => ownWords(m.email_body));
+        const name = [lead.first_name, lead.last_name].filter(Boolean).join(" ") || lead.email;
+        const rows = msgs.map((m) => {
+          const them = m.type === "REPLY";
+          const who = them ? name : (m.from || "").split("@")[0].split(".").map(
+            (x) => x.charAt(0).toUpperCase() + x.slice(1)).join(" ");
+          const when = m.time ? new Date(m.time).toLocaleString("en-US",
+            { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }) : "";
+          return `<div class="msg ${them ? "them" : ""}">
+            <span class="who">${esc(who)}</span><span class="when">${esc(when)}</span>
+            <div class="body">${esc(ownWords(m.email_body).slice(0, 900))}</div></div>`;
+        }).join("");
+        return res.setHeader("Content-Type", "text/html; charset=utf-8")
+          .status(200).send(shell(`${name} thread`,
+            `<h1>${esc(name)}${lead.company_name ? ` · ${esc(lead.company_name)}` : ""}</h1>
+             <div class="sub">${esc(lead.email)}</div>${rows}`));
+      }
+
+      // --- the day's LinkedIn targets: positive, answered, gone quiet ---
+      const ids = (req.query.campaign_id || "3762048").split(",").map((x) => x.trim());
+      const minDays = Number(req.query.mindays || 2);
+      const HOLD = new Set(holdList.hold.map((h) => h.email.toLowerCase()));
+      const POSITIVE = new Set(["Interested", "Meeting Request", "Information Request"]);
+      const out = [];
+      for (const id of ids) {
+        const probe = await campaignStats(id, { email_status: "replied", limit: "1", offset: "0" });
+        const total = Number(probe.total_stats || 0);
+        const all = [];
+        for (let p = 0; p < Math.min(Math.ceil(total / 100), 8); p++) {
+          const page = await campaignStats(id, { email_status: "replied", limit: "100", offset: String(p * 100) });
+          const r = page.data || []; if (!r.length) break; all.push(...r);
+        }
+        const rows = all.filter((r) => POSITIVE.has(r.lead_category))
+          .sort((a, b) => new Date(b.reply_time) - new Date(a.reply_time)).slice(0, 40);
+        const checked = await Promise.all(rows.map(async (r) => {
+          try {
+            if (HOLD.has(String(r.lead_email).toLowerCase())) return null;
+            const lead = await leadByEmail(r.lead_email);
+            if (lead.is_unsubscribed) return null;
+            const hist = await messageHistory(id, lead.id);
+            const m = hist.history || [];
+            const last = m[m.length - 1];
+            if (!last || last.type === "REPLY") return null;   // still our turn
+            const quiet = (Date.now() - new Date(last.time).getTime()) / 86400000;
+            if (quiet < minDays) return null;
+            return {
+              name: [lead.first_name, lead.last_name].filter(Boolean).join(" ") || lead.email,
+              company: lead.company_name || "", email: lead.email,
+              days: quiet.toFixed(1), campaign_id: id,
+            };
+          } catch { return null; }
+        }));
+        out.push(...checked.filter(Boolean));
+      }
+      out.sort((a, b) => Number(b.days) - Number(a.days));
+      const base = `https://${req.headers.host}/api/smartlead?key=${encodeURIComponent(req.query.key)}&action=card`;
+      const body = `<h1>LinkedIn targets</h1>
+        <div class="sub">Positive replies we answered that have been quiet ${minDays}+ days. ${out.length} today.</div>
+        <table><tr><th>Name</th><th>Company</th><th>Quiet</th><th>Thread</th></tr>` +
+        (out.map((x) => `<tr><td>${esc(x.name)}</td><td>${esc(x.company)}</td><td>${esc(x.days)}d</td>
+          <td><a href="${base}&campaign_id=${esc(x.campaign_id)}&email=${encodeURIComponent(x.email)}">open thread</a></td></tr>`).join("")
+          || `<tr><td colspan="4">Nobody due.</td></tr>`) + `</table>`;
+      return res.setHeader("Content-Type", "text/html; charset=utf-8").status(200).send(shell("LinkedIn targets", body));
+    }
+
     // GET/POST ?action=unsubscribe&email=...  — global suppression
     if (action === "unsubscribe") {
       const email = req.query.email || req.body?.email;
