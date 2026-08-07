@@ -216,6 +216,26 @@
     {
       "email": "tmcandrew@sipptech.com",
       "reason": "Meeting booked, Mon 10 Aug 13:30 EDT"
+    },
+    {
+      "email": "jim.kennedy@phoenixruralhealth.com",
+      "reason": "Meeting booked, Mon 10 Aug 13:30 EDT"
+    },
+    {
+      "email": "grekouts@discolike.com",
+      "reason": "Data vendor pitching us, not a lead"
+    },
+    {
+      "email": "payton@broadside.app",
+      "reason": "Declined: nope thanks"
+    },
+    {
+      "email": "mary@designwrightstudios.com",
+      "reason": "Declined: no thanks"
+    },
+    {
+      "email": "daniel@perceptra.io",
+      "reason": "Declined: not interested if AI-generated"
     }
   ]
 }

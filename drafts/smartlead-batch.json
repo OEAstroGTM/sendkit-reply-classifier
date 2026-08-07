@@ -2236,6 +2236,153 @@
           "label": "Wednesday, August 12 at 1:30 PM EDT"
         }
       ]
+    },
+    {
+      "id": "riseopp",
+      "campaign_id": "3762048",
+      "email": "kaveh@riseopp.com",
+      "lead": "Kaveh, RiseOpp — three direct questions, told us not to say 'it depends'",
+      "body": "Hi Kaveh,\n\nFair enough. You asked properly, so here are proper answers.\n\n1. Both, though email does most of the work. On infrastructure we deliberately use a combination of providers rather than running everything through one platform. That is not me dodging the question, it is how we avoid every client going down at once when one tool changes its rules or its deliverability drops.\n\n2. Retainer. Not per close, not per meeting booked, not per show. We are not in your deal flow and we do not think we should be paid on outcomes we cannot control, like whether your sales call goes well.\n\n3. You told me not to say it depends, so I won't. Here is the honest version instead: because it is a retainer, there is no price per meeting to quote, and I am not going to reverse-engineer a number to look responsive. What I can do is give you a real figure in ten minutes once I know the volume you would want going out. That is the only answer I have that is actually true.\n\nIf that is not enough to be worth your time, no hard feelings, and thanks for reading this far.\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nLeah",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "bloom",
+      "campaign_id": "3762048",
+      "email": "ldonohue@thebloomprocesshr.com",
+      "lead": "Liz Donohue, The Bloom Process — 'Id be interested in hearing more'",
+      "body": "Hi Liz,\n\nOf course.\n\nWe set up separate sending domains and mailboxes on our side, so your own domain is never exposed. We build the target list around the buyers you want, write the sequences, send them, and every reply lands directly with your team. You have the conversations, we create them.\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nTiffany",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "keyster",
+      "campaign_id": "3762048",
+      "email": "lori@lovemykeyster.com",
+      "lead": "Lori, Love My Keyster — asked for more information",
+      "body": "Hi Lori,\n\nHappy to.\n\nWe set up separate sending domains and mailboxes on our side, so your own domain is never exposed. We build the target list around the buyers you want, write the sequences, send them, and every reply lands directly with your team. You see the target list before anything goes out, and if the accounts are wrong we rebuild it.\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nDonna",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "garciga",
+      "campaign_id": "3762048",
+      "email": "website@garcigaproperties.com",
+      "lead": "Randy Garciga, Garciga Properties — 'Explain'",
+      "body": "Hi Randy,\n\nShort version.\n\nWe set up separate sending domains and mailboxes on our side, so your own domain is never exposed. We build the target list around the buyers you want, write the sequences, send them, and every reply lands directly with your team. You have the conversations, we create them. Nothing sends from your own domain and you see the list first.\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nAlexandra",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "silverlake",
+      "campaign_id": "3762048",
+      "email": "agruzdev@silverlakeresearch.com",
+      "lead": "Alex Gruzdev, VP Sales & Marketing Silver Lake Research — asked for our approach",
+      "body": "Hi Alex,\n\nHappy to lay it out.\n\nWe set up separate sending domains and mailboxes on our side, so your own domain is never exposed. We build the target list around the buyers you want, write the sequences, send them, and every reply lands directly with your team. The list is built around the buyers you actually want, so for Silver Lake that means the specific accounts and roles that buy rapid detection, rather than a broad life sciences list. You review it before a single email goes out, and if it is wrong we rebuild it.\n\nHappy to go through what that would look like:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nShelby",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "powertee",
+      "campaign_id": "3762048",
+      "email": "john@powertee.com",
+      "lead": "Chris Harris, VP Marketing Power Tee — asked for more information",
+      "body": "Hi Chris,\n\nOf course.\n\nWe set up separate sending domains and mailboxes on our side, so your own domain is never exposed. We build the target list around the buyers you want, write the sequences, send them, and every reply lands directly with your team. You see the target list before anything sends, and if the accounts are wrong we rebuild it rather than push on.\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nCourtney",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "5asec",
+      "campaign_id": "3762048",
+      "email": "david.luft@5asec.cl",
+      "lead": "David Luft, CEO 5aSec Chile — asked whether we target US or Chile",
+      "body": "Hi David,\n\nEither, and that is your call rather than ours.\n\nWe build the target list around the markets you actually want to sell into. If 5aSec is growing in Chile, we target Chile. If you are looking at US clothing and textile companies, we target those instead. The list is built to your definition and you review it before anything sends.\n\nSo the useful question back to you is which market matters most right now.\n\nHappy to talk it through:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nKristen",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
     }
   ]
 }
