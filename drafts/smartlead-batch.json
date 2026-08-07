@@ -2144,6 +2144,35 @@
           "label": "Wednesday, August 12 at 1:30 PM EDT"
         }
       ]
+    },
+    {
+      "id": "sipptech2",
+      "campaign_id": "3762048",
+      "email": "tmcandrew@sipptech.com",
+      "lead": "Tom McAndrew, President & CEO SippTech — picked Monday, booked",
+      "body": "Hi Tom,\n\nMonday, August 10 at 1:30 PM EDT is booked. The invite is in your inbox now with a Google Meet link on it.\n\nHere is the link either way: https://meet.google.com/vdz-ynrz-qrj\n\nSpeak Monday.\n\nTiffany",
+      "slots": []
+    },
+    {
+      "id": "inductive2",
+      "campaign_id": "3762048",
+      "email": "joseph.monasky@inductiveauto.com",
+      "lead": "Joe Monasky, Inductive Autoworks — 'How do you identify buyers? Our industry does not fall into any standard industry code'",
+      "body": "Hi Joe,\n\nYou have put your finger on the thing that decides whether this works.\n\nWe do not rely on industry codes, and you are right that they would be useless here. What we use instead is signal. Job postings that mention the work, technologies a company has adopted, equipment and suppliers they talk about publicly, funding and expansion announcements, conference and association membership, and language on their own site. Then we layer your definition on top, because you know what an actual buyer looks like far better than any database does.\n\nPractically that means the first pass is a conversation with you about who has bought from Inductive Autoworks before and why. We build the list from that, you review it before anything sends, and if it is wrong we rebuild it rather than push on.\n\nFor an industry with no clean code, that is the only honest way to do it.\n\nHappy to go through it:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nCandace",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
     }
   ]
 }
