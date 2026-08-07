@@ -880,7 +880,9 @@ export default async function handler(req, res) {
 
       // Resolve a timestamp: either given directly, or by finding the newest
       // message whose text contains `match` (an email works well).
-      let stamps = (req.query.ts || "").split(",").map((s) => s.trim()).filter(Boolean);
+      // `ts` gets stripped by some HTTP clients, so accept aliases too
+      let stamps = String(req.query.stamp || req.query.ts || req.query.mts || "")
+        .split(",").map((s) => s.trim()).filter(Boolean);
       if (!stamps.length && req.query.match) {
         const hist = await slack("conversations.history", { channel, limit: "200" });
         if (!hist.ok) return res.status(200).json({ ok: false, error: `slack conversations.history: ${hist.error}` });
