@@ -1640,6 +1640,174 @@
           "label": "Wednesday, August 12 at 1:30 PM EDT"
         }
       ]
+    },
+    {
+      "id": "inductive",
+      "campaign_id": "3762048",
+      "email": "joseph.monasky@inductiveauto.com",
+      "lead": "Joseph Monasky, VP Eng & Co-Founder Inductive Autoworks — 'Sure tell me more'",
+      "body": "Hi Joe,\n\nOf course.\n\nWe set up separate sending domains and mailboxes on our side, so your own domain is never exposed. We build the target list around the buyers you want, write the sequences, send them, and every reply lands directly with your team. You have the conversations, we create them.\n\nHappy to go through what that would look like for Inductive Autoworks:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nCandace",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "electraleaf",
+      "campaign_id": "3762048",
+      "email": "pedro@electraleaf.com",
+      "lead": "Pedro Sotomayor, Founder ElectraLeaf — 'Tell me more'",
+      "body": "Hi Pedro,\n\nOf course.\n\nWe set up separate sending domains and mailboxes on our side, so your own domain is never exposed. We build the target list around the buyers you want, write the sequences, send them, and every reply lands directly with your team. For ElectraLeaf that would mean going out to the retailers and dispensaries worth talking to, chosen deliberately rather than scraped in bulk.\n\nHappy to walk through it:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nRachel",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "cricbattle",
+      "campaign_id": "3762048",
+      "email": "rdesai@cricbattle.com",
+      "lead": "Rakesh Desai, CricBattle — 'How ?'",
+      "body": "Hi Rakesh,\n\nFair question, here is the how.\n\nWe set up separate sending domains and mailboxes on our side, so your own domain is never exposed. We build the target list around the buyers you want, write the sequences, send them, and every reply lands directly with your team. You see the list before we send to it, and if the accounts are wrong we rebuild it.\n\nHappy to go through it properly:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nAmy",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "runlog",
+      "campaign_id": "3762048",
+      "email": "vatsal@runlogai.com",
+      "lead": "Vatsal, Runlog Atlas — 'Let's chat' plus his own Calendly",
+      "body": "Hi Vatsal,\n\nGood to hear.\n\nHappy to use your link, or if it is easier these are open on my side:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker. Either way works, just say which you would prefer.\n\nLauren",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "edjg",
+      "campaign_id": "3762048",
+      "email": "edward@edjgconsulting.com",
+      "lead": "Ed, EDJG Consulting — 'none have been able to deliver what they claim, how are you different?'",
+      "body": "Hi Ed,\n\nThat is the right question, and I am not going to answer it by claiming harder than the other dozen.\n\nResults are here: [koldify.io/#results](https://koldify.io/#results). Have a look before you spend any more time on this, and if they do not stand up, ignore me.\n\nThe honest short version of why we are different: we do not sell you a list and disappear, and we are not paid on commission for anything you close. We run the sending infrastructure ourselves, you see the target list before a single email goes out, and if it is wrong we rebuild it.\n\nIf that holds up on inspection:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nBrittany",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "hfrnd",
+      "campaign_id": "3762048",
+      "email": "vivian.gomes@hfrnd.com",
+      "lead": "Vivian Gomes, Human Factors R&D — wants background and outline before any call",
+      "body": "Hi Vivian,\n\nFair, and you are right that no agency will tell you no.\n\nBackground and results first, since that is what you asked for: [koldify.io/#results](https://koldify.io/#results).\n\nHow we work, briefly. We set up separate sending domains and mailboxes on our side, so your own domain is never exposed. We build the target list around the buyers you want, write the sequences, send them, and every reply lands directly with your team. You see the target list before anything is sent, and if the accounts are wrong we rebuild it. There is no list handed over and no commission on what you close.\n\nIf that reads as worth a conversation:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker. And if it does not, tell me and I will leave it there.\n\nKayla",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "guildgarage",
+      "campaign_id": "3762048",
+      "email": "jake.wold@guildgaragegroup.com",
+      "lead": "Jake Wold, COO Guild Garage Group — 'are you a broker?'",
+      "body": "Hi Jake,\n\nNo, not a broker. We are a lead generation agency.\n\nWe set up separate sending domains and mailboxes on our side, so your own domain is never exposed. We build the target list around the buyers you want, write the sequences, send them, and every reply lands directly with your team. Nothing is brokered or resold, and we are not taking a cut of anything you close. You are hiring us to run the outbound.\n\nHappy to go through it:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nRebecca",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "treem",
+      "campaign_id": "3762048",
+      "email": "slava@treem.io",
+      "lead": "Slava, Treem Finance — thinks we source investor introductions",
+      "body": "Hi Slava,\n\nI should correct the premise before you spend time on it.\n\nWe are a lead generation agency, not an investor network. We do not have investors on our books, no live mandates, and no profiles to share, so I cannot introduce you to capital.\n\nWhat we actually do is run outbound campaigns on your behalf. We set up separate sending domains and mailboxes on our side, so your own domain is never exposed. We build the target list around the buyers you want, write the sequences, send them, and every reply lands directly with your team. If what Treem needs is investor introductions rather than outbound, we are the wrong people and I would rather say so now.\n\nIf outbound is useful to you:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nSandra",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
     }
   ]
 }
