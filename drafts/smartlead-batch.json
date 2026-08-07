@@ -2383,6 +2383,27 @@
           "label": "Wednesday, August 12 at 1:30 PM EDT"
         }
       ]
+    },
+    {
+      "id": "perceptra",
+      "campaign_id": "3762048",
+      "email": "daniel@perceptra.io",
+      "lead": "Daniel Kramnik, Co-Founder & CTO Perceptra — 'If this is AI we're not interested'",
+      "body": "Hi Daniel,\n\nFair filter, and most of what lands in your inbox earns it.\n\nI am not going to try to argue you out of it. You will judge this on whether it is worth reading, not on me insisting otherwise.\n\nSo, the substance. The hard part in selling real-time chemical analysis is not writing emails. It is that your buyer is a QA lead or a lab manager who does not post about it, does not sit under a useful industry code, and is not searchable in any list you can buy. Finding those people is the actual work. The email is the easy part, and it is the part everyone else sells you.\n\nThat is what we do: work out who those people actually are, prove the list to you before anything sends, and rebuild it when it is wrong.\n\nIf that is the problem you have, it is worth fifteen minutes:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nIf your pipeline is fine, ignore me and no hard feelings.\n\nOlivia",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
     }
   ]
 }

@@ -232,10 +232,6 @@
     {
       "email": "mary@designwrightstudios.com",
       "reason": "Declined: no thanks"
-    },
-    {
-      "email": "daniel@perceptra.io",
-      "reason": "Declined: not interested if AI-generated"
     }
   ]
 }
