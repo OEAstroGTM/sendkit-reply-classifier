@@ -1,13 +1,4 @@
 {
   "note": "LinkedIn touch ledger. Written at runtime via the GitHub contents API so every account sees the same state.",
-  "touches": [
-    {
-      "email": "ledger-test@example.invalid",
-      "account": "test",
-      "name": "",
-      "company": "Verification",
-      "note": "",
-      "at": "2026-08-07T18:03:57.542Z"
-    }
-  ]
+  "touches": []
 }
