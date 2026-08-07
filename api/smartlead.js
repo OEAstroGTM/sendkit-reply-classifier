@@ -971,9 +971,14 @@ a{color:#1a56db}
             if (!last || last.type === "REPLY") return null;   // still our turn
             const quiet = (Date.now() - new Date(last.time).getTime()) / 86400000;
             if (quiet < minDays) return null;
+            const firstReply = m.find((x) => x.type === "REPLY");
+            const persona = (firstReply?.to || "").split("@")[0].split(".")[0];
+            const Persona = persona ? persona.charAt(0).toUpperCase() + persona.slice(1) : "my colleague";
             return {
               name: [lead.first_name, lead.last_name].filter(Boolean).join(" ") || lead.email,
+              first: lead.first_name || "",
               company: lead.company_name || "", email: lead.email,
+              persona: Persona,
               days: quiet.toFixed(1), campaign_id: id,
             };
           } catch { return null; }
@@ -982,12 +987,17 @@ a{color:#1a56db}
       }
       out.sort((a, b) => Number(b.days) - Number(a.days));
       const base = `https://${req.headers.host}/api/smartlead?key=${encodeURIComponent(req.query.key)}&action=card`;
+      const line = (x) => `Hi ${x.first || x.name.split(" ")[0]}, my coworker ${x.persona} emailed you `
+        + `about ${x.company || "your business"} and we're trying to get some time on the books. `
+        + `Let me know if we can do it here, might be faster.`;
       const body = `<h1>LinkedIn targets</h1>
-        <div class="sub">Positive replies we answered that have been quiet ${minDays}+ days. ${out.length} today.</div>
-        <table><tr><th>Name</th><th>Company</th><th>Quiet</th><th>Thread</th></tr>` +
+        <div class="sub">Positive replies we answered that have been quiet ${minDays}+ days. ${out.length} today.
+        Use the message exactly as written, the coworker name changes per lead.</div>
+        <table><tr><th>Name</th><th>Company</th><th>Quiet</th><th>Message to send</th><th>Thread</th></tr>` +
         (out.map((x) => `<tr><td>${esc(x.name)}</td><td>${esc(x.company)}</td><td>${esc(x.days)}d</td>
+          <td>${esc(line(x))}</td>
           <td><a href="${base}&campaign_id=${esc(x.campaign_id)}&email=${encodeURIComponent(x.email)}">open thread</a></td></tr>`).join("")
-          || `<tr><td colspan="4">Nobody due.</td></tr>`) + `</table>`;
+          || `<tr><td colspan="5">Nobody due.</td></tr>`) + `</table>`;
       res.setHeader("Content-Type", "text/html; charset=utf-8");
       return res.status(200).send(shell("LinkedIn targets", body));
     }
