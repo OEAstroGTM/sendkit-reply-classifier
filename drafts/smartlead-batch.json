@@ -1850,6 +1850,111 @@
           "label": "Wednesday, August 12 at 1:30 PM EDT"
         }
       ]
+    },
+    {
+      "id": "suitesolvers",
+      "campaign_id": "3762048",
+      "email": "leo@suitesolvers.com",
+      "lead": "Leo, SuiteSolvers — 'sure, help me understand a lot more'",
+      "body": "Hi Leo,\n\nOf course.\n\nWe set up separate sending domains and mailboxes on our side, so your own domain is never exposed. We build the target list around the buyers you want, write the sequences, send them, and every reply lands directly with your team. You see the list before anything goes out. You have the conversations, we create them.\n\nHappy to go through what that would look like for SuiteSolvers:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nIsabel",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "ftd",
+      "campaign_id": "3762048",
+      "email": "tyler@ftd-innovations.com",
+      "lead": "Tyler, FTD Innovations — 'Sure'",
+      "body": "Hi Tyler,\n\nGood to hear.\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nLaura",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "vipevents",
+      "campaign_id": "3762048",
+      "email": "lev@vipeventsteam.com",
+      "lead": "Lev, VIP Events Team — 'Potentially'",
+      "body": "Hi Lev,\n\nPotentially is a fair place to start.\n\nWe set up separate sending domains and mailboxes on our side, so your own domain is never exposed. We build the target list around the buyers you want, write the sequences, send them, and every reply lands directly with your team. You see the list before anything goes out.\n\nFifteen minutes and you will know whether it is a yes or a no:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nChelsea",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "alkaa",
+      "campaign_id": "3762048",
+      "email": "paul@alkaa.com",
+      "lead": "Paul, ALKAA — asked for the website to review",
+      "body": "Hi Paul,\n\nHere you go: [koldify.io](https://koldify.io). Results are on there too if you want the short version: [koldify.io/#results](https://koldify.io/#results).\n\nNo rush, have a look when you have a moment. If it is worth a conversation after that:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nZoe",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "clevermetals",
+      "campaign_id": "3762048",
+      "email": "jmitchell@clevermetals.com",
+      "lead": "James Mitchell, Clever Metals — asked about our process and familiarity with strategic metals",
+      "body": "Hi James,\n\nStraight answer on the metals question: we are not metallurgists, and I would rather say so than pretend.\n\nWe do not need to be. The list is built around exactly the work you can take, defined by you. So on what you have described, that means strategic non-internal medical devices, electronics, micro coils and similar, and deliberately not the in-body medical or aerospace work you are not certified for. Sending you enquiries you cannot accept helps neither of us.\n\nOn process: We set up separate sending domains and mailboxes on our side, so your own domain is never exposed. We build the target list around the buyers you want, write the sequences, send them, and every reply lands directly with your team. You see the list before anything goes out. If the accounts are wrong, we rebuild the list rather than push on.\n\nHappy to go through it properly:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nKimberly",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
     }
   ]
 }

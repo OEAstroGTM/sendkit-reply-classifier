@@ -152,6 +152,34 @@
     {
       "email": "erica@daisypd.com",
       "reason": "Declined: not interested at this time"
+    },
+    {
+      "email": "sberes@ryanfp.com",
+      "reason": "Company acquired in 2020, no longer trading"
+    },
+    {
+      "email": "michael@jdenterprises.com",
+      "reason": "Wants hard intros, not outbound - pending Felipe"
+    },
+    {
+      "email": "clint@barandbar.com",
+      "reason": "Salon products pitch, wrong vertical - pending Felipe"
+    },
+    {
+      "email": "wendy@yatecollaborative.com",
+      "reason": "Declined: no thanks"
+    },
+    {
+      "email": "joanni@suzhouchem.com",
+      "reason": "Declined: no"
+    },
+    {
+      "email": "mike.petit@v-glass.com",
+      "reason": "Declined: no thanks"
+    },
+    {
+      "email": "bdesplinter@txpm.com",
+      "reason": "Declined: no thanks"
     }
   ]
 }
