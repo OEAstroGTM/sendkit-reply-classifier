@@ -938,8 +938,8 @@ a{color:#1a56db}
             <span class="who">${esc(who)}</span><span class="when">${esc(when)}</span>
             <div class="body">${esc(ownWords(m.email_body).slice(0, 900))}</div></div>`;
         }).join("");
-        return res.setHeader("Content-Type", "text/html; charset=utf-8")
-          .status(200).send(shell(`${name} thread`,
+        res.setHeader("Content-Type", "text/html; charset=utf-8");
+        return res.status(200).send(shell(`${name} thread`,
             `<h1>${esc(name)}${lead.company_name ? ` · ${esc(lead.company_name)}` : ""}</h1>
              <div class="sub">${esc(lead.email)}</div>${rows}`));
       }
@@ -988,7 +988,8 @@ a{color:#1a56db}
         (out.map((x) => `<tr><td>${esc(x.name)}</td><td>${esc(x.company)}</td><td>${esc(x.days)}d</td>
           <td><a href="${base}&campaign_id=${esc(x.campaign_id)}&email=${encodeURIComponent(x.email)}">open thread</a></td></tr>`).join("")
           || `<tr><td colspan="4">Nobody due.</td></tr>`) + `</table>`;
-      return res.setHeader("Content-Type", "text/html; charset=utf-8").status(200).send(shell("LinkedIn targets", body));
+      res.setHeader("Content-Type", "text/html; charset=utf-8");
+      return res.status(200).send(shell("LinkedIn targets", body));
     }
 
     // GET/POST ?action=unsubscribe&email=...  — global suppression
