@@ -1808,6 +1808,48 @@
           "label": "Wednesday, August 12 at 1:30 PM EDT"
         }
       ]
+    },
+    {
+      "id": "agl",
+      "campaign_id": "3762048",
+      "email": "alegara@agl-usa.com",
+      "lead": "Abbie Legara, Aluminum and Glazing Lines — asked how we define a warm lead, whether contractors pre-expressed need, and how prospects are sourced",
+      "body": "Hi Abbie,\n\nGood questions, and they deserve straight answers rather than marketing ones.\n\nHow we define a warm lead: someone who replied to our outreach saying they are interested. Not someone who has been pre-qualified as needing shop drawings or BIM before we ever contact them.\n\nSo to be clear on your second question, no. The contractors have not already expressed a need. The interest is created by the outreach rather than discovered before it. If what you need is people already actively shopping for BIM services, that is a different product and I would rather tell you now.\n\nHow they are sourced and contacted: we build the list from B2B data providers and our own research against signals like project activity and company profile, filtered to the contractor types you want. They are contacted by email, from sending domains we set up and run, never from your own domain. You see the list before anything goes out.\n\nIf that is the right shape for AGL:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nNancy",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "rhobot",
+      "campaign_id": "3762048",
+      "email": "john@rhobot.ai",
+      "lead": "John, rhobot.ai — 'how much per truly qualified lead?'",
+      "body": "Hi John,\n\nWe are not priced per lead, so there is no per-lead figure I can quote you. You are paying for the campaign being run rather than buying leads by the unit.\n\nWhat it costs depends on the volume going out and how much of the setup we own, so rather than throw a number at you in an email:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nCatherine",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
     }
   ]
 }
