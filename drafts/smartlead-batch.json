@@ -2446,6 +2446,90 @@
           "label": "Wednesday, August 12 at 1:30 PM EDT"
         }
       ]
+    },
+    {
+      "id": "sunny",
+      "campaign_id": "3762048",
+      "email": "jeff@sunnyfinancialgroup.com",
+      "lead": "Jeff, Sunny Financial Group — TCPA-style questions on lead generation, exclusivity and consent",
+      "body": "Hi Jeff,\n\nReally good questions, and the fact that you are asking them up front says you have been sold leads before by people who could not answer them.\n\nLet me be useful rather than slick: we are not a lead vendor, so one or two of these do not map neatly onto what we do. I would rather explain that than give you answers that sound right and are not.\n\n1. How they are generated. Not direct mail, not web forms, not telemarketing. We run outbound email campaigns on your behalf, from sending infrastructure we set up and manage. The people who reply are replying to you, in your own inbox.\n\n2. Exclusivity. Completely exclusive. There is no shared pool and no lead resold to three agents. Every conversation happens on your thread, with your prospect, and nobody else sees it.\n\n3. Consent. This is the one where the honest answer matters most. Because we are not selling you a lead record, there is no consent artifact to hand across. It is business to business outreach to business addresses, with an opt-out on every message and immediate suppression the moment anyone asks. If your compliance framework requires documented one to one consent for every contact you work, that is a real difference and I would much rather raise it now than have it surprise you later.\n\nHappy to go through any of it properly:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nStacy",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "wealtharmor",
+      "campaign_id": "3762048",
+      "email": "prince@wealtharmor.com",
+      "lead": "Prince Zeeshan, Wealth Armor — sarcastic 'do you buy lists and mass cold email everyone?'",
+      "body": "Hi Prince,\n\nFair hit, and I would rather explain than trade jabs.\n\nThe reason you get a hundred of these is not random and it is not bad luck. Wealth Armor looks, on paper, like exactly the kind of business one of these campaigns would want as a success story. The size, the market, the growth profile. Every agency running lists is scoring on roughly the same signals, so you get all of them at once. That is a compliment buried under a lot of noise.\n\nI am not going to pretend we are a different species. We build lists and we send cold email. The difference is in the part nobody bothers with: the list is built for one client rather than sold to twenty, you would see it before anything went out, and if it was wrong we would rebuild it instead of sending anyway.\n\nIf you ever want to look at it from the other side of the fence, given you clearly know what bad outreach looks like:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker. And if not, no hard feelings, you have earned the right to be sceptical.\n\nCaitlyn",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "landmark",
+      "campaign_id": "3762048",
+      "email": "qais@landmi.com",
+      "lead": "Qais, Land Mark Industries — asked to be texted first on (313) 615-0503",
+      "body": "Hi Qais,\n\nWill do, I will text you on (313) 615-0503.\n\nIf it is easier to skip a step, these are open on my side:\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nChristine",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "moka",
+      "campaign_id": "3762048",
+      "email": "mo@whitneytek.com",
+      "lead": "Mo, Moka Design+ — 'What do you have in mind?'",
+      "body": "Hi Mo,\n\nHappy to lay it out.\n\nWe set up separate sending domains and mailboxes on our side, so your own domain is never exposed. We build the target list around the buyers you want, write the sequences, send them, and every reply lands directly with your team. You have the conversations, we create them.\n\n• Monday, August 10 at 1:30 PM EDT\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nVictoria",
+      "slots": [
+        {
+          "start_time": 1786383000,
+          "label": "Monday, August 10 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786469400,
+          "label": "Tuesday, August 11 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        }
+      ]
     }
   ]
 }
