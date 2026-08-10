@@ -1162,16 +1162,29 @@ a{color:#1a56db}
           phantom: String(ev.title || "").startsWith(match),
         })).sort((a, b) => (a.start || 0) - (b.start || 0));
         const phantoms = rows.filter((r) => r.phantom);
+        // A person books one time. A lead holding two or more slots was booked
+        // by a link scanner, so those are safe to remove. minDupes=1 removes
+        // singles too, which risks cancelling a real self-service booking.
+        const minDupes = Math.max(1, Number(req.query.minDupes || 2));
+        const perLead = new Map();
+        for (const r of phantoms) {
+          for (const em of r.participants) perLead.set(em, (perLead.get(em) || 0) + 1);
+        }
+        const targets = phantoms.filter((r) =>
+          r.participants.some((em) => (perLead.get(em) || 0) >= minDupes));
+        const notify = req.query.notify !== "0";
         let cancelled = [];
         if (doCancel) {
-          for (const r of phantoms) {
-            try { await cancelEvent(r.id, host); cancelled.push(r.id); }
+          for (const r of targets) {
+            try { await cancelEvent(r.id, host, notify); cancelled.push(r.id); }
             catch (e) { cancelled.push(`FAILED ${r.id}: ${e.message}`); }
           }
         }
         return res.status(200).json({
           ok: true, calendar: grant.email, days, match,
           total: rows.length, phantomCount: phantoms.length,
+          minDupes, notify, targetCount: targets.length,
+          byLead: Object.fromEntries([...perLead.entries()].sort((a, b) => b[1] - a[1])),
           cancelled: doCancel ? cancelled.length : 0,
           cancelledIds: doCancel ? cancelled : undefined,
           phantoms, events: req.query.all === "1" ? rows : undefined,
