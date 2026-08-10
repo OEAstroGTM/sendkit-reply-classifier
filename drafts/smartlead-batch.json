@@ -16,9 +16,18 @@
       "lead": "Zoey Hollar, COO at Heckaman & Hollar — wants to hear more about shippers looking for reliable freight",
       "body": "Zoey,\n\nHappy to. The short version: we build a list of shippers in the lanes you actually want, reach out on your behalf, and hand you the ones who reply asking about capacity. You get the conversation, not a contact list.\n\nThe part worth talking through is which lanes and which shipper profiles are worth going after for Heckaman & Hollar, because that is what decides whether the replies are useful or noise.\n\nI have these open if you want to talk it through:\n\n• Tuesday, August 11 at 2:00 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n• Thursday, August 13 at 2:00 PM EDT\n\nTell me which one works and I will send the invite, or click the time directly if that is quicker.\n\nBrooke",
       "slots": [
-        { "start_time": 1786471200, "label": "Tuesday, August 11 at 2:00 PM EDT" },
-        { "start_time": 1786555800, "label": "Wednesday, August 12 at 1:30 PM EDT" },
-        { "start_time": 1786644000, "label": "Thursday, August 13 at 2:00 PM EDT" }
+        {
+          "start_time": 1786471200,
+          "label": "Tuesday, August 11 at 2:00 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786644000,
+          "label": "Thursday, August 13 at 2:00 PM EDT"
+        }
       ]
     },
     {
@@ -28,9 +37,18 @@
       "lead": "Don Rossi, VP Worldwide Sales at Genix Cyber — said sure, asked for costs",
       "body": "Don,\n\nGlad you are open to it. On cost, I would rather not throw a number at you before I understand what we would be building, because it moves with the size of the target list and how many markets you want covered. It is a flat monthly retainer, not per lead and not a percentage of what you close.\n\nGive me twenty minutes, I will show you what the campaign would look like for Genix and quote you properly on the call.\n\nOpen on my side:\n\n• Tuesday, August 11 at 2:00 PM EDT\n• Wednesday, August 12 at 2:00 PM EDT\n• Thursday, August 13 at 1:30 PM EDT\n\nReply with the one you want and I will send the invite, or click it straight through.\n\nMelissa",
       "slots": [
-        { "start_time": 1786471200, "label": "Tuesday, August 11 at 2:00 PM EDT" },
-        { "start_time": 1786557600, "label": "Wednesday, August 12 at 2:00 PM EDT" },
-        { "start_time": 1786642200, "label": "Thursday, August 13 at 1:30 PM EDT" }
+        {
+          "start_time": 1786471200,
+          "label": "Tuesday, August 11 at 2:00 PM EDT"
+        },
+        {
+          "start_time": 1786557600,
+          "label": "Wednesday, August 12 at 2:00 PM EDT"
+        },
+        {
+          "start_time": 1786642200,
+          "label": "Thursday, August 13 at 1:30 PM EDT"
+        }
       ]
     },
     {
@@ -40,9 +58,18 @@
       "lead": "Stacy Reese, Kimberly Steel — asked for service details and cost",
       "body": "Stacy,\n\nHere is the shape of it. We run outbound on your behalf to buyers who fit what Kimberly Steel sells, in the regions you want, and the ones who reply interested come straight to you. We handle the list building, the sending infrastructure and the follow up. You handle the conversations.\n\nOn cost, it is a flat monthly retainer rather than per lead, but the number depends on how wide you want to go, so I would be guessing if I quoted you now. Twenty minutes on a call and I can give you a real number instead of a range.\n\nThese are open:\n\n• Tuesday, August 11 at 2:00 PM EDT (1:00 PM your time)\n• Wednesday, August 12 at 1:30 PM EDT (12:30 PM your time)\n• Thursday, August 13 at 2:00 PM EDT (1:00 PM your time)\n\nTell me which suits and I will get the invite over, or click the time if that is easier.\n\nAlexandra",
       "slots": [
-        { "start_time": 1786471200, "label": "Tuesday, August 11 at 2:00 PM EDT" },
-        { "start_time": 1786555800, "label": "Wednesday, August 12 at 1:30 PM EDT" },
-        { "start_time": 1786644000, "label": "Thursday, August 13 at 2:00 PM EDT" }
+        {
+          "start_time": 1786471200,
+          "label": "Tuesday, August 11 at 2:00 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786644000,
+          "label": "Thursday, August 13 at 2:00 PM EDT"
+        }
       ]
     },
     {
@@ -52,9 +79,18 @@
       "lead": "Andy Hakes, AireXpert — what will it cost and when do I pay",
       "body": "Andy,\n\nFair questions, both of them.\n\nIt is a flat monthly retainer, billed monthly, nothing up front beyond the first month and nothing per lead. What the number actually is depends on how many accounts we are going after and how many markets, which is why I am not firing a figure at you blind.\n\nTwenty minutes and I will show you exactly what we would run for AireXpert and what it costs, and you can decide from there.\n\nOpen:\n\n• Tuesday, August 11 at 2:00 PM EDT\n• Wednesday, August 12 at 2:00 PM EDT\n• Thursday, August 13 at 1:30 PM EDT\n\nPick one and I will send the invite over.\n\nSamantha",
       "slots": [
-        { "start_time": 1786471200, "label": "Tuesday, August 11 at 2:00 PM EDT" },
-        { "start_time": 1786557600, "label": "Wednesday, August 12 at 2:00 PM EDT" },
-        { "start_time": 1786642200, "label": "Thursday, August 13 at 1:30 PM EDT" }
+        {
+          "start_time": 1786471200,
+          "label": "Tuesday, August 11 at 2:00 PM EDT"
+        },
+        {
+          "start_time": 1786557600,
+          "label": "Wednesday, August 12 at 2:00 PM EDT"
+        },
+        {
+          "start_time": 1786642200,
+          "label": "Thursday, August 13 at 1:30 PM EDT"
+        }
       ]
     },
     {
@@ -64,9 +100,18 @@
       "lead": "Mike Cynar, CEO Peak Marketing Service — asked for company name and website",
       "body": "Mike,\n\nKoldify. koldify.io, and the results section is the fastest read: https://koldify.io/#results\n\nWe are a lead generation agency. We run outbound for our clients so their sales team spends its time on conversations rather than on finding people to have them with. Given what Peak does, you will recognise most of the machinery.\n\nIf you want to see how the system is actually put together, these are open:\n\n• Wednesday, August 12 at 1:30 PM EDT\n• Thursday, August 13 at 2:00 PM EDT\n• Monday, August 17 at 1:30 PM EDT\n\nHappy either way, and no hard sell if you are just curious what we are running.\n\nRachel",
       "slots": [
-        { "start_time": 1786555800, "label": "Wednesday, August 12 at 1:30 PM EDT" },
-        { "start_time": 1786644000, "label": "Thursday, August 13 at 2:00 PM EDT" },
-        { "start_time": 1786987800, "label": "Monday, August 17 at 1:30 PM EDT" }
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786644000,
+          "label": "Thursday, August 13 at 2:00 PM EDT"
+        },
+        {
+          "start_time": 1786987800,
+          "label": "Monday, August 17 at 1:30 PM EDT"
+        }
       ]
     },
     {
@@ -76,9 +121,18 @@
       "lead": "Shubho Ghosh, Founder at Dear Tech Talent — open to discussing, wants company info first",
       "body": "Shubho,\n\nOf course. We are Koldify, a lead generation agency: koldify.io, and https://koldify.io/#results is the part most people want to see first.\n\nWhat we would do for Dear Tech Talent is run outbound to hiring managers and founders who are actively building out engineering teams, so the ones who need a recruiter come to you rather than the other way round. You keep doing the placing, we keep the top of the funnel full.\n\nIf it looks worth twenty minutes:\n\n• Tuesday, August 11 at 2:00 PM EDT\n• Wednesday, August 12 at 2:00 PM EDT\n• Thursday, August 13 at 1:30 PM EDT\n\nSay the word and I will send an invite for whichever suits.\n\nAbigail",
       "slots": [
-        { "start_time": 1786471200, "label": "Tuesday, August 11 at 2:00 PM EDT" },
-        { "start_time": 1786557600, "label": "Wednesday, August 12 at 2:00 PM EDT" },
-        { "start_time": 1786642200, "label": "Thursday, August 13 at 1:30 PM EDT" }
+        {
+          "start_time": 1786471200,
+          "label": "Tuesday, August 11 at 2:00 PM EDT"
+        },
+        {
+          "start_time": 1786557600,
+          "label": "Wednesday, August 12 at 2:00 PM EDT"
+        },
+        {
+          "start_time": 1786642200,
+          "label": "Thursday, August 13 at 1:30 PM EDT"
+        }
       ]
     },
     {
@@ -88,9 +142,18 @@
       "lead": "Ben, Studiously — how would you find advancement teams struggling to reach young alumni",
       "body": "Ben,\n\nGood question, and the honest answer is that we do not go looking for teams who have publicly announced they are struggling, because nobody announces that.\n\nWe build the list from things that are visible: institution size, endowment band, whether they have an annual giving or young alumni engagement role, recent hires or openings on the advancement team, whether they have moved platforms lately. That gets us to the people who own the problem. Then the email itself does the qualifying, because the ones who are struggling are the ones who reply.\n\nIt is less clever than a signal and it works better, because the reply is the signal.\n\nIf you want to see the actual list logic rather than my description of it:\n\n• Wednesday, August 12 at 1:30 PM EDT\n• Thursday, August 13 at 2:00 PM EDT\n• Monday, August 17 at 2:00 PM EDT\n\nPick whichever and I will send the invite.\n\nShannon",
       "slots": [
-        { "start_time": 1786555800, "label": "Wednesday, August 12 at 1:30 PM EDT" },
-        { "start_time": 1786644000, "label": "Thursday, August 13 at 2:00 PM EDT" },
-        { "start_time": 1786989600, "label": "Monday, August 17 at 2:00 PM EDT" }
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786644000,
+          "label": "Thursday, August 13 at 2:00 PM EDT"
+        },
+        {
+          "start_time": 1786989600,
+          "label": "Monday, August 17 at 2:00 PM EDT"
+        }
       ]
     },
     {
@@ -100,9 +163,18 @@
       "lead": "Hector Garcia, Valle Services — said there was no contact number, gave his own",
       "body": "Hector,\n\nYou are right, that was on me. Thanks for sending yours.\n\nRather than trade calls, it is easier if we put twenty minutes in the diary so I can actually show you what we would run for Valle Services instead of describing it down the phone.\n\nThese are open:\n\n• Tuesday, August 11 at 2:00 PM EDT (1:00 PM your time)\n• Wednesday, August 12 at 2:00 PM EDT (1:00 PM your time)\n• Thursday, August 13 at 1:30 PM EDT (12:30 PM your time)\n\nTell me which one and I will send the invite with the dial in. If you would rather I just called 630-212-8938, say so and I will.\n\nCourtney",
       "slots": [
-        { "start_time": 1786471200, "label": "Tuesday, August 11 at 2:00 PM EDT" },
-        { "start_time": 1786557600, "label": "Wednesday, August 12 at 2:00 PM EDT" },
-        { "start_time": 1786642200, "label": "Thursday, August 13 at 1:30 PM EDT" }
+        {
+          "start_time": 1786471200,
+          "label": "Tuesday, August 11 at 2:00 PM EDT"
+        },
+        {
+          "start_time": 1786557600,
+          "label": "Wednesday, August 12 at 2:00 PM EDT"
+        },
+        {
+          "start_time": 1786642200,
+          "label": "Thursday, August 13 at 1:30 PM EDT"
+        }
       ]
     },
     {
@@ -112,9 +184,18 @@
       "lead": "Henry Herazo, Glowint — replied 'Really! LOL'; runs a competing AI revenue product",
       "body": "Henry,\n\nFair. You build an AI revenue system for owner led service businesses, so getting cold outbound about lead generation is a bit like a chef being handed a menu.\n\nStill, you sell to owner led service businesses, and that is exactly the profile we fill calendars with. So it is either the least relevant email you got today or the most, depending on which side of the desk you read it from.\n\nIf you are curious enough to spend twenty minutes on it:\n\n• Wednesday, August 12 at 2:00 PM EDT\n• Thursday, August 13 at 1:30 PM EDT\n• Monday, August 17 at 2:00 PM EDT\n\nAnd if the answer is still LOL, no hard feelings.\n\nZoe",
       "slots": [
-        { "start_time": 1786557600, "label": "Wednesday, August 12 at 2:00 PM EDT" },
-        { "start_time": 1786642200, "label": "Thursday, August 13 at 1:30 PM EDT" },
-        { "start_time": 1786989600, "label": "Monday, August 17 at 2:00 PM EDT" }
+        {
+          "start_time": 1786557600,
+          "label": "Wednesday, August 12 at 2:00 PM EDT"
+        },
+        {
+          "start_time": 1786642200,
+          "label": "Thursday, August 13 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786989600,
+          "label": "Monday, August 17 at 2:00 PM EDT"
+        }
       ]
     },
     {
@@ -124,9 +205,18 @@
       "lead": "Tim, R12 Window Cleaning — owner operator, booked solid, wants cost, no time for a 20 min Zoom",
       "body": "Tim,\n\nBooked solid through mid September is a good problem, and it is also the reason this is worth ten minutes rather than twenty.\n\nOn cost, it is a flat monthly retainer, not per lead. I am not dodging the number, it just moves with how many buildings and property managers you want us going after, and quoting you before I know that would be a made up figure.\n\nSince your time is the constraint, two options. Either I keep it to ten minutes and we do it while you are between jobs, or reply here with roughly how many crews you run and what you would want more of, and I will send the number in writing.\n\nIf a call is easier:\n\n• Wednesday, August 12 at 1:30 PM EDT\n• Thursday, August 13 at 2:00 PM EDT\n• Monday, August 17 at 1:30 PM EDT\n\nWhichever you prefer.\n\nKaren",
       "slots": [
-        { "start_time": 1786555800, "label": "Wednesday, August 12 at 1:30 PM EDT" },
-        { "start_time": 1786644000, "label": "Thursday, August 13 at 2:00 PM EDT" },
-        { "start_time": 1786987800, "label": "Monday, August 17 at 1:30 PM EDT" }
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786644000,
+          "label": "Thursday, August 13 at 2:00 PM EDT"
+        },
+        {
+          "start_time": 1786987800,
+          "label": "Monday, August 17 at 1:30 PM EDT"
+        }
       ]
     },
     {
@@ -136,9 +226,18 @@
       "lead": "Daryl Harris, VP Sales at Service by Medallion — asked cost for the Corporate Campus Operators leads",
       "body": "Daryl,\n\nWe do not price per lead, which I realise is not the answer you asked for. It is a flat monthly retainer that covers the list building, the sending infrastructure and the follow up, and every reply that comes back is yours.\n\nThe reason for that structure is that campus operators are a small, specific universe. Priced per lead the incentive is volume, and volume is the last thing you want in that segment.\n\nWhat the retainer actually is depends on how many operators you want covered and over what footprint. Twenty minutes and I will quote you properly.\n\nOpen on my side:\n\n• Tuesday, August 11 at 2:00 PM EDT (11:00 AM your time)\n• Wednesday, August 12 at 1:30 PM EDT (10:30 AM your time)\n• Thursday, August 13 at 2:00 PM EDT (11:00 AM your time)\n\nTell me which works and I will send the invite.\n\nRebecca",
       "slots": [
-        { "start_time": 1786471200, "label": "Tuesday, August 11 at 2:00 PM EDT" },
-        { "start_time": 1786555800, "label": "Wednesday, August 12 at 1:30 PM EDT" },
-        { "start_time": 1786644000, "label": "Thursday, August 13 at 2:00 PM EDT" }
+        {
+          "start_time": 1786471200,
+          "label": "Tuesday, August 11 at 2:00 PM EDT"
+        },
+        {
+          "start_time": 1786555800,
+          "label": "Wednesday, August 12 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786644000,
+          "label": "Thursday, August 13 at 2:00 PM EDT"
+        }
       ]
     },
     {
@@ -148,22 +247,41 @@
       "lead": "Paul Kim, CEO Kim and Kim — replied 'Whats the catch?'",
       "body": "Paul,\n\nNo catch, but there are two things worth knowing up front so you are not surprised later.\n\nFirst, it is a paid engagement. Flat monthly retainer, not commission and not per lead, so we get paid whether or not you close what we bring you. Second, it takes a few weeks before the replies build up, because the infrastructure has to warm before it sends at volume. Anyone promising you meetings in week one is selling you something else.\n\nWhat you get is property managers replying to you directly about work they need doing.\n\nIf that sounds workable:\n\n• Wednesday, August 12 at 2:00 PM EDT\n• Thursday, August 13 at 1:30 PM EDT\n• Monday, August 17 at 1:30 PM EDT\n\nPick one and I will send the invite over.\n\nNicole",
       "slots": [
-        { "start_time": 1786557600, "label": "Wednesday, August 12 at 2:00 PM EDT" },
-        { "start_time": 1786642200, "label": "Thursday, August 13 at 1:30 PM EDT" },
-        { "start_time": 1786987800, "label": "Monday, August 17 at 1:30 PM EDT" }
+        {
+          "start_time": 1786557600,
+          "label": "Wednesday, August 12 at 2:00 PM EDT"
+        },
+        {
+          "start_time": 1786642200,
+          "label": "Thursday, August 13 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786987800,
+          "label": "Monday, August 17 at 1:30 PM EDT"
+        }
       ]
     },
     {
       "id": "jayhill",
       "campaign_id": "3781766",
-      "email": "service@jayhillrepairs.com",
-      "lead": "Jay-Hill Repairs — Bill Ring has left, redirected to this address",
+      "email": "bring@jayhillrepairs.com",
+      "lead": "Jay-Hill Repairs — Bill Ring has left; reply in his thread, cc the service inbox",
       "body": "Hello,\n\nThanks for letting me know Bill has moved on, and apologies for the misdirected note.\n\nI had written to him about generating new commercial work for Jay-Hill: we run outbound to property managers and facilities leads on your behalf, and the ones who need repair and maintenance work come straight back to you.\n\nCould you point me to whoever handles new business now? Happy to send them the detail directly rather than going through the service inbox.\n\nIf it is easier, these are open:\n\n• Thursday, August 13 at 1:30 PM EDT\n• Monday, August 17 at 2:00 PM EDT\n• Tuesday, August 18 at 1:30 PM EDT\n\nThanks for the help.\n\nAnna",
       "slots": [
-        { "start_time": 1786642200, "label": "Thursday, August 13 at 1:30 PM EDT" },
-        { "start_time": 1786989600, "label": "Monday, August 17 at 2:00 PM EDT" },
-        { "start_time": 1787074200, "label": "Tuesday, August 18 at 1:30 PM EDT" }
-      ]
+        {
+          "start_time": 1786642200,
+          "label": "Thursday, August 13 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1786989600,
+          "label": "Monday, August 17 at 2:00 PM EDT"
+        },
+        {
+          "start_time": 1787074200,
+          "label": "Tuesday, August 18 at 1:30 PM EDT"
+        }
+      ],
+      "cc": "service@jayhillrepairs.com"
     },
     {
       "id": "jacklifes",
@@ -172,9 +290,18 @@
       "lead": "Jack, Life's Thoughts — offers 10% perpetual rev share, will not do fee based",
       "body": "Jack,\n\nUnderstood, and I appreciate you being straight about it rather than letting me chase.\n\nOur retained work is fee based, so on that model we are not a fit. There is one other way we work that might be, though: a build and release model, where we build the outbound system, run it until it is producing, then hand it over and you own it and one hundred percent of the revenue it generates from that point on. No ongoing share to us either way.\n\nIf that is closer to how you like to structure things:\n\n• Wednesday, August 12 at 2:00 PM EDT\n• Thursday, August 13 at 2:00 PM EDT\n• Monday, August 17 at 2:00 PM EDT\n\nAnd if not, no problem at all, I will leave you be.\n\nShannon",
       "slots": [
-        { "start_time": 1786557600, "label": "Wednesday, August 12 at 2:00 PM EDT" },
-        { "start_time": 1786644000, "label": "Thursday, August 13 at 2:00 PM EDT" },
-        { "start_time": 1786989600, "label": "Monday, August 17 at 2:00 PM EDT" }
+        {
+          "start_time": 1786557600,
+          "label": "Wednesday, August 12 at 2:00 PM EDT"
+        },
+        {
+          "start_time": 1786644000,
+          "label": "Thursday, August 13 at 2:00 PM EDT"
+        },
+        {
+          "start_time": 1786989600,
+          "label": "Monday, August 17 at 2:00 PM EDT"
+        }
       ]
     }
   ]
