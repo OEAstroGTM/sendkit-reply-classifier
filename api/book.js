@@ -10,7 +10,7 @@
 // lead a calendar invite they never asked for. GET now only renders a confirm
 // button; the POST behind it does the write. Scanners do not submit forms.
 
-import { createEvent, formatSlot } from "../lib/nylas.js";
+import { createEvent, formatSlot, pickFreeHost } from "../lib/nylas.js";
 import { verifySlot } from "../lib/booking.js";
 import { cancelFollowups } from "../lib/followup.js";
 
@@ -34,21 +34,34 @@ export default async function handler(req, res) {
 
   const tz = process.env.TIMEZONE || "America/New_York";
   const label = formatSlot(startTime, tz);
-  const host = process.env.SENDER_NAME || "the team";
 
   // Anything that is not an explicit POST gets the confirmation page only.
   if (String(req.method || "GET").toUpperCase() !== "POST") {
     return res.status(200).send(confirmPage({ label, durationMin, email, t, d, name, conversationId, sig }));
   }
 
+  const endTime = startTime + durationMin * 60;
+
   try {
+    // Several leads are offered the same slot, so the first to confirm takes
+    // it. Route the meeting to a colleague who is actually free rather than
+    // defaulting to one grant and stacking clashes onto it.
+    const hostEmail = await pickFreeHost(startTime, endTime);
+    if (!hostEmail) {
+      return res.status(409).send(page(
+        "That time has just been taken.",
+        "Someone booked it a moment ago. Reply to the email and we'll get you the next slot straight away."
+      ));
+    }
+
     await createEvent({
       startTime,
-      endTime: startTime + durationMin * 60,
-      title: `${host} <> ${name || email}`,
+      endTime,
+      title: `Koldify <> ${name || email}`,
       leadEmail: email,
       leadName: name || "",
       description: "Booked from email.",
+      hostEmail,
     });
     if (conversationId) cancelFollowups(conversationId).catch(() => {});
     return res.status(200).send(page(
