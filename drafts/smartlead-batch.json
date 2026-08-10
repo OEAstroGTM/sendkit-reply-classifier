@@ -2572,6 +2572,27 @@
           "label": "Thursday, August 13 at 1:30 PM EDT"
         }
       ]
+    },
+    {
+      "id": "ayanna",
+      "campaign_id": "3762048",
+      "email": "daniel@ayannaplastics.com",
+      "lead": "Daniel, Ayanna Plastics & Engineering — 'Please send over more info'",
+      "body": "Hi Daniel,\n\nOf course.\n\nWe set up separate sending domains and mailboxes on our side, so Ayanna's own domain is never exposed. We build the target list around the buyers you actually want, write the sequences, send them, and every reply lands directly with your team. You see the list before anything goes out, and if the accounts are wrong we rebuild it.\n\nResults are here if you would rather judge it before talking: [koldify.io/#results](https://koldify.io/#results).\n\nIf it is worth fifteen minutes:\n\n• Tuesday, August 11 at 2:00 PM EDT\n• Wednesday, August 12 at 2:00 PM EDT\n• Thursday, August 13 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nMargaret",
+      "slots": [
+        {
+          "start_time": 1786471200,
+          "label": "Tuesday, August 11 at 2:00 PM EDT"
+        },
+        {
+          "start_time": 1786557600,
+          "label": "Wednesday, August 12 at 2:00 PM EDT"
+        },
+        {
+          "start_time": 1786642200,
+          "label": "Thursday, August 13 at 1:30 PM EDT"
+        }
+      ]
     }
   ]
 }
