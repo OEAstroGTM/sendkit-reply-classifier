@@ -11,7 +11,7 @@ import {
 import { toHtml, generateReply, generateBump } from "../lib/reply.js";
 import { linkifySlots } from "../lib/booking.js";
 import { readLedger, addTouch } from "../lib/ledger.js";
-import { createEvent, cancelEvent, formatSlot, getGrantFor } from "../lib/nylas.js";
+import { createEvent, cancelEvent, formatSlot, getGrantFor, listEvents } from "../lib/nylas.js";
 import batch from "../drafts/smartlead-batch.json" with { type: "json" };
 import holdList from "../drafts/followup-hold.json" with { type: "json" };
 import restartList from "../drafts/followup-restart.json" with { type: "json" };
@@ -1139,6 +1139,48 @@ a{color:#1a56db}
     }
 
     // GET/POST ?action=unsubscribe&email=...  — global suppression
+    // Audits what is actually on a calendar, and can bulk-cancel the phantom
+    // bookings created when /api/book still wrote on GET (mail security
+    // scanners fetched every proposed slot link and booked all of them).
+    // ?action=events&host=x@y.com&days=30[&match=the team <>][&cancel=1]
+    if (action === "events") {
+      const days = Math.min(Number(req.query.days || 30), 120);
+      const start = Math.floor(Date.now() / 1000) - 3600;
+      const end = start + days * 86400;
+      const host = req.query.host || "";
+      const match = req.query.match || "the team <>";
+      const doCancel = req.query.cancel === "1";
+      try {
+        const { grant, events } = await listEvents({ hostEmail: host, start, end, limit: 200 });
+        const rows = events.map((ev) => ({
+          id: ev.id,
+          title: ev.title || "",
+          start: ev.when?.start_time || null,
+          label: ev.when?.start_time ? formatSlot(ev.when.start_time, process.env.TIMEZONE || "America/New_York") : null,
+          created: ev.created_at || null,
+          participants: (ev.participants || []).map((x) => x.email),
+          phantom: String(ev.title || "").startsWith(match),
+        })).sort((a, b) => (a.start || 0) - (b.start || 0));
+        const phantoms = rows.filter((r) => r.phantom);
+        let cancelled = [];
+        if (doCancel) {
+          for (const r of phantoms) {
+            try { await cancelEvent(r.id, host); cancelled.push(r.id); }
+            catch (e) { cancelled.push(`FAILED ${r.id}: ${e.message}`); }
+          }
+        }
+        return res.status(200).json({
+          ok: true, calendar: grant.email, days, match,
+          total: rows.length, phantomCount: phantoms.length,
+          cancelled: doCancel ? cancelled.length : 0,
+          cancelledIds: doCancel ? cancelled : undefined,
+          phantoms, events: req.query.all === "1" ? rows : undefined,
+        });
+      } catch (e) {
+        return res.status(200).json({ ok: false, error: e.message });
+      }
+    }
+
     if (action === "unsubscribe") {
       const email = req.query.email || req.body?.email;
       if (!email) return res.status(400).json({ error: "Need email" });
