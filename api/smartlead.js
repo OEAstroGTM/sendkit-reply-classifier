@@ -802,8 +802,12 @@ export default async function handler(req, res) {
     if (action === "cancel-event") {
       const { event, host } = req.query;
       if (!event) return res.status(400).json({ error: "Need event id" });
-      await cancelEvent(event, host);
-      return res.status(200).json({ cancelled: true, event, host: host || "(default grant)" });
+      // notify=0 removes it without mailing the lead a cancellation, which is
+      // what you want when the meeting is being moved to another host and a
+      // fresh invite has already gone out.
+      const notifyCancel = req.query.notify !== "0";
+      await cancelEvent(event, host, notifyCancel);
+      return res.status(200).json({ cancelled: true, event, notified: notifyCancel, host: host || "(default grant)" });
     }
 
     // ?action=sends&from=YYYY-MM-DD&to=YYYY-MM-DD  — volume in a real date window
