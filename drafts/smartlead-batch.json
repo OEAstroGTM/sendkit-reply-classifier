@@ -2,35 +2,11 @@
   "note": "Approved replies. Send with /api/smartlead?action=send-draft&id=<id>. Slots carry start_time + label so times render as one-click booking links.",
   "drafts": [
     {
-      "id": "terry",
-      "campaign_id": "3781785",
-      "email": "terry@cambridgebg.com",
-      "lead": "Terry Gilley, President, Cambridge Building Group — said open around 2 this afternoon, mobile 615-300-8409",
-      "body": "Terry,\n\nI missed your two o'clock and that is on me, apologies. You said this afternoon and I did not get back to you in time.\n\nI can call you on 615-300-8409 whenever suits. Say a time and I will ring, or if you would rather put it in the diary properly:\n\n• Tuesday, August 11 at 1:30 PM EDT (12:30 PM your time)\n• Wednesday, August 12 at 1:30 PM EDT (12:30 PM your time)\n• Thursday, August 13 at 2:00 PM EDT (1:00 PM your time)\n\nEither way, twenty minutes is plenty. I want to walk you through which restaurant and hospitality operators we would be putting in front of Cambridge, and where in Tennessee they are.\n\nSarah",
-      "slots": [
-        { "start_time": 1786469400, "label": "Tuesday, August 11 at 1:30 PM EDT" },
-        { "start_time": 1786555800, "label": "Wednesday, August 12 at 1:30 PM EDT" },
-        { "start_time": 1786644000, "label": "Thursday, August 13 at 2:00 PM EDT" }
-      ]
-    },
-    {
-      "id": "craig",
-      "campaign_id": "3781785",
-      "email": "craig@mmtflogistics.com",
-      "lead": "Craig Leonard, MMTF Logistics — 'Yes that would be helpfull', cell 513-289-8644",
-      "body": "Craig,\n\nGreat. Twenty years in and still chasing freight, so you will know quickly whether what I am describing is worth your time.\n\nWhat we would do is go after shippers in the lanes MMTF actually wants, on your behalf, and the ones who reply about capacity come straight to you. No list handed over, no intermediary in the middle.\n\nHere is what is open:\n\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 2:00 PM EDT\n• Thursday, August 13 at 1:30 PM EDT\n\nTell me which one and I will send the invite. Happy to call 513-289-8644 instead if that is easier than a calendar.\n\nKristen",
-      "slots": [
-        { "start_time": 1786469400, "label": "Tuesday, August 11 at 1:30 PM EDT" },
-        { "start_time": 1786557600, "label": "Wednesday, August 12 at 2:00 PM EDT" },
-        { "start_time": 1786642200, "label": "Thursday, August 13 at 1:30 PM EDT" }
-      ]
-    },
-    {
-      "id": "ryan",
-      "campaign_id": "3781785",
-      "email": "ryan@allcaremedicaltransport.com",
-      "lead": "Ryan, AllCare Medical Transport — 'how would you do that Amanda?'",
-      "body": "Ryan,\n\nStraight answer: we run outbound on your behalf.\n\nWe build a list of the discharge planners, case managers and SNF administrators in your service area, set up separate sending domains so your own domain is never at risk, and email them as AllCare. The ones who need reliable transport reply to you directly, and the relationship is yours from the first message.\n\nWhat we are not doing is handing you a contact list or introducing you to people we already represent. There is no third party in the middle taking a cut of the trip.\n\nIf you want to see the targeting logic rather than my description of it:\n\n• Tuesday, August 11 at 2:00 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n• Thursday, August 13 at 2:00 PM EDT\n\nPick one and I will send the invite over.\n\nAmanda",
+      "id": "brady",
+      "campaign_id": "3762048",
+      "email": "bscott@northfieldgroup.co",
+      "lead": "Brady Scott, Northfield Group — interested if the structure is payment per warm lead call",
+      "body": "Brady,\n\nI appreciate you being upfront about the structure, so I will be too: we do not price per lead.\n\nThe reason is not stubbornness. The moment we are paid per warm call, our incentive is to send you as many calls as we can defend as warm, and yours is to argue about which ones were. In defence and aerospace that is a particularly bad trade, because the universe of real buyers is small and the damage from spraying it is permanent. Priced per lead we would be pushed toward volume, which is the opposite of what Northfield needs.\n\nWhat we do instead is a flat monthly retainer covering the list building, the sending infrastructure and the follow up. Every reply is yours, we take nothing on what you close, and if the targeting is wrong we fix the targeting rather than pad the count.\n\nThere is one other route if a recurring fee is the sticking point rather than the amount: we build the outbound system, run it until it produces, then hand it over and you own it outright along with everything it generates from that point on.\n\nIf either is worth twenty minutes:\n\n• Tuesday, August 11 at 2:00 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n• Thursday, August 13 at 2:00 PM EDT\n\nAnd if per-lead is genuinely the only structure that works for you, say so and I will stop taking up your inbox.\n\nTeresa",
       "slots": [
         { "start_time": 1786471200, "label": "Tuesday, August 11 at 2:00 PM EDT" },
         { "start_time": 1786555800, "label": "Wednesday, August 12 at 1:30 PM EDT" },
@@ -38,52 +14,120 @@
       ]
     },
     {
-      "id": "danavibe",
-      "campaign_id": "3781785",
-      "email": "dana@vibenyctours.com",
-      "lead": "Dana, Vibe NYC Tours — asked whether intros are warm, how we define qualified, booked vs held, no-shows, and for a profile link",
-      "body": "Dana,\n\nGood questions, and you deserve direct answers rather than a brochure.\n\nAre these warm introductions? No. We run cold outbound on your behalf. We build the list of school trip coordinators and corporate planners, set up separate sending domains so vibenyctours.com is never exposed, and email them as Vibe NYC Tours. We are not introducing you to people we already have relationships with, and anyone claiming otherwise is usually selling a list.\n\nHow do we define a qualified opportunity? A reply from someone at a fitting organisation who has decision-making input and expresses interest in talking. Not an open, not a click.\n\nDoes 10 to 30 mean booked or held? Neither. It means conversations started, replies from interested people that land in your inbox. Turning those into held meetings is the part you control, and I would rather tell you that now than have you find out in month two.\n\nNo-shows and unqualified prospects? We do not charge per meeting or per lead, so there is no incentive on our side to inflate the count. Unqualified replies get filtered before they reach you, and we tighten the targeting as we learn which segments actually convert for you.\n\nCompany: koldify.io, and the results section is the most useful part: https://koldify.io/#results\n\nIf you want to go through the targeting properly:\n\n• Tuesday, August 11 at 1:30 PM EDT\n• Wednesday, August 12 at 2:00 PM EDT\n• Thursday, August 13 at 1:30 PM EDT\n\nMorgan",
+      "id": "dusty",
+      "campaign_id": "3762048",
+      "email": "dusty@magicmenu.ai",
+      "lead": "Dusty Dequine, Founder & CEO MagicMenu — said yes, was onsite with launch customer until 8 Aug, our offered times have expired",
+      "body": "Dusty,\n\nHope Estes Park went well and the kitchen behaved itself.\n\nThe times I sent you were for last week, so here are fresh ones:\n\n• Tuesday, August 11 at 10:30 AM PT\n• Wednesday, August 12 at 10:30 AM PT\n• Thursday, August 13 at 10:30 AM PT\n\nTwenty minutes. I want to go through which senior living groups and institutional dining operators we would put MagicMenu in front of, and how we would frame the dietary compliance angle, since that is the part that gets a reply from a facilities director.\n\nTell me which works and I will send the invite, or grab one of the times directly.\n\nElizabeth",
       "slots": [
-        { "start_time": 1786469400, "label": "Tuesday, August 11 at 1:30 PM EDT" },
+        { "start_time": 1786469400, "label": "Tuesday, August 11 at 10:30 AM PT" },
+        { "start_time": 1786555800, "label": "Wednesday, August 12 at 10:30 AM PT" },
+        { "start_time": 1786642200, "label": "Thursday, August 13 at 10:30 AM PT" }
+      ]
+    },
+    {
+      "id": "seanskahen",
+      "campaign_id": "3762048",
+      "email": "sean.skahen@sunset-mfg.com",
+      "lead": "Sean Skahen, Sunset Manufacturing — asked for a call after 8am on 5 Aug, never answered by email; already booked with Logan Wed 12 Aug 9:00 AM EDT",
+      "body": "Sean,\n\nApologies, you asked for a call and this thread went quiet on my end. That should not have happened.\n\nThe good news is you are already in the diary: Wednesday, August 12 at 9:00 AM EDT, which is 8:00 AM your time, with Logan from our side. The invite should be sitting in your calendar with the video link on it.\n\nIf you would rather he simply rang you on 320-260-4241 at that time instead, say the word and he will.\n\nMegan",
+      "slots": []
+    },
+    {
+      "id": "lukasz",
+      "campaign_id": "3721845",
+      "email": "lukasz.wozniak@omnipack.com",
+      "lead": "Łukasz Woźniak, Omnipack — pointed us at their sales contact form",
+      "body": "Łukasz,\n\nThank you, though I think the form would send this to the wrong place.\n\nWe are not looking to buy fulfilment from Omnipack. We would be working on your side, running outbound so that wholesalers and brands needing fulfilment come to your sales team directly.\n\nSo rather than the contact form, could you point me to whoever owns new business development? I will take it to them and stop bothering you.\n\nPaula",
+      "slots": []
+    },
+    {
+      "id": "seth",
+      "campaign_id": "3781766",
+      "email": "seth@crystalclearshine.com",
+      "lead": "Seth Langston, Crystal Clear Shine — said 'yes'. Booked Logan Tue 11 Aug 1:30 PM EDT",
+      "body": "Seth,\n\nGreat. I have put us down for Tuesday, August 11 at 1:30 PM EDT and the invite is in your inbox with the video link on it.\n\nLogan from our team will take the call. Thirty minutes, and the useful part will be working out which property managers and commercial accounts around Wilmington and Raleigh are worth going after first, since you cover both.\n\nIf that time does not suit after all, reply here and I will move it.\n\nFiona",
+      "slots": []
+    },
+    {
+      "id": "chrismscs",
+      "campaign_id": "3781785",
+      "email": "chris@mscs.world",
+      "lead": "Chris Smeltzer, Majestic Supply Chain Solutions — 'Sure tell me more'. Booked Logan Tue 11 Aug 2:00 PM EDT",
+      "body": "Chris,\n\nLikewise, and happy to.\n\nRather than write it all out, I have put us down for Tuesday, August 11 at 2:00 PM EDT, which is 1:00 PM your time. The invite is in your inbox with the video link. Logan from our team will walk you through it.\n\nShort version so you know what you are walking into: we run outbound on your behalf to shippers who need the capacity Majestic has, and the ones who reply come straight to you. No list handed over, nobody in the middle taking a cut.\n\nIf Tuesday does not work, say so and I will move it.\n\nLauren",
+      "slots": []
+    },
+    {
+      "id": "jimrozell",
+      "campaign_id": "3781785",
+      "email": "jimrozell@hotelcompete.com",
+      "lead": "Jim Rozell, Founder & CEO Hotel Compete — said 'Sure'. Booked Logan Wed 12 Aug 1:30 PM EDT",
+      "body": "Jim,\n\nDone. Wednesday, August 12 at 1:30 PM EDT, which is 12:30 PM your time in Milwaukee. Invite is in your inbox with the video link, and Logan from our team will take it.\n\nThirty minutes. We will go through which hotel groups and revenue managers are worth putting Hotel Compete in front of first.\n\nIf Wednesday is awkward, reply here and I will shift it.\n\nLaura",
+      "slots": []
+    },
+    {
+      "id": "brandontorres",
+      "campaign_id": "3781766",
+      "email": "brandon@bluestartx.com",
+      "lead": "Brandon Torres, CEO Blue Star Security — said 'Sure'. Booked Logan Wed 12 Aug 2:00 PM EDT",
+      "body": "Brandon,\n\nGood. Wednesday, August 12 at 2:00 PM EDT, which is 1:00 PM Central. The invite is in your inbox with the video link and Logan from our team will run it.\n\nThirty minutes, and the part worth your time is deciding which property managers and commercial operators to go after first, because that is what determines whether the replies are useful or noise.\n\nIf the time does not suit, reply here and I will move it.\n\nShannon",
+      "slots": []
+    },
+    {
+      "id": "nickignition",
+      "campaign_id": "3781785",
+      "email": "nick@ignitionbenefits.com",
+      "lead": "Nick, Ignition Benefits — said 'Yes'. Booked Logan Thu 13 Aug 1:30 PM EDT",
+      "body": "Nick,\n\nPerfect. Thursday, August 13 at 1:30 PM EDT, invite is in your inbox with the video link, and Logan from our team will take the call.\n\nThirty minutes. We will go through which employers and brokers are worth putting Ignition in front of, and what the outreach would actually say.\n\nIf Thursday does not work, reply here and I will move it.\n\nPaula",
+      "slots": []
+    },
+    {
+      "id": "bilal",
+      "campaign_id": "3781785",
+      "email": "bilal.addam@frontier-labs.co",
+      "lead": "Bilal, Frontier Labs — 'how would you do it?'",
+      "body": "Bilal,\n\nStraight answer.\n\nWe build the list first: founders of ten to fifty person companies with no technical leadership on the team, filtered on headcount, funding stage, whether anyone with a CTO or VP Engineering title exists, and whether they are hiring engineers without anyone senior to manage them. That last signal is the useful one.\n\nThen we register separate sending domains, warm them, and run the campaign under your name so frontier-labs.co is never put at risk. The emails go out as you. Anyone interested replies directly to you and the conversation is yours from the first line.\n\nWe are not making introductions and we are not handing over a list. We are creating the conversations and then getting out of the way.\n\nIf you want to see the targeting rather than read about it:\n\n• Tuesday, August 11 at 2:00 PM EDT\n• Wednesday, August 12 at 2:00 PM EDT\n• Thursday, August 13 at 2:00 PM EDT\n\nChristina",
+      "slots": [
+        { "start_time": 1786471200, "label": "Tuesday, August 11 at 2:00 PM EDT" },
+        { "start_time": 1786557600, "label": "Wednesday, August 12 at 2:00 PM EDT" },
+        { "start_time": 1786644000, "label": "Thursday, August 13 at 2:00 PM EDT" }
+      ]
+    },
+    {
+      "id": "tousif",
+      "campaign_id": "3781785",
+      "email": "tousif@zenit-h.com",
+      "lead": "Tousif Izaz, Zenit — asked how the introductions are facilitated and what next steps look like",
+      "body": "Tousif,\n\nHappy to lay it out.\n\nHow it works: we build a target list around the buyers Zenit actually wants, register separate sending domains and mailboxes so your own domain is never exposed, warm them, then run the campaign in your name. Replies land directly with your team. We handle list building, infrastructure, copy and follow up. You handle the conversations.\n\nOne clarification worth making early, because it changes expectations: these are not warm introductions. It is cold outbound run properly, on your behalf. Anyone promising you warm intros at volume is usually selling a list.\n\nNext steps: a twenty minute call to agree who we are targeting and what the offer says, then roughly two to three weeks of infrastructure setup and warming before volume sending starts. First replies usually land in that third or fourth week.\n\nOpen on my side:\n\n• Tuesday, August 11 at 2:00 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n• Thursday, August 13 at 1:30 PM EDT\n\nIf those are awkward for your timezone, tell me roughly when works and I will fit around you.\n\nPaula",
+      "slots": [
+        { "start_time": 1786471200, "label": "Tuesday, August 11 at 2:00 PM EDT" },
+        { "start_time": 1786555800, "label": "Wednesday, August 12 at 1:30 PM EDT" },
+        { "start_time": 1786642200, "label": "Thursday, August 13 at 1:30 PM EDT" }
+      ]
+    },
+    {
+      "id": "ihab",
+      "campaign_id": "3781785",
+      "email": "ihabsharaf@intertradeconsultant.com",
+      "lead": "Ihab Sharaf, Sweetpotato International — 'It would be if this is not an auto generated message. Bot check.'",
+      "body": "Ihab,\n\nFair challenge, and you are right to make it.\n\nThe first email was automated. This one is not, and here is the proof rather than a promise: you replied from intertradeconsultant.com while trading as Sweetpotato International, which is an unusual pairing and not something a template would notice. A bot would have sent you the next line in a sequence about manufacturing.\n\nSo, properly. We run outbound campaigns for companies like yours. We build the buyer list, set up separate sending infrastructure so your own domain is never at risk, and email in your name. The people who are interested reply straight to you.\n\nFor an international trade and sourcing business the question worth answering on a call is which side you want more of, buyers or suppliers, because it changes the whole target list.\n\nIf you want to test whether there is a human here properly:\n\n• Tuesday, August 11 at 2:00 PM EDT\n• Wednesday, August 12 at 2:00 PM EDT\n• Thursday, August 13 at 1:30 PM EDT\n\nOr reply with a question a bot would fumble. I will answer it.\n\nGrace",
+      "slots": [
+        { "start_time": 1786471200, "label": "Tuesday, August 11 at 2:00 PM EDT" },
         { "start_time": 1786557600, "label": "Wednesday, August 12 at 2:00 PM EDT" },
         { "start_time": 1786642200, "label": "Thursday, August 13 at 1:30 PM EDT" }
       ]
     },
     {
-      "id": "aubry",
+      "id": "candis",
       "campaign_id": "3781785",
-      "email": "aj@discoverbison.com",
-      "lead": "Aubry, Bison — redirected us to Mickey@discoverbison.com",
-      "body": "Aubry,\n\nThank you, that is helpful. I will write to Mickey directly.\n\nFor context so it does not arrive cold: we run outbound for companies like Bison, reaching commercial property owners who need roofing, grounds and tree work, so those enquiries come to you rather than you chasing them.\n\nIf Mickey is not the right person after all, a nudge in the right direction would be appreciated.\n\nAllison",
-      "slots": []
-    },
-    {
-      "id": "ericfire",
-      "campaign_id": "3781766",
-      "email": "eric@limited-access.net",
-      "lead": "Eric, Access Fire and Security — 'call me, do not dump the info here', 717-533-2450 / 717-574-2500",
-      "body": "Eric,\n\nFair enough, I will not dump it in an email.\n\nWhen is a good time to call you on 717-533-2450? Give me a window that works and I will ring then rather than catching you mid-job.\n\nTen minutes is all it needs. This is about putting Access Fire in front of property owners and facility managers who are actively looking for fire alarm, monitoring and access control work.\n\nImogen",
-      "slots": []
-    },
-    {
-      "id": "paulrune",
-      "campaign_id": "3762048",
-      "email": "paul@runequeen.com",
-      "lead": "Paul, RuneQueen — asked for verifiable links, LinkedIn, website, to understand the company and process",
-      "body": "Paul,\n\nOf course, here is what you asked for.\n\nCompany: koldify.io. The results section is the part worth reading first: https://koldify.io/#results\n\nThe process, briefly. We build a list of the people you want to reach, register separate sending domains so your own is never put at risk, warm them, then run the campaign under your name. Replies come back to you directly and you have the conversation. We handle the infrastructure and the follow up. It is a flat monthly retainer, not per lead.\n\nFor RuneQueen that would mean reaching people already looking for guidance work rather than waiting for them to find you.\n\nIf you want to go through it properly:\n\n• Wednesday, August 12 at 1:30 PM EDT\n• Thursday, August 13 at 2:00 PM EDT\n• Monday, August 17 at 1:30 PM EDT\n\nHappy to answer anything else in writing first if you would rather look before you talk.\n\nAngela",
+      "email": "candis@darkhorsesafety.com",
+      "lead": "Candis Ruiz, CEO Dark Horse Safety — 'Prove It!' plus her own HubSpot booking link and two mobiles",
+      "body": "Candis,\n\nI like that you sent a booking link with the challenge. Most people just send the challenge.\n\nSo, proof rather than adjectives. We do not sell you leads and we do not charge per meeting, which means we have no reason to inflate a number. We run outbound in your name to the people who buy safety and compliance services, and every reply goes straight to you rather than through us. If the targeting is wrong you will know within two weeks, because the replies will be from the wrong people, and that is on us to fix.\n\nWhat I cannot prove in an email is whether the buyers we would target are the ones you actually want. That is the twenty minute conversation.\n\nI will use your link rather than make you use mine: https://meetings.hubspot.com/candis-ruiz\n\nIf you would rather I worked around your calendar instead, these are open:\n\n• Tuesday, August 11 at 2:00 PM EDT\n• Wednesday, August 12 at 1:30 PM EDT\n• Thursday, August 13 at 2:00 PM EDT\n\nSarah",
       "slots": [
+        { "start_time": 1786471200, "label": "Tuesday, August 11 at 2:00 PM EDT" },
         { "start_time": 1786555800, "label": "Wednesday, August 12 at 1:30 PM EDT" },
-        { "start_time": 1786644000, "label": "Thursday, August 13 at 2:00 PM EDT" },
-        { "start_time": 1786987800, "label": "Monday, August 17 at 1:30 PM EDT" }
+        { "start_time": 1786644000, "label": "Thursday, August 13 at 2:00 PM EDT" }
       ]
-    },
-    {
-      "id": "henrycarter",
-      "campaign_id": "3762048",
-      "email": "henry.carter@jamestown-capital.com",
-      "lead": "Henry Carter, Jamestown Capital — resent his buyside-advisor boilerplate after we corrected the category; success-fee only",
-      "body": "Henry,\n\nUnderstood, and I will leave it there.\n\nWe are not a buyside advisor and we do not take a fee on a transaction, so the terms page does not really cover us, but the underlying point does: you are not paying for sourcing infrastructure on a non-contingent basis, and what we do is exactly that. So we are not a fit today.\n\nNo hard feelings and no follow-ups from me. If the position on that ever changes, you know where to find us.\n\nGood luck with the pipeline.\n\nCharlotte",
-      "slots": []
     }
   ]
 }
