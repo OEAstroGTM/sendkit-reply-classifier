@@ -2,22 +2,43 @@
   "note": "Approved replies. Send with /api/smartlead?action=send-draft&id=<id>. Slots carry start_time + label so times render as one-click booking links.",
   "drafts": [
     {
-      "id": "jason2",
+      "id": "seanarleth",
       "campaign_id": "3781785",
-      "email": "jason@readytoroll.com",
-      "lead": "Jason, Ready to Roll — wants sample copy written as him and a real prospect example",
-      "body": "Jason,\n\nThe copy and the prospect list are things we would build with you rather than send cold. Both are specific to Ready to Roll, and a sample written for someone else's campaign would tell you very little about either.\n\nHappy to go through real examples on a call, screen shared, including live campaigns and the targeting behind them. You can judge the quality directly.\n\n• Monday, August 17 at 1:30 PM EDT\n• Tuesday, August 18 at 1:30 PM EDT\n\nGeorgia",
-      "slots": [
-        { "start_time": 1786987800, "label": "Monday, August 17 at 1:30 PM EDT" },
-        { "start_time": 1787074200, "label": "Tuesday, August 18 at 1:30 PM EDT" }
-      ]
+      "email": "sarleth@i-ology.com",
+      "lead": "Sean Arleth, VP & Partner i-ology — 'Sure. Call me tomorrow.' Booked Felipe Tue 11 Aug 1:30 PM EDT",
+      "body": "Sean,\n\nTomorrow works. I have put us down for Tuesday, August 11 at 1:30 PM EDT, which is 10:30 AM your time in Arizona. The invite is in your inbox with a video link on it.\n\nIf you would rather I simply rang you, send me the best number and I will call at that time instead.\n\nThirty minutes, and the useful part will be deciding which mid market buyers to go after first for i-ology.\n\nKelly",
+      "slots": []
     },
     {
-      "id": "yash2",
-      "campaign_id": "3762048",
-      "email": "yash@arthiva.ai",
-      "lead": "Yash Mannepalli, Founder & CEO Arthiva — self-booked for Wednesday",
-      "body": "Yash,\n\nGot it, thanks for booking. Looking forward to Wednesday.\n\nIf anything shifts on your end, just reply here and I will move it.\n\nSandra",
+      "id": "davidspindler",
+      "campaign_id": "3781785",
+      "email": "david.spindler@xalyc.com",
+      "lead": "David Spindler, Xalyc — said 'yes'. Booked Logan Wed 12 Aug 9:30 AM EDT",
+      "body": "David,\n\nGood. Wednesday, August 12 at 9:30 AM EDT, invite is in your inbox with the video link, and Logan from our team will take it.\n\nThirty minutes. We will work out which mid sized operators to target first, because businesses automating operations with AI split into quite different buying groups and picking one properly beats covering them all thinly.\n\nIf the time does not suit, reply here and I will move it.\n\nSandra",
+      "slots": []
+    },
+    {
+      "id": "kamese",
+      "campaign_id": "3781785",
+      "email": "kamese@rapidtestlaboratories.com",
+      "lead": "Kamese, Rapid Test Laboratories — said 'yes'. Booked Logan Thu 13 Aug 9:00 AM EDT",
+      "body": "Kamese,\n\nGreat. Thursday, August 13 at 9:00 AM EDT. The invite is in your inbox with the video link and Logan from our team will run it.\n\nThirty minutes. What is worth deciding is which practices to go after first, because primary care, urgent care and specialist clinics choose a lab for quite different reasons and the outreach has to say different things.\n\nIf Thursday is awkward, reply here and I will move it.\n\nApril",
+      "slots": []
+    },
+    {
+      "id": "williamplx",
+      "campaign_id": "3781785",
+      "email": "william@wepulse.io",
+      "lead": "William, PLX: The Athlete Ecosystem — 'Yes, I would be interested'. Booked Logan Thu 13 Aug 9:30 AM EDT",
+      "body": "William,\n\nGood. Thursday, August 13 at 9:30 AM EDT, invite is in your inbox with the video link and Logan from our team will take it.\n\nThirty minutes. The part worth your time is deciding whether we lead with college athletic programs or with agents, because they buy on completely different terms and a campaign built for one will beat a campaign built for both.\n\nIf the time does not work, reply here and I will shift it.\n\nMorgan",
+      "slots": []
+    },
+    {
+      "id": "kevinharlow",
+      "campaign_id": "3781766",
+      "email": "kevin@fitssecurity.com",
+      "lead": "Kevin Harlow, FITS Security & Technology — 'Worth a conversation to learn more'. Booked Logan Thu 13 Aug 2:00 PM EDT",
+      "body": "Kevin,\n\nAgreed. Thursday, August 13 at 2:00 PM EDT, which is 1:00 PM your time. The invite is in your inbox with the video link on it, and Logan from our team will take the call.\n\nThirty minutes. We will go through which property managers and facility directors are worth going after first around Kansas City, and what the outreach would actually say.\n\nHappy to call 816-914-0263 instead if that is easier than a video call.\n\nSusan",
       "slots": []
     }
   ]

@@ -444,6 +444,26 @@
     {
       "email": "zoey.hollar@heckamanhollargroup.com",
       "reason": "Declined: says email is not how manufacturers buy, sees no value in a retainer"
+    },
+    {
+      "email": "sarleth@i-ology.com",
+      "reason": "Meeting booked, Tue 11 Aug 13:30 EDT with Felipe"
+    },
+    {
+      "email": "david.spindler@xalyc.com",
+      "reason": "Meeting booked, Wed 12 Aug 09:30 EDT with Logan"
+    },
+    {
+      "email": "kamese@rapidtestlaboratories.com",
+      "reason": "Meeting booked, Thu 13 Aug 09:00 EDT with Logan"
+    },
+    {
+      "email": "william@wepulse.io",
+      "reason": "Meeting booked, Thu 13 Aug 09:30 EDT with Logan"
+    },
+    {
+      "email": "kevin@fitssecurity.com",
+      "reason": "Meeting booked, Thu 13 Aug 14:00 EDT with Logan"
     }
   ]
 }
