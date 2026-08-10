@@ -228,6 +228,14 @@
     {
       "email": "mary@designwrightstudios.com",
       "reason": "Declined: no thanks"
+    },
+    {
+      "email": "jack@lifesthoughts.com",
+      "reason": "Declined: rev-share only, does not work with fee-based marketing"
+    },
+    {
+      "email": "greg@managementmastery.solutions",
+      "reason": "Declined: not interested"
     }
   ]
 }

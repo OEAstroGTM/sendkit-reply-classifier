@@ -2530,6 +2530,48 @@
           "label": "Wednesday, August 12 at 1:30 PM EDT"
         }
       ]
+    },
+    {
+      "id": "arthiva",
+      "campaign_id": "3762048",
+      "email": "yash@arthiva.ai",
+      "lead": "Yash Mannepalli, Founder & CEO Arthiva — wants to meet this week",
+      "body": "Hi Yash,\n\nGood to hear, and this week works.\n\n• Tuesday, August 11 at 2:00 PM EDT\n• Wednesday, August 12 at 2:00 PM EDT\n• Thursday, August 13 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker.\n\nSandra",
+      "slots": [
+        {
+          "start_time": 1786471200,
+          "label": "Tuesday, August 11 at 2:00 PM EDT"
+        },
+        {
+          "start_time": 1786557600,
+          "label": "Wednesday, August 12 at 2:00 PM EDT"
+        },
+        {
+          "start_time": 1786642200,
+          "label": "Thursday, August 13 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "tideisun",
+      "campaign_id": "3762048",
+      "email": "bin@tideisun.com",
+      "lead": "Bin Robin, TIDEiSun Group — asked for buyer profiles, geographies and engagement model",
+      "body": "Hi Bin,\n\nGood questions. Let me take them in order, including the one where the honest answer is not the one you might be hoping for.\n\nEngagement model first, since it changes the other two. We are outbound, not introductions. We do not have a network of buyers to introduce you to and we are not an appointment-setting service sitting on a warm list. We build and run the campaign on your behalf, from our own sending infrastructure, and the replies come directly to your team.\n\nOn buyer profiles: I could send you three plausible-looking personas today, but they would be invented, and you would spot that on the call. The real version is that we build them with you, starting from who has actually bought from TIDEiSun and why. That first conversation is most of the value, and you would see the resulting list before a single email went out.\n\nGeographies are yours to set. We target the markets you want to sell into rather than the ones that are easiest to scrape.\n\nIf outbound is the right shape for you, happy to do the profile work properly:\n\n• Tuesday, August 11 at 2:00 PM EDT\n• Wednesday, August 12 at 2:00 PM EDT\n• Thursday, August 13 at 1:30 PM EDT\n\nJust tell me which one suits and I will send the invite across. The times are also clickable if that is quicker. And if it is introductions you are after rather than campaigns, we are the wrong people and I would rather say so now.\n\nCatherine",
+      "slots": [
+        {
+          "start_time": 1786471200,
+          "label": "Tuesday, August 11 at 2:00 PM EDT"
+        },
+        {
+          "start_time": 1786557600,
+          "label": "Wednesday, August 12 at 2:00 PM EDT"
+        },
+        {
+          "start_time": 1786642200,
+          "label": "Thursday, August 13 at 1:30 PM EDT"
+        }
+      ]
     }
   ]
 }
