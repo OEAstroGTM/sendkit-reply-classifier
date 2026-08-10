@@ -2,44 +2,50 @@
   "note": "Approved replies. Send with /api/smartlead?action=send-draft&id=<id>. Slots carry start_time + label so times render as one-click booking links.",
   "drafts": [
     {
-      "id": "seanarleth",
+      "id": "dmitri",
       "campaign_id": "3781785",
-      "email": "sarleth@i-ology.com",
-      "lead": "Sean Arleth, VP & Partner i-ology — 'Sure. Call me tomorrow.' Booked Felipe Tue 11 Aug 1:30 PM EDT",
-      "body": "Sean,\n\nTomorrow works. I have put us down for Tuesday, August 11 at 1:30 PM EDT, which is 10:30 AM your time in Arizona. The invite is in your inbox with a video link on it.\n\nIf you would rather I simply rang you, send me the best number and I will call at that time instead.\n\nThirty minutes, and the useful part will be deciding which mid market buyers to go after first for i-ology.\n\nKelly",
-      "slots": []
+      "email": "dmitri@bicyclebi.com",
+      "lead": "Dmitri Kanounnikov, Bicycle BI — wants website, 2-3 examples for BI/data firms, how we identify companies modernising reporting, and what 10-30 introductions means",
+      "body": "Dmitri,\n\nGood questions, taking them in order.\n\nWebsite: koldify.io. The results section is the fastest read: https://koldify.io/#results\n\nExamples. Our track record is in adjacent categories rather than BI and data services specifically, so I am not going to hand you a case study from a different sector and pretend it maps one to one. The mechanics do transfer, and that is the part worth your time. Happy to walk you through exactly how on the call, using real campaigns.\n\nIdentifying companies modernising their reporting. Nobody announces it, so we work from signals that reliably precede it: hiring for analytics or data engineering roles, recent moves onto a cloud warehouse, headcount and funding stage, whether anyone owns data internally. That builds the list. The email then does the qualifying, because the companies actually in the middle of a migration are the ones who write back.\n\n10 to 30 introductions means replies from interested people landing in your inbox over a month. Conversations started, not meetings held. Worth being precise about that up front.\n\nIf that is useful:\n\n• Monday, August 17 at 1:30 PM EDT\n• Tuesday, August 18 at 1:30 PM EDT\n• Wednesday, August 19 at 1:30 PM EDT\n\nMadison",
+      "slots": [
+        { "start_time": 1786987800, "label": "Monday, August 17 at 1:30 PM EDT" },
+        { "start_time": 1787074200, "label": "Tuesday, August 18 at 1:30 PM EDT" },
+        { "start_time": 1787160600, "label": "Wednesday, August 19 at 1:30 PM EDT" }
+      ]
     },
     {
-      "id": "davidspindler",
+      "id": "johnenloe",
       "campaign_id": "3781785",
-      "email": "david.spindler@xalyc.com",
-      "lead": "David Spindler, Xalyc — said 'yes'. Booked Logan Wed 12 Aug 9:30 AM EDT",
-      "body": "David,\n\nGood. Wednesday, August 12 at 9:30 AM EDT, invite is in your inbox with the video link, and Logan from our team will take it.\n\nThirty minutes. We will work out which mid sized operators to target first, because businesses automating operations with AI split into quite different buying groups and picking one properly beats covering them all thinly.\n\nIf the time does not suit, reply here and I will move it.\n\nSandra",
-      "slots": []
+      "email": "john.enloe@eagle5energy.com",
+      "lead": "John Enloe, Eagle 5 Energy — asked what our relationship to accredited investors is and whether we already have those relationships",
+      "body": "John,\n\nWorth being precise, because the distinction matters.\n\nWe are not placing you in front of a rolodex we already own, and we are not brokers. We build the channel: target list, separate sending infrastructure, outreach in your name, and the people who are interested reply directly to you. The relationship is yours from the first message rather than rented from us, which is deliberate, because introductions that run through a middleman tend to come with a claim on the outcome. We take nothing on capital raised.\n\nOur work in energy is adjacent rather than identical, so I will not overstate it. The mechanics are the same wherever we run them, and I would rather show you how on a call than describe it here.\n\nOne practical note. Outreach to accredited investors about oil and gas participations touches solicitation rules, so we would want your counsel comfortable with the copy before anything goes out. Plenty of operators use this for partner and JV outreach for that reason, which is often the better first campaign anyway.\n\n• Monday, August 17 at 2:00 PM EDT\n• Tuesday, August 18 at 2:00 PM EDT\n\nTracy",
+      "slots": [
+        { "start_time": 1786989600, "label": "Monday, August 17 at 2:00 PM EDT" },
+        { "start_time": 1787076000, "label": "Tuesday, August 18 at 2:00 PM EDT" }
+      ]
     },
     {
-      "id": "kamese",
+      "id": "samtrochi",
       "campaign_id": "3781785",
-      "email": "kamese@rapidtestlaboratories.com",
-      "lead": "Kamese, Rapid Test Laboratories — said 'yes'. Booked Logan Thu 13 Aug 9:00 AM EDT",
-      "body": "Kamese,\n\nGreat. Thursday, August 13 at 9:00 AM EDT. The invite is in your inbox with the video link and Logan from our team will run it.\n\nThirty minutes. What is worth deciding is which practices to go after first, because primary care, urgent care and specialist clinics choose a lab for quite different reasons and the outreach has to say different things.\n\nIf Thursday is awkward, reply here and I will move it.\n\nApril",
-      "slots": []
+      "email": "sam@trochi.ai",
+      "lead": "Sam, Trochi Data — asked whether all those brokers are greater than $100m in gross revenue",
+      "body": "Sam,\n\nNot by default, and I would rather answer that properly than nod along.\n\nWe build the list to the bar you set. If the floor is 100 million gross revenue, that becomes the filter. The thing to know is that revenue figures for private brokerages are not reliably published, so we triangulate from headcount, carrier count, load volume indicators and filings where they exist. That gets you a list that holds up, and anyone promising a certified revenue floor on private brokerages is selling you confidence they do not have.\n\nAt that bar the universe is smaller and the targeting has to be sharper, which usually makes the campaign better rather than worse. I can show you how we build and verify that list on the call.\n\n• Monday, August 17 at 1:30 PM EDT\n• Wednesday, August 19 at 2:00 PM EDT\n\nMargaret",
+      "slots": [
+        { "start_time": 1786987800, "label": "Monday, August 17 at 1:30 PM EDT" },
+        { "start_time": 1787162400, "label": "Wednesday, August 19 at 2:00 PM EDT" }
+      ]
     },
     {
-      "id": "williamplx",
+      "id": "praneeth",
       "campaign_id": "3781785",
-      "email": "william@wepulse.io",
-      "lead": "William, PLX: The Athlete Ecosystem — 'Yes, I would be interested'. Booked Logan Thu 13 Aug 9:30 AM EDT",
-      "body": "William,\n\nGood. Thursday, August 13 at 9:30 AM EDT, invite is in your inbox with the video link and Logan from our team will take it.\n\nThirty minutes. The part worth your time is deciding whether we lead with college athletic programs or with agents, because they buy on completely different terms and a campaign built for one will beat a campaign built for both.\n\nIf the time does not work, reply here and I will shift it.\n\nMorgan",
-      "slots": []
-    },
-    {
-      "id": "kevinharlow",
-      "campaign_id": "3781766",
-      "email": "kevin@fitssecurity.com",
-      "lead": "Kevin Harlow, FITS Security & Technology — 'Worth a conversation to learn more'. Booked Logan Thu 13 Aug 2:00 PM EDT",
-      "body": "Kevin,\n\nAgreed. Thursday, August 13 at 2:00 PM EDT, which is 1:00 PM your time. The invite is in your inbox with the video link on it, and Logan from our team will take the call.\n\nThirty minutes. We will go through which property managers and facility directors are worth going after first around Kansas City, and what the outreach would actually say.\n\nHappy to call 816-914-0263 instead if that is easier than a video call.\n\nSusan",
-      "slots": []
+      "email": "praneeth@ninjahire.co",
+      "lead": "Praneeth, Ninjahire — 'Whats the cost?'",
+      "body": "Praneeth,\n\nFlat monthly retainer. Not per lead, not per meeting, and no percentage of anything you close.\n\nThe number moves with scope, so tell me roughly the scale you have in mind and I will put a figure in writing before we speak. Otherwise we can size it on the call in twenty minutes.\n\n• Monday, August 17 at 2:00 PM EDT\n• Tuesday, August 18 at 2:00 PM EDT\n• Wednesday, August 19 at 1:30 PM EDT\n\nAllison",
+      "slots": [
+        { "start_time": 1786989600, "label": "Monday, August 17 at 2:00 PM EDT" },
+        { "start_time": 1787076000, "label": "Tuesday, August 18 at 2:00 PM EDT" },
+        { "start_time": 1787160600, "label": "Wednesday, August 19 at 1:30 PM EDT" }
+      ]
     }
   ]
 }
