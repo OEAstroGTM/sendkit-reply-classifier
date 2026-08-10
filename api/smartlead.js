@@ -415,7 +415,9 @@ export default async function handler(req, res) {
         .filter((c) => c.status !== "DRAFTED" && c.status !== "ARCHIVED")
         .map((c) => String(c.id));
 
-      const max = Math.min(Number(req.query.max || 60), 120);
+      // Cap raised from 120: campaign 3781785 alone holds 146 replies, so the
+      // old ceiling made full coverage impossible however you paged it.
+      const max = Math.min(Number(req.query.max || 60), 400);
       const perCampaign = Math.min(Number(req.query.threads || 25), 40);
       // Thread reads are the slow part, so a single call can only inspect a
       // slice before the function times out. ?skip=N walks further down the
