@@ -422,8 +422,9 @@ export default async function handler(req, res) {
       // candidate list, which lets several calls cover a campaign completely
       // instead of silently reporting a clean queue on a truncated view.
       const skip = Math.max(0, Number(req.query.skip || 0));
-      const awaiting = [], optouts = [], declines = [];
+      const awaiting = [], optouts = [], declines = [], failed = [];
       let scanned = 0, instantMachines = 0, candidatesTotal = 0;
+      let repliesTotal = 0, truncated = false;
 
       for (const id of ids) {
         // Records come back in internal lead-id order, NOT reply order, so
@@ -443,9 +444,13 @@ export default async function handler(req, res) {
           if (!r.length) break;
           all.push(...r);
         }
-        const rows = all
-          .sort((a, b) => new Date(b.reply_time) - new Date(a.reply_time))
-          .slice(0, max);
+        const sorted = all.sort((a, b) => new Date(b.reply_time) - new Date(a.reply_time));
+        // `max` truncates the reply set before anything else runs. A campaign
+        // with 200 replies scanned at max=40 used to report a clean queue on
+        // the strength of 40 records and say nothing about the other 160.
+        repliesTotal += sorted.length;
+        if (sorted.length > max) truncated = true;
+        const rows = sorted.slice(0, max);
         scanned += rows.length;
 
         // Cheap pre-filter before spending two API calls on a thread. Kept
@@ -457,7 +462,10 @@ export default async function handler(req, res) {
           if (delay < machineFloor) { instantMachines++; continue; }
           candidates.push({ ...r, delaySeconds: Math.round(delay) });
         }
-        candidatesTotal = Math.max(candidatesTotal, candidates.length);
+        // Summed, not max()'d: across several campaigns the old version kept
+        // only the biggest single count, so moreToScan compared against the
+        // wrong denominator and went false while work remained.
+        candidatesTotal += candidates.length;
 
         const window = candidates.slice(skip, skip + perCampaign);
         const checked = await Promise.all(window.map(async (c) => {
@@ -489,10 +497,17 @@ export default async function handler(req, res) {
               ourTurn: !!last && last.type === "REPLY",
               said: text.slice(0, 300),
             };
-          } catch { return null; }
+          } catch (e) {
+            // Never swallow this. A 429 or a timeout here used to delete the
+            // lead from the report entirely: no entry, no count, no warning.
+            // That is how five leads sat unanswered in a campaign that was
+            // reporting awaitingCount: 1.
+            return { __failed: true, email: c.lead_email, error: String(e.message || e).slice(0, 160) };
+          }
         }));
 
-        for (const x of checked.filter(Boolean)) {
+        for (const f of checked.filter((x) => x && x.__failed)) failed.push(f);
+        for (const x of checked.filter((x) => x && !x.__failed)) {
           if (x.optOut) { if (!x.suppressed) optouts.push(x); continue; }
           if (x.machine || !x.ourTurn || x.suppressed) continue;
           if (x.decline) { declines.push(x); continue; }
@@ -506,10 +521,19 @@ export default async function handler(req, res) {
         campaignsScanned: ids.length,
         repliesScanned: scanned,
         skip,
-        // true when there are candidates past this slice that were not read
-        moreToScan: candidatesTotal > skip + perCampaign,
+        // True when anything was left unread: candidates past this slice, or
+        // replies cut off by `max`, or threads that failed to load. Any one of
+        // those means the queue below is incomplete and must not be read as
+        // "nothing is waiting".
+        moreToScan: candidatesTotal > skip + perCampaign || truncated || failed.length > 0,
         candidatesTotal,
+        repliesTotal,
+        truncated,
         instantMachines,
+        // Threads that could not be read this pass, usually rate limiting.
+        // Re-run for these specifically rather than assuming they are clean.
+        failedCount: failed.length,
+        failed,
         awaitingCount: awaiting.length,
         // Polite no's. Nothing to answer, but they must not enter follow-ups.
         declined: declines.map((x) => ({ name: x.name, email: x.email, company: x.company, said: x.said.slice(0, 100) })),
