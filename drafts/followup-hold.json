@@ -356,6 +356,50 @@
     {
       "email": "loniskey@wowwindowcleaners.com",
       "reason": "Opt-out: Stop - suppressed 10 Aug"
+    },
+    {
+      "email": "adamr@sureshotlogistics.com",
+      "reason": "Opt-out: STOP EMAILING ME - suppressed 10 Aug"
+    },
+    {
+      "email": "ishan@acuityriskconsultants.com",
+      "reason": "Opt-out: unsubscribe - suppressed 10 Aug"
+    },
+    {
+      "email": "crystal@growthmindsetnyc.com",
+      "reason": "Opt-out: unsubscribe please - suppressed 10 Aug"
+    },
+    {
+      "email": "bmiller@bargainmoversinc.com",
+      "reason": "Opt-out: Unsubscribe - suppressed 10 Aug"
+    },
+    {
+      "email": "sean.busby@digitalglue.com",
+      "reason": "Opt-out: take us off your list - suppressed 10 Aug"
+    },
+    {
+      "email": "dmoulton@accucare.com",
+      "reason": "Opt-out: Stop emails, wrong vertical - suppressed 10 Aug"
+    },
+    {
+      "email": "steve@themathergroupllc.com",
+      "reason": "Opt-out: unsub us please - suppressed 10 Aug"
+    },
+    {
+      "email": "kevin@langins.com",
+      "reason": "Out of office until 16 Aug, travelling"
+    },
+    {
+      "email": "david.byrd@foxhoundic.com",
+      "reason": "Declined: nope"
+    },
+    {
+      "email": "candice@elevatedtalentsolutions.com",
+      "reason": "Declined: No"
+    },
+    {
+      "email": "brian@activesolutions.com",
+      "reason": "Replied 'See attached' - attachment not readable via API, needs a human to open"
     }
   ]
 }

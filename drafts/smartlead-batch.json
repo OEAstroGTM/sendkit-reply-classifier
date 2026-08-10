@@ -2,143 +2,64 @@
   "note": "Approved replies. Send with /api/smartlead?action=send-draft&id=<id>. Slots carry start_time + label so times render as one-click booking links.",
   "drafts": [
     {
-      "id": "erin",
-      "campaign_id": "3781766",
-      "email": "erin.williams@acceleratedwaste.com",
-      "lead": "Erin Williams, Accelerated Waste Solutions — 'Yes. Let's chat.' 707-920-5149",
-      "body": "Erin,\n\nGreat. Here is what is open:\n\n• Thursday, August 13 at 2:00 PM EDT\n• Monday, August 17 at 1:30 PM EDT\n• Tuesday, August 18 at 1:30 PM EDT\n\nThirty minutes. The useful part will be working out which property managers, realtors and commercial accounts are worth going after first, since junk removal and waste tend to come from different referral sources.\n\nTell me which suits and I will send the invite, or grab a time directly. Happy to call 707-920-5149 instead if that is easier.\n\nDiana",
+      "id": "ron",
+      "campaign_id": "3781785",
+      "email": "ron@builderzwarehouse.com",
+      "lead": "Ron Wittenberg, Managing Member, BW Pro — said 'sure', waiting 7 hours",
+      "body": "Ron,\n\nApologies for the slow turnaround, that is longer than you should have waited for a reply.\n\nHere is what is open:\n\n• Wednesday, August 12 at 9:30 AM EDT\n• Thursday, August 13 at 9:00 AM EDT\n• Thursday, August 13 at 2:00 PM EDT\n\nThirty minutes. What is worth deciding on the call is which buyers you actually want more of, because that is what determines whether the replies coming back to you are useful or just volume.\n\nTell me which suits and I will send the invite, or grab a time directly.\n\nPatricia",
       "slots": [
-        { "start_time": 1786644000, "label": "Thursday, August 13 at 2:00 PM EDT" },
+        { "start_time": 1786541400, "label": "Wednesday, August 12 at 9:30 AM EDT" },
+        { "start_time": 1786626000, "label": "Thursday, August 13 at 9:00 AM EDT" },
+        { "start_time": 1786644000, "label": "Thursday, August 13 at 2:00 PM EDT" }
+      ]
+    },
+    {
+      "id": "stephanie",
+      "campaign_id": "3781785",
+      "email": "sw@5ftview.com",
+      "lead": "Stephanie Warlick, Founder & CEO, 5FT View Consulting — said 'Yes', waiting 7 hours",
+      "body": "Stephanie,\n\nThank you, and apologies for the delay in coming back to you.\n\nThese are open:\n\n• Thursday, August 13 at 9:30 AM EDT\n• Monday, August 17 at 1:30 PM EDT\n• Tuesday, August 18 at 1:30 PM EDT\n\nThirty minutes. For a fractional executive collective the interesting question is which engagement type to lead with, because companies hiring an interim CFO and companies looking for advisory support behave completely differently in outreach, and picking one deliberately beats covering all of them thinly.\n\nTell me which time works and I will send the invite.\n\nRiley",
+      "slots": [
+        { "start_time": 1786627800, "label": "Thursday, August 13 at 9:30 AM EDT" },
         { "start_time": 1786987800, "label": "Monday, August 17 at 1:30 PM EDT" },
         { "start_time": 1787074200, "label": "Tuesday, August 18 at 1:30 PM EDT" }
       ]
     },
     {
-      "id": "virind",
+      "id": "gsean",
       "campaign_id": "3781785",
-      "email": "virind@evbots.tech",
-      "lead": "Virind Gujral, EV Bots — 'Sure', cell (610) 613-1614",
-      "body": "Virind,\n\nGood. These are open:\n\n• Tuesday, August 11 at 9:00 AM EDT\n• Wednesday, August 12 at 9:30 AM EDT\n• Thursday, August 13 at 9:00 AM EDT\n\nThirty minutes. What is worth deciding on the call is which fleet operators to go after first, because municipal fleets, last-mile carriers and private haulers electrify for completely different reasons and the message has to change accordingly.\n\nPick one and I will send the invite over.\n\nJulia",
+      "email": "gsean.williams@psmworkforce.com",
+      "lead": "G'Sean Williams, Managing Partner, PSM Workforce — 'Sure. Give me summary details', waiting 7 hours",
+      "body": "G'Sean,\n\nApologies for the wait, and here is the summary you asked for.\n\nWhat we do: we run outbound campaigns on your behalf. We build the list of companies that need procurement and supply chain talent, register separate sending domains and mailboxes so psmworkforce.com is never put at risk, warm them, then email in your name. Anyone interested replies directly to you and the relationship is yours from the first message.\n\nWhat we are not: we do not sell you a contact list, we do not make introductions to people we already represent, and we take nothing on what you place.\n\nCommercials: flat monthly retainer, not per lead and not a percentage.\n\nWhat you would see: replies from named people at fitting companies landing in your inbox, typically starting in the third or fourth week once the sending infrastructure is warm.\n\nIf that is worth twenty minutes:\n\n• Monday, August 17 at 9:00 AM EDT\n• Monday, August 17 at 2:00 PM EDT\n• Tuesday, August 18 at 2:00 PM EDT\n\nAlyssa",
       "slots": [
-        { "start_time": 1786453200, "label": "Tuesday, August 11 at 9:00 AM EDT" },
-        { "start_time": 1786541400, "label": "Wednesday, August 12 at 9:30 AM EDT" },
-        { "start_time": 1786626000, "label": "Thursday, August 13 at 9:00 AM EDT" }
-      ]
-    },
-    {
-      "id": "anthony",
-      "campaign_id": "3781785",
-      "email": "anthony@eaigle.com",
-      "lead": "Anthony, Eaigle — 'You have my attention.'",
-      "body": "Anthony,\n\nThen I will not waste it.\n\nWe run outbound campaigns on your behalf: we build the buyer list, set up separate sending domains so eaigle.com is never put at risk, and email in your name. Anyone interested replies straight to you. We do not sell leads and we do not take a cut of what you close.\n\nThe part worth twenty minutes is deciding who to aim at, because AI monitoring sells very differently into manufacturing plants than it does into facilities or retail, and picking one properly beats spraying all three.\n\nOpen on my side:\n\n• Tuesday, August 11 at 9:30 AM EDT\n• Thursday, August 13 at 9:30 AM EDT\n• Monday, August 17 at 9:00 AM EDT\n\nCarolyn",
-      "slots": [
-        { "start_time": 1786455000, "label": "Tuesday, August 11 at 9:30 AM EDT" },
-        { "start_time": 1786627800, "label": "Thursday, August 13 at 9:30 AM EDT" },
-        { "start_time": 1786971600, "label": "Monday, August 17 at 9:00 AM EDT" }
-      ]
-    },
-    {
-      "id": "ericvale",
-      "campaign_id": "3762048",
-      "email": "ericb@vale-industries.com",
-      "lead": "Eric, Vale Industries — 'Would love to hear about your process and how you can open some doors for us'",
-      "body": "Eric,\n\nHappy to walk you through it.\n\nThe process: we build a list of the steel mills and metal processors that actually buy custom hydraulic equipment, filtered on the things that predict a real need rather than just SIC code. We register separate sending domains and mailboxes so vale-industries.com is never exposed, warm them properly, then run the campaign in your name. Anyone interested replies directly to you.\n\nOn opening doors, I should be straight with you: we are not making introductions. We do not have relationships with those mills to hand over, and anyone who says they do is usually selling a list. What we do is start the conversation so it arrives at your desk already warm.\n\nThese are open:\n\n• Wednesday, August 12 at 9:30 AM EDT\n• Thursday, August 13 at 2:00 PM EDT\n• Monday, August 17 at 1:30 PM EDT\n\nHannah",
-      "slots": [
-        { "start_time": 1786541400, "label": "Wednesday, August 12 at 9:30 AM EDT" },
-        { "start_time": 1786644000, "label": "Thursday, August 13 at 2:00 PM EDT" },
-        { "start_time": 1786987800, "label": "Monday, August 17 at 1:30 PM EDT" }
-      ]
-    },
-    {
-      "id": "kevineck",
-      "campaign_id": "3781785",
-      "email": "kevin@ariesfs.com",
-      "lead": "Kevin Eck, VP Business Development, Aries Freight Systems — 'I'm interested in hearing more'",
-      "body": "Kevin,\n\nGood. Short version before we talk: we run outbound on behalf of Aries to shippers and manufacturers who are actively unhappy with what freight is costing them or how late it is arriving. Replies come straight to you, the relationship is yours from the first message, and we take nothing on what you close.\n\nYou are in business development, so you will want to know what lands on your desk. It is a reply from a named person at a fitting company, not a contact list and not a scored lead.\n\nOpen on my side:\n\n• Thursday, August 13 at 9:00 AM EDT (8:00 AM your time)\n• Tuesday, August 18 at 9:00 AM EDT (8:00 AM your time)\n• Tuesday, August 18 at 1:30 PM EDT (12:30 PM your time)\n\nTell me which works and I will send the invite.\n\nKaren",
-      "slots": [
-        { "start_time": 1786626000, "label": "Thursday, August 13 at 9:00 AM EDT" },
-        { "start_time": 1787058000, "label": "Tuesday, August 18 at 9:00 AM EDT" },
-        { "start_time": 1787074200, "label": "Tuesday, August 18 at 1:30 PM EDT" }
-      ]
-    },
-    {
-      "id": "olga",
-      "campaign_id": "3781785",
-      "email": "olga@bslexpresstrucking.com",
-      "lead": "Olga Bodnar, BSL Express Trucking — 'Interested', direct 630-884-9600",
-      "body": "Olga,\n\nGood to hear. These are open:\n\n• Thursday, August 13 at 9:30 AM EDT (8:30 AM your time)\n• Monday, August 17 at 2:00 PM EDT (1:00 PM your time)\n• Tuesday, August 18 at 2:00 PM EDT (1:00 PM your time)\n\nThirty minutes. What is worth deciding is which lanes out of Romeoville you actually want more of, because flatbed into construction and flatbed into manufacturing are different buyers and the outreach has to say different things.\n\nTell me which suits and I will send the invite, or call is fine too if you would rather.\n\nFiona",
-      "slots": [
-        { "start_time": 1786627800, "label": "Thursday, August 13 at 9:30 AM EDT" },
+        { "start_time": 1786971600, "label": "Monday, August 17 at 9:00 AM EDT" },
         { "start_time": 1786989600, "label": "Monday, August 17 at 2:00 PM EDT" },
         { "start_time": 1787076000, "label": "Tuesday, August 18 at 2:00 PM EDT" }
       ]
     },
     {
-      "id": "shaye",
+      "id": "zoey2",
       "campaign_id": "3781785",
-      "email": "shayegruber@groovinfulfillment.com",
-      "lead": "Shaye Gruber, Groovin Fulfillment — 'ofcourse', 847-313-1342",
-      "body": "Shaye,\n\nGood. Here is what is open:\n\n• Thursday, August 13 at 2:00 PM EDT (1:00 PM your time)\n• Wednesday, August 19 at 1:30 PM EDT (12:30 PM your time)\n• Wednesday, August 19 at 2:00 PM EDT (1:00 PM your time)\n\nThirty minutes. The part worth your time is deciding which brands to target, because a fulfilment operation gets very different results going after early-stage DTC than it does going after established wholesalers, and it is worth picking deliberately.\n\nPick a time and I will send the invite, or ring me back on the number in my signature if that is quicker.\n\nSandra",
+      "email": "zoey.hollar@heckamanhollargroup.com",
+      "lead": "Zoey Hollar, COO — follow-up: who is reaching out to the manufacturers, is this offshore help, pay upon closed leads?",
+      "body": "Zoey,\n\nThree fair questions, three straight answers.\n\nWho is reaching out. The emails go out under Heckaman & Hollar, from mailboxes we set up on domains that look like yours rather than from anything branded Koldify. So the manufacturer sees your company, not an agency. Nobody is phoning anyone, it is email only, and no one is speaking to your market as though they work for you beyond that.\n\nIs this offshore help. We are a lead generation business. That is the whole of what we do: build the list, run the outbound, and send you the replies. There is no other service bundled underneath it and nobody is being put on the phone to your market.\n\nPay upon closed leads. No. Flat monthly retainer. We take nothing when you close a shipper and nothing per lead, which also means we have no incentive to send you volume you cannot use.\n\nIf that answers it:\n\n• Thursday, August 13 at 2:00 PM EDT\n• Monday, August 17 at 1:30 PM EDT\n• Wednesday, August 19 at 1:30 PM EDT\n\nAnd if the retainer model is the sticking point rather than the detail, say so plainly and I will not keep pushing.\n\nBrooke",
       "slots": [
         { "start_time": 1786644000, "label": "Thursday, August 13 at 2:00 PM EDT" },
-        { "start_time": 1787160600, "label": "Wednesday, August 19 at 1:30 PM EDT" },
-        { "start_time": 1787162400, "label": "Wednesday, August 19 at 2:00 PM EDT" }
-      ]
-    },
-    {
-      "id": "josesierra",
-      "campaign_id": "3781785",
-      "email": "jsierra@mergerglobalgroup.com",
-      "lead": "Jose A. Sierra, President, Merger Global Group — 'Yes, please send info', Phoenix AZ",
-      "body": "Jose,\n\nHere is the substance rather than a brochure.\n\nWe run outbound campaigns on your behalf. We build the list of business owners on both sides of the border who fit what Merger Global does, register separate sending domains so your own is never at risk, and email in your name. Anyone interested replies directly to you and the relationship is yours from the first message. Flat monthly retainer, nothing per lead and nothing on what you close.\n\nFor cross-border work the question worth answering early is which direction you want more of, Mexican owners expanding into the US or the reverse, because the two lists have almost nothing in common.\n\nOpen on my side:\n\n• Monday, August 17 at 1:30 PM EDT (10:30 AM Phoenix)\n• Tuesday, August 18 at 1:30 PM EDT (10:30 AM Phoenix)\n• Wednesday, August 19 at 1:30 PM EDT (10:30 AM Phoenix)\n\nDonna",
-      "slots": [
         { "start_time": 1786987800, "label": "Monday, August 17 at 1:30 PM EDT" },
-        { "start_time": 1787074200, "label": "Tuesday, August 18 at 1:30 PM EDT" },
         { "start_time": 1787160600, "label": "Wednesday, August 19 at 1:30 PM EDT" }
       ]
     },
     {
-      "id": "heather",
+      "id": "shubho2",
       "campaign_id": "3781785",
-      "email": "heather@mhwinetrolley.com",
-      "lead": "Heather, El Toro Tours — 'I'm open to hearing more. Please send over the details.'",
-      "body": "Heather,\n\nOf course.\n\nWe run outbound on your behalf to the people who book group transport: corporate event planners, wedding coordinators, winery and tasting-room managers, and school or group trip organisers. We build the list, set up separate sending domains so your own is never exposed, and email in your name. Anyone interested replies straight to you.\n\nWe are not making introductions and not handing over a list. We start the conversations and then get out of the way. Flat monthly retainer, nothing per lead.\n\nFor a trolley and tour operation the thing worth deciding is which of those four groups you actually want more of, because the seasonality is completely different and it changes when we should be sending.\n\nOpen on my side:\n\n• Monday, August 17 at 2:00 PM EDT\n• Tuesday, August 18 at 2:00 PM EDT\n• Wednesday, August 19 at 2:00 PM EDT\n\nIf those are awkward for your timezone, say roughly when works and I will fit around you.\n\nJennifer",
+      "email": "shubho@deartechtalent.com",
+      "lead": "Shubho Ghosh — will schedule a call but wants the fee structure first",
+      "body": "Shubho,\n\nReasonable to want that before you give up the time, so here is the structure honestly.\n\nIt is a flat monthly retainer. Not per lead, not per meeting, and no percentage of anything you place. We get paid the same whether you fill three roles or thirty, which is deliberate: paid per lead we would be pushed to send you volume, and volume is the last thing a recruiter needs.\n\nWhat I cannot do is give you the number without knowing the scope, because it moves with how many companies we are going after and across how many markets. That is not a dodge to get you on a call. Tell me roughly the scale you have in mind and I will put a figure in writing before we speak, if you would rather see it first.\n\nOtherwise these are open:\n\n• Monday, August 17 at 9:30 AM EDT\n• Tuesday, August 18 at 9:00 AM EDT\n• Wednesday, August 19 at 2:00 PM EDT\n\nAbigail",
       "slots": [
-        { "start_time": 1786989600, "label": "Monday, August 17 at 2:00 PM EDT" },
-        { "start_time": 1787076000, "label": "Tuesday, August 18 at 2:00 PM EDT" },
+        { "start_time": 1786973400, "label": "Monday, August 17 at 9:30 AM EDT" },
+        { "start_time": 1787058000, "label": "Tuesday, August 18 at 9:00 AM EDT" },
         { "start_time": 1787162400, "label": "Wednesday, August 19 at 2:00 PM EDT" }
       ]
-    },
-    {
-      "id": "jason",
-      "campaign_id": "3781785",
-      "email": "jason@readytoroll.com",
-      "lead": "Jason, Ready to Roll Transportation — challenged how we source the '10 to 30 corporate travel managers' and what verification looks like",
-      "body": "Jason,\n\nYou are right that the claim is easy to make, so here is the unflattering detail.\n\nThey are not inbound. Nobody is raising a hand and asking to be introduced to you. We build a list of corporate travel managers, executive assistants and event coordinators at companies that fit your profile, filtered on things we can actually observe: headcount, offices in your service area, whether they run events, whether they have someone with travel or facilities in their title. Then we email them in your name from separate sending domains, so readytoroll.com is never put at risk.\n\nVerification is the reply. Someone at a real company, with a real title, writing back to say they are interested. That is the only signal we count, and it is the one you can check yourself because it lands in your inbox rather than being reported to you in a dashboard.\n\nThe 10 to 30 figure is conversations started over a month, not meetings held and not signed contracts. I would rather tell you that now than have you find out in week six.\n\nIf that is a model you can work with:\n\n• Monday, August 17 at 1:30 PM EDT\n• Tuesday, August 18 at 1:30 PM EDT\n\nAnd if it is not, say so plainly and I will leave you alone.\n\nGeorgia",
-      "slots": [
-        { "start_time": 1786987800, "label": "Monday, August 17 at 1:30 PM EDT" },
-        { "start_time": 1787074200, "label": "Tuesday, August 18 at 1:30 PM EDT" }
-      ]
-    },
-    {
-      "id": "murilo",
-      "campaign_id": "3781785",
-      "email": "murilo@knoxstones.com",
-      "lead": "Murilo, KNOX Stones — wants details and pricing before agreeing to a meeting",
-      "body": "Murilo,\n\nFair ask on both.\n\nThe how: we build a list of the buyers KNOX wants, fabricators, builders, designers, whoever is right for your product, then register separate sending domains and mailboxes so knoxstones.com is never exposed. We warm those, run the campaign in your name, and anyone interested replies directly to you. We handle list, infrastructure, copy and follow up. You handle the conversations.\n\nOn pricing, I am not going to invent a number to get you on a call. It is a flat monthly retainer rather than per lead, and where it lands depends on how many buyers you want covered and across how many regions. Give me fifteen minutes to understand the scope and I will quote you properly on the call, in writing afterwards if you prefer.\n\n• Monday, August 17 at 1:30 PM EDT\n• Tuesday, August 18 at 2:00 PM EDT\n• Wednesday, August 19 at 1:30 PM EDT\n\nOr tell me roughly what scale you have in mind and I will put a number in writing first.\n\nLauren",
-      "slots": [
-        { "start_time": 1786987800, "label": "Monday, August 17 at 1:30 PM EDT" },
-        { "start_time": 1787076000, "label": "Tuesday, August 18 at 2:00 PM EDT" },
-        { "start_time": 1787160600, "label": "Wednesday, August 19 at 1:30 PM EDT" }
-      ]
-    },
-    {
-      "id": "barry",
-      "campaign_id": "3762048",
-      "email": "browley@pearllogic.com",
-      "lead": "Barry Rowley, Pearl Logic — works with third parties strictly on a pay-for-performance channel partner model",
-      "body": "Barry,\n\nThank you for laying it out so clearly, and I will do the same.\n\nYour Channel Partner Program is built for partners who sell on your behalf and get paid when a client signs. We are not that. We do not sell your product, we do not own the relationship, and we do not want a share of your revenue. We run the outbound so the conversations arrive with your team, and we charge a flat monthly fee for doing it whether or not those conversations close.\n\nSo on a pure pay-for-performance basis we are not a fit, and I would rather say that than dress it up.\n\nOne alternative if a recurring fee is the objection rather than the principle: we build the outbound system, run it until it produces, then hand it to you outright. You own it and everything it generates from that point, with nothing ongoing to us.\n\nIf that is worth a conversation, say so. If not, no hard feelings and I will close the file.\n\nChristina",
-      "slots": []
     }
   ]
 }
