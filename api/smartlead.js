@@ -18,6 +18,19 @@ import restartList from "../drafts/followup-restart.json" with { type: "json" };
 
 export const config = { maxDuration: 60 };
 
+// Every campaign that can hold a live conversation. DRAFTED never sent and
+// ARCHIVED is finished; PAUSED still holds open threads, so it stays in.
+let _cidCache = { at: 0, ids: [] };
+async function liveCampaignIds() {
+  if (Date.now() - _cidCache.at < 300000 && _cidCache.ids.length) return _cidCache.ids;
+  const list = await listCampaigns();
+  const ids = (Array.isArray(list) ? list : list?.data || [])
+    .filter((c) => c.status !== "DRAFTED" && c.status !== "ARCHIVED")
+    .map((c) => String(c.id));
+  if (ids.length) _cidCache = { at: Date.now(), ids };
+  return ids;
+}
+
 export default async function handler(req, res) {
   if (!process.env.SETUP_SECRET || req.query.key !== process.env.SETUP_SECRET) {
     return res.status(401).json({ error: "Unauthorized" });
@@ -1088,7 +1101,11 @@ a{color:#1a56db}
           const lead = await leadByEmail(email);
           if (!lead?.id) return { email, skipped: "lead not found" };
           // A lead can sit in any campaign, so try each until a thread appears.
-          const tryIds = (req.query.campaigns || "3762048,3721834,3721845,3721850,3721840").split(",");
+          // Never hardcode this list: new campaigns appear without warning and a
+          // stale default silently skips every lead inside them.
+          const tryIds = req.query.campaigns
+            ? String(req.query.campaigns).split(",")
+            : await liveCampaignIds();
           let msgs = [];
           for (const cid of tryIds) {
             try {
