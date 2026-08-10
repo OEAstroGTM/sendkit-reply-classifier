@@ -1170,8 +1170,13 @@ a{color:#1a56db}
         for (const r of phantoms) {
           for (const em of r.participants) perLead.set(em, (perLead.get(em) || 0) + 1);
         }
+        // A colleague on the invite means a human assigned this meeting, so it
+        // is real whatever the title says. Never cancel those.
+        const ours = /@koldifyleads\.(co|com)$/i;
+        const keepHosted = req.query.keepHosted !== "0";
         const targets = phantoms.filter((r) =>
-          r.participants.some((em) => (perLead.get(em) || 0) >= minDupes));
+          r.participants.some((em) => (perLead.get(em) || 0) >= minDupes) &&
+          !(keepHosted && r.participants.some((em) => ours.test(em))));
         const notify = req.query.notify !== "0";
         let cancelled = [];
         if (doCancel) {
