@@ -2,92 +2,23 @@
   "note": "Approved replies. Send with /api/smartlead?action=send-draft&id=<id>. Slots carry start_time + label so times render as one-click booking links.",
   "drafts": [
     {
-      "id": "jim2",
+      "id": "jason2",
       "campaign_id": "3781785",
-      "email": "jimrozell@hotelcompete.com",
-      "lead": "Jim Rozell — asked to move to 1:30 CST; rebooked Wed 12 Aug 2:30 PM EDT with Logan, old invite withdrawn",
-      "body": "Jim,\n\nMoved, and apologies for putting you in Milwaukee.\n\nWednesday, August 12 at 1:30 PM CST. A fresh invite is in your inbox with the video link on it, and the earlier one has been withdrawn so you are not looking at two.\n\nLogan will take it. See you Wednesday.\n\nLaura",
-      "slots": []
-    },
-    {
-      "id": "nick2",
-      "campaign_id": "3781785",
-      "email": "nick@ignitionbenefits.com",
-      "lead": "Nick, Ignition Benefits — redirected to Ben after being booked; Thursday invite cancelled",
-      "body": "Nick,\n\nUnderstood, and thank you. I have withdrawn Thursday's invite so it is off your calendar.\n\nCould you send me Ben's email address, or forward this to him? I would rather reach him properly than guess at an address.\n\nFor context so it does not land cold: we run outbound campaigns on your behalf, so employers and brokers who need what Ignition does come to you directly rather than you chasing them.\n\nAppreciate the steer.\n\nPaula",
-      "slots": []
-    },
-    {
-      "id": "heather2",
-      "campaign_id": "3781785",
-      "email": "heather@mhwinetrolley.com",
-      "lead": "Heather, El Toro Tours — 'Who is we? You have no signature and the automiqo.co website doesn't exist.'",
-      "body": "Heather,\n\nThat is a completely fair thing to pull me up on, and you are right on both counts.\n\nThe company is Koldify. koldify.io, and https://koldify.io/#results is the part worth reading. I am Jennifer Wilson and I work there.\n\nOn the domain: automiqo.co is a sending domain we use for outreach rather than a website, which is standard practice for this kind of campaign but looks exactly as dubious as you found it when you go and check. You were right to check. Anyone doing outbound properly should expect that and have an answer, so here is mine rather than a shrug.\n\nWhat we would actually do for El Toro Tours: run outbound to corporate event planners, wedding coordinators, winery and tasting-room managers and group trip organisers, in your name, so the people planning those outings come to you. Flat monthly retainer, nothing per lead.\n\nIf you would rather see the site and think about it before giving up any time, that is completely reasonable. If you do want to talk:\n\n• Thursday, August 13 at 2:00 PM EDT\n• Monday, August 17 at 2:00 PM EDT\n• Tuesday, August 18 at 2:00 PM EDT\n\nJennifer Wilson\nKoldify",
+      "email": "jason@readytoroll.com",
+      "lead": "Jason, Ready to Roll — wants sample copy written as him and a real prospect example",
+      "body": "Jason,\n\nThe copy and the prospect list are things we would build with you rather than send cold. Both are specific to Ready to Roll, and a sample written for someone else's campaign would tell you very little about either.\n\nHappy to go through real examples on a call, screen shared, including live campaigns and the targeting behind them. You can judge the quality directly.\n\n• Monday, August 17 at 1:30 PM EDT\n• Tuesday, August 18 at 1:30 PM EDT\n\nGeorgia",
       "slots": [
-        { "start_time": 1786644000, "label": "Thursday, August 13 at 2:00 PM EDT" },
-        { "start_time": 1786989600, "label": "Monday, August 17 at 2:00 PM EDT" },
-        { "start_time": 1787076000, "label": "Tuesday, August 18 at 2:00 PM EDT" }
-      ]
-    },
-    {
-      "id": "olga2",
-      "campaign_id": "3781785",
-      "email": "olga@bslexpresstrucking.com",
-      "lead": "Olga Bodnar, President BSL Express — wants details on how it works before the call",
-      "body": "Olga,\n\nOf course. Here is the whole of it.\n\nWe build a list of the shippers you want: manufacturers and construction suppliers moving flatbed freight in the lanes BSL actually runs. We register separate sending domains and mailboxes so bslexpresstrucking.com is never put at risk, warm them for a few weeks, then send in your name. Anyone interested replies directly to you and the conversation is yours from the first message.\n\nWe are not handing you a list and we are not introducing you to people we represent. We start conversations, you close them.\n\nCommercials: flat monthly retainer. Nothing per lead and nothing on the freight you win.\n\nTiming: two to three weeks of setup and warming before volume sending, first replies usually in week three or four.\n\nStill open:\n\n• Thursday, August 13 at 9:30 AM EDT (8:30 AM your time)\n• Monday, August 17 at 2:00 PM EDT (1:00 PM your time)\n• Tuesday, August 18 at 2:00 PM EDT (1:00 PM your time)\n\nFiona",
-      "slots": [
-        { "start_time": 1786627800, "label": "Thursday, August 13 at 9:30 AM EDT" },
-        { "start_time": 1786989600, "label": "Monday, August 17 at 2:00 PM EDT" },
-        { "start_time": 1787076000, "label": "Tuesday, August 18 at 2:00 PM EDT" }
-      ]
-    },
-    {
-      "id": "corey",
-      "campaign_id": "3781766",
-      "email": "cmatthews@besttrashtexas.com",
-      "lead": "Corey Matthews, Best Trash — asked whether this is broker-based work in Houston or Dallas",
-      "body": "Corey,\n\nNo brokers. That is the point of it.\n\nWe would go direct to the people who actually award the contract: HOA boards and their management companies, municipal contacts, commercial property managers. They reply to you, you quote them, and there is nobody in the middle taking a slice of the route.\n\nHouston and Dallas both work. Which one we start with is worth deciding deliberately rather than doing both thinly, and that depends on where you have capacity to absorb new routes.\n\nFlat monthly retainer, nothing per lead and nothing per contract you win.\n\nIf that is the right shape:\n\n• Thursday, August 13 at 2:00 PM EDT (1:00 PM your time)\n• Monday, August 17 at 1:30 PM EDT (12:30 PM your time)\n• Tuesday, August 18 at 1:30 PM EDT (12:30 PM your time)\n\nLisa",
-      "slots": [
-        { "start_time": 1786644000, "label": "Thursday, August 13 at 2:00 PM EDT" },
         { "start_time": 1786987800, "label": "Monday, August 17 at 1:30 PM EDT" },
         { "start_time": 1787074200, "label": "Tuesday, August 18 at 1:30 PM EDT" }
       ]
     },
     {
-      "id": "alankahn",
-      "campaign_id": "3781785",
-      "email": "alan.kahn@evaassolutions.com",
-      "lead": "Alan J. Kahn, President Emerging Markets, XLR8 America — said 'sure', direct (312) 969-0046",
-      "body": "Alan,\n\nGood. These are open:\n\n• Thursday, August 13 at 9:00 AM EDT (8:00 AM your time)\n• Monday, August 17 at 1:30 PM EDT (12:30 PM your time)\n• Tuesday, August 18 at 1:30 PM EDT (12:30 PM your time)\n\nThirty minutes. Given you are running emerging markets, the useful part will be deciding which segment to go after first, because a campaign built for one vertical will beat one spread across four.\n\nTell me which suits and I will send the invite, or call is fine on 312-969-0046 if you would rather.\n\nPaige",
-      "slots": [
-        { "start_time": 1786626000, "label": "Thursday, August 13 at 9:00 AM EDT" },
-        { "start_time": 1786987800, "label": "Monday, August 17 at 1:30 PM EDT" },
-        { "start_time": 1787074200, "label": "Tuesday, August 18 at 1:30 PM EDT" }
-      ]
-    },
-    {
-      "id": "shane",
-      "campaign_id": "3781785",
-      "email": "shane@gosquare1.com",
-      "lead": "Shane, Square1 Distribution & Logistics — said 'Sure'",
-      "body": "Shane,\n\nGood. Here is what is open:\n\n• Thursday, August 13 at 9:30 AM EDT\n• Monday, August 17 at 9:00 AM EDT\n• Tuesday, August 18 at 2:00 PM EDT\n\nThirty minutes. What is worth working out is which shippers Square1 actually wants more of, because distribution and fulfilment attract quite different buyers and the outreach has to pick one to be any good.\n\nTell me which time works and I will send the invite over.\n\nNancy",
-      "slots": [
-        { "start_time": 1786627800, "label": "Thursday, August 13 at 9:30 AM EDT" },
-        { "start_time": 1786971600, "label": "Monday, August 17 at 9:00 AM EDT" },
-        { "start_time": 1787076000, "label": "Tuesday, August 18 at 2:00 PM EDT" }
-      ]
-    },
-    {
-      "id": "thomaspsi",
-      "campaign_id": "3781785",
-      "email": "thomas@psiservices.com",
-      "lead": "Thomas, Colorado Fulfillment — 'Please send over any information you have'",
-      "body": "Thomas,\n\nHere it is, plainly.\n\nWhat we do: run outbound campaigns on your behalf. We build the list of brands that need fulfilment and are the right size for Colorado Fulfillment, register separate sending domains and mailboxes so your own domain is never exposed, warm them, then email in your name. Anyone interested replies straight to you.\n\nWhat we are not: we do not sell contact lists and we do not introduce you to people we represent. There is no third party in the middle.\n\nCommercials: flat monthly retainer. Nothing per lead, nothing on the accounts you win.\n\nTiming: two to three weeks of setup and warming, first replies usually week three or four.\n\nCompany: koldify.io, results at https://koldify.io/#results\n\nIf it is worth twenty minutes:\n\n• Thursday, August 13 at 2:00 PM EDT (12:00 PM your time)\n• Monday, August 17 at 1:30 PM EDT (11:30 AM your time)\n• Wednesday, August 19 at 1:30 PM EDT (11:30 AM your time)\n\nHeather",
-      "slots": [
-        { "start_time": 1786644000, "label": "Thursday, August 13 at 2:00 PM EDT" },
-        { "start_time": 1786987800, "label": "Monday, August 17 at 1:30 PM EDT" },
-        { "start_time": 1787160600, "label": "Wednesday, August 19 at 1:30 PM EDT" }
-      ]
+      "id": "yash2",
+      "campaign_id": "3762048",
+      "email": "yash@arthiva.ai",
+      "lead": "Yash Mannepalli, Founder & CEO Arthiva — self-booked for Wednesday",
+      "body": "Yash,\n\nGot it, thanks for booking. Looking forward to Wednesday.\n\nIf anything shifts on your end, just reply here and I will move it.\n\nSandra",
+      "slots": []
     }
   ]
 }
