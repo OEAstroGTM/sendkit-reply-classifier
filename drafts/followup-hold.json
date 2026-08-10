@@ -236,6 +236,22 @@
     {
       "email": "greg@managementmastery.solutions",
       "reason": "Declined: not interested"
+    },
+    {
+      "email": "patrick@epicengineeringsolutions.com",
+      "reason": "Deferred: check back in a few months, per his 7 Aug reply. Restart Nov"
+    },
+    {
+      "email": "luke@tundra-labs.com",
+      "reason": "Freshdesk autoresponder, not a human reply"
+    },
+    {
+      "email": "rtsuruta@pneuveysystems.com",
+      "reason": "Autoresponder: forwarded to inside sales"
+    },
+    {
+      "email": "henry.carter@jamestown-capital.com",
+      "reason": "Declined: success-fee only, told him we are not a fit, no follow-ups"
     }
   ]
 }
