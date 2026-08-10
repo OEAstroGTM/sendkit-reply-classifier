@@ -400,6 +400,46 @@
     {
       "email": "brian@activesolutions.com",
       "reason": "Replied 'See attached' - attachment not readable via API, needs a human to open"
+    },
+    {
+      "email": "yash@arthiva.ai",
+      "reason": "Self-booked a meeting for Wednesday - confirm which calendar"
+    },
+    {
+      "email": "glennp@corbetscientific.com",
+      "reason": "Opt-out: take us off your list - suppressed 10 Aug"
+    },
+    {
+      "email": "abornatsch@emediaweb.com",
+      "reason": "Opt-out: take me off your mailing list - suppressed 10 Aug"
+    },
+    {
+      "email": "tthomson@servpro9347.com",
+      "reason": "Opt-out: unsubscribe - suppressed 10 Aug"
+    },
+    {
+      "email": "mike@cmsofmadison.com",
+      "reason": "Opt-out: Stop - suppressed 10 Aug"
+    },
+    {
+      "email": "brian@completerestorationllc.com",
+      "reason": "Opt-out: Unsubscribe - suppressed 10 Aug"
+    },
+    {
+      "email": "mthomas@nationalmaterialhandling.com",
+      "reason": "Declined: not right now, will keep us on file"
+    },
+    {
+      "email": "james@sterlingpacific.com",
+      "reason": "Declined: not interested at this time"
+    },
+    {
+      "email": "jeff@sworn.ai",
+      "reason": "Declined: no thank you"
+    },
+    {
+      "email": "tim@energyresourcesgroup.com",
+      "reason": "Wants a phone call: 314.495.4188 - on call sheet"
     }
   ]
 }
