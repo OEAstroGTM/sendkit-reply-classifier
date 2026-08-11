@@ -6,8 +6,9 @@
 
 import {
   listCampaigns, campaignStats, leadByEmail, messageHistory,
-  replyToLead, unsubscribeLead, analyticsByDate, addLeadsToCampaign, isMachineReply, isOptOut, isDecline, ownWords, clearCache,
+  replyToLead, unsubscribeLead, analyticsByDate, addLeadsToCampaign, isMachineReply, isOptOut, isDecline, ownWords, clearCache, setFresh,
 } from "../lib/smartlead.js";
+import { RateLimitError } from "../lib/limiter.js";
 import { toHtml, generateReply, generateBump } from "../lib/reply.js";
 import { linkifySlots } from "../lib/booking.js";
 import { readLedger, addTouch } from "../lib/ledger.js";
@@ -36,8 +37,9 @@ export default async function handler(req, res) {
     return res.status(401).json({ error: "Unauthorized" });
   }
   const action = req.query.action || "campaigns";
-  // ?fresh=1 forces a re-read instead of using the cached responses
-  if (req.query.fresh === "1") clearCache();
+  // ?fresh=1 forces a re-read instead of using the cached responses. setFresh
+  // also bypasses the shared Redis tier for this request, then resets next call.
+  setFresh(req.query.fresh === "1");
 
   try {
     if (action === "campaigns") {
@@ -1276,7 +1278,13 @@ a{color:#1a56db}
 
     return res.status(400).json({ error: `Unknown action: ${action}` });
   } catch (e) {
-    return res.status(500).json({ error: e.message });
+    // Rate limiting is expected under load — surface it as a retryable signal
+    // instead of a 500 whose body some fetch clients silently drop.
+    if (e instanceof RateLimitError) {
+      return res.status(200).json({ ok: false, error: "rate_limited", retryAfter: e.retryAfterSec, detail: e.message });
+    }
+    // Answer 200 with the message so the failure is visible rather than empty.
+    return res.status(200).json({ ok: false, error: e.message });
   }
 }
 
