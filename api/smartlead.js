@@ -321,8 +321,13 @@ export default async function handler(req, res) {
       const dow = new Date().getUTCDay();
       const sendingDay = dow >= 1 && dow <= 5;
 
-      const out = [];
-      for (const id of ids) {
+      // One flat queue across every campaign. Scoping this per campaign meant
+      // the unscoped call walked them sequentially and timed out, so in practice
+      // it was only ever run against one or two and the rest went unchecked.
+      // Collect candidates from all campaigns first (cheap stats reads), then
+      // page the expensive thread reads with ?skip= and ?limit=.
+      const candidates = [];
+      await Promise.all(ids.map(async (id) => {
         const rows = [];
         let offset = 0, total = 0, pages = 0;
         while (pages < 8) {
@@ -333,10 +338,24 @@ export default async function handler(req, res) {
           rows.push(...r); offset += r.length; pages++;
           if (offset >= total) break;
         }
-        const positives = rows.filter((r) => POSITIVE.has(r.lead_category) &&
-          (!sinceMs || new Date(r.reply_time).getTime() >= sinceMs));
+        for (const r of rows) {
+          if (!POSITIVE.has(r.lead_category)) continue;
+          if (sinceMs && new Date(r.reply_time).getTime() < sinceMs) continue;
+          candidates.push({ ...r, __campaign: String(id) });
+        }
+      }));
+      // Freshest conversations first, so a truncated run still covers what matters.
+      candidates.sort((a, b) => new Date(b.reply_time) - new Date(a.reply_time));
 
-        const checked = await Promise.all(positives.slice(0, 40).map(async (r) => {
+      const skip = Math.max(0, Number(req.query.skip || 0));
+      const limit = Math.min(Number(req.query.limit || 30), 60);
+      const window = candidates.slice(skip, skip + limit);
+      const failed = [];
+
+      const out = [];
+      {
+        const checked = await Promise.all(window.map(async (r) => {
+          const id = r.__campaign;
           try {
             const lead = await leadByEmail(r.lead_email);
             if (lead.is_unsubscribed) return null;
@@ -376,15 +395,28 @@ export default async function handler(req, res) {
                    bumpsSent < maxBumps && nextBumpAt !== undefined && daysQuiet >= nextBumpAt,
               nextBumpInDays: nextBumpAt === undefined ? null : +Math.max(0, nextBumpAt - daysQuiet).toFixed(1),
             };
-          } catch { return null; }
+          } catch (e) {
+            // Never swallow. A rate-limited thread read used to delete the lead
+            // from the count, so "0 due" could mean "nothing owed" or "we could
+            // not look". Those are very different answers.
+            return { __failed: true, email: r.lead_email, campaign_id: id, error: String(e.message || e).slice(0, 160) };
+          }
         }));
-        out.push(...checked.filter(Boolean));
+        for (const f of checked.filter((x) => x && x.__failed)) failed.push(f);
+        out.push(...checked.filter((x) => x && !x.__failed));
       }
 
       out.sort((a, b) => b.daysQuiet - a.daysQuiet);
       return res.status(200).json({
         schedule: bumpDays,
         sendingDay,
+        campaignsScanned: ids.length,
+        candidatesTotal: candidates.length,
+        skip,
+        // Anything left unread means the counts below are a floor, not a total.
+        moreToScan: candidates.length > skip + limit || failed.length > 0,
+        failedCount: failed.length,
+        failed,
         total: out.length,
         due: out.filter((x) => x.due).length,
         held: out.filter((x) => x.hold).length,
