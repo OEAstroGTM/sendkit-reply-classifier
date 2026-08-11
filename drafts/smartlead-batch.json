@@ -2,19 +2,27 @@
   "note": "Approved replies. Send with /api/smartlead?action=send-draft&id=<id>. Slots carry start_time + label so times render as one-click booking links.",
   "drafts": [
     {
-      "id": "mattexit",
+      "id": "matt2",
       "campaign_id": "3762048",
       "email": "matt@exitreadysolutions.biz",
-      "lead": "Matt, Exit-Ready Solutions — sat on the call yesterday at 1:30 and nobody joined. Rebooked Logan Tue 11 Aug 2:30 PM EDT",
-      "body": "Matt,\n\nYou sat on that call and nobody joined. I am sorry. That was our failure, not a misunderstanding on your end, and you were right to be annoyed.\n\nWhat happened: the booking came through on our side without being assigned to anyone, so it sat on a calendar nobody was watching. We have fixed the cause today, which does not help you and is not really your problem, but I would rather tell you than leave you guessing.\n\nI have put us back in for today, Tuesday August 11 at 2:30 PM EDT. The invite is in your inbox with the video link. Logan will be on it, and he will be there at 2:29.\n\nIf today is too soon or you would rather have Felipe specifically, say so and I will arrange it. If you would rather we simply called you, send a number and we will.\n\nAnd if you have decided we are not worth a second attempt, that is a fair conclusion and I will not chase you.\n\nLindsay",
+      "lead": "Matt, Exit-Ready Solutions — moved from Logan to Felipe, same time today 2:30 PM EDT",
+      "body": "Matt,\n\nOne change and it is in your favour. You asked where Felipe was, so he is taking it himself. Same time, today at 2:30 PM EDT.\n\nA fresh invite is in your inbox with the video link. The earlier one has been withdrawn so you are not looking at two.\n\nHe will be on at 2:29.\n\nLindsay",
       "slots": []
     },
     {
-      "id": "charlie",
-      "campaign_id": "3762048",
-      "email": "charlie@upliftmicrohome.com",
-      "lead": "Charlie, Uplift Microhome — 'this is ai, be a human leah its way better trust'",
-      "body": "Charlie,\n\nYou are right, the first one was automated. This is not.\n\nFair point too. The version of that email that works is shorter and says something only a person would bother noticing, and I sent you the version that did neither.\n\nSo, plainly: we run outbound for companies like Uplift, in your name, so people looking for what you build come to you. Flat monthly fee, nothing per lead. That is the whole pitch.\n\nIf you want to talk, I am around. If the answer is no because of how the first email read, that is fair enough and I will take the note.\n\nLeah",
+      "id": "seth2",
+      "campaign_id": "3781766",
+      "email": "seth@crystalclearshine.com",
+      "lead": "Seth Langston, Crystal Clear Shine — host changed from Logan to Naufal, same time today 1:30 PM EDT",
+      "body": "Seth,\n\nSmall change on our side. Naufal will be taking your call today rather than Logan, same time, 1:30 PM EDT.\n\nThere is a fresh invite in your inbox with the video link, and the earlier one has been withdrawn so you only have the one.\n\nNothing else changes. He will want to work out which property managers and commercial accounts around Wilmington and Raleigh are worth going after first.\n\nFiona",
+      "slots": []
+    },
+    {
+      "id": "chris2",
+      "campaign_id": "3781785",
+      "email": "chris@mscs.world",
+      "lead": "Chris Smeltzer, Majestic Supply Chain — host changed from Logan to Naufal, same time today 2:00 PM EDT",
+      "body": "Chris,\n\nQuick change. Naufal will be on your call today rather than Logan, same time, 2:00 PM EDT, which is 1:00 PM yours.\n\nFresh invite is in your inbox with the video link and the earlier one has been withdrawn.\n\nSame conversation as planned: which shippers Majestic actually wants more of, and how we would go after them.\n\nLauren",
       "slots": []
     }
   ]
