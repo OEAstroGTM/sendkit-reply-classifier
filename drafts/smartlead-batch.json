@@ -2,39 +2,19 @@
   "note": "Approved replies. Send with /api/smartlead?action=send-draft&id=<id>. Slots carry start_time + label so times render as one-click booking links.",
   "drafts": [
     {
-      "id": "seangraham",
-      "campaign_id": "3781785",
-      "email": "sgraham@expandup.com",
-      "lead": "Sean Graham, Founder ExpandUp — 'Interesting. Sure we can connect.' 980-224-2424. Booked Logan Mon 17 Aug 9:00 AM EDT",
-      "body": "Sean,\n\nGood. Monday, August 17 at 9:00 AM EDT. The invite is in your inbox with the video link, and Logan from our team will take it.\n\nThirty minutes. The part worth deciding is which SaaS platforms to go after first, because a vertical SaaS with 200 merchants and a horizontal one with 20,000 make embedded payments decisions on completely different timelines.\n\nIf Monday does not suit, reply here and I will move it. Happy to call 980-224-2424 instead if that is easier.\n\nStacy",
+      "id": "mattexit",
+      "campaign_id": "3762048",
+      "email": "matt@exitreadysolutions.biz",
+      "lead": "Matt, Exit-Ready Solutions — sat on the call yesterday at 1:30 and nobody joined. Rebooked Logan Tue 11 Aug 2:30 PM EDT",
+      "body": "Matt,\n\nYou sat on that call and nobody joined. I am sorry. That was our failure, not a misunderstanding on your end, and you were right to be annoyed.\n\nWhat happened: the booking came through on our side without being assigned to anyone, so it sat on a calendar nobody was watching. We have fixed the cause today, which does not help you and is not really your problem, but I would rather tell you than leave you guessing.\n\nI have put us back in for today, Tuesday August 11 at 2:30 PM EDT. The invite is in your inbox with the video link. Logan will be on it, and he will be there at 2:29.\n\nIf today is too soon or you would rather have Felipe specifically, say so and I will arrange it. If you would rather we simply called you, send a number and we will.\n\nAnd if you have decided we are not worth a second attempt, that is a fair conclusion and I will not chase you.\n\nLindsay",
       "slots": []
     },
     {
-      "id": "paulmamakos",
-      "campaign_id": "3781785",
-      "email": "paul@spaceoceancorp.com",
-      "lead": "Paul S Mamakos, Founder & Chairman Space Ocean — 'Go for it.' Booked Felipe Tue 18 Aug 1:30 PM EDT",
-      "body": "Paul,\n\nDone. Tuesday, August 18 at 1:30 PM EDT, which is 12:30 PM your time in Brownsville. The invite is in your inbox with the video link on it.\n\nThirty minutes. Given you are carrying a UEI and CAGE code, the useful question is whether we point this at commercial satellite operators or at defence programs, because the procurement paths barely resemble each other and the outreach has to commit to one.\n\nIf the time does not work, reply here and I will move it.\n\nKatherine",
-      "slots": []
-    },
-    {
-      "id": "marcosousa",
-      "campaign_id": "3781785",
-      "email": "marco@clwizard.com",
-      "lead": "Marco R. Sousa, President CL Wizard — specialised service, wins work via referrals and consulting engineers, open if we have building owners",
-      "body": "Marco,\n\nThat is a useful thing to know, and it changes what I would suggest rather than ruling it out.\n\nReferrals and consulting engineers are the right channel for specialised remedial work, and nothing we do replaces that. What outbound adds is the building owners who have the problem but have not yet been routed to anyone. They are the ones searching for a fix, calling the wrong contractor, or living with the leak because they do not know it is solvable.\n\nSo the campaign I would run for CL Wizard is not a volume play. It is a narrow list of owners and property managers with the kind of concrete structures where infiltration recurs, and the message would be specific enough that only someone with the actual problem replies.\n\nWorth twenty minutes to work out what that list looks like:\n\n• Monday, August 17 at 1:30 PM EDT\n• Tuesday, August 18 at 2:00 PM EDT\n• Wednesday, August 19 at 1:30 PM EDT\n\nSarah",
-      "slots": [
-        { "start_time": 1786987800, "label": "Monday, August 17 at 1:30 PM EDT" },
-        { "start_time": 1787076000, "label": "Tuesday, August 18 at 2:00 PM EDT" },
-        { "start_time": 1787160600, "label": "Wednesday, August 19 at 1:30 PM EDT" }
-      ]
-    },
-    {
-      "id": "margarete",
-      "campaign_id": "3781785",
-      "email": "margarete@bebelong.life",
-      "lead": "Margarete, Be Belong — said relevant, redirected to Bella Cohen who leads integration, offered a RentGain.AI demo",
-      "body": "Margarete,\n\nThank you, that is helpful. I will write to Bella directly.\n\nOne thing worth clarifying before I do, so she is not expecting the wrong conversation. We are not looking to join the platform ourselves. What we would do for Be Belong is run outbound to multifamily owners and operators on your behalf, so the ones who should be seeing a RentGain.AI demo come to Bella rather than her having to find them.\n\nIf that is the right conversation, I will take it to her. If the integration effort is the priority right now and new owner conversations are not, tell me and I will come back later instead.\n\nAmy",
+      "id": "charlie",
+      "campaign_id": "3762048",
+      "email": "charlie@upliftmicrohome.com",
+      "lead": "Charlie, Uplift Microhome — 'this is ai, be a human leah its way better trust'",
+      "body": "Charlie,\n\nYou are right, the first one was automated. This is not.\n\nFair point too. The version of that email that works is shorter and says something only a person would bother noticing, and I sent you the version that did neither.\n\nSo, plainly: we run outbound for companies like Uplift, in your name, so people looking for what you build come to you. Flat monthly fee, nothing per lead. That is the whole pitch.\n\nIf you want to talk, I am around. If the answer is no because of how the first email read, that is fair enough and I will take the note.\n\nLeah",
       "slots": []
     }
   ]
