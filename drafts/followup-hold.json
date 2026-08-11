@@ -480,6 +480,18 @@
     {
       "email": "robert.alpert@nulliti.com",
       "reason": "Opt-out: stop sending me emails - suppressed 11 Aug"
+    },
+    {
+      "email": "sgraham@expandup.com",
+      "reason": "Meeting booked, Mon 17 Aug 09:00 EDT with Logan"
+    },
+    {
+      "email": "paul@spaceoceancorp.com",
+      "reason": "Meeting booked, Tue 18 Aug 13:30 EDT with Felipe"
+    },
+    {
+      "email": "anthony@fischerprotection.com",
+      "reason": "Autoresponder: we will get back to you shortly, not a human reply"
     }
   ]
 }
