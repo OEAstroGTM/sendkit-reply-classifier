@@ -1,29 +1,161 @@
 {
-  "note": "Approved replies. Send with /api/smartlead?action=send-draft&id=<id>. Slots carry start_time + label so times render as one-click booking links.",
+  "note": "Approved replies. Send with /api/smartlead?action=send-draft&id=<id> or &id=all. Slots carry start_time + label so times render as one-click booking links.",
   "drafts": [
     {
-      "id": "matt2",
+      "id": "tim-erg",
       "campaign_id": "3762048",
-      "email": "matt@exitreadysolutions.biz",
-      "lead": "Matt, Exit-Ready Solutions — moved from Logan to Felipe, same time today 2:30 PM EDT",
-      "body": "Matt,\n\nOne change and it is in your favour. You asked where Felipe was, so he is taking it himself. Same time, today at 2:30 PM EDT.\n\nA fresh invite is in your inbox with the video link. The earlier one has been withdrawn so you are not looking at two.\n\nHe will be on at 2:29.\n\nLindsay",
-      "slots": []
+      "email": "tim@energyresourcesgroup.com",
+      "lead": "Tim, Energy Resources Group (Wendy)",
+      "body": "Hey Tim,\n\nThanks for the quick reply. I appreciate you being open to it. Rather than swap numbers, how about we lock in a time that works for you and I'll give you a call then. Here's a [quick overview of what we do](https://koldify.io/) in the meantime.\n\nWe run a turnkey cold email system for B2B, handling everything from AI prospect discovery to response management. Most clients see around 50 qualified conversations in the first 90 days.\n\nIf you want to dig into how this could work for your business:\n\n• Wednesday, August 12 at 11:45 AM EDT\n• Wednesday, August 12 at 12:15 PM EDT\n• Thursday, August 13 at 9:00 AM EDT\n\nLooking forward to connecting soon.\n\nWendy",
+      "slots": [
+        {"start_time": 1786549500, "end_time": 1786551300, "label": "Wednesday, August 12 at 11:45 AM EDT"},
+        {"start_time": 1786551300, "end_time": 1786553100, "label": "Wednesday, August 12 at 12:15 PM EDT"},
+        {"start_time": 1786626000, "end_time": 1786627800, "label": "Thursday, August 13 at 9:00 AM EDT"}
+      ]
     },
     {
-      "id": "seth2",
+      "id": "robert-cbm",
       "campaign_id": "3781766",
-      "email": "seth@crystalclearshine.com",
-      "lead": "Seth Langston, Crystal Clear Shine — host changed from Logan to Naufal, same time today 1:30 PM EDT",
-      "body": "Seth,\n\nSmall change on our side. Naufal will be taking your call today rather than Logan, same time, 1:30 PM EDT.\n\nThere is a fresh invite in your inbox with the video link, and the earlier one has been withdrawn so you only have the one.\n\nNothing else changes. He will want to work out which property managers and commercial accounts around Wilmington and Raleigh are worth going after first.\n\nFiona",
-      "slots": []
+      "email": "rob@crystalbuildingmaintenance.com",
+      "lead": "Robert Friedman, Crystal Building Maintenance (Alyssa)",
+      "body": "Hey Robert,\n\nThanks for getting back to me. Great to hear you're interested. We run a fully managed cold email system that handles everything from finding your exact prospects to managing responses, so you're not paying for setup or upfront costs, just results. Here's a [quick overview of how we work](https://koldify.io/).\n\nMost clients see around 50 qualified conversations in the first 90 days with 150k-250k emails going out each month. Happy to walk through how this plays out for your business.\n\n• Wednesday, August 12 at 11:45 AM EDT\n• Wednesday, August 12 at 12:15 PM EDT\n• Thursday, August 13 at 9:00 AM EDT\n\nLooking forward to connecting soon.\n\nAlyssa",
+      "slots": [
+        {"start_time": 1786549500, "end_time": 1786551300, "label": "Wednesday, August 12 at 11:45 AM EDT"},
+        {"start_time": 1786551300, "end_time": 1786553100, "label": "Wednesday, August 12 at 12:15 PM EDT"},
+        {"start_time": 1786626000, "end_time": 1786627800, "label": "Thursday, August 13 at 9:00 AM EDT"}
+      ]
     },
     {
-      "id": "chris2",
+      "id": "ryan-ep",
+      "campaign_id": "3781766",
+      "email": "rbrown@electropainters.com",
+      "lead": "Ryan, Electro Painters (Allison)",
+      "body": "Hey Ryan,\n\nGreat to hear you're interested. We handle the whole cold email system for you, from finding your exact prospects to managing responses and follow-ups. Most clients see around 50 qualified conversations in 90 days.\n\nHere's a [quick overview of what we do](https://koldify.io/) if you want to grab some context first.\n\nWhen works best for you?\n\n• Wednesday, August 12 at 11:45 AM EDT\n• Wednesday, August 12 at 12:15 PM EDT\n• Thursday, August 13 at 9:00 AM EDT\n\nLooking forward to connecting soon.\n\nAllison",
+      "slots": [
+        {"start_time": 1786549500, "end_time": 1786551300, "label": "Wednesday, August 12 at 11:45 AM EDT"},
+        {"start_time": 1786551300, "end_time": 1786553100, "label": "Wednesday, August 12 at 12:15 PM EDT"},
+        {"start_time": 1786626000, "end_time": 1786627800, "label": "Thursday, August 13 at 9:00 AM EDT"}
+      ]
+    },
+    {
+      "id": "jake-df",
       "campaign_id": "3781785",
-      "email": "chris@mscs.world",
-      "lead": "Chris Smeltzer, Majestic Supply Chain — host changed from Logan to Naufal, same time today 2:00 PM EDT",
-      "body": "Chris,\n\nQuick change. Naufal will be on your call today rather than Logan, same time, 2:00 PM EDT, which is 1:00 PM yours.\n\nFresh invite is in your inbox with the video link and the earlier one has been withdrawn.\n\nSame conversation as planned: which shippers Majestic actually wants more of, and how we would go after them.\n\nLauren",
-      "slots": []
+      "email": "jakeh@durafleet.com",
+      "lead": "Jake Hirsch, DuraFleet (Stephanie)",
+      "body": "Hey Jake,\n\nThanks for being open to it. We run a turnkey cold email system that finds and reaches your exact ICP at scale, 150k-250k emails a month fully managed. Most clients see around 50 qualified conversations in their first 90 days. Here's a [quick overview of how it works](https://koldify.io/).\n\nIf you want to see it in action, these times work:\n\n• Wednesday, August 12 at 11:45 AM EDT\n• Wednesday, August 12 at 12:15 PM EDT\n• Thursday, August 13 at 9:00 AM EDT\n\nLooking forward to connecting soon.\n\nStephanie",
+      "slots": [
+        {"start_time": 1786549500, "end_time": 1786551300, "label": "Wednesday, August 12 at 11:45 AM EDT"},
+        {"start_time": 1786551300, "end_time": 1786553100, "label": "Wednesday, August 12 at 12:15 PM EDT"},
+        {"start_time": 1786626000, "end_time": 1786627800, "label": "Thursday, August 13 at 9:00 AM EDT"}
+      ]
+    },
+    {
+      "id": "dawn-jpc",
+      "campaign_id": "3781766",
+      "email": "dawn@jpcservices.org.uk",
+      "lead": "Dawn Edwards, JPC Services UK (Angela)",
+      "body": "Hey Dawn,\n\nThanks so much for getting back to me. I'd love to walk you through how we run turnkey cold email campaigns, here's a [quick overview of what we do](https://koldify.io/). We handle the whole thing for you, from finding your exact prospects to managing replies and follow-ups. Most clients see around 50 qualified conversations in their first 90 days.\n\nLet me know what works best:\n\n• Wednesday, August 12 at 4:45 PM GMT+1\n• Wednesday, August 12 at 5:15 PM GMT+1\n• Thursday, August 13 at 2:00 PM GMT+1\n\nLooking forward to connecting soon.\n\nAngela",
+      "slots": [
+        {"start_time": 1786549500, "end_time": 1786551300, "label": "Wednesday, August 12 at 4:45 PM GMT+1"},
+        {"start_time": 1786551300, "end_time": 1786553100, "label": "Wednesday, August 12 at 5:15 PM GMT+1"},
+        {"start_time": 1786626000, "end_time": 1786627800, "label": "Thursday, August 13 at 2:00 PM GMT+1"}
+      ]
+    },
+    {
+      "id": "david-eeusa",
+      "campaign_id": "3781766",
+      "email": "vmcnew@eeusa.com",
+      "lead": "David Daniel, Environmental Enterprises (Olivia) - reply reaches David; Veronica deceased",
+      "body": "Hey David,\n\nThanks for getting back to me, and understood on sending details first. Here's a [quick overview of what we do](https://koldify.io/). We run a fully managed cold email system that finds your exact prospects, handles the sending, and manages responses and follow-ups, so qualified conversations land on your calendar without adding to your team's plate. Most clients see around 50 qualified conversations in the first 90 days.\n\nHappy to walk through specifics on a short call:\n\n• Wednesday, August 12 at 11:45 AM EDT\n• Wednesday, August 12 at 12:15 PM EDT\n• Thursday, August 13 at 9:00 AM EDT\n\nLooking forward to connecting soon.\n\nOlivia",
+      "slots": [
+        {"start_time": 1786549500, "end_time": 1786551300, "label": "Wednesday, August 12 at 11:45 AM EDT"},
+        {"start_time": 1786551300, "end_time": 1786553100, "label": "Wednesday, August 12 at 12:15 PM EDT"},
+        {"start_time": 1786626000, "end_time": 1786627800, "label": "Thursday, August 13 at 9:00 AM EDT"}
+      ]
+    },
+    {
+      "id": "jairo-ov",
+      "campaign_id": "3781766",
+      "email": "jairo@onviewsolutions.com",
+      "lead": "Jairo Olvera, OnView (Melissa)",
+      "body": "Hey Jairo,\n\nThanks for getting back to me. We'd love to work with you on this.\n\nHere's a [quick overview of what we do](https://koldify.io/). We handle the whole cold email operation for you, 150k-250k emails monthly targeted at your exact ICP. We manage discovery, sending, and follow-ups, and typically see teams land around 50 qualified conversations in the first 90 days.\n\nLet me know what works best:\n\n• Wednesday, August 12 at 11:45 AM EDT\n• Wednesday, August 12 at 12:15 PM EDT\n• Thursday, August 13 at 9:00 AM EDT\n\nLooking forward to connecting soon.\n\nMelissa",
+      "slots": [
+        {"start_time": 1786549500, "end_time": 1786551300, "label": "Wednesday, August 12 at 11:45 AM EDT"},
+        {"start_time": 1786551300, "end_time": 1786553100, "label": "Wednesday, August 12 at 12:15 PM EDT"},
+        {"start_time": 1786626000, "end_time": 1786627800, "label": "Thursday, August 13 at 9:00 AM EDT"}
+      ]
+    },
+    {
+      "id": "jesse-sad",
+      "campaign_id": "3781766",
+      "email": "jesse@secure-a-door.net",
+      "lead": "Jesse / Claudia, Secure-A-Door (Diana)",
+      "body": "Hey Jesse,\n\nThanks for getting back to me. I'd love to walk you through how we help B2B companies like yours fill their pipeline with qualified conversations. Here's a [quick overview of what we do](https://koldify.io/).\n\nWe run a fully managed cold email system that handles everything, from finding your exact prospects to managing responses and follow-ups. Most clients see around 50 qualified conversations in the first 90 days.\n\nHere are some times that work for me:\n\n• Wednesday, August 12 at 11:45 AM EDT\n• Wednesday, August 12 at 12:15 PM EDT\n• Thursday, August 13 at 9:00 AM EDT\n\nLooking forward to connecting soon.\n\nDiana",
+      "slots": [
+        {"start_time": 1786549500, "end_time": 1786551300, "label": "Wednesday, August 12 at 11:45 AM EDT"},
+        {"start_time": 1786551300, "end_time": 1786553100, "label": "Wednesday, August 12 at 12:15 PM EDT"},
+        {"start_time": 1786626000, "end_time": 1786627800, "label": "Thursday, August 13 at 9:00 AM EDT"}
+      ]
+    },
+    {
+      "id": "erik-hf",
+      "campaign_id": "3781785",
+      "email": "erik@thehigherfunction.com",
+      "lead": "Erik, Higher Function (Carolyn)",
+      "body": "Hey Erik,\n\nThanks for the interest. Happy to walk you through how it all works.\n\nHere's a [quick overview of what we do](https://koldify.io/). We handle the whole thing: AI finds prospects that match your exact ICP, we run 150k-250k emails per month through top infrastructure, manage responses, and keep follow-ups going. Most clients see around 50 qualified conversations in 90 days.\n\nOn targeting, we dial in based on the markets and customer profiles you give us. Pricing varies depending on your setup, so it's easier to talk through on a call so I can give you accurate numbers.\n\nIf you want to dig into the details:\n\n• Wednesday, August 12 at 11:45 AM EDT\n• Wednesday, August 12 at 12:15 PM EDT\n• Thursday, August 13 at 9:00 AM EDT\n\nLooking forward to connecting soon.\n\nCarolyn",
+      "slots": [
+        {"start_time": 1786549500, "end_time": 1786551300, "label": "Wednesday, August 12 at 11:45 AM EDT"},
+        {"start_time": 1786551300, "end_time": 1786553100, "label": "Wednesday, August 12 at 12:15 PM EDT"},
+        {"start_time": 1786626000, "end_time": 1786627800, "label": "Thursday, August 13 at 9:00 AM EDT"}
+      ]
+    },
+    {
+      "id": "steven-zop",
+      "campaign_id": "3781785",
+      "email": "steven@zoplenti.com",
+      "lead": "Steven, Zoplenti (Emma)",
+      "body": "Hey Steven,\n\nThanks for getting back to me. I appreciate you asking, and I'm happy to explain. We focus on B2B companies like yours, and we found your info through standard business databases. As for fit, here's a [quick overview of what we do](https://koldify.io/): we run a fully managed cold email system that handles everything from AI prospect discovery to response handling. Most clients see around 50 qualified conversations in the first 90 days, which usually means real pipeline. That's typically where we add value.\n\nHappy to walk you through how it'd work for your business specifically.\n\n• Wednesday, August 12 at 11:45 AM EDT\n• Wednesday, August 12 at 12:15 PM EDT\n• Thursday, August 13 at 9:00 AM EDT\n\nLooking forward to connecting soon.\n\nEmma",
+      "slots": [
+        {"start_time": 1786549500, "end_time": 1786551300, "label": "Wednesday, August 12 at 11:45 AM EDT"},
+        {"start_time": 1786551300, "end_time": 1786553100, "label": "Wednesday, August 12 at 12:15 PM EDT"},
+        {"start_time": 1786626000, "end_time": 1786627800, "label": "Thursday, August 13 at 9:00 AM EDT"}
+      ]
+    },
+    {
+      "id": "bart-cw",
+      "campaign_id": "3781785",
+      "email": "bart@craftwrx.com",
+      "lead": "Bart, CraftWRX (Nancy)",
+      "body": "Hey Bart,\n\nThanks for getting back to me. Here's a [quick overview of what we do](https://koldify.io/), but happy to give you the short version: we run a fully managed cold email system that handles everything from finding your ideal prospects to sending 150k-250k emails a month and managing all the responses and follow-ups. Most clients see around 50 qualified conversations in their first 90 days.\n\nIf you want to talk through how it works for your situation, I've got a few times open:\n\n• Wednesday, August 12 at 11:45 AM EDT\n• Wednesday, August 12 at 12:15 PM EDT\n• Thursday, August 13 at 9:00 AM EDT\n\nLooking forward to connecting soon.\n\nNancy",
+      "slots": [
+        {"start_time": 1786549500, "end_time": 1786551300, "label": "Wednesday, August 12 at 11:45 AM EDT"},
+        {"start_time": 1786551300, "end_time": 1786553100, "label": "Wednesday, August 12 at 12:15 PM EDT"},
+        {"start_time": 1786626000, "end_time": 1786627800, "label": "Thursday, August 13 at 9:00 AM EDT"}
+      ]
+    },
+    {
+      "id": "sean-dave",
+      "campaign_id": "3781785",
+      "email": "sean@dave.io",
+      "lead": "Sean Eckhouse, dave.io (Whitney)",
+      "body": "Hey Sean,\n\nThanks for the interest. Here's a [quick overview of what we do](https://koldify.io/), we run a fully managed cold email system that finds your exact ICP, sends 150k-250k emails a month, handles responses, and books qualified conversations. Most clients see around 50 qualified meetings in 90 days.\n\nHappy to walk you through the details if that'd be helpful:\n\n• Wednesday, August 12 at 11:45 AM EDT\n• Wednesday, August 12 at 12:15 PM EDT\n• Thursday, August 13 at 9:00 AM EDT\n\nLooking forward to connecting soon.\n\nWhitney",
+      "slots": [
+        {"start_time": 1786549500, "end_time": 1786551300, "label": "Wednesday, August 12 at 11:45 AM EDT"},
+        {"start_time": 1786551300, "end_time": 1786553100, "label": "Wednesday, August 12 at 12:15 PM EDT"},
+        {"start_time": 1786626000, "end_time": 1786627800, "label": "Thursday, August 13 at 9:00 AM EDT"}
+      ]
+    },
+    {
+      "id": "craig-jhp",
+      "campaign_id": "3781785",
+      "email": "craig@justhitprint.net",
+      "lead": "Craig, Just Hit Print (Riley)",
+      "body": "Hey Craig,\n\nThanks for getting back to me. We run a turnkey cold email system that handles everything, here's a [quick overview](https://koldify.io/). We manage the whole process, from AI prospect discovery through follow-ups, sending 150k-250k emails monthly to your exact ICP. Most clients see around 50 qualified conversations in 90 days.\n\nWould love to walk you through how this works for your business:\n\n• Wednesday, August 12 at 11:45 AM EDT\n• Wednesday, August 12 at 12:15 PM EDT\n• Thursday, August 13 at 9:00 AM EDT\n\nLooking forward to connecting soon.\n\nRiley",
+      "slots": [
+        {"start_time": 1786549500, "end_time": 1786551300, "label": "Wednesday, August 12 at 11:45 AM EDT"},
+        {"start_time": 1786551300, "end_time": 1786553100, "label": "Wednesday, August 12 at 12:15 PM EDT"},
+        {"start_time": 1786626000, "end_time": 1786627800, "label": "Thursday, August 13 at 9:00 AM EDT"}
+      ]
     }
   ]
 }
