@@ -464,6 +464,22 @@
     {
       "email": "kevin@fitssecurity.com",
       "reason": "Meeting booked, Thu 13 Aug 14:00 EDT with Logan"
+    },
+    {
+      "email": "sumeet.kumar@axtella.in",
+      "reason": "Meeting booked, Wed 12 Aug 14:30 IST with Naufal"
+    },
+    {
+      "email": "vijay.karia@opticloud.com",
+      "reason": "Meeting booked, Wed 12 Aug 15:30 IST with Naufal"
+    },
+    {
+      "email": "howard.alt@micantis.io",
+      "reason": "Opt-out: hostile, suppressed 11 Aug"
+    },
+    {
+      "email": "robert.alpert@nulliti.com",
+      "reason": "Opt-out: stop sending me emails - suppressed 11 Aug"
     }
   ]
 }

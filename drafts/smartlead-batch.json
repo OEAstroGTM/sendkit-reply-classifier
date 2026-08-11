@@ -2,47 +2,40 @@
   "note": "Approved replies. Send with /api/smartlead?action=send-draft&id=<id>. Slots carry start_time + label so times render as one-click booking links.",
   "drafts": [
     {
-      "id": "dmitri",
+      "id": "sumeet",
       "campaign_id": "3781785",
-      "email": "dmitri@bicyclebi.com",
-      "lead": "Dmitri Kanounnikov, Bicycle BI — wants website, 2-3 examples for BI/data firms, how we identify companies modernising reporting, and what 10-30 introductions means",
-      "body": "Dmitri,\n\nGood questions, taking them in order.\n\nWebsite: koldify.io. The results section is the fastest read: https://koldify.io/#results\n\nExamples. Our track record is in adjacent categories rather than BI and data services specifically, so I am not going to hand you a case study from a different sector and pretend it maps one to one. The mechanics do transfer, and that is the part worth your time. Happy to walk you through exactly how on the call, using real campaigns.\n\nIdentifying companies modernising their reporting. Nobody announces it, so we work from signals that reliably precede it: hiring for analytics or data engineering roles, recent moves onto a cloud warehouse, headcount and funding stage, whether anyone owns data internally. That builds the list. The email then does the qualifying, because the companies actually in the middle of a migration are the ones who write back.\n\n10 to 30 introductions means replies from interested people landing in your inbox over a month. Conversations started, not meetings held. Worth being precise about that up front.\n\nIf that is useful:\n\n• Monday, August 17 at 1:30 PM EDT\n• Tuesday, August 18 at 1:30 PM EDT\n• Wednesday, August 19 at 1:30 PM EDT\n\nMadison",
+      "email": "sumeet.kumar@axtella.in",
+      "lead": "Sumeet Kumar, Axtella Consulting (India) — 'Sure. Let us know when we can connect'. Booked Naufal Wed 12 Aug 2:30 PM IST",
+      "body": "Sumeet,\n\nGood. I have put us down for Wednesday, August 12 at 2:30 PM IST. The invite is in your inbox with the video link on it.\n\nNaufal from our team will take the call, and he is in Jakarta, so the timing works properly on both sides rather than one of us dialling in at midnight.\n\nThirty minutes. The useful part will be deciding which data leaders to go after first, because BI dashboard work and broader analytics support attract quite different buyers and the outreach has to pick one to be any good.\n\nIf Wednesday does not suit, reply here and I will move it.\n\nHannah",
+      "slots": []
+    },
+    {
+      "id": "vijay",
+      "campaign_id": "3781785",
+      "email": "vijay.karia@opticloud.com",
+      "lead": "Vijay Karia, OptiCloud (India) — 'That sounds great if you can do that'. Booked Naufal Wed 12 Aug 3:30 PM IST",
+      "body": "Vijay,\n\nWe can. Wednesday, August 12 at 3:30 PM IST, and the invite is in your inbox with the video link.\n\nNaufal from our team will run it. He is based in Jakarta, so the hour works for both of you.\n\nThirty minutes. What is worth settling on the call is whether we lead with cloud cost reduction or with legacy modernisation, because IT directors respond to those two very differently and a campaign built for one will beat a campaign built for both.\n\nIf the time is awkward, reply here and I will shift it.\n\nMary",
+      "slots": []
+    },
+    {
+      "id": "jakemorgan",
+      "campaign_id": "3781785",
+      "email": "jacoba@morgantransfer.com",
+      "lead": "Jake, Morgan Transfer (United Van Lines agent) — 'I cannot access your website. Are you a legit company?'",
+      "body": "Jake,\n\nFair question, and you were right to ask it.\n\nThe company is Koldify: koldify.io, and https://koldify.io/#results is the quickest way to judge us. I am Courtney and I work there.\n\nThe address I wrote from is a sending domain we use for outreach rather than a website, which is why there was nothing to look at. Standard practice for campaigns like this, and it does look odd if you go checking, so the question was reasonable.\n\nWhat we would do for Morgan Transfer is run outbound to corporate HR and facilities managers planning employee relocations and office moves, under your name, so those enquiries come to you directly.\n\nIf it is worth twenty minutes:\n\n• Monday, August 17 at 1:30 PM EDT\n• Tuesday, August 18 at 1:30 PM EDT\n\nAnd if you would rather look at the site first and decide later, that is completely fair.\n\nCourtney Stewart\nKoldify",
       "slots": [
         { "start_time": 1786987800, "label": "Monday, August 17 at 1:30 PM EDT" },
-        { "start_time": 1787074200, "label": "Tuesday, August 18 at 1:30 PM EDT" },
-        { "start_time": 1787160600, "label": "Wednesday, August 19 at 1:30 PM EDT" }
+        { "start_time": 1787074200, "label": "Tuesday, August 18 at 1:30 PM EDT" }
       ]
     },
     {
-      "id": "johnenloe",
+      "id": "marchorowitz",
       "campaign_id": "3781785",
-      "email": "john.enloe@eagle5energy.com",
-      "lead": "John Enloe, Eagle 5 Energy — asked what our relationship to accredited investors is and whether we already have those relationships",
-      "body": "John,\n\nWorth being precise, because the distinction matters.\n\nWe are not placing you in front of a rolodex we already own, and we are not brokers. We build the channel: target list, separate sending infrastructure, outreach in your name, and the people who are interested reply directly to you. The relationship is yours from the first message rather than rented from us, which is deliberate, because introductions that run through a middleman tend to come with a claim on the outcome. We take nothing on capital raised.\n\nOur work in energy is adjacent rather than identical, so I will not overstate it. The mechanics are the same wherever we run them, and I would rather show you how on a call than describe it here.\n\nOne practical note. Outreach to accredited investors about oil and gas participations touches solicitation rules, so we would want your counsel comfortable with the copy before anything goes out. Plenty of operators use this for partner and JV outreach for that reason, which is often the better first campaign anyway.\n\n• Monday, August 17 at 2:00 PM EDT\n• Tuesday, August 18 at 2:00 PM EDT\n\nTracy",
-      "slots": [
-        { "start_time": 1786989600, "label": "Monday, August 17 at 2:00 PM EDT" },
-        { "start_time": 1787076000, "label": "Tuesday, August 18 at 2:00 PM EDT" }
-      ]
-    },
-    {
-      "id": "samtrochi",
-      "campaign_id": "3781785",
-      "email": "sam@trochi.ai",
-      "lead": "Sam, Trochi Data — asked whether all those brokers are greater than $100m in gross revenue",
-      "body": "Sam,\n\nNot by default, and I would rather answer that properly than nod along.\n\nWe build the list to the bar you set. If the floor is 100 million gross revenue, that becomes the filter. The thing to know is that revenue figures for private brokerages are not reliably published, so we triangulate from headcount, carrier count, load volume indicators and filings where they exist. That gets you a list that holds up, and anyone promising a certified revenue floor on private brokerages is selling you confidence they do not have.\n\nAt that bar the universe is smaller and the targeting has to be sharper, which usually makes the campaign better rather than worse. I can show you how we build and verify that list on the call.\n\n• Monday, August 17 at 1:30 PM EDT\n• Wednesday, August 19 at 2:00 PM EDT\n\nMargaret",
+      "email": "mhorowitz@getcharged-ny.com",
+      "lead": "Marc Horowitz, Co-Managing Partner GET Charged EV — replied 'Possibly', cell 516-808-7100",
+      "body": "Marc,\n\nPossibly is enough to spend twenty minutes on.\n\nWhat we would run for GET Charged is outbound to commercial property owners, managing agents and fleet operators, in your name, so the ones weighing up charging infrastructure come to you rather than to whoever knocked first.\n\nThe part worth deciding together is whether we lead with property owners or fleets, because the buying logic is completely different. Property owners are thinking amenity and tenant retention, fleets are thinking depot economics.\n\nOpen on my side:\n\n• Monday, August 17 at 1:30 PM EDT\n• Tuesday, August 18 at 2:00 PM EDT\n• Wednesday, August 19 at 1:30 PM EDT\n\nTell me which works and I will send the invite, or I can call 516-808-7100 if that is quicker.\n\nFaith",
       "slots": [
         { "start_time": 1786987800, "label": "Monday, August 17 at 1:30 PM EDT" },
-        { "start_time": 1787162400, "label": "Wednesday, August 19 at 2:00 PM EDT" }
-      ]
-    },
-    {
-      "id": "praneeth",
-      "campaign_id": "3781785",
-      "email": "praneeth@ninjahire.co",
-      "lead": "Praneeth, Ninjahire — 'Whats the cost?'",
-      "body": "Praneeth,\n\nFlat monthly retainer. Not per lead, not per meeting, and no percentage of anything you close.\n\nThe number moves with scope, so tell me roughly the scale you have in mind and I will put a figure in writing before we speak. Otherwise we can size it on the call in twenty minutes.\n\n• Monday, August 17 at 2:00 PM EDT\n• Tuesday, August 18 at 2:00 PM EDT\n• Wednesday, August 19 at 1:30 PM EDT\n\nAllison",
-      "slots": [
-        { "start_time": 1786989600, "label": "Monday, August 17 at 2:00 PM EDT" },
         { "start_time": 1787076000, "label": "Tuesday, August 18 at 2:00 PM EDT" },
         { "start_time": 1787160600, "label": "Wednesday, August 19 at 1:30 PM EDT" }
       ]
