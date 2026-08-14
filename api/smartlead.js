@@ -462,7 +462,13 @@ export default async function handler(req, res) {
       let scanned = 0, instantMachines = 0, candidatesTotal = 0;
       let repliesTotal = 0, truncated = false;
 
-      for (const id of ids) {
+      // Campaigns are read in parallel. Walking them sequentially meant the
+      // unscoped call timed out once the account had more than a couple of
+      // live campaigns, which is why the board only ever called it with a
+      // small max and quietly showed a fraction of the queue.
+      const machineFloor = Number(process.env.MACHINE_DELAY_SECONDS || 15);
+      const candidates = [];
+      await Promise.all(ids.map(async (id) => {
         // Records come back in internal lead-id order, NOT reply order, so
         // reading the tail misses recent replies from leads added earlier.
         // Four interested leads were invisible for hours because of exactly
@@ -491,20 +497,22 @@ export default async function handler(req, res) {
 
         // Cheap pre-filter before spending two API calls on a thread. Kept
         // deliberately low: people do reply inside a minute from a phone.
-        const machineFloor = Number(process.env.MACHINE_DELAY_SECONDS || 15);
-        const candidates = [];
         for (const r of rows) {
           const delay = (new Date(r.reply_time) - new Date(r.sent_time)) / 1000;
           if (delay < machineFloor) { instantMachines++; continue; }
-          candidates.push({ ...r, delaySeconds: Math.round(delay) });
+          candidates.push({ ...r, __campaign: String(id), delaySeconds: Math.round(delay) });
         }
-        // Summed, not max()'d: across several campaigns the old version kept
-        // only the biggest single count, so moreToScan compared against the
-        // wrong denominator and went false while work remained.
-        candidatesTotal += candidates.length;
+      }));
 
+      // One queue across every campaign, newest first, so skip/threads page the
+      // whole account rather than each campaign separately.
+      candidates.sort((a, b) => new Date(b.reply_time) - new Date(a.reply_time));
+      candidatesTotal = candidates.length;
+
+      {
         const window = candidates.slice(skip, skip + perCampaign);
         const checked = await Promise.all(window.map(async (c) => {
+          const id = c.__campaign;
           try {
             const lead = await leadByEmail(c.lead_email);
             const hist = await messageHistory(id, lead.id);
