@@ -79,6 +79,397 @@
           "label": "Thursday, August 20 at 1:30 PM EDT"
         }
       ]
+    },
+    {
+      "id": "naoki",
+      "campaign_id": "3762048",
+      "email": "naokit@nscmfg.com",
+      "lead": "Naoki, NSC Manufacturing",
+      "body": "Naoki,\n\nApologies for the slow reply. Happy to get into it properly rather than over email.\n\nThese are open:\n\n• Monday, August 17 at 1:00 PM EDT\n• Wednesday, August 19 at 1:00 PM EDT\n\nGrab whichever suits and I will send the invite over.",
+      "slots": [
+        {
+          "start_time": 1786986000,
+          "label": "Monday, August 17 at 1:00 PM EDT"
+        },
+        {
+          "start_time": 1787158800,
+          "label": "Wednesday, August 19 at 1:00 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "juan",
+      "campaign_id": "3781785",
+      "email": "juan@themartechweekly.com",
+      "lead": "Juan, The Martech Weekly",
+      "body": "Juan,\n\nApologies for the slow reply. Glad it landed. Easier to show you than describe it.\n\nThese are open:\n\n• Monday, August 17 at 1:30 PM EDT\n• Wednesday, August 19 at 1:30 PM EDT\n\nGrab whichever suits and I will send the invite over.",
+      "slots": [
+        {
+          "start_time": 1786987800,
+          "label": "Monday, August 17 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1787160600,
+          "label": "Wednesday, August 19 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "jasonmed",
+      "campaign_id": "3781785",
+      "email": "jasonumidi@medemp.com",
+      "lead": "Jason, Medemporium",
+      "body": "Jason,\n\nApologies for the slow reply. Good to hear. Worth twenty minutes to see if it actually fits.\n\nThese are open:\n\n• Tuesday, August 18 at 1:00 PM EDT\n• Thursday, August 20 at 1:00 PM EDT\n\nGrab whichever suits and I will send the invite over.",
+      "slots": [
+        {
+          "start_time": 1787072400,
+          "label": "Tuesday, August 18 at 1:00 PM EDT"
+        },
+        {
+          "start_time": 1787245200,
+          "label": "Thursday, August 20 at 1:00 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "stanklos",
+      "campaign_id": "3781793",
+      "email": "sklos@3ghcre.com",
+      "lead": "Stan, 3G Healthcare Real Estate",
+      "body": "Stan,\n\nApologies for the slow reply. Fair questions, and quicker to answer live than in a wall of text.\n\nThese are open:\n\n• Tuesday, August 18 at 2:30 PM EDT\n• Thursday, August 20 at 1:30 PM EDT\n\nGrab whichever suits and I will send the invite over.",
+      "slots": [
+        {
+          "start_time": 1787077800,
+          "label": "Tuesday, August 18 at 2:30 PM EDT"
+        },
+        {
+          "start_time": 1787247000,
+          "label": "Thursday, August 20 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "wendell",
+      "campaign_id": "3781766",
+      "email": "wshelton@earthwisees.com",
+      "lead": "Wendell, BIG'S Sanitation",
+      "body": "Wendell,\n\nApologies for the slow reply. Glad it is relevant. Let us put twenty minutes in.\n\nThese are open:\n\n• Monday, August 24 at 1:00 PM EDT\n• Wednesday, August 26 at 1:00 PM EDT\n\nGrab whichever suits and I will send the invite over.",
+      "slots": [
+        {
+          "start_time": 1787590800,
+          "label": "Monday, August 24 at 1:00 PM EDT"
+        },
+        {
+          "start_time": 1787763600,
+          "label": "Wednesday, August 26 at 1:00 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "johncsc",
+      "campaign_id": "3781766",
+      "email": "john@chicagostudiocity.com",
+      "lead": "John, Chicago Studio City",
+      "body": "John,\n\nApologies for the slow reply. Let us do it.\n\nThese are open:\n\n• Monday, August 24 at 1:30 PM EDT\n• Wednesday, August 26 at 1:30 PM EDT\n\nGrab whichever suits and I will send the invite over.",
+      "slots": [
+        {
+          "start_time": 1787592600,
+          "label": "Monday, August 24 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1787765400,
+          "label": "Wednesday, August 26 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "michaelsage",
+      "campaign_id": "3781785",
+      "email": "michael@thesageadvisorygroup.com",
+      "lead": "Michael, The Sage Advisory Group",
+      "body": "Michael,\n\nApologies for the slow reply. Good question, and honestly easier to walk through on a call.\n\nThese are open:\n\n• Tuesday, August 25 at 1:00 PM EDT\n• Thursday, August 27 at 1:00 PM EDT\n\nGrab whichever suits and I will send the invite over.",
+      "slots": [
+        {
+          "start_time": 1787677200,
+          "label": "Tuesday, August 25 at 1:00 PM EDT"
+        },
+        {
+          "start_time": 1787850000,
+          "label": "Thursday, August 27 at 1:00 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "kristina",
+      "campaign_id": "3781785",
+      "email": "kristina@olumen.co",
+      "lead": "Kristina, Olumen",
+      "body": "Kristina,\n\nApologies for the slow reply. Glad it caught you. Twenty minutes and you will know if it is worth it.\n\nThese are open:\n\n• Tuesday, August 25 at 1:30 PM EDT\n• Thursday, August 27 at 1:30 PM EDT\n\nGrab whichever suits and I will send the invite over.",
+      "slots": [
+        {
+          "start_time": 1787679000,
+          "label": "Tuesday, August 25 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1787851800,
+          "label": "Thursday, August 27 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "alexsavor",
+      "campaign_id": "3781785",
+      "email": "alex.campbell@savorwe.com",
+      "lead": "Alex, SavorWe",
+      "body": "Alex,\n\nApologies for the slow reply. Good to hear. Quickest way through this is a short call.\n\nThese are open:\n\n• Monday, August 17 at 1:00 PM EDT\n• Thursday, August 20 at 1:00 PM EDT\n\nGrab whichever suits and I will send the invite over.",
+      "slots": [
+        {
+          "start_time": 1786986000,
+          "label": "Monday, August 17 at 1:00 PM EDT"
+        },
+        {
+          "start_time": 1787245200,
+          "label": "Thursday, August 20 at 1:00 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "wilson",
+      "campaign_id": "3781785",
+      "email": "wilsonm@1stclassparking.com",
+      "lead": "Wilson, 1st Class Parking",
+      "body": "Wilson,\n\nApologies for the slow reply. Glad it is useful. Want to grab twenty minutes?\n\nThese are open:\n\n• Monday, August 17 at 1:30 PM EDT\n• Thursday, August 20 at 1:30 PM EDT\n\nGrab whichever suits and I will send the invite over.",
+      "slots": [
+        {
+          "start_time": 1786987800,
+          "label": "Monday, August 17 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1787247000,
+          "label": "Thursday, August 20 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "henrylaw",
+      "campaign_id": "3781793",
+      "email": "henry@servicelaw.net",
+      "lead": "Henry, Service Law Offices of KC",
+      "body": "Henry,\n\nApologies for the slow reply. Good question. Easier to cover live, and I can call 816-286-4140 instead if you prefer.\n\nThese are open:\n\n• Tuesday, August 18 at 1:00 PM EDT\n• Wednesday, August 19 at 1:00 PM EDT\n\nGrab whichever suits and I will send the invite over.",
+      "slots": [
+        {
+          "start_time": 1787072400,
+          "label": "Tuesday, August 18 at 1:00 PM EDT"
+        },
+        {
+          "start_time": 1787158800,
+          "label": "Wednesday, August 19 at 1:00 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "alcleantie",
+      "campaign_id": "3781793",
+      "email": "al@cleantie.com",
+      "lead": "Al, Cleantie",
+      "body": "Al,\n\nApologies for the slow reply. Fair ask. Faster to answer on a call than in writing.\n\nThese are open:\n\n• Tuesday, August 18 at 2:30 PM EDT\n• Wednesday, August 19 at 1:30 PM EDT\n\nGrab whichever suits and I will send the invite over.",
+      "slots": [
+        {
+          "start_time": 1787077800,
+          "label": "Tuesday, August 18 at 2:30 PM EDT"
+        },
+        {
+          "start_time": 1787160600,
+          "label": "Wednesday, August 19 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "brandonatv",
+      "campaign_id": "3781785",
+      "email": "brandon@appliancetvoutlet.com",
+      "lead": "Brandon, Appliance TV Outlet",
+      "body": "Brandon,\n\nApologies for the slow reply. Happy to go through it. Twenty minutes should do it.\n\nThese are open:\n\n• Monday, August 24 at 1:00 PM EDT\n• Thursday, August 27 at 1:00 PM EDT\n\nGrab whichever suits and I will send the invite over.",
+      "slots": [
+        {
+          "start_time": 1787590800,
+          "label": "Monday, August 24 at 1:00 PM EDT"
+        },
+        {
+          "start_time": 1787850000,
+          "label": "Thursday, August 27 at 1:00 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "josephaudit",
+      "campaign_id": "3781766",
+      "email": "joseph@assuredaudit.com",
+      "lead": "Joseph, Assured Audit",
+      "body": "Joseph,\n\nApologies for the slow reply. Apologies for the slow reply. I can call 909-767-9843, or grab one of these and I will send an invite.\n\nThese are open:\n\n• Monday, August 24 at 1:30 PM EDT\n• Thursday, August 27 at 1:30 PM EDT\n\nGrab whichever suits and I will send the invite over.",
+      "slots": [
+        {
+          "start_time": 1787592600,
+          "label": "Monday, August 24 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1787851800,
+          "label": "Thursday, August 27 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "richmarket",
+      "campaign_id": "3781785",
+      "email": "rich@marketantics.com",
+      "lead": "Rich, Rich M. Smith Growth Studio",
+      "body": "Rich,\n\nApologies for the slow reply. Good question. Quicker to talk it through than type it out.\n\nThese are open:\n\n• Tuesday, August 25 at 1:00 PM EDT\n• Wednesday, August 26 at 1:00 PM EDT\n\nGrab whichever suits and I will send the invite over.",
+      "slots": [
+        {
+          "start_time": 1787677200,
+          "label": "Tuesday, August 25 at 1:00 PM EDT"
+        },
+        {
+          "start_time": 1787763600,
+          "label": "Wednesday, August 26 at 1:00 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "darrell",
+      "campaign_id": "3781785",
+      "email": "darrell.hoyt@qualityrail.com",
+      "lead": "Darrell, Quality RAIL Service",
+      "body": "Darrell,\n\nApologies for the slow reply. Glad it landed. Worth twenty minutes.\n\nThese are open:\n\n• Tuesday, August 25 at 1:30 PM EDT\n• Wednesday, August 26 at 1:30 PM EDT\n\nGrab whichever suits and I will send the invite over.",
+      "slots": [
+        {
+          "start_time": 1787679000,
+          "label": "Tuesday, August 25 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1787765400,
+          "label": "Wednesday, August 26 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "nathannbi",
+      "campaign_id": "3781793",
+      "email": "nathan@nbiandassociates.com",
+      "lead": "Nathan, NBI & Associates",
+      "body": "Nathan,\n\nApologies for the slow reply. Happy to answer that properly. I can ring 817-339-8977 if that is easier.\n\nThese are open:\n\n• Monday, August 17 at 1:00 PM EDT\n• Thursday, August 20 at 1:30 PM EDT\n\nGrab whichever suits and I will send the invite over.",
+      "slots": [
+        {
+          "start_time": 1786986000,
+          "label": "Monday, August 17 at 1:00 PM EDT"
+        },
+        {
+          "start_time": 1787247000,
+          "label": "Thursday, August 20 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "aaronadm",
+      "campaign_id": "3781793",
+      "email": "aaron@adm-architecture.com",
+      "lead": "Aaron, ADM Architecture",
+      "body": "Aaron,\n\nApologies for the slow reply. Good question, and faster to cover on a call.\n\nThese are open:\n\n• Monday, August 17 at 1:30 PM EDT\n• Thursday, August 20 at 1:00 PM EDT\n\nGrab whichever suits and I will send the invite over.",
+      "slots": [
+        {
+          "start_time": 1786987800,
+          "label": "Monday, August 17 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1787245200,
+          "label": "Thursday, August 20 at 1:00 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "barbara",
+      "campaign_id": "3781793",
+      "email": "barbara@childrensartclasses.com",
+      "lead": "Barbara, Children's Art Classes",
+      "body": "Barbara,\n\nApologies for the slow reply. Let us get it in the diary.\n\nThese are open:\n\n• Tuesday, August 18 at 1:00 PM EDT\n• Wednesday, August 19 at 1:30 PM EDT\n\nGrab whichever suits and I will send the invite over.",
+      "slots": [
+        {
+          "start_time": 1787072400,
+          "label": "Tuesday, August 18 at 1:00 PM EDT"
+        },
+        {
+          "start_time": 1787160600,
+          "label": "Wednesday, August 19 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "bradley",
+      "campaign_id": "3781793",
+      "email": "bradc@atlcoast.org",
+      "lead": "Bradley, Atlantic Coast Construction",
+      "body": "Bradley,\n\nApologies for the slow reply. Good to hear. Twenty minutes and you will know if it fits.\n\nThese are open:\n\n• Tuesday, August 18 at 2:30 PM EDT\n• Wednesday, August 19 at 1:00 PM EDT\n\nGrab whichever suits and I will send the invite over.",
+      "slots": [
+        {
+          "start_time": 1787077800,
+          "label": "Tuesday, August 18 at 2:30 PM EDT"
+        },
+        {
+          "start_time": 1787158800,
+          "label": "Wednesday, August 19 at 1:00 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "jakeshift",
+      "campaign_id": "3781785",
+      "email": "jake@shiftwerx.com",
+      "lead": "Jake, ShiftWerx",
+      "body": "Jake,\n\nApologies for the slow reply. Fair question. Easier to show you than write it up.\n\nThese are open:\n\n• Monday, August 24 at 1:00 PM EDT\n• Wednesday, August 26 at 1:30 PM EDT\n\nGrab whichever suits and I will send the invite over.",
+      "slots": [
+        {
+          "start_time": 1787590800,
+          "label": "Monday, August 24 at 1:00 PM EDT"
+        },
+        {
+          "start_time": 1787765400,
+          "label": "Wednesday, August 26 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "peterclean",
+      "campaign_id": "3781766",
+      "email": "peter@mastercleaners.com",
+      "lead": "Peter, Master Cleaners",
+      "body": "Peter,\n\nApologies for the slow reply. Glad it is relevant. Want to put twenty minutes in?\n\nThese are open:\n\n• Monday, August 24 at 1:30 PM EDT\n• Wednesday, August 26 at 1:00 PM EDT\n\nGrab whichever suits and I will send the invite over.",
+      "slots": [
+        {
+          "start_time": 1787592600,
+          "label": "Monday, August 24 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1787763600,
+          "label": "Wednesday, August 26 at 1:00 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "tarit",
+      "campaign_id": "3781793",
+      "email": "tarit@archiconservices.com",
+      "lead": "Tarit, Archicon Services",
+      "body": "Tarit,\n\nApologies for the slow reply. Good to hear. Short call is the quickest way through it.\n\nThese are open:\n\n• Tuesday, August 25 at 1:00 PM EDT\n• Thursday, August 27 at 1:30 PM EDT\n\nGrab whichever suits and I will send the invite over.",
+      "slots": [
+        {
+          "start_time": 1787677200,
+          "label": "Tuesday, August 25 at 1:00 PM EDT"
+        },
+        {
+          "start_time": 1787851800,
+          "label": "Thursday, August 27 at 1:30 PM EDT"
+        }
+      ]
     }
   ]
 }
