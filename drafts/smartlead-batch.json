@@ -37,6 +37,48 @@
           "label": "Wednesday, August 19 at 2:00 PM EDT"
         }
       ]
+    },
+    {
+      "id": "kaustubh",
+      "campaign_id": "3798121",
+      "email": "kp@kamalcoach.com",
+      "lead": "Kaustubh Palekar, Business Head, Kamal Coach Works (Jaipur, India) - 'Yes certainly, let's connect'",
+      "body": "Kaustubh,\n\nGood to hear. Logan from our team will take the call. Here is what he has open, with your local time alongside since we are a long way apart:\n\n• Monday, August 17 at 1:00 PM EDT (10:30 PM IST)\n• Tuesday, August 18 at 1:00 PM EDT (10:30 PM IST)\n• Wednesday, August 19 at 1:00 PM EDT (10:30 PM IST)\n\nThose land late in your evening. If that does not suit, say so and we will find something in your working day instead, we have people who cover Asia hours.\n\nThirty minutes. What is worth deciding is which buyers to go after first for Kamal Coach Works, because bus and coach body building sells very differently to fleet operators than it does to institutional and government buyers.\n\nRachel",
+      "slots": [
+        {
+          "start_time": 1786986000,
+          "label": "Monday, August 17 at 1:00 PM EDT"
+        },
+        {
+          "start_time": 1787072400,
+          "label": "Tuesday, August 18 at 1:00 PM EDT"
+        },
+        {
+          "start_time": 1787158800,
+          "label": "Wednesday, August 19 at 1:00 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "lukekava",
+      "campaign_id": "3781793",
+      "email": "luke@sunbeltkavaco.com",
+      "lead": "Luke, Sunbelt Kava - 'Yes, absolutely! Would love to chat more.'",
+      "body": "Luke,\n\nGreat. Logan from our team will run it. These are open:\n\n• Tuesday, August 18 at 2:30 PM EDT\n• Thursday, August 20 at 1:00 PM EDT\n• Thursday, August 20 at 1:30 PM EDT\n\nThirty minutes. The useful part will be working out who we point this at first, because the buyers for a kava operation split fairly sharply between wholesale and retail accounts and the outreach has to pick one to be any good.\n\nTell me which suits and I will send the invite, or grab a time directly.\n\nCatherine",
+      "slots": [
+        {
+          "start_time": 1787077800,
+          "label": "Tuesday, August 18 at 2:30 PM EDT"
+        },
+        {
+          "start_time": 1787245200,
+          "label": "Thursday, August 20 at 1:00 PM EDT"
+        },
+        {
+          "start_time": 1787247000,
+          "label": "Thursday, August 20 at 1:30 PM EDT"
+        }
+      ]
     }
   ]
 }
