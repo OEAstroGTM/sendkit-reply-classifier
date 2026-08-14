@@ -118,11 +118,12 @@ function key(){const k=secretEl.value.trim();if(!k){alert("Enter your setup secr
 // included, so every request carries a throwaway parameter.
 const nonce=()=>Math.random().toString(36).slice(2,9);
 async function api(path){
+  const step=Number((path.match(/__step=(\d+)/)||[])[1]||0);
   try{
     const r=await fetch(path+`&fresh=1&nonce=${nonce()}`);
     const t=await r.text();
     if(!t.trim()) return {error:"empty response (the request most likely timed out)"};
-    try{return JSON.parse(t);}catch{return {error:t.slice(0,300)};}
+    try{const j=JSON.parse(t); j.__step=step; return j;}catch{return {error:t.slice(0,300)};}
   }catch(e){return {error:e.message};}
 }
 
@@ -155,11 +156,61 @@ $("btn-load").onclick=async()=>{
   $("board").innerHTML=`<div class="hint" style="padding:10px">Reading both platforms…</div>`;
   const want=$("src").value, k=key();
 
+  // Both Smartlead reads are paged. A single call only ever covers a slice, and
+  // a slice that looks clean is indistinguishable from an empty queue unless we
+  // walk it. Stop when the endpoint says there is nothing left, and keep any
+  // truncation or per-thread failure so it can be shown rather than buried.
+  async function pageAll(build, merge, cap=12){
+    let skip=0, first=null, pages=0;
+    const acc={awaiting:[],optOutsToSuppress:[],declined:[],followups:[],failed:[]};
+    let truncated=false, incomplete=false;
+    while(pages<cap){
+      const r=await api(build(skip));
+      if(r?.error){ if(!first) return {error:r.error}; incomplete=true; break; }
+      if(!first) first=r;
+      merge(acc,r);
+      if(r.truncated) truncated=true;
+      if(r.failedCount) acc.failed.push(...(r.failed||[]));
+      pages++;
+      if(!r.moreToScan) break;
+      skip+=r.__step;
+      if(pages>=cap) incomplete=true;
+    }
+    return {...first,...acc,truncated,incomplete,pagesRead:pages};
+  }
+
+  const INBOX_STEP=16, FUP_STEP=40;
   const [inbox,fups,skq]=await Promise.all([
-    want!=="sk"?api(`/api/smartlead?key=${k}&action=inbox&max=40&threads=14`):Promise.resolve(null),
-    want!=="sk"?api(`/api/smartlead?key=${k}&action=followups&days=30`):Promise.resolve(null),
+    want!=="sk"?pageAll(
+      (skip)=>`/api/smartlead?key=${k}&action=inbox&max=400&threads=${INBOX_STEP}&skip=${skip}&__step=${INBOX_STEP}`,
+      (a,r)=>{a.awaiting.push(...(r.awaiting||[]));a.optOutsToSuppress.push(...(r.optOutsToSuppress||[]));a.declined.push(...(r.declined||[]));}
+    ):Promise.resolve(null),
+    want!=="sk"?pageAll(
+      (skip)=>`/api/smartlead?key=${k}&action=followups&days=30&limit=${FUP_STEP}&skip=${skip}&__step=${FUP_STEP}`,
+      (a,r)=>{a.followups.push(...(r.followups||[]));}
+    ):Promise.resolve(null),
     want!=="sl"?api(`/api/queue?key=${k}&max=25`):Promise.resolve(null),
   ]);
+
+  const uniq=(arr,f)=>{const m=new Map();for(const x of arr||[])if(!m.has(f(x)))m.set(f(x),x);return [...m.values()];};
+  if(inbox){
+    inbox.awaiting=uniq(inbox.awaiting,x=>x.email);
+    inbox.optOutsToSuppress=uniq(inbox.optOutsToSuppress,x=>x.email);
+    inbox.declined=uniq(inbox.declined,x=>x.email);
+  }
+  if(fups) fups.followups=uniq(fups.followups,x=>x.email);
+
+  // A partial read must never look like a clean board.
+  const gaps=[];
+  if(inbox?.truncated) gaps.push("the inbox scan hit its reply cap, so some replies were never classified");
+  if(inbox?.incomplete) gaps.push("the inbox scan stopped before the end of the queue");
+  if(inbox?.failed?.length) gaps.push(`${inbox.failed.length} inbox thread(s) could not be read (usually rate limiting)`);
+  if(fups?.incomplete) gaps.push("the follow-up scan stopped before the end of the queue");
+  if(fups?.failed?.length) gaps.push(`${fups.failed.length} follow-up thread(s) could not be read`);
+  if(gaps.length) $("alerts").innerHTML+=`<div class="alert" style="border-color:var(--red)">
+    <h3 class="err">&#9888;&#65039; This board is incomplete</h3>
+    ${gaps.map(g=>`<div class="row">${esc(g)}</div>`).join("")}
+    <div class="hint" style="margin-top:6px">Counts below are a floor, not a total. Refresh in a minute or narrow the source.</div></div>`;
 
   const errs=[];
   if(inbox?.error) errs.push(`Smartlead inbox: ${inbox.error}`);
@@ -217,7 +268,10 @@ $("btn-load").onclick=async()=>{
       SendKit is still tag-based and read only, so reply to those in SendKit itself, and note that the follow-up cadence covers Smartlead only.
     </div>`;
 
-  $("stamp").textContent="Loaded "+new Date().toLocaleTimeString();
+  const read=[];
+  if(inbox) read.push(`inbox ${inbox.pagesRead||0}p of ${inbox.candidatesTotal??"?"}`);
+  if(fups) read.push(`follow-ups ${fups.pagesRead||0}p of ${fups.candidatesTotal??"?"}`);
+  $("stamp").textContent="Loaded "+new Date().toLocaleTimeString()+(read.length?" · "+read.join(" · "):"");
   btn.disabled=false; btn.textContent="Refresh";
 };
 if(secretEl.value) $("btn-load").click();
