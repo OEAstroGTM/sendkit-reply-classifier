@@ -544,6 +544,22 @@
     {
       "email": "matt.thomas@heymanadvisors.com",
       "reason": "Asked to be called: (832) 724-8696 - on call sheet"
+    },
+    {
+      "email": "wade.roberts@educreations.com",
+      "reason": "Help Scout autoresponder, not a human reply"
+    },
+    {
+      "email": "adoroski@ghostrobotics.io",
+      "reason": "Auto-routing reply. Real contact is sales@ghostrobotics.io"
+    },
+    {
+      "email": "jon_tuma@hcphomehealthcare.com",
+      "reason": "Autoresponder: we will get back to you ASAP"
+    },
+    {
+      "email": "trevor@tjamesandco.com",
+      "reason": "Autoresponder: will respond within 1-2 business days"
     }
   ]
 }
