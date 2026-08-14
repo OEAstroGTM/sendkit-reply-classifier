@@ -2,10 +2,41 @@
   "note": "Approved replies. Send with /api/smartlead?action=send-draft&id=<id> or &id=all.",
   "drafts": [
     {
-      "id": "tony-vetttd", "campaign_id": "3781785", "email": "tony@vetttd.com",
+      "id": "tony-vetttd",
+      "campaign_id": "3781785",
+      "email": "tony@vetttd.com",
       "lead": "Tony, Vetttd (Emily) - asked about the sending domain",
       "body": "Hi Tony,\n\nFair question. The outreach goes out on rotating sending domains for deliverability, so growthoraq.co won't have a site behind it. But here's the company itself: [Koldify](https://koldify.io).\n\nHappy to hop on a quick call and walk you through how it all works.\n\nEmily",
       "slots": []
+    },
+    {
+      "id": "vivek",
+      "campaign_id": "3781785",
+      "email": "vivek@protondatalabs.com",
+      "lead": "Vivek, Proton DataLabs — offered Tue/Wed 10am PST conditional on us having direct access to ops/supply chain/data leaders",
+      "body": "Vivek,\n\nStraight answer on the condition, because it decides whether the call is worth your time.\n\nWe do not have standing access to those people. We are not sitting on relationships with operations and supply chain leaders that we hand over. What we do is build the list of them, run outreach in your name from separate sending infrastructure, and the ones who are actually trying to move AI and analytics into operating decisions reply directly to you.\n\nSo it is access we create rather than access we own. If what you need is a warm rolodex, we are not it, and I would rather say that now than on the call.\n\nIf building that channel is still interesting, 10 AM PST Tuesday or Wednesday both work. Tell me which and I will send the invite.\n\nAlice",
+      "slots": []
+    },
+    {
+      "id": "johnb",
+      "campaign_id": "3781785",
+      "email": "johnb@traversecare.com",
+      "lead": "John B, Traverse Employee Care — 'Sure let's talk.'",
+      "body": "John,\n\nGood. Here is what is open:\n\n• Monday, August 17 at 1:30 PM EDT\n• Tuesday, August 18 at 1:30 PM EDT\n• Wednesday, August 19 at 2:00 PM EDT\n\nThirty minutes. The useful part will be deciding which employers to go after first, because the way a 50 person company buys employee care and the way a 500 person one does are not the same conversation, and a campaign built for one beats a campaign built for both.\n\nTell me which time suits and I will send the invite, or grab one directly.\n\nMadison",
+      "slots": [
+        {
+          "start_time": 1786987800,
+          "label": "Monday, August 17 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1787074200,
+          "label": "Tuesday, August 18 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1787162400,
+          "label": "Wednesday, August 19 at 2:00 PM EDT"
+        }
+      ]
     }
   ]
 }
