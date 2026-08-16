@@ -657,6 +657,77 @@
           "label": "Tuesday, August 18 at 2:00 PM IDT"
         }
       ]
+    },
+    {
+      "id": "grainger2",
+      "campaign_id": "3781785",
+      "email": "grainger@tvon.ai",
+      "lead": "Grainger, TVon.AI - 'Very interesting. Call me.' 843-902-0033, 4 days, meeting already on Tue 18 Aug 10:00 EDT",
+      "body": "Grainger,\n\nApologies, you asked for a call four days ago and this thread went quiet. That is on us.\n\nYou are down for Tuesday, August 18 at 10:00 AM EDT and the invite should be in your calendar. If you would rather just talk before then, I can ring 843-902-0033 today or tomorrow morning, say the word.\n\nEither way we will cover which publishers and advertisers are worth going after first for TVon.",
+      "slots": []
+    },
+    {
+      "id": "garypromus",
+      "campaign_id": "3801798",
+      "email": "gary@promusenergy.com",
+      "lead": "Gary, Promus Energy - 'I would be interested in learning more.'",
+      "body": "Gary,\n\nGood. These are open:\n\n• Monday, August 17 at 1:00 PM EDT\n• Wednesday, August 19 at 1:00 PM EDT\n• Monday, August 24 at 1:00 PM EDT\n\nThirty minutes. What is worth settling is whether we point this at utilities or at corporate offtakers, because they buy renewable capacity on completely different timelines.\n\nGrab whichever suits and I will send the invite over.",
+      "slots": [
+        {
+          "start_time": 1786986000,
+          "label": "Monday, August 17 at 1:00 PM EDT"
+        },
+        {
+          "start_time": 1787158800,
+          "label": "Wednesday, August 19 at 1:00 PM EDT"
+        },
+        {
+          "start_time": 1787590800,
+          "label": "Monday, August 24 at 1:00 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "khaled",
+      "campaign_id": "3781793",
+      "email": "khaled@posenterprise.com",
+      "lead": "Khaled Salah, CEO POS Enterprise (Pinellas Park FL) - 'Yes', +1 385-536-5979",
+      "body": "Khaled,\n\nGood. Here is what is open:\n\n• Monday, August 17 at 1:30 PM EDT\n• Tuesday, August 18 at 2:30 PM EDT\n• Wednesday, August 19 at 1:30 PM EDT\n\nThirty minutes. The part worth deciding is whether we lead with healthcare providers or renewable energy, because BPO buyers in those two look nothing alike and a campaign built for one will beat a campaign built for both.\n\nTell me which suits, or I can call 385-536-5979 if that is quicker.",
+      "slots": [
+        {
+          "start_time": 1786987800,
+          "label": "Monday, August 17 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1787077800,
+          "label": "Tuesday, August 18 at 2:30 PM EDT"
+        },
+        {
+          "start_time": 1787160600,
+          "label": "Wednesday, August 19 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "vijaygartech",
+      "campaign_id": "3798121",
+      "email": "vijays@gartech.co.in",
+      "lead": "Vijay Savalekar, Director Gartech Equipments (Pune, India) - 'Yes', +91 9225089717",
+      "body": "Vijay,\n\nGood to hear. Times below are your local, and Naufal from our team will take the call so the hour works properly on both sides.\n\n• Tuesday, August 18 at 12:30 PM IST\n• Wednesday, August 19 at 12:30 PM IST\n• Thursday, August 20 at 12:30 PM IST\n\nThirty minutes. What is worth deciding is which factories to go after first, because process automation and control system upgrades tend to come from quite different buyers.\n\nTell me which suits and I will send the invite across.",
+      "slots": [
+        {
+          "start_time": 1787036400,
+          "label": "Tuesday, August 18 at 12:30 PM IST"
+        },
+        {
+          "start_time": 1787122800,
+          "label": "Wednesday, August 19 at 12:30 PM IST"
+        },
+        {
+          "start_time": 1787209200,
+          "label": "Thursday, August 20 at 12:30 PM IST"
+        }
+      ]
     }
   ]
 }
