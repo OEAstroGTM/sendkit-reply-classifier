@@ -736,6 +736,224 @@
       "lead": "Shmuel Rozen, Cortex Dental - accepted Tue 18 Aug 2pm IDT two days ago, invite never sent",
       "body": "Shmuel,\n\nApologies, you asked for that invitation two days ago and it did not go out. That was our mistake.\n\nIt is sent now: Tuesday, August 18 at 2:00 PM IDT, with the video link on it. Naufal from our team will be on the call.\n\nOne thing worth saying plainly before we speak, so the call is useful. You mentioned you are looking for investment of five million US dollars. We do not raise capital and we have no investor network, so that is not something we can help with. What we do is outbound: building the list and starting the conversations, which for Cortex would mean distributors, implant companies and clinic chains in the markets you want to enter.\n\nIf that is still worth thirty minutes, we will see you tomorrow. If the investment side was the real priority, say so and we will not waste your time.",
       "slots": []
+    },
+    {
+      "id": "erichauck",
+      "campaign_id": "3809581",
+      "email": "ehauck@parasightsystem.com",
+      "lead": "Eric Hauck, CEO Parasight System - 'Yes can we make a time early next week?'",
+      "body": "Eric,\n\nEarly next week works. Logan from our team will take it:\n\n• Monday, August 24 at 1:00 PM EDT\n• Monday, August 24 at 1:30 PM EDT\n• Tuesday, August 25 at 1:00 PM EDT\n\nThirty minutes. Grab whichever suits and I will send the invite, or I can call 512-818-8469 if that is easier.",
+      "slots": [
+        {
+          "start_time": 1787590800,
+          "label": "Monday, August 24 at 1:00 PM EDT"
+        },
+        {
+          "start_time": 1787592600,
+          "label": "Monday, August 24 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1787677200,
+          "label": "Tuesday, August 25 at 1:00 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "shrikant",
+      "campaign_id": "3721845",
+      "email": "shrikant.bhogate@bombax.in",
+      "lead": "Shrikant Bhogate, Bombax Logistics India - offered tomorrow first half IST, wants an agenda",
+      "body": "Shrikant,\n\nHappy to, and here is the agenda so the call is short and useful:\n\n1. Which shippers and brands Bombax actually wants more of\n2. How we build that list and reach them in your name\n3. What you would see, and when\n4. Commercials\n\nOne practical thing: our team is US-based, so tomorrow morning IST is the middle of our night. The closest we can get to your working day is early evening IST.\n\n• Tuesday, August 18 at 1:00 PM EDT\n• Wednesday, August 19 at 1:00 PM EDT\n• Thursday, August 20 at 1:00 PM EDT\n\nThose land around 10:30 PM IST, which I realise is late. If mornings are the only option, say so and we will work something out rather than pretend otherwise.",
+      "slots": [
+        {
+          "start_time": 1787072400,
+          "label": "Tuesday, August 18 at 1:00 PM EDT"
+        },
+        {
+          "start_time": 1787158800,
+          "label": "Wednesday, August 19 at 1:00 PM EDT"
+        },
+        {
+          "start_time": 1787245200,
+          "label": "Thursday, August 20 at 1:00 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "sivaram",
+      "campaign_id": "3721834",
+      "email": "sivaramkrishnan@skrsupplychain.com",
+      "lead": "Sivaramkrishnan, SKR Supply Chain (Chennai) - 'Share in detail'",
+      "body": "Shiva,\n\nIn detail, then.\n\nWe build a list of the shippers and brands that need what SKR moves, register separate sending domains so your own is never put at risk, warm them, then run the outreach in your name. Anyone interested replies straight to you and the relationship is yours from the first message.\n\nWe are not selling you a contact list and we take nothing on the freight you win. Flat monthly retainer.\n\nTiming: two to three weeks of setup and warming, first replies usually week three or four.\n\nIf you want to go through the targeting properly:\n\n• Wednesday, August 19 at 1:00 PM EDT\n• Thursday, August 20 at 1:00 PM EDT\n• Monday, August 24 at 1:00 PM EDT\n\nThose are US afternoons, so late evening your time. Tell me if that does not work and we will find something better.",
+      "slots": [
+        {
+          "start_time": 1787158800,
+          "label": "Wednesday, August 19 at 1:00 PM EDT"
+        },
+        {
+          "start_time": 1787245200,
+          "label": "Thursday, August 20 at 1:00 PM EDT"
+        },
+        {
+          "start_time": 1787590800,
+          "label": "Monday, August 24 at 1:00 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "jermaine",
+      "campaign_id": "3781785",
+      "email": "jermaine@bridgepointgovrelations.com",
+      "lead": "Jermaine, Bridgepoint Government Relations - interested, wants to know which associations and companies we identify",
+      "body": "Jermaine,\n\nGood, and the honest answer to your question first: we do not have a pre-built list of associations facing federal action. We build it per client.\n\nFor Bridgepoint that would mean filtering on things we can actually observe: associations and companies with registered lobbying activity, recent rulemaking exposure in their sector, comment-period participation, new federal contracts, or a Washington office they do not yet have. Those signals get us to organisations likely to need representation. The email then does the qualifying, because the ones actually facing something reply.\n\nWorth thirty minutes to decide which of those signals matter most for your practice:\n\n• Tuesday, August 18 at 1:00 PM EDT\n• Wednesday, August 19 at 1:30 PM EDT\n• Thursday, August 20 at 1:30 PM EDT",
+      "slots": [
+        {
+          "start_time": 1787072400,
+          "label": "Tuesday, August 18 at 1:00 PM EDT"
+        },
+        {
+          "start_time": 1787160600,
+          "label": "Wednesday, August 19 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1787247000,
+          "label": "Thursday, August 20 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "donhanna",
+      "campaign_id": "3809581",
+      "email": "dhanna@i-resourcegroup.com",
+      "lead": "Don Hanna, I-Resource Group - would pay for results, burned by upfront spend before, wants process and what makes us different",
+      "body": "Don,\n\nStraight answer on the money first, because it is the part that decides everything else. We charge a flat monthly retainer. We are not a pay-for-results shop, so if that is a hard requirement we are not your people and I would rather say it now than after a call.\n\nWhy: the moment we are paid per result, our incentive is volume and yours is arguing about what counted. You have already paid for that mistake once.\n\nWhat is different is narrower than most claims. We run the outreach in your name from separate sending infrastructure, replies come to you directly, and if the targeting is wrong you will know inside two weeks because the wrong people will be replying. That is on us to fix, and it is visible rather than reported.\n\nIf that is worth twenty minutes:\n\n• Tuesday, August 18 at 2:30 PM EDT\n• Wednesday, August 19 at 1:30 PM EDT\n• Monday, August 24 at 1:30 PM EDT",
+      "slots": [
+        {
+          "start_time": 1787077800,
+          "label": "Tuesday, August 18 at 2:30 PM EDT"
+        },
+        {
+          "start_time": 1787160600,
+          "label": "Wednesday, August 19 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1787592600,
+          "label": "Monday, August 24 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "shawnmot",
+      "campaign_id": "3809581",
+      "email": "shawn@motivationeer.com",
+      "lead": "Shawn Sommerkamp, Motivationeer - 'Only if you tell me roughly how you do it'",
+      "body": "Shawn,\n\nFair, and you should not have to take a call to find out.\n\nRoughly: we build a list of the people who buy what you sell, filtered on things we can observe rather than guess. We register separate sending domains and mailboxes so motivationeer.com is never put at risk, warm them for a few weeks, then email in your name. Anyone interested replies directly to you. We handle list, infrastructure, copy and follow-up. You have the conversations.\n\nNo trade secret in it. The work is in the targeting and the follow-through, not in a trick.\n\nIf that is worth twenty minutes:\n\n• Wednesday, August 19 at 1:00 PM EDT\n• Thursday, August 20 at 1:30 PM EDT\n• Tuesday, August 25 at 1:00 PM EDT\n\nAnd if it is not, that is a completely reasonable answer.",
+      "slots": [
+        {
+          "start_time": 1787158800,
+          "label": "Wednesday, August 19 at 1:00 PM EDT"
+        },
+        {
+          "start_time": 1787247000,
+          "label": "Thursday, August 20 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1787677200,
+          "label": "Tuesday, August 25 at 1:00 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "anatoly",
+      "campaign_id": "3781785",
+      "email": "anatoly@nazarovconstruction.com",
+      "lead": "Anatoly Nazarov, President Nazarov Construction - 'What's the rate?'",
+      "body": "Anatoly,\n\nFlat monthly retainer, not per lead and no percentage of the jobs you win.\n\nThe number moves with how many general contractors, developers and property owners you want us going after and across what footprint, so tell me roughly the scale and I will put a figure in writing before we speak. Otherwise we can size it on a call in twenty minutes.\n\n• Tuesday, August 18 at 1:00 PM EDT\n• Thursday, August 20 at 1:00 PM EDT\n• Monday, August 24 at 1:00 PM EDT\n\nOr I can ring 925-273-4686 if that is quicker.",
+      "slots": [
+        {
+          "start_time": 1787072400,
+          "label": "Tuesday, August 18 at 1:00 PM EDT"
+        },
+        {
+          "start_time": 1787245200,
+          "label": "Thursday, August 20 at 1:00 PM EDT"
+        },
+        {
+          "start_time": 1787590800,
+          "label": "Monday, August 24 at 1:00 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "ryanopennova",
+      "campaign_id": "3809581",
+      "email": "ryan@opennovahq.com",
+      "lead": "Ryan Alfieri, OpenNova - wants detail and payment structure, day one or on results",
+      "body": "Ryan,\n\nTaking the payment question first, since it decides whether the rest is worth reading.\n\nWe are paid from day one. Flat monthly retainer, not per meeting and not on results. The reason is that the first few weeks are infrastructure: domains, mailboxes, warming, list building. Nobody can do that on contingency and do it properly, and anyone offering to is either front-loading the cost elsewhere or planning to spray.\n\nWhat you get for it: outreach running in your name from separate sending domains, replies landing directly with you, and targeting we adjust as we learn which segments actually respond.\n\nIf that structure works for you:\n\n• Tuesday, August 18 at 2:30 PM EDT\n• Wednesday, August 19 at 1:30 PM EDT\n• Monday, August 24 at 1:30 PM EDT\n\nHappy to call 954-294-0110 instead.",
+      "slots": [
+        {
+          "start_time": 1787077800,
+          "label": "Tuesday, August 18 at 2:30 PM EDT"
+        },
+        {
+          "start_time": 1787160600,
+          "label": "Wednesday, August 19 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1787592600,
+          "label": "Monday, August 24 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "charlesclick",
+      "campaign_id": "3781785",
+      "email": "charles@clickbuzzsms.com",
+      "lead": "Charles, Click Buzz - asks what 'needing compliant SMS campaigns' meant; they provide SMS",
+      "body": "Charles,\n\nFair challenge, and I think the original line was clumsy.\n\nWhat we meant is businesses that want to run SMS and are wary of the compliance side, so they look for a provider who handles it rather than doing it themselves. In other words, buyers for what Click Buzz already does, not a service you need.\n\nSo the offer is the other way round from how it read: we would run outbound on your behalf to those businesses, and the ones who want SMS handled properly reply to you.\n\nIf that is worth twenty minutes:\n\n• Wednesday, August 19 at 1:00 PM EDT\n• Thursday, August 20 at 1:30 PM EDT\n• Tuesday, August 25 at 1:30 PM EDT",
+      "slots": [
+        {
+          "start_time": 1787158800,
+          "label": "Wednesday, August 19 at 1:00 PM EDT"
+        },
+        {
+          "start_time": 1787247000,
+          "label": "Thursday, August 20 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1787679000,
+          "label": "Tuesday, August 25 at 1:30 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "gagan",
+      "campaign_id": "3781785",
+      "email": "gagan.shah@bundlebox.ai",
+      "lead": "Gagan Shah, BundleBox - not looking for customers yet, wants research conversations, asks cost, wants a trial",
+      "body": "Gagan,\n\nResearch conversations are a different job from selling, and worth being clear about.\n\nWe can target the people you want to learn from and get them replying to you. What changes is the message: an ask for twenty minutes of their thinking converts quite differently from a pitch, and usually better at this stage.\n\nOn cost and a trial, honestly: we are a flat monthly retainer and there is a few-week ramp while domains warm, so a very short trial tends to end right when it starts working. If you want something small, the sensible version is a narrow list and a single well-aimed campaign rather than a shortened one.\n\nWorth twenty minutes to see whether that shape suits:\n\n• Tuesday, August 18 at 1:00 PM EDT\n• Wednesday, August 19 at 1:30 PM EDT\n• Tuesday, August 25 at 1:00 PM EDT\n\nOr call 650-402-6446 if easier.",
+      "slots": [
+        {
+          "start_time": 1787072400,
+          "label": "Tuesday, August 18 at 1:00 PM EDT"
+        },
+        {
+          "start_time": 1787160600,
+          "label": "Wednesday, August 19 at 1:30 PM EDT"
+        },
+        {
+          "start_time": 1787677200,
+          "label": "Tuesday, August 25 at 1:00 PM EDT"
+        }
+      ]
+    },
+    {
+      "id": "rachelyacht",
+      "campaign_id": "3721834",
+      "email": "rachel@bespokeyachtcharter.com",
+      "lead": "Rachel Coles, Bespoke Yacht Charter - angry, we pitched freight to a superyacht broker",
+      "body": "Rachel,\n\nYou are right and I am sorry. A luxury charter brokerage has nothing to do with freight forwarding, and that email should never have reached you.\n\nIt was a targeting failure on our side, not a judgement about your business. I have removed you from the campaign so you will not hear from us again.\n\nApologies for the wasted time.",
+      "slots": []
     }
   ]
 }
