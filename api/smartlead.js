@@ -12,7 +12,10 @@ import { RateLimitError } from "../lib/limiter.js";
 import { toHtml, generateReply, generateBump } from "../lib/reply.js";
 import { linkifySlots } from "../lib/booking.js";
 import { readLedger, addTouch } from "../lib/ledger.js";
-import { createEvent, cancelEvent, formatSlot, getGrantFor, listEvents } from "../lib/nylas.js";
+// Nylas is read + cancel only now. createEvent is deliberately not imported:
+// nothing in this app should create a calendar event any more, booking is
+// Calendly. The listEvents/cancelEvent pair stays to clean up the phantoms.
+import { cancelEvent, formatSlot, getGrantFor, listEvents } from "../lib/nylas.js";
 import batch from "../drafts/smartlead-batch.json" with { type: "json" };
 import holdList from "../drafts/followup-hold.json" with { type: "json" };
 import restartList from "../drafts/followup-restart.json" with { type: "json" };
@@ -832,41 +835,18 @@ export default async function handler(req, res) {
     // Creates the calendar event on the host's own calendar with a Google Meet
     // link, and emails the invite to the lead.
     if (action === "invite") {
-      const { email, start, host } = req.query;
-      const alsoInvite = (req.query.with || "").split(",").map((x) => x.trim()).filter(Boolean);
-      if (!email || !start) return res.status(400).json({ error: "Need email and start (unix seconds)" });
-      const startTime = Number(start);
-      const durationMin = Number(req.query.duration || process.env.MEETING_MINUTES || 30);
-      let lead = null;
-      try { lead = await leadByEmail(email); } catch { /* invite can still go out */ }
-      const leadName = [lead?.first_name, lead?.last_name].filter(Boolean).join(" ");
-      const grant = await getGrantFor(host);
-      const title = req.query.title ||
-        `Koldify <> ${leadName || email}${lead?.company_name ? ` (${lead.company_name})` : ""}`;
-      const event = await createEvent({
-        startTime,
-        endTime: startTime + durationMin * 60,
-        title,
-        leadEmail: email,
-        leadName,
-        description: "Introductory call.",
-        hostEmail: host,
-        alsoInvite,
-      });
-      return res.status(200).json({
-        booked: true,
-        host: grant.email,
-        alsoInvited: alsoInvite,
-        lead: email,
-        leadName,
-        when: formatSlot(startTime, req.query.tz || process.env.TIMEZONE || "America/New_York"),
-        leadLocal: req.query.for ? formatSlot(startTime, req.query.for) : undefined,
-        conferencing: event.data?.conferencing || null,
-        eventId: event.data?.id || null,
+      // Retired 17 Aug 2026. This created events on Nylas calendars across a
+      // participant list that still included someone who has left, and a Nylas
+      // event is invisible to Calendly, which is now where booking lives.
+      // Creating one here would produce exactly the kind of ghost meeting this
+      // system spent a week cleaning up.
+      return res.status(410).json({
+        error: "Nylas invites are retired. Booking goes through Calendly.",
+        use: "GET /api/smartlead?action=send with the Calendly link in the body, " +
+             "or the console's Book now button.",
       });
     }
 
-    // ?action=cancel-event&event=<id>&host=<email>
     if (action === "cancel-event") {
       const { event, host } = req.query;
       if (!event) return res.status(400).json({ error: "Need event id" });
