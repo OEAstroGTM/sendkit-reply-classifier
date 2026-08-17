@@ -728,6 +728,14 @@
           "label": "Thursday, August 20 at 12:30 PM IST"
         }
       ]
+    },
+    {
+      "id": "shmuel2",
+      "campaign_id": "3798121",
+      "email": "rozen@cortex-dental.com",
+      "lead": "Shmuel Rozen, Cortex Dental - accepted Tue 18 Aug 2pm IDT two days ago, invite never sent",
+      "body": "Shmuel,\n\nApologies, you asked for that invitation two days ago and it did not go out. That was our mistake.\n\nIt is sent now: Tuesday, August 18 at 2:00 PM IDT, with the video link on it. Naufal from our team will be on the call.\n\nOne thing worth saying plainly before we speak, so the call is useful. You mentioned you are looking for investment of five million US dollars. We do not raise capital and we have no investor network, so that is not something we can help with. What we do is outbound: building the list and starting the conversations, which for Cortex would mean distributors, implant companies and clinic chains in the markets you want to enter.\n\nIf that is still worth thirty minutes, we will see you tomorrow. If the investment side was the real priority, say so and we will not waste your time.",
+      "slots": []
     }
   ]
 }
